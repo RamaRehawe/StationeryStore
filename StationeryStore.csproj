@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Presentation\Controller\" />
-    <Folder Include="Presentation\Pages\" />
   </ItemGroup>
 
 </Project>
