@@ -5,6 +5,9 @@
         public int Id { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
-        public Product ProductId { get; set;}
+        public int ProductId { get; set; }
+        public Product Product { get; set;}
+        public ICollection<ProductAttribute> ProductAttributes { get; set; }
+        public ICollection<ImageAttribute> ImageAttributes { get; set; }
     }
 }

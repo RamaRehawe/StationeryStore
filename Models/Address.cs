@@ -8,6 +8,8 @@
         public string Street { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
-        public User UserID { get; set; }
+        public int UserId { get; set; }
+        public User User { get; set; }
+        public Order Order { get; set; }
     }
 }
