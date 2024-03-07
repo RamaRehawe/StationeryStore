@@ -7,6 +7,6 @@
         public int QuantityId { get; set; }
         public int AttributeId { get; set; }
         public ProductAttributeQuantity Quantity { get; set; }
-        public Attribute Attribute { get; set; }
+        public Atribute Attribute { get; set; }
     }
 }
