@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BDA7JCD5zynLIw4zQDyNWmtr4bObrPATpKmU46gejRErrfPuwhuu0yioqEXUzoN1gEkPJH5cTMjGWGLPfc62SA==",
+  "dgSpecHash": "tbbYKblQzfQSYKpyhkJaDTKgtmK6oXv9dATURaGoK8bIjLq3eUw0T+2wjPoR3mWjLW1wRSVwdtBqwx6ho0LGaw==",
   "success": true,
   "projectFilePath": "C:\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
