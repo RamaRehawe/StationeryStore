@@ -7,6 +7,7 @@
         public int CartId { get; set; }
         public int ProductId { get; set; }
         public Cart Cart { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public Product Product { get; set; }
+
     }
 }

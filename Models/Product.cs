@@ -7,7 +7,7 @@
         public string Description { get; set; }
         public int SubCategoryId { get; set; }
         public SubCategory SubCategory { get; set; }
-        public CartItem CartItem { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
         public ICollection<Rate> Rates { get; set; }
         public ICollection<Review> Reviews { get; set; }
