@@ -17,7 +17,6 @@ namespace StationeryStore.Data
         public DbSet<ContactInformation> ContactInformation { get; set; }
         public DbSet<CustomerService> CustomerServices { get; set; }
         public DbSet<Driver> Drivers { get; set; }
-        public DbSet<Image> Images { get; set; }
         public DbSet<ImageAttribute> ImageAttributes { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
@@ -41,9 +40,9 @@ namespace StationeryStore.Data
                 .WithMany(s => s.Products)
                 .HasForeignKey(p => p.SubCategoryId);
             modelBuilder.Entity<CartItem>()
-                .HasOne(c => c.Product)
+                .HasOne(c => c.ProductAttributeQuantity)
                 .WithMany(p => p.CartItems)
-                .HasForeignKey(c => c.ProductId);
+                .HasForeignKey(c => c.ProductAttributeQuantityId);
             modelBuilder.Entity<CartItem>()
                 .HasOne(c => c.Cart)
                 .WithMany(ca => ca.CartItems)
@@ -58,9 +57,9 @@ namespace StationeryStore.Data
                 .WithMany(or => or.OrderItems)
                 .HasForeignKey(o => o.OrderId);
             modelBuilder.Entity<OrderItem>()
-                .HasOne(o => o.Product)
+                .HasOne(o => o.ProductAttributeQuantity)
                 .WithMany(p => p.OrderItems)
-                .HasForeignKey(o => o.ProductId);
+                .HasForeignKey(o => o.ProductAttributeQuantityId);
             modelBuilder.Entity<Rate>()
                 .HasOne(r => r.Product)
                 .WithMany(p => p.Rates)
@@ -77,18 +76,15 @@ namespace StationeryStore.Data
                 .HasOne(r => r.User)
                 .WithMany(u => u.Reviews)
                 .HasForeignKey(r => r.UserId);
-            modelBuilder.Entity<Image>()
-                .HasOne(i => i.Product)
-                .WithMany(p => p.Images)
-                .HasForeignKey(i => i.ProductId);
+            
             modelBuilder.Entity<ProductAttribute>()
                 .HasOne(pa => pa.Attribute)
                 .WithMany(a => a.ProductAttributes)
                 .HasForeignKey(pa => pa.AttributeId);
             modelBuilder.Entity<ProductAttribute>()
-                .HasOne(pa => pa.Quantity)
+                .HasOne(pa => pa.ProductAttributeQuantity)
                 .WithMany(q => q.ProductAttributes)
-                .HasForeignKey(pa => pa.QuantityId);
+                .HasForeignKey(pa => pa.ProductAttributeQuantityId);
             modelBuilder.Entity<ProductAttributeQuantity>()
                 .HasOne(q => q.Product)
                 .WithMany(p => p.ProductAttributeQuantities)
@@ -107,24 +103,22 @@ namespace StationeryStore.Data
                 .WithMany(p => p.ImageAttributes)
                 .HasForeignKey(i => i.ProductAttributeQuantityId)
                 .OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<ImageAttribute>()
-                .HasOne(ia => ia.Image)
-                .WithMany(i => i.ImageAttributes)
-                .HasForeignKey(ia => ia.ImageId);
+            
             modelBuilder.Entity<CustomerService>()
                 .HasOne(c => c.User)
                 .WithMany(u => u.CustomerServices)
                 .HasForeignKey(c => c.UserId);
+
+            modelBuilder.Entity<Order>()
+                .HasOne(a => a.Address)
+                .WithMany(o => o.Orders)
+                .HasForeignKey(o => o.AddressId);
 
             // one to one
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Cart)
                 .WithOne(c => c.User)
                 .HasForeignKey<Cart>(c => c.UserId);
-            modelBuilder.Entity<Address>()
-                .HasOne(a => a.Order)
-                .WithOne(o => o.Address)
-                .HasForeignKey<Order>(o => o.AddressId);
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Driver)
                 .WithOne(d => d.User)

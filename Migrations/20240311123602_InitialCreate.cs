@@ -119,7 +119,6 @@ namespace StationeryStore.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -159,6 +158,7 @@ namespace StationeryStore.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<bool>(type: "bit", nullable: false),
+                    AdminResponse = table.Column<bool>(type: "bit", nullable: true),
                     Details = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -180,7 +180,7 @@ namespace StationeryStore.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DriverStatus = table.Column<bool>(type: "bit", nullable: false),
-                    DrivreLicense = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DriverLicense = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -225,8 +225,8 @@ namespace StationeryStore.Migrations
                     TotalAmount = table.Column<double>(type: "float", nullable: false),
                     OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ShippingCost = table.Column<int>(type: "int", nullable: false),
-                    FailDeliver = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DriverId = table.Column<int>(type: "int", nullable: false),
+                    FailDeliver = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DriverId = table.Column<int>(type: "int", nullable: true),
                     AddressId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -249,53 +249,6 @@ namespace StationeryStore.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CartItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    CartId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CartItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CartItems_Carts_CartId",
-                        column: x => x.CartId,
-                        principalTable: "Carts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CartItems_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Images",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    URL = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Images", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Images_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -325,7 +278,7 @@ namespace StationeryStore.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Raring = table.Column<double>(type: "float", nullable: false),
+                    Rating = table.Column<double>(type: "float", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false)
@@ -376,6 +329,52 @@ namespace StationeryStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CartItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    CartId = table.Column<int>(type: "int", nullable: false),
+                    ProductAttributeQuantityId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CartItems_Carts_CartId",
+                        column: x => x.CartId,
+                        principalTable: "Carts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartItems_ProductAttributesQuantities_ProductAttributeQuantityId",
+                        column: x => x.ProductAttributeQuantityId,
+                        principalTable: "ProductAttributesQuantities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ImageAttributes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    URL = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductAttributeQuantityId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ImageAttributes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ImageAttributes_ProductAttributesQuantities_ProductAttributeQuantityId",
+                        column: x => x.ProductAttributeQuantityId,
+                        principalTable: "ProductAttributesQuantities",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
                 {
@@ -383,7 +382,7 @@ namespace StationeryStore.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ProductAttributeQuantityId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -396,37 +395,11 @@ namespace StationeryStore.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ImageAttributes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductAttributeQuantityId = table.Column<int>(type: "int", nullable: false),
-                    ImageId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ImageAttributes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ImageAttributes_Images_ImageId",
-                        column: x => x.ImageId,
-                        principalTable: "Images",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ImageAttributes_ProductAttributesQuantities_ProductAttributeQuantityId",
+                        name: "FK_OrderItems_ProductAttributesQuantities_ProductAttributeQuantityId",
                         column: x => x.ProductAttributeQuantityId,
                         principalTable: "ProductAttributesQuantities",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -436,7 +409,7 @@ namespace StationeryStore.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    QuantityId = table.Column<int>(type: "int", nullable: false),
+                    ProductAttributeQuantityId = table.Column<int>(type: "int", nullable: false),
                     AttributeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -449,8 +422,8 @@ namespace StationeryStore.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductAttributes_ProductAttributesQuantities_QuantityId",
-                        column: x => x.QuantityId,
+                        name: "FK_ProductAttributes_ProductAttributesQuantities_ProductAttributeQuantityId",
+                        column: x => x.ProductAttributeQuantityId,
                         principalTable: "ProductAttributesQuantities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -473,9 +446,9 @@ namespace StationeryStore.Migrations
                 column: "CartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_ProductId",
+                name: "IX_CartItems_ProductAttributeQuantityId",
                 table: "CartItems",
-                column: "ProductId");
+                column: "ProductAttributeQuantityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Carts_UserId",
@@ -495,19 +468,9 @@ namespace StationeryStore.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ImageAttributes_ImageId",
-                table: "ImageAttributes",
-                column: "ImageId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ImageAttributes_ProductAttributeQuantityId",
                 table: "ImageAttributes",
                 column: "ProductAttributeQuantityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Images_ProductId",
-                table: "Images",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
@@ -515,15 +478,14 @@ namespace StationeryStore.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OrderItems_ProductId",
+                name: "IX_OrderItems_ProductAttributeQuantityId",
                 table: "OrderItems",
-                column: "ProductId");
+                column: "ProductAttributeQuantityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_AddressId",
                 table: "Orders",
-                column: "AddressId",
-                unique: true);
+                column: "AddressId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_DriverId",
@@ -541,9 +503,9 @@ namespace StationeryStore.Migrations
                 column: "AttributeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductAttributes_QuantityId",
+                name: "IX_ProductAttributes_ProductAttributeQuantityId",
                 table: "ProductAttributes",
-                column: "QuantityId");
+                column: "ProductAttributeQuantityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductAttributesQuantities_ProductId",
@@ -613,9 +575,6 @@ namespace StationeryStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Carts");
-
-            migrationBuilder.DropTable(
-                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "Orders");

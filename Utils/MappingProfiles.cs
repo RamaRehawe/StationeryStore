@@ -9,6 +9,7 @@ namespace StationeryStore.Utils
         public MappingProfiles()
         {
             CreateMap<Product, ProductDto>();
+            CreateMap<User, UserDto>();
         }
     }
 }

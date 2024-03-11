@@ -12,7 +12,7 @@ using StationeryStore.Data;
 namespace StationeryStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240308004234_InitialCreate")]
+    [Migration("20240311123602_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -70,9 +70,6 @@ namespace StationeryStore.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Type")
-                        .HasColumnType("bit");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -132,7 +129,7 @@ namespace StationeryStore.Migrations
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("ProductAttributeQuantityId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -142,7 +139,7 @@ namespace StationeryStore.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductAttributeQuantityId");
 
                     b.ToTable("CartItems");
                 });
@@ -197,6 +194,9 @@ namespace StationeryStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool?>("AdminResponse")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Details")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -222,12 +222,12 @@ namespace StationeryStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("DriverStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("DrivreLicense")
+                    b.Property<string>("DriverLicense")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("DriverStatus")
+                        .HasColumnType("bit");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -240,28 +240,6 @@ namespace StationeryStore.Migrations
                     b.ToTable("Drivers");
                 });
 
-            modelBuilder.Entity("StationeryStore.Models.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("URL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Images");
-                });
-
             modelBuilder.Entity("StationeryStore.Models.ImageAttribute", b =>
                 {
                     b.Property<int>("Id")
@@ -270,19 +248,14 @@ namespace StationeryStore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ImageId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProductAttributeQuantityId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("URL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("ImageId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ProductAttributeQuantityId");
 
@@ -300,11 +273,10 @@ namespace StationeryStore.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DriverId")
+                    b.Property<int?>("DriverId")
                         .HasColumnType("int");
 
                     b.Property<string>("FailDeliver")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
@@ -325,8 +297,7 @@ namespace StationeryStore.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId")
-                        .IsUnique();
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("DriverId");
 
@@ -349,7 +320,7 @@ namespace StationeryStore.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("ProductAttributeQuantityId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
@@ -359,7 +330,7 @@ namespace StationeryStore.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductAttributeQuantityId");
 
                     b.ToTable("OrderItems");
                 });
@@ -401,7 +372,7 @@ namespace StationeryStore.Migrations
                     b.Property<int>("AttributeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuantityId")
+                    b.Property<int>("ProductAttributeQuantityId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -412,7 +383,7 @@ namespace StationeryStore.Migrations
 
                     b.HasIndex("AttributeId");
 
-                    b.HasIndex("QuantityId");
+                    b.HasIndex("ProductAttributeQuantityId");
 
                     b.ToTable("ProductAttributes");
                 });
@@ -455,7 +426,7 @@ namespace StationeryStore.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Raring")
+                    b.Property<double>("Rating")
                         .HasColumnType("float");
 
                     b.Property<int>("UserId")
@@ -596,15 +567,15 @@ namespace StationeryStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StationeryStore.Models.Product", "Product")
+                    b.HasOne("StationeryStore.Models.ProductAttributeQuantity", "ProductAttributeQuantity")
                         .WithMany("CartItems")
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("ProductAttributeQuantityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cart");
 
-                    b.Navigation("Product");
+                    b.Navigation("ProductAttributeQuantity");
                 });
 
             modelBuilder.Entity("StationeryStore.Models.CustomerService", b =>
@@ -629,32 +600,13 @@ namespace StationeryStore.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("StationeryStore.Models.Image", b =>
-                {
-                    b.HasOne("StationeryStore.Models.Product", "Product")
-                        .WithMany("Images")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("StationeryStore.Models.ImageAttribute", b =>
                 {
-                    b.HasOne("StationeryStore.Models.Image", "Image")
-                        .WithMany("ImageAttributes")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("StationeryStore.Models.ProductAttributeQuantity", "ProductAttributeQuantity")
                         .WithMany("ImageAttributes")
                         .HasForeignKey("ProductAttributeQuantityId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("Image");
 
                     b.Navigation("ProductAttributeQuantity");
                 });
@@ -662,16 +614,15 @@ namespace StationeryStore.Migrations
             modelBuilder.Entity("StationeryStore.Models.Order", b =>
                 {
                     b.HasOne("StationeryStore.Models.Address", "Address")
-                        .WithOne("Order")
-                        .HasForeignKey("StationeryStore.Models.Order", "AddressId")
+                        .WithMany("Orders")
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("StationeryStore.Models.Driver", "Driver")
                         .WithMany("Orders")
                         .HasForeignKey("DriverId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("StationeryStore.Models.User", "User")
                         .WithMany("Orders")
@@ -694,15 +645,15 @@ namespace StationeryStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StationeryStore.Models.Product", "Product")
+                    b.HasOne("StationeryStore.Models.ProductAttributeQuantity", "ProductAttributeQuantity")
                         .WithMany("OrderItems")
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("ProductAttributeQuantityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
 
-                    b.Navigation("Product");
+                    b.Navigation("ProductAttributeQuantity");
                 });
 
             modelBuilder.Entity("StationeryStore.Models.Product", b =>
@@ -724,15 +675,15 @@ namespace StationeryStore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StationeryStore.Models.ProductAttributeQuantity", "Quantity")
+                    b.HasOne("StationeryStore.Models.ProductAttributeQuantity", "ProductAttributeQuantity")
                         .WithMany("ProductAttributes")
-                        .HasForeignKey("QuantityId")
+                        .HasForeignKey("ProductAttributeQuantityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Attribute");
 
-                    b.Navigation("Quantity");
+                    b.Navigation("ProductAttributeQuantity");
                 });
 
             modelBuilder.Entity("StationeryStore.Models.ProductAttributeQuantity", b =>
@@ -797,8 +748,7 @@ namespace StationeryStore.Migrations
 
             modelBuilder.Entity("StationeryStore.Models.Address", b =>
                 {
-                    b.Navigation("Order")
-                        .IsRequired();
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("StationeryStore.Models.Atribute", b =>
@@ -821,11 +771,6 @@ namespace StationeryStore.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("StationeryStore.Models.Image", b =>
-                {
-                    b.Navigation("ImageAttributes");
-                });
-
             modelBuilder.Entity("StationeryStore.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
@@ -833,12 +778,6 @@ namespace StationeryStore.Migrations
 
             modelBuilder.Entity("StationeryStore.Models.Product", b =>
                 {
-                    b.Navigation("CartItems");
-
-                    b.Navigation("Images");
-
-                    b.Navigation("OrderItems");
-
                     b.Navigation("ProductAttributeQuantities");
 
                     b.Navigation("Rates");
@@ -848,7 +787,11 @@ namespace StationeryStore.Migrations
 
             modelBuilder.Entity("StationeryStore.Models.ProductAttributeQuantity", b =>
                 {
+                    b.Navigation("CartItems");
+
                     b.Navigation("ImageAttributes");
+
+                    b.Navigation("OrderItems");
 
                     b.Navigation("ProductAttributes");
                 });
