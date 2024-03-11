@@ -1,6 +1,8 @@
-﻿namespace StationeryStore.Models
+﻿using StationeryStore.Models;
+
+namespace StationeryStore.Dto
 {
-    public class Address
+    public class AddressDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -9,7 +11,5 @@
         public string Name { get; set; }
         public string Phone { get; set; }
         public int UserId { get; set; }
-        public User User { get; set; }
-        public ICollection<Order> Orders { get; set; }
     }
 }
