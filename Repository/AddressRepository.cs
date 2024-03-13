@@ -22,6 +22,11 @@ namespace StationeryStore.Repository
             return _context.Addresses.Any(a => a.Id == id);
         }
 
+        public Address GetAddress(int id)
+        {
+            return _context.Addresses.Where(a => a.Id == id).FirstOrDefault();
+        }
+
         public ICollection<Address> GetAddresses()
         {
             return _context.Addresses.OrderBy(a => a.Id).ToList();
@@ -32,5 +37,7 @@ namespace StationeryStore.Repository
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        
     }
 }

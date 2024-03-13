@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using StationeryStore.Dto;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
-using StationeryStore.Repository;
 
 namespace StationeryStore.Controllers
 {
@@ -21,9 +20,26 @@ namespace StationeryStore.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Address>))]
-        public IActionResult GetAddress()
+        public IActionResult GetAddresses()
         {
             var address = _mapper.Map<List<AddressDto>>(_addressRepository.GetAddresses());
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(address);
+        }
+
+        [HttpGet("{addressId}")]
+        [ProducesResponseType(200, Type = typeof(Address))]
+        [ProducesResponseType(400)]
+
+        public IActionResult GetAdress(int addressId)
+        {
+            if (!_addressRepository.AddressExists(addressId))
+                return NotFound();
+
+            var address = _mapper.Map<AddressDto>(_addressRepository.GetAddress(addressId));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -37,9 +53,7 @@ namespace StationeryStore.Controllers
         public IActionResult AddAddress([FromBody] AddressDto addressAdd)
         {
             if(addressAdd == null)
-            {
                 return BadRequest(ModelState);
-            }
 
             var address = _addressRepository.GetAddresses()
                 .Where(a => a.Title.Trim().ToUpper() == addressAdd.Title.TrimEnd().ToUpper())
