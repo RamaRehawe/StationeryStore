@@ -16,7 +16,7 @@ namespace StationeryStore
 
         public void SeedDataContext()
         {
-            /*
+            
             if (!dataContext.Users.Any())
             {
                 var users = new List<User>
@@ -189,8 +189,8 @@ namespace StationeryStore
                 var cartItems = new List<CartItem>
                 {
                     // Sample data for cart items
-                    new CartItem { Quantity = 1, CartId = 1 }, // Sample data for a cart item with quantity 1, belonging to cart with id 1, and associated with product with id 1
-                    new CartItem { Quantity = 2, CartId = 1 }, // Sample data for a cart item with quantity 2, belonging to cart with id 1, and associated with product with id 2
+                    new CartItem { Quantity = 1, ProducAttributeQuanttId = 1 , CartId = 1 }, // Sample data for a cart item with quantity 1, belonging to cart with id 1, and associated with product with id 1
+                    new CartItem { Quantity = 2, ProducAttributeQuanttId = 2 , CartId = 2 }, // Sample data for a cart item with quantity 2, belonging to cart with id 2, and associated with product with id 2
                 };
 
                 dataContext.CartItems.AddRange(cartItems);
@@ -237,12 +237,14 @@ namespace StationeryStore
                     {
                         Type = true,
                         Details = "General questions and inquiries",
+                        AdminResponse = true,
                         UserId = 4 // Assuming this is the ID of the corresponding user
                     },
                     new CustomerService
                     {
                         Type = false,
                         Details = "Complaints and issues",
+                        AdminResponse = false,
                         UserId = 4 // Assuming this is the ID of the corresponding user
                     },
                 };
@@ -268,24 +270,24 @@ namespace StationeryStore
                 dataContext.SaveChanges();
             }
 
-            if (!dataContext.Images.Any())
+            if (!dataContext.ImageAttributes.Any())
             {
-                var images = new List<Image>
+                var imageAttributes  = new List<ImageAttribute>
                 {
-                    // Sample data for images
-                    new Image
+                    // Sample data for images attributes
+                    new ImageAttribute
                     {
                         URL = "image1.jpg",
                         ProductId = 1 // Assuming this is the ID of the corresponding product
                     },
-                    new Image
+                    new ImageAttribute
                     {
                         URL = "image2.jpg",
                         ProductId = 2 // Assuming this is the ID of the corresponding product
                     },
                 };
 
-                dataContext.Images.AddRange(images);
+                dataContext.ImageAttributes.AddRange(imageAttributes);
                 dataContext.SaveChanges();
             }
 
@@ -312,28 +314,6 @@ namespace StationeryStore
                 dataContext.SaveChanges();
             }
 
-            if (!dataContext.ImageAttributes.Any())
-            {
-                var imageAttributes = new List<ImageAttribute>
-                {
-                    // Sample data for image attributes
-                    new ImageAttribute
-                    {
-                        Name = "Main Image",
-                        ProductAttributeQuantityId = 1, // Assuming this is the ID of the corresponding product attribute quantity
-                        ImageId = 4 // Assuming this is the ID of the corresponding image
-                    },
-                    new ImageAttribute
-                    {
-                        Name = "Thumbnail",
-                        ProductAttributeQuantityId = 2, // Assuming this is the ID of the corresponding product attribute quantity
-                        ImageId = 5 // Assuming this is the ID of the corresponding image
-                    },
-                };
-
-                dataContext.ImageAttributes.AddRange(imageAttributes);
-                dataContext.SaveChanges();
-            }
 
             if (!dataContext.Orders.Any())
             {
@@ -367,14 +347,14 @@ namespace StationeryStore
                         Quantity = 1,
                         Price = 50.00,
                         OrderId = 2, // Assuming this is the ID of the corresponding order
-                        ProductId = 2 // Assuming this is the ID of the corresponding product
+                        ProducAttributeQuanttId = 2 // Assuming this is the ID of the corresponding product
                     },
                     new OrderItem
                     {
                         Quantity = 2,
                         Price = 25.00,
                         OrderId = 2, // Assuming this is the ID of the corresponding order
-                        ProductId = 3 // Assuming this is the ID of the corresponding product
+                        ProducAttributeQuanttId = 3 // Assuming this is the ID of the corresponding product
                     },
                 };
 
@@ -459,7 +439,7 @@ namespace StationeryStore
                 dataContext.SaveChanges();
             }
 
-            */
+            
         }
     
     
