@@ -10,6 +10,9 @@ namespace StationeryStore.Utils
         {
             CreateMap<Product, ProductDto>();
             CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
+            CreateMap<User, LoginDto>();
+            CreateMap<LoginDto, User>();
             CreateMap<Address, AddressDto>();
             CreateMap<AddressDto, Address>();
             CreateMap<Category, CategoryDto>();
