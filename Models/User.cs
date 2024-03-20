@@ -8,6 +8,7 @@
         public string Email { get; set; }
         public string Phone { get; set; }
         public string UserType { get; set; } // Admin, ItemManeger, Customer, Driver
+        public string? JwtToken { get; set; }
         public Cart Cart { get; set; }
         public Driver Driver { get; set; }
         public Admin Admin { get; set; }
