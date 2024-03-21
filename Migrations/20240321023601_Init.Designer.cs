@@ -12,8 +12,8 @@ using StationeryStore.Data;
 namespace StationeryStore.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240315122945_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240321023601_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -502,6 +502,10 @@ namespace StationeryStore.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JwtToken")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
