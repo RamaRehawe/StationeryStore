@@ -1,7 +1,10 @@
 namespace StationeryStore.Presentation.Controller
 {
+ [Route("api/[controller]")]
+    [ApiController]
     public class PrivacyPolicyController : Controller
     {
+            [HttpGet]
         public IActionResult Index()
         {
             ViewData["Title"] = "سياسة الخصوصية";
