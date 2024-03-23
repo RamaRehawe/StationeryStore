@@ -1,6 +1,6 @@
 namespace StationeryStore.Presentation.Controller
 {
- [Route("api/[controller]")]
+ [Route("Presentation/[Controller]")]
     [ApiController]
     public class PrivacyPolicyController : Controller
     {
