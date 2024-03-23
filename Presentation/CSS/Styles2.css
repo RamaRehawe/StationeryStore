@@ -1,0 +1,265 @@
+.tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+    .tab:hover {
+        background-color: #ddd;
+    }
+
+/* Initially hide all tab contents */
+.tab-content {
+    display: none;
+    padding: 20px;
+    text-align: right;
+    font-size: 14px;
+}
+
+    .tab-content a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+        transition: background-color 0.3s, color 0.3s;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Show the corresponding tab content on hover */
+    .tab:hover + .tab-content,
+    .tab-content:hover {
+        display: block;
+    }
+
+    /* Styling for links within tab contents on hover */
+    .tab-content a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    /* Hide tab content when mouse leaves the tab */
+    .tab:hover ~ .tab-content,
+    .tab-content:hover {
+        display: none;
+    }
+
+.heart-container {
+    position: relative;
+}
+
+.heart-circle {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.heart {
+    cursor: pointer;
+    font-size: 24px;
+    color: #afafaf;
+    ;
+    transition: transform 0.3s, color 0.3s;
+}
+
+    .heart.active {
+        color: #ff0000;
+        transform: scale(1.2);
+    }
+
+nav {
+    overflow: hidden;
+}
+
+    nav a {
+        display: block;
+        color: #333;
+        text-align: right;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+.dropdown-gategory {
+    overflow: hidden;
+    display: block; 
+}
+
+    .dropdown-gategory .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: #333;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: 'Font Awesome 6 Free', Arial, sans-serif;
+        margin: 0;
+    }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: right;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+.dropdown-gategory:hover .dropdown-content {
+    display: block;
+}
+
+/* Style for vertical layout */
+.dropdown-content .dropdown-gategory {
+    display: block;
+    text-align: right;
+}
+
+    .dropdown-content .dropdown-gategory .dropbtn {
+        padding: 10px 16px;
+    }
+
+.dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content li {
+    text-align: right;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .swiper-slide img {
+        max-width: 60%;
+        max-height: 370px;
+        border-radius: 8px;
+    }
+
+.products-grid {
+    display: inline-flex;
+    gap: 10px;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .product-item:hover {
+        transform: scale(1.05);
+    }
+
+.sub-categories-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+    .sub-categories-list a {
+        text-decoration: none;
+        color: #007bff;
+        margin-right: 10px;
+    }
+
+.hiddenMessage {
+    display: none;
+    color: red;
+    margin-left: 10px;
+}
+
+.disabled-link {
+    pointer-events: none;
+}
+
+.hidden {
+    display: none;
+}
+
+#user-info {
+    position: absolute;
+    top: 13px;
+    right: 10px;
+}
+
+#user-icon,
+.cart-icon img,
+.login-icon img,
+.location-icon img {
+    width: 35px;
+    height: auto;
+    vertical-align: middle;
+}
+
+#user-name,
+.location-text {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+    margin-right: 5px; 
+}
+
+.cart-icon,
+.login-icon,
+.location-icon {
+    position: absolute;
+    top: 13px;
+}
+
+.cart-icon {
+    right: 640px;
+    margin-left: 10px;
+}
+
+.login-icon {
+    right: 460px;
+    top: 1px;
+}
+
+.location-icon {
+    right: 785px;
+    margin-left: 10px;
+}
