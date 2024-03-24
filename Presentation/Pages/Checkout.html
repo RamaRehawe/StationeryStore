@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الدفع</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="ICO.png" type="image/png">
-    <script src="function.js"></script>
-	<script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
    
 </head>
 <body>
-    <a href="home.html">
-        <img class="logo" src="logo.png" alt="شعار">
+     <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
       <main>
         <h1>الدفع</h1>
@@ -76,25 +76,24 @@
     </main>
 
      <footer>
-    <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
-    |
-    <a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
-    <a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
-    |
-    <div class="social-links">
-        <strong> تواصل معنا:</strong>
-        <a href="mailto:info@example.com">
-            <img src="email.png" alt="Email Icon">
-        </a>
-        <a href="link_to_facebook_page">
-            <img src="facebook-icon.png" alt="Facebook Icon">
-        </a>
-        <a href="tel:+123456789">
-            <img src="phone-call.png" alt="Phone Icon">
-        </a>
-          
-    </div>
-</footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
 
    <script>
 	   
@@ -108,7 +107,6 @@
     // يفترض أن يكون هناك خادم يقوم بالاستجابة للطلب وإرجاع بيانات المستخدم
 
     // على سبيل المثال:
-    // Mock data
     var userData = {
         username: "اسم العميل",
         email: "example@example.com",
