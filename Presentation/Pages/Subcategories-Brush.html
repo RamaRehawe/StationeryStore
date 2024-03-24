@@ -6,21 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فئات المنتجات</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="ICO.png" type="image/png">
-    <script src="function.js"></script>
-
-
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
 </head>
 
 <body>
-    <a href="home.html">
-        <img class="logo" src="logo.png" alt="شعار">
+    <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
     <div class="logout-icon">
         <a  onclick="logout()" id="logoutLink">
             <span id="logout-text"> تسجيل الخروج</span>
-            <img src="log-out.png" alt="Logout">
+            <img src="~/Images/log-out.png" alt="Logout">
         </a>
     </div>
 
@@ -36,7 +34,7 @@
        <div class="tab-content" id="artinkpens" style="display: none;">
             <div class="product">
                 <a href="#">
-                    <img src="art-ink-pen.png" alt=" Pen ">
+                    <img src="~/Images/art-ink-pen.png" alt=" Pen ">
                     <p>اسم المنتج 1</p>
                     <span>السعر: 15000 ل.س</span>
                 </a>
@@ -44,24 +42,23 @@
 
             <div class="product">
                 <a href="#" class="product-link">
-                    <img src="Colored-Ink-Pen.jpg" alt=" Pen ">
+                    <img src="~/Images/Colored-Ink-Pen.jpg" alt=" Pen ">
                     <p>اسم المنتج 2</p>
                     <span>السعر: 90000 ل.س</span>
                 </a>
             </div>
-            <!-- Add more products as needed -->
         </div>
 		  <div class="tab-content" id="crayons" style="display: none;">
             <div class="product">
                 <a href="#">
-                    <img src="crayons.png" alt=" Pen ">
+                    <img src="~/Images/crayons.png" alt=" Pen ">
                     <p>اسم المنتج 1</p>
                     <span>السعر: 10000 ل.س</span>
                 </a>
             </div>
 			   <div class="product">
                 <a href="#">
-                    <img src="colorpen.png" alt=" Pen ">
+                    <img src="~/Images/colorpen.png" alt=" Pen ">
                     <p>اسم المنتج 1</p>
                     <span>السعر: 12000 ل.س</span>
                 </a>
@@ -70,14 +67,14 @@
 		 <div class="tab-content" id="woodcolor" style="display: none;">
             <div class="product">
                 <a href="#">
-                    <img src="colorpens.png" alt=" Pen ">
+                    <img src="~/Images/colorpens.png" alt=" Pen ">
                     <p>اسم المنتج 1</p>
                     <span>السعر: 10000 ل.س</span>
                 </a>
             </div>
             <div class="product">
                 <a href="#">
-                    <img src="woodpens.png" alt=" Pen ">
+                    <img src="~/Images/woodpens.png" alt=" Pen ">
                     <p>اسم المنتج 2</p>
                     <span>السعر: 20000 ل.س</span>
                 </a>
@@ -86,7 +83,7 @@
         <div class="tab-content" id="brushs" style="display: none;">
             <div class="product">
                 <a href="#">
-                    <img src="brushs.jpg" alt=" Pen ">
+                    <img src="~/Images/brushs.jpg" alt=" Pen ">
                     <p>اسم المنتج 1</p>
                     <span>السعر: 10000 ل.س</span>
                 </a>
@@ -95,7 +92,7 @@
         <div class="tab-content" id="watercolor" style="display: none;">
             <div class="product">
                 <a href="#">
-                    <img src="watercolor.jpg" alt=" Pen ">
+                    <img src="~/Images/watercolor.jpg" alt=" Pen ">
                     <p>اسم المنتج 1</p>
                     <span>السعر: 10000 ل.س</span>
                 </a>
@@ -103,26 +100,25 @@
         </div>
     </main>
 
-    <footer>
+  <footer>
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
         |
-        <a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
-   <a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
-    |
-    <div class="social-links">
-        <strong>تواصل معنا:</strong>
-        <a href="mailto:info@example.com">
-            <img src="email.png" alt="Email Icon">
-        </a>
-        <a href="link_to_facebook_page">
-            <img src="facebook-icon.png" alt="Facebook Icon">
-        </a>
-        <a href="tel:+123456789">
-            <img src="phone-call.png" alt="Phone Icon">
-        </a>
-          
-    </div>
-</footer>
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
     
 </body>
 
