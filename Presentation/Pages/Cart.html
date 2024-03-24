@@ -4,33 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عربة التسوق</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="ICO.png" type="image/png">
-    <script src="function.js"></script>
+     <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
 </head>
 
 <body>
-    <a href="home.html">
-        <img class="logo" src="logo.png" alt="Logo"> <!-- إضافة الشعار هنا -->
+     <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
-    
     <main >
 		<section id="cart-container">
 		<form class="cart-form">
-			
 			  <h2>سلة التسوق</h2>
 			<div class="empty-cart-message" id="empty-cart-message-cart">
                     <p>السلة لا تحوي منتجات</p>
                 </div>
 			 <div class="login-alert" id="login-alert" style="display: none;">
-            <p>يجب عليك <a href="login.html">تسجيل الدخول</a> أولاً.</p>
+            <p>يجب عليك <a href="~/Pages/Login.html">تسجيل الدخول</a> أولاً.</p>
         </div>
-        <!-- Within each cart item -->
         <div class="cart-item">
-            <img src="notepaper.png" alt="Product 1">
+            <img src="~/Images/notepaper.png" alt="Product 1">
             <div class="cart-item-details">
                 <h4>أوراق ملاحظات</h4>
-                <p class="item-price">السعر: $1.00</p>
+                <p class="item-price">السعر: ل.س 3000</p>
                 <label for="quantity1" class="quantity-label">الكمية:</label>
                 <select id="quantity1" onchange="return updateItemTotal(this);">
                     <option value="1">1</option>
@@ -43,14 +40,14 @@
 <a href="#" class="save-for-later-link" onclick="saveForLater(this)">حفظ لوقت لاحق</a>
                 <span class="separator"></span>
                 <a href="#" class="remove-link" onclick="removeFromCart(this)">حذف</a>
-                <p class="item-total">المجموع: $2.00</p>
+                <p class="item-total">المجموع: ل.س 6000 </p>
             </div>
         </div>
  <div class="cart-item">
-                <img src="colorpen.png" alt="Product 2">
+                <img src="~/Images/colorpen.png" alt="Product 2">
                 <div class="cart-item-details">
                     <h4>أقلام تلوين</h4>
-                    <p class="item-price">السعر: $2.00</p>
+                    <p class="item-price">السعر:  ل.س 12000</p>
                     <label for="quantity2" class="quantity-label">الكمية:</label>
                     <select id="quantity2" onchange="return updateItemTotal(this);">
                         <option value="1">1</option>
@@ -64,11 +61,11 @@
                     <a href="#" class="save-for-later-link" onclick="saveForLater(this)">حفظ لوقت لاحق</a>
                     <span class="separator"></span>
                     <a href="#" class="remove-link" onclick="removeFromCart(this)">حذف</a>
-                    <p class="item-total">المجموع: $4.00</p> <!-- Add this line -->
+                    <p class="item-total">المجموع:  ل.س 24000</p> <!-- Add this line -->
                 </div>
             </div>
         <div class="cart-total" id="cart-total">
-            <p>إجمالي الفاتورة: $0.00</p>
+            <p>إجمالي الفاتورة:  ل.س 30000</p>
         </div>
         <br>
         <button class="checkout-btn" id="checkout-btn">اتمام الشراء</button>
@@ -84,35 +81,32 @@
 			  <div class="saved-item">
     <!-- عرض تفاصيل العنصر المحفوظ -->
     <h4>اسم المنتج</h4>
-    <!-- ... أي تفاصيل إضافية ... -->
     <a href="#" class="remove-from-saved" onclick="removeFromSaved(this)">حذف</a>
 </div>
 		  </form>
-		   
-		  
+  
 		</section>
     </main>
 
     <footer>
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
         |
-      <a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
-        <a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
-    |
-    <div class="social-links">
-        <strong>تواصل معنا :</strong>
-        <a href="mailto:info@example.com">
-            <img src="email.png" alt="Email Icon">
-        </a>
-        <a href="link_to_facebook_page">
-            <img src="facebook-icon.png" alt="Facebook Icon">
-        </a>
-        <a href="tel:+123456789">
-            <img src="phone-call.png" alt="Phone Icon">
-        </a>
-          
-    </div>
-</footer>
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
 
     <script>
      document.addEventListener('DOMContentLoaded', function () {
@@ -151,20 +145,16 @@
             loginAlert.style.display = 'block';
         }
     }
-    // Function to calculate and return the cart item count
     function getCartItemCount() {
         const cartItems = document.querySelectorAll('.cart-item');
         return cartItems.length;
     }
 
-    // Update the cart item count variable
     let cartItemCount = getCartItemCount();
 
-    // JavaScript section
     document.addEventListener('DOMContentLoaded', function () {
         updateTotal();
 
-        // Display the initial cart item count
         const cartItemCountElement = document.getElementById('cart-item-count');
         if (cartItemCountElement) {
             cartItemCountElement.textContent = cartItemCount;
@@ -186,10 +176,10 @@
             return false;
         }
 
-        var price = parseFloat(priceElement.textContent.replace('السعر: $', ''));
+        var price = parseFloat(priceElement.textContent.replace('السعر: ل.س ', ''));
         var quantity = parseInt(select.value);
         var itemTotal = price * quantity;
-        cartItem.querySelector('.item-total').textContent = 'المجموع: $' + itemTotal.toFixed(2);
+        cartItem.querySelector('.item-total').textContent = 'المجموع: ل.س ' + itemTotal.toFixed(2);
         updateTotal();
 
         // Return false to prevent form submission
@@ -215,7 +205,7 @@
         var emptyCartMessage = document.getElementById('empty-cart-message');
 
         if (cartTotal > 0) {
-            cartTotalElement.textContent = 'إجمالي الفاتورة: $' + cartTotal.toFixed(2);
+            cartTotalElement.textContent = 'إجمالي الفاتورة: ل.س ' + cartTotal.toFixed(2);
             cartTotalElement.style.display = 'block';
             checkoutBtn.style.display = 'block'; // Show the checkout button
             emptyCartMessage.style.display = 'none';
@@ -239,10 +229,6 @@
         var cartItem = link.closest('.cart-item');
 
         if (cartItem) {
-            // Implement your logic to move the item to the "Save for Later" section or save it in local storage.
-            // Example: You can create a "Saved Items" array in local storage and move the item there.
-            // localStorage.setItem('savedItems', JSON.stringify(savedItemsArray));
-            // Then, remove the item from the current cart.
             cartItem.remove();
             updateTotal(); // Update the total price.
         }
@@ -252,16 +238,12 @@
         var cartItem = link.closest('.cart-item');
 
         if (cartItem) {
-            // Implement your logic to remove the item from the cart.
             cartItem.remove();
             updateTotal(); // Update the total price.
         }
     }
-	
-
 </script>
 
-    
 </body>
 
 </html>
