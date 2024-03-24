@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل جديد</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles3.css">
+    <link rel="icon" href="ICO.png" type="image/png">
+        <script src="function.js"></script>
+
+</head>
+<body>
+     <a href="home.html">
+        <img class="driverlogo" src="ICO.png" alt="Logo"> <!-- إضافة الشعار هنا -->
+    </a>
+<main>
+   <form class="signup-form" onsubmit="openModal(); return false;">
+        <h2>تسجيل جديد</h2>
+        <input type="text" placeholder="اسم المستخدم" required="" style="width: 100%;">
+        <input type="email" placeholder="البريد الإلكتروني" required="" style="width: 100%;">
+        <input type="password" placeholder="كلمة المرور" required="" style="width: 100%;" id="password" oninput="checkPasswordStrength()" required>
+        <div id="passwordStrength"></div>
+        <input type="password" placeholder="تأكيد كلمة المرور" required="" style="width: 100%;" id="confirm-password">
+        <p class="additional-statement">باستمرارك، فإنك توافق على شروط استخدام المتجر وإشعار الخصوصية.</p>
+        <button type="submit">تسجيل جديد</button>
+    </form>
+<div id="confirmation-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>تأكيد الحساب</h2>
+        <p>تم إرسال رمز التأكيد إلى بريدك الإلكتروني. الرجاء التحقق من بريدك وإدخال الرمز أدناه:</p>
+        <input type="text" id="confirmation-code" placeholder="رمز التأكيد" required="" style="width: 100%;">
+        <button onclick="submitConfirmationCode()">تأكيد</button>
+    </div>
+</div>
+    </main>
+    
+    <footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+        <a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
+        <a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+                <img src="email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+                <img src="facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+                <img src="phone-call.png" alt="Phone Icon">
+            </a>
+              
+        </div>
+    </footer>
+
+</body>
+</html>

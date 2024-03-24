@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="login">تسجيل الدخول</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles3.css">
+    <link rel="icon" href="ICO.png" type="image/png">
+    <script src="function.js"></script>
+
+</head>
+<body>
+    <a href="home.html">
+        <img class="driverlogo" src="ICO.png" alt="Logo"> <!-- إضافة الشعار هنا -->
+    </a>
+    <main>
+        <form class="login-form" onsubmit="return validateLogin()">
+            <h2 id="loginHeader">تسجيل الدخول</h2>
+            <label for="username">اسم المستخدم:</label>
+            <input type="text" placeholder="اسم المستخدم" id="username" autocomplete="username" required>
+            <p class="additional-statement"><a href="forgot_password.html" id="forgotPasswordLink" title="نسيت كلمة السر؟">هل نسيت كلمة السر؟</a></p>
+            <label for="password">كلمة المرور:</label>
+            <input type="password" placeholder="كلمة المرور" id="password" autocomplete="current-password" required>
+            <br>
+            <div class="form-group remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">تذكرني</label>
+            </div>
+            <br>
+            <label for="captchaInput">رمز التحقق:</label>
+            <img id="captchaImage" alt="Captcha Image">
+            <input type="text" id="captchaInput" placeholder="أدخل رمز التحقق" required>
+            <br>
+            <p class="additional-statement" id="termsPrivacy">باستمرارك، فإنك توافق على شروط استخدام المتجر وإشعار الخصوصية.</p>
+            <button type="submit" id="loginButton" onclick="verifyAndLogin()">تسجيل الدخول</button>
+        </form>
+        <div class="combined-line">
+            <span></span>
+            <label id="newToStore">أنت جديد في متجر القرطاسية؟</label>
+            <span></span>
+        </div>
+        <br>
+        <a href="signup.html">
+            <button type="submit" id="createAccount">إنشاء حساب جديد</button>
+        </a>
+    </main>
+    <footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+        <a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
+        <a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+                <img src="email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+                <img src="facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+                <img src="phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
+    <script>
+         // توليد CAPTCHA
+         function generateCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captchaText = '';
+            for (let i = 0; i < 7; i++) { // تم تغيير عدد الأحرف إلى 7 هنا
+                captchaText += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return captchaText;
+        }
+
+        // إنشاء CAPTCHA كـ SVG
+        function createSvg(text) {
+            return `
+                <svg width="120" height="40" xmlns="http://www.w3.org/2000/svg">
+                    <text x="10" y="30" font-family="Arial" font-size="20">${text}</text>
+                </svg>
+            `;
+        }
+
+        // عرض CAPTCHA على الصفحة
+        function displayCaptcha() {
+            const captchaImage = document.getElementById('captchaImage');
+            console.log(captchaImage); // Check if captchaImage is null
+            if (!captchaImage) {
+                console.error("Element with ID 'captchaImage' not found.");
+                return;
+            }
+
+            const captchaText = generateCaptcha();
+            captchaImage.src = 'data:image/svg+xml;base64,' + btoa(createSvg(captchaText));
+            sessionStorage.setItem('captchaText', captchaText); // تخزين الرمز في session storage
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            displayCaptcha();
+        });
+
+        // تحديث CAPTCHA
+        function refreshCaptcha() {
+            displayCaptcha();
+        }
+
+        // التحقق من CAPTCHA وتسجيل الدخول
+        function verifyAndLogin() {
+            // التحقق من الرمز
+            const captchaInput = document.getElementById('captchaInput');
+            const enteredText = captchaInput.value;
+            const storedText = sessionStorage.getItem('captchaText');
+
+            // التحقق مما إذا كان النص المدخل متطابقًا مع النص المخزّن في الذاكرة المؤقتة
+            if (enteredText !== storedText) {
+                alert('فشل التحقق من الرمز. حاول مرة أخرى.');
+                refreshCaptcha();
+                return ;
+            }
+
+            // قم بتنفيذ منطق تسجيل الدخول إذا تم التحقق من الرمز بنجاح
+            login();
+        }
+
+        // تحديث CAPTCHA عند الضغط على زر التحديث
+        function refreshCaptchaOnClick() {
+            refreshCaptcha();
+        }
+
+        // عرض CAPTCHA عند تحميل الصفحة
+        displayCaptcha();
+
+        function login() {
+            // قم بتعيين حالة تسجيل الدخول في الجلسة
+            sessionStorage.setItem('isLoggedIn', 'true');
+            window.location.href = 'home.html';
+        }
+
+        function validateLogin() {
+            // إلغاء إرسال النموذج الافتراضي
+            return false;
+        }
+    </script>
+    
+</body>
+</html>

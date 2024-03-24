@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج</title>
+     <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="styles1.css">
+    <link rel="icon" href="ICO.png" type="image/png">
+    <script src="function.js"></script>
+</head>
+<body>
+    <a href="home.html">
+        <img class="logo" src="logo.png" alt="Logo"> <!-- إضافة الشعار هنا -->
+    </a>
+    <main>
+          
+        <div class="product-details">
+			<h2>اسم المنتج</h2>
+            <p>وصف المنتج يكون هنا...</p>
+      <div class="product-images" id="thumbnail-container">
+                <!-- Thumbnails will be added dynamically using JavaScript -->
+            </div>
+            <img src="item_1.png" alt="Main Product Image" class="main-product-image" id="main-product-image">
+
+<div class="product-details">
+    <table>
+        <tr>
+            <th>الخاصية</th>
+            <th>القيمة</th>
+        </tr>
+        <tr>
+            <td>عدد العناصر:</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>نوع القلم:</td>
+            <td>قلم كباس</td>
+        </tr>
+        <tr>
+            <td>اللون:</td>
+            <td>
+                <select id="colorSelect">
+                    <option value="ملون">ملون</option>
+                    <option value="أحمر">أحمر</option>
+                    <option value="أزرق">أزرق</option>
+                    <!-- Add more color options as needed -->
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>حجم القلم:</td>
+            <td>
+                <select id="sizeSelect">
+                    <option value="كبير">كبير</option>
+                    <option value="صغير">صغير</option>
+                    <!-- Add more size options as needed -->
+                </select>
+            </td>
+        </tr>
+		  <tr>
+            <td>بلد المنشأ:</td>
+            <td>
+                <select id="originSelect">
+                   
+                    <option value="الصين">الصين</option>
+                    <!-- Add more country options as needed -->
+                </select>
+            </td>
+        </tr>
+    </table>
+</div>
+         	
+      <p id="price" class="price">السعر: 25000 ل.س</p>
+  
+    <div class="delivery-info" id="deliveryInfo">
+        <!-- سيتم تحديث معلومات التسليم هنا -->
+    </div>
+<div class="delivery-options">
+        <label for="delivery-type">اختر نوع التوصيل:</label>
+        <select id="delivery-type" name="delivery-type" onchange="updateShippingDetails()">
+            <option value="standard" selected>عادي</option>
+            <option value="express">سريع</option>
+        </select>
+    </div>
+		<br>	 
+			<a href="#" id="showShippingLink">عرض تفاصيل الشحن</a>
+    <div class="modal" id="shippingModal">
+        <div class="modal-content">
+            <span class="close" id="closeShippingModalBtn">&times;</span>
+            <div class="shipping-details" id="shippingDetails">
+                <!-- سيتم تحديث تفاصيل الشحن هنا -->
+            </div>
+        </div>
+    </div>
+
+         <div class="quantity" id="quantityContainer">    
+			  <p>متوفر في المخزن</p>
+        <label class="quantity-label">الكمية :</label>
+        <select class="quantity-select" id="quantitySelect" onchange="updateQuantityInput()">
+            <!-- يمكنك تكرار هذه الخيارات بناءً على الكمية المتوفرة -->
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <!-- ... إضافة المزيد حسب الحاجة ... -->
+            <option value="10">10</option>
+        </select>
+    </div>
+           
+
+<div class="actions">
+    <!-- زر إضافة إلى السلة -->
+    <button class="add-to-cart" onclick="addToCart()">إضافة إلى السلة</button>
+
+    <!-- زر إضافة إلى قائمة الرغبات -->
+    <button class="buy-now" onclick="redirectToCheckout()">شراء الآن</button>
+</div>
+
+            <br>
+         <!-- رسالة تمت الإضافة -->
+<div id="addMessage" style="display: none; color: green;">
+    تمت الإضافة بنجاح!
+</div>   
+          
+        
+
+    <div class="rating-form" id="ratingForm" style="display: none;">
+        <h3>تقييم المنتج</h3>
+        <div class="rating-stars">
+            <span onclick="rateProduct(1)">&#9733;</span>
+            <span onclick="rateProduct(2)">&#9733;</span>
+            <span onclick="rateProduct(3)">&#9733;</span>
+            <span onclick="rateProduct(4)">&#9733;</span>
+            <span onclick="rateProduct(5)">&#9733;</span>
+        </div>
+        <textarea id="user-comment" placeholder="أضف تعليقًا..."></textarea>
+        <button onclick="submitRating()">تقييم</button>
+    </div>
+
+    <!-- عرض التقييمات -->
+    <div class="product-ratings" id="ratingsDisplay">
+        <h3>تقييمات المنتج</h3>
+        <!-- يمكنك استخدام دورة أو تكرار لعرض التقييمات -->
+        <div class="user-rating">
+            <div class="rating-stars">
+                <span>&#9733;</span>
+                <span>&#9733;</span>
+                <span>&#9733;</span>
+                <span>&#9733;</span>
+                <span>&#9733;</span>
+            </div>
+            <p>المستخدم: تعليق رائع جدًا على المنتج يظهر هنا.</p>
+        </div>
+        <!-- يمكنك إضافة المزيد من التقييمات هنا -->
+    </div>
+             </div> 
+    </main>
+     <footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+|
+<a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
+<a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
+|
+    <div class="social-links">
+        <strong>تواصل معنا :</strong>
+        <a href="mailto:info@example.com">
+            <img src="email.png" alt="Email Icon">
+        </a>
+        <a href="link_to_facebook_page">
+            <img src="facebook-icon.png" alt="Facebook Icon">
+        </a>
+        <a href="tel:+123456789">
+            <img src="phone-call.png" alt="Phone Icon">
+        </a>
+          
+    </div>
+    
+</footer>
+    <script>
+
+		 // JavaScript code
+        document.addEventListener("DOMContentLoaded", function () {
+            var showShippingLink = document.getElementById("showShippingLink");
+            showShippingLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                showShippingModal();
+            });
+
+            var closeShippingModalBtn = document.getElementById("closeShippingModalBtn");
+            closeShippingModalBtn.addEventListener("click", function () {
+                closeShippingModal();
+            });
+        });
+
+
+      // Thumbnails array
+        var thumbnails = ["item_1.png", "item_2.png", "item_3.png", "item_4.png", "item_5.png","item_6.png"];
+
+        // Add thumbnails dynamically
+        var thumbnailContainer = document.getElementById("thumbnail-container");
+
+        thumbnails.forEach(function(thumbnail) {
+            var img = document.createElement("img");
+            img.src = thumbnail;
+            img.alt = "Product Thumbnail";
+            img.className = "thumbnail";
+            img.addEventListener("click", function() {
+                changeMainImage(thumbnail);
+            });
+
+            thumbnailContainer.appendChild(img);
+        });
+
+        function changeMainImage(newSrc) {
+            var mainImage = document.getElementById('main-product-image');
+            mainImage.src = newSrc;
+        }
+        // دالة لتقييم المنتج
+        function rateProduct(stars) {
+            // قم بتنفيذ الإجراءات اللازمة لتقييم المنتج
+            console.log('تقييم المنتج بـ ' + stars + ' نجوم');
+
+            // تحديد النجوم التي تم تقييمها بلون ذهبي
+            var ratingStars = document.querySelectorAll('.rating-form .rating-stars span');
+            ratingStars.forEach(function (star, index) {
+                if (index < stars) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+
+            // حفظ التقييم في متغير لاستخدامه عند إرسال التقييم
+            selectedRating = stars;
+        }
+
+        // دالة لإرسال التقييم
+        function submitRating() {
+            var userComment = document.getElementById('user-comment').value;
+            // قم بإرسال التقييم والتعليق إلى الخادم
+            console.log('تقييم المنتج والتعليق: ' + userComment + ', النجوم: ' + selectedRating);
+            // بعد الإرسال، قم بتحديث قاعدة البيانات وعرض التقييمات المحدثة
+            updateRatingsDisplay(userComment, selectedRating);
+        }
+
+        // دالة لتحديث عرض التقييمات بعد الإرسال
+        function updateRatingsDisplay(comment, stars) {
+            // قم بجلب التقييمات الجديدة من الخادم وتحديث الواجهة
+            console.log('تم تحديث عرض التقييمات');
+            // يمكنك إضافة التقييمات الجديدة إلى عنصر التقييمات في الصفحة
+            var ratingsDisplay = document.getElementById('ratingsDisplay');
+
+            // إنشاء عنصر التقييم الجديد
+            var newRating = document.createElement('div');
+            newRating.className = 'user-rating';
+            newRating.innerHTML = '<div class="rating-stars">' + getStarsHtml(stars) + '</div><p>المستخدم: ' + comment + '</p>';
+
+            // قم بإضافة التقييم الجديد إلى عرض التقييمات
+            ratingsDisplay.appendChild(newRating);
+        }
+
+        // دالة للحصول على HTML للنجوم بناءً على عدد النجوم المحدد
+        function getStarsHtml(stars) {
+            var starsHtml = '';
+            for (var i = 0; i < stars; i++) {
+                starsHtml += '&#9733;';
+            }
+            return starsHtml;
+        }
+
+          // دالة لإظهار نموذج التقييم
+    function showRatingForm() {
+        var ratingForm = document.getElementById('ratingForm');
+        ratingForm.style.display = 'block';
+    }
+
+        var selectedRating = 0; // تقييم المستخدم المحدد
+ 
+   
+           // قم بالوصول إلى العنصر select
+        var quantitySelect = document.getElementById("quantitySelect");
+
+        // حدث يتم تشغيله عند تغيير قيمة العنصر select
+        function updateQuantityInput() {
+            // قم بتحديث النص بجانب القائمة المنسدلة
+            var selectedQuantity = quantitySelect.value;
+            var quantityText = document.getElementById("quantityContainer").querySelector("span");
+            quantityText.innerText = selectedQuantity;
+        }
+           function redirectToCheckout() {
+        // يمكنك تحديد رابط صفحة الشراء هنا
+        var checkoutPageURL = "checkout.html"; // قم بتحديد الرابط الخاص بصفحة الشراء
+
+        // توجيه المستخدم إلى صفحة الشراء
+        window.location.href = checkoutPageURL;
+    }
+       // متغير لتتبع حالة المنتج (في السلة أو في قائمة الرغبات)
+    var isInCart = false;
+    var isInWishlist = false;
+
+   // قم بتعريف دالة لفحص حالة تسجيل الدخول
+function checkLoginStatus() {
+    var isLoggedIn = false; // قم بتعيين هذا القيمة إلى true إذا كان المستخدم قد قام بتسجيل الدخول
+
+    return isLoggedIn;
+}
+
+// في دالة لإضافة المنتج إلى سلة التسوق
+function addToCart(productId) {
+    // قم بفحص حالة تسجيل الدخول
+    var isLoggedIn = checkLoginStatus();
+
+    if (isLoggedIn) {
+        // تم إضافة المنتج إلى سلة التسوق
+        alert('تمت إضافة المنتج إلى سلة التسوق.');
+        // يمكنك أيضا تحديد عنوان URL لصفحة سلة التسوق هنا
+    } else {
+        // لم يتم تسجيل الدخول، قم بتوجيه المستخدم إلى صفحة تسجيل الدخول
+        alert('يجب عليك تسجيل الدخول لإضافة المنتج إلى سلة التسوق.');
+        window.location.href = 'login.html'; // قم بتغيير 'login.html' إلى عنوان URL الصحيح لصفحة تسجيل الدخول
+    }
+}
+
+    // دالة لعرض رسالة تمت الإضافة
+    function showAddMessage() {
+        var addMessage = document.getElementById('addMessage');
+        addMessage.style.display = 'block';
+
+        // يمكنك إضافة أي تحسينات إضافية هنا، مثل إخفاء الرسالة بعد فترة زمنية قصيرة
+        setTimeout(function() {
+            addMessage.style.display = 'none';
+        }, 3000); // يختفي الرسالة بعد 3 ثواني (يمكنك تعديل هذه الفترة حسب الحاجة)
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+    // دالة لحساب تاريخ التوصيل
+    function calculateDeliveryDate() {
+        var currentDate = new Date();
+        var currentHour = currentDate.getHours();
+        var deliveryDateStandard = new Date();
+        var deliveryDateExpress = new Date();
+
+        // إذا كان الوقت الحالي أكبر من أو يساوي 12 مساءً، فالتوصيل سيكون في اليوم التالي
+        if (currentHour >= 12) {
+            deliveryDateStandard.setDate(currentDate.getDate() + 1);
+            deliveryDateExpress.setDate(currentDate.getDate() + 1);
+        } else {
+            deliveryDateStandard.setDate(currentDate.getDate());
+            deliveryDateExpress.setDate(currentDate.getDate());
+        }
+
+        // التوصيل العادي خلال 5 أيام
+        deliveryDateStandard.setDate(deliveryDateStandard.getDate() + 5);
+
+        // التوصيل السريع خلال 2 أيام
+        deliveryDateExpress.setDate(deliveryDateExpress.getDate() + 2);
+
+        // إضافة متغير currentHour إلى الكائن المرتجع
+        return {
+            standard: deliveryDateStandard,
+            express: deliveryDateExpress,
+            currentHour: currentHour,
+        };
+    }
+
+    // دالة لتنسيق التاريخ إلى الصيغة "الجمعة، فبراير 23"
+    function formatDate(date) {
+        var options = { weekday: 'long', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('ar-AR', options);
+    }
+
+    // دالة لتحديث معلومات التوصيل
+    // دالة لتحديث معلومات التوصيل
+    function updateDeliveryInfo() {
+        var deliveryInfo = document.getElementById("deliveryInfo");
+        var deliveryDate = calculateDeliveryDate();
+
+        // حساب الوقت المتبقي للطلب
+        var currentTime = new Date();
+        var cutoffTime = new Date(currentTime);
+        cutoffTime.setHours(24, 0, 0, 0); // منتصف الليل
+
+        var timeDiff = cutoffTime - currentTime;
+        var hoursRemaining = Math.floor(timeDiff / (1000 * 60 * 60));
+        var minutesRemaining = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+        var deliveryText = `
+            <p>التوصيل ${formatDate(deliveryDate.standard)}. أطلب خلال ${hoursRemaining} ساعة و ${minutesRemaining} دقيقة</p>
+            <p>أو احصل على أسرع توصيل ${formatDate(deliveryDate.express)}</p>
+        `;
+
+        deliveryInfo.innerHTML = deliveryText;
+    }
+
+    // استدعاء الدالة لإعداد معلومات التوصيل بشكل أولي
+    updateDeliveryInfo();
+});
+
+        function showShippingModal() {
+            var shippingModal = document.getElementById("shippingModal");
+            shippingModal.style.display = "block";
+            updateShippingDetails();
+        }
+
+        function closeShippingModal() {
+            var shippingModal = document.getElementById("shippingModal");
+            shippingModal.style.display = "none";
+        }
+
+    function updateShippingDetails() {
+    var shippingDetails = document.getElementById("shippingDetails");
+
+    var price = 25000;
+    var standardShippingFee = 10000;
+    var expressShippingFee = 15000; // تكلفة الشحن للتوصيل السريع
+
+    // قرار استخدام تكلفة الشحن المناسبة بناءً على نوع التوصيل
+    var selectedDeliveryType = document.getElementById("delivery-type").value;
+    var shippingFee = (selectedDeliveryType === "standard") ? standardShippingFee : expressShippingFee;
+
+    var total = price + shippingFee;
+
+    // تحديد رمز العملة
+    var currencySymbol = "ل.س ";
+
+    // تنسيق الأرقام وإزالة الفواصل
+    var formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var formattedShippingFee = shippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+   var detailsText = `
+    <h2>تفاصيل الشحن والرسوم</h2>
+    <hr>
+    <p class="align-right">السعر: <span class="align-left">${formattedPrice} ${currencySymbol}</span></p>
+    <p class="align-right">رسوم الشحن من متجر القرطاسية: <span class="align-left">${formattedShippingFee} ${currencySymbol}</span></p>
+    <hr>
+    <p class="align-right">الإجمالي: <span class="align-left">${formattedTotal} ${currencySymbol}</span></p>
+    <p class="red-bold-centered">الترجيع مجاني</p>
+`;
+
+
+    shippingDetails.innerHTML = detailsText;
+}
+
+    </script>
+    
+</body>
+</html>
