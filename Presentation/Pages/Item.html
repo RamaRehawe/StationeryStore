@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تفاصيل المنتج</title>
-     <link rel="stylesheet" href="styles.css">
-     <link rel="stylesheet" href="styles1.css">
-    <link rel="icon" href="ICO.png" type="image/png">
-    <script src="function.js"></script>
+     <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="stylesheet" href="~/CSS/Styles1.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
 </head>
 <body>
-    <a href="home.html">
-        <img class="logo" src="logo.png" alt="Logo"> <!-- إضافة الشعار هنا -->
+   <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
 	 <div class="logout-icon">
         <a  onclick="logout()" id="logoutLink">
@@ -25,9 +25,8 @@
 			<h2>اسم المنتج</h2>
             <p>وصف المنتج يكون هنا...</p>
       <div class="product-images" id="thumbnail-container">
-                <!-- Thumbnails will be added dynamically using JavaScript -->
             </div>
-            <img src="item_1.png" alt="Main Product Image" class="main-product-image" id="main-product-image">
+            <img src="~/Images/item_1.png" alt="Main Product Image" class="main-product-image" id="main-product-image">
 
 <div class="product-details">
     <table>
@@ -50,7 +49,6 @@
                     <option value="ملون">ملون</option>
                     <option value="أحمر">أحمر</option>
                     <option value="أزرق">أزرق</option>
-                    <!-- Add more color options as needed -->
                 </select>
             </td>
         </tr>
@@ -60,7 +58,6 @@
                 <select id="sizeSelect">
                     <option value="كبير">كبير</option>
                     <option value="صغير">صغير</option>
-                    <!-- Add more size options as needed -->
                 </select>
             </td>
         </tr>
@@ -70,7 +67,6 @@
                 <select id="originSelect">
                    
                     <option value="الصين">الصين</option>
-                    <!-- Add more country options as needed -->
                 </select>
             </td>
         </tr>
@@ -114,20 +110,13 @@
            
 
 <div class="actions">
-    <!-- زر إضافة إلى السلة -->
     <button class="add-to-cart" onclick="addToCart()">إضافة إلى السلة</button>
-
-    <!-- زر إضافة إلى قائمة الرغبات -->
     <button class="buy-now" onclick="redirectToCheckout()">شراء الآن</button>
 </div>
-
             <br>
-         <!-- رسالة تمت الإضافة -->
 <div id="addMessage" style="display: none; color: green;">
     تمت الإضافة بنجاح!
 </div>   
-          
-        
 
     <div class="rating-form" id="ratingForm" style="display: none;">
         <h3>تقييم المنتج</h3>
@@ -160,27 +149,26 @@
     </div>
              </div> 
     </main>
-     <footer>
+      <footer>
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
-|
-<a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
-<a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
-|
-    <div class="social-links">
-        <strong>تواصل معنا :</strong>
-        <a href="mailto:info@example.com">
-            <img src="email.png" alt="Email Icon">
-        </a>
-        <a href="link_to_facebook_page">
-            <img src="facebook-icon.png" alt="Facebook Icon">
-        </a>
-        <a href="tel:+123456789">
-            <img src="phone-call.png" alt="Phone Icon">
-        </a>
-          
-    </div>
-    
-</footer>
+        |
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
+
     <script>
 
 		 // JavaScript code
