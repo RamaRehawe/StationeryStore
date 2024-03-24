@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="login">تسجيل الدخول</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles3.css">
-    <link rel="icon" href="ICO.png" type="image/png">
-    <script src="function.js"></script>
-
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="stylesheet" href="~/CSS/Styles3.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
 </head>
 <body>
-    <a href="home.html">
-        <img class="driverlogo" src="ICO.png" alt="Logo"> <!-- إضافة الشعار هنا -->
+    <a href="~/Pages/Home.html">
+        <img class="driverlogo" src="~/Images/ICO.png" alt="Logo">
     </a>
     <main>
         <form class="login-form" onsubmit="return validateLogin()">
             <h2 id="loginHeader">تسجيل الدخول</h2>
             <label for="username">اسم المستخدم:</label>
             <input type="text" placeholder="اسم المستخدم" id="username" autocomplete="username" required>
-            <p class="additional-statement"><a href="forgot_password.html" id="forgotPasswordLink" title="نسيت كلمة السر؟">هل نسيت كلمة السر؟</a></p>
+            <p class="additional-statement"><a href="~/Pages/ForgotPassword.html" id="forgotPasswordLink" title="نسيت كلمة السر؟">هل نسيت كلمة السر؟</a></p>
             <label for="password">كلمة المرور:</label>
             <input type="password" placeholder="كلمة المرور" id="password" autocomplete="current-password" required>
             <br>
@@ -48,19 +47,19 @@
     <footer>
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
         |
-        <a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
-        <a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
         |
         <div class="social-links">
             <strong> تواصل معنا:</strong>
             <a href="mailto:info@example.com">
-                <img src="email.png" alt="Email Icon">
+      <img src="~/Images/email.png" alt="Email Icon">
             </a>
             <a href="link_to_facebook_page">
-                <img src="facebook-icon.png" alt="Facebook Icon">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
             </a>
             <a href="tel:+123456789">
-                <img src="phone-call.png" alt="Phone Icon">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
             </a>
         </div>
     </footer>
@@ -136,7 +135,7 @@
         function login() {
             // قم بتعيين حالة تسجيل الدخول في الجلسة
             sessionStorage.setItem('isLoggedIn', 'true');
-            window.location.href = 'home.html';
+            window.location.href = '~/Pages/Home.html';
         }
 
         function validateLogin() {
