@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم للمسؤول</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="ICO.png" type="image/png">
-    <script src="function.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-    <a href="home.html">
-        <img class="logo" src="logo.png" alt="شعار"> <!-- Replace with descriptive Arabic text for your logo -->
+  <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
 		 <div class="logout-icon">
         <a  onclick="logout()" id="logoutLink">
@@ -39,7 +39,7 @@
     <p>نحن فخورون بأن نقدم لكم متجرنا الإلكتروني للقرطاسية، حيث يديره فريق من المحترفين بقيادة المدير الخبير.</p>
     <p>يعمل المدير جاهدًا لضمان توفير تشكيلة واسعة من المنتجات عالية الجودة، ويسعى دائمًا لتلبية احتياجات عملائنا الكرام. بفضل خبرته الواسعة في مجال القرطاسية، يقوم بالإشراف على تحديث المخزون بانتظام وضمان جاهزية المنتجات.</p>
     <p>نحن نفتخر بتوفير تجربة تسوق سلسة ومرضية، ونشجعكم دائمًا على التواصل مع المدير لأي استفسارات أو اقتراحات. نتمنى لكم تجربة تسوق ممتعة!</p>
-	<img  class="first-img" src="admin.jpg" alt="صورة تعبيرية عن عمل المدير في متجر الكتروني للقرطاسية">
+	<img  class="first-img" src="~/Images/admin.jpg" alt="صورة تعبيرية عن عمل المدير في متجر الكتروني للقرطاسية">
 </div>
     <div id="section2" class="section">
 		<h1>إضافة السائق</h1>
@@ -91,7 +91,7 @@
             <th>الاسم</th>
             <th>البريد الإلكتروني</th>
             <th>الهاتف</th>
-            <th>العنوان</th> <!-- إضافة عنوان العمود -->
+            <th>العنوان</th> 
         </tr>
     </thead>
     <tbody id="usersTableBody">
@@ -193,27 +193,25 @@
     
     </div></div>
     </main>
-   <footer>
-    <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
-    |
-    <a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
-
-    <a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
-    |
-    <div class="social-links">
-        <strong>تواصل معنا :</strong>
-        <a href="mailto:info@example.com">
-            <img src="email.png" alt="Email Icon">
-        </a>
-        <a href="link_to_facebook_page">
-            <img src="facebook-icon.png" alt="Facebook Icon">
-        </a>
-        <a href="tel:+123456789">
-            <img src="phone-call.png" alt="Phone Icon">
-        </a>
-          
-    </div>
-</footer>
+<footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
 <script>
     // يمكنك استخدام JavaScript لتحديث حالة الطلبية وتنشيط الحدث المناسب
 const events = document.querySelectorAll('.event');
