@@ -1,6 +1,4 @@
 
-    // Your JavaScript code here
-
   var userRating = 0;
 
     function rateProduct(rating) {
@@ -69,7 +67,7 @@ function logout() {
     document.getElementById('logoutLink').style.display = 'none';
     alert('تم تسجيل الخروج بنجاح!');
     // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
-    window.location.href = "home.html";
+    window.location.href = "~/Pages/Home.html";
 }
 
 function deleteSection(sectionId) {
@@ -145,12 +143,8 @@ function showSection(sectionId) {
     }
 }
 
- 
-
-
-
 function redirectToHomePage() {
-    window.location.href = "home.html";
+    window.location.href = "~/Pages/Home.html";
 }
 // سكريبت لتحرير وحفظ المعلومات الشخصية
 function editSection(sectionId) {
