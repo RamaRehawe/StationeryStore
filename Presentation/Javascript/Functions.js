@@ -259,7 +259,7 @@ function submitConfirmationCode() {
         alert("تم تأكيد الحساب بنجاح!");
         // بعد تأكيد الحساب، يمكن إغلاق نافذة التأكيد
         closeModal();
-        window.location.href = "home.html";
+        window.location.href = "~/Pages/Home.html";
 
     } else {
         // إذا كان الرمز غير صحيح، يمكنك عرض رسالة خطأ للمستخدم أو إجراء أي عملية أخرى
