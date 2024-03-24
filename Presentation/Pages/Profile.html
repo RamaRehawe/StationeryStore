@@ -5,21 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الملف الشخصي</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="ICO.png" type="image/png">
-    <script src="function.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-    <a href="home.html">
-        <img class="logo" src="logo.png" alt="شعار"> <!-- Replace with descriptive Arabic text for your logo -->
+    <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
-	<div class="logout-icon">
-		    <a  onclick="logout()" id="logoutLink" >
-                <img src="log-out.png" alt="Logout">
-			<span id="logout-text"> تسجيل الخروج</span>
-    </a></div> 
+    <div class="logout-icon">
+        <a  onclick="logout()" id="logoutLink">
+	    <img src="~/Images/log-out.png" alt="Logout">
+            <span id="logout-text"> تسجيل الخروج</span>
+        </a>
+    </div>
     <main>
 		<div id="sidebar">
     <a href="#section2" onclick="showSection('section2')"> المعلومات الشخصية</a>
@@ -36,7 +37,7 @@
     <button onclick="redirectToHomePage()">عد للصفحة الرئيسية للتسوق</button>
 	<br>
 	    <p>نحن نفتخر بتوفير تجربة تسوق سلسة ومرضية، ونشجعكم دائمًا على التواصل مع المدير لأي استفسارات أو اقتراحات. نتمنى لكم تجربة تسوق ممتعة!</p>
-	<img  class="second-img" src="online-shopping.jpg" alt="صورة تعبيرية عن عمل المتجر الكتروني للقرطاسية">
+	<img  class="second-img" src="~/Images/online-shopping.jpg" alt="صورة تعبيرية عن عمل المتجر الكتروني للقرطاسية">
 
 </div>
     <div id="section2" class="section">
@@ -167,7 +168,6 @@
             </tr>
         </thead>
         <tbody>
-            <!-- يمكنك تكرار هذا الجزء لكل طلبية -->
             <tr>
                 <td>1</td>
                 <td>2022-02-17</td>
@@ -175,7 +175,6 @@
                 <td>2</td>
                 <td>75000 ل.س</td>
             </tr>
-            <!-- نهاية التكرار -->
         </tbody>
     </table>
 		
@@ -184,24 +183,22 @@
     <footer>
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
         |
-        <a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
-        <a href="customerService.html">خدمة العملاء</a>
-   <a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
-    |
-    <div class="social-links">
-        <strong>تواصل معنا:</strong>
-        <a href="mailto:info@example.com">
-            <img src="email.png" alt="Email Icon">
-        </a>
-        <a href="link_to_facebook_page">
-            <img src="facebook-icon.png" alt="Facebook Icon">
-        </a>
-        <a href="tel:+123456789">
-            <img src="phone-call.png" alt="Phone Icon">
-        </a>
-          
-    </div>
-</footer>
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
   
 </body>
 
