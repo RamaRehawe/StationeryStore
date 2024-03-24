@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مدير المنتجات</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles1.css">
-    <link rel="icon" href="ICO.png" type="image/png">
-    <script src="function.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="stylesheet" href="~/CSS/Styles1.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-    <a href="home.html">
-        <img class="logo" src="logo.png" alt="شعار"> <!-- Replace with descriptive Arabic text for your logo -->
+    <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
 	 <div class="logout-icon">
         <a  onclick="logout()" id="logoutLink">
@@ -33,7 +32,6 @@
     <a href="#section7" onclick="showSection('section7')">عرض جميع المنتجات</a>
 	    <a href="#section8" onclick="showSection('section8')">إدارة المخزون</a>
 
-			<!-- يمكنك إضافة المزيد من الأقسام حسب الحاجة -->
 </div>
 
 <div id="content">
@@ -45,7 +43,7 @@
 
 بالإضافة إلى ذلك، يمكن لمدير المنتجات حذف المنتجات التي أصبحت غير ملائمة أو غير مطابقة لاحتياجات السوق. تكمن مهمته أيضًا في تحليل أداء المنتجات باستمرار واتخاذ القرارات الاستراتيجية لضمان نجاح خط المنتجات وتحقيق الأهداف المؤسسية.
 </h3>	
-<img src="itemmanger.png" alt="Description of the image" style="width: 70%;">
+<img src="~/Images/itemmanger.png" alt="Description of the image" style="width: 70%;">
     </div>
     <div id="section2" class="section">
     <form>
@@ -69,7 +67,6 @@
             <option value="category1">فئة 1</option>
             <option value="category2">فئة 2</option>
             <option value="category3">فئة 3</option>
-            <!-- يمكنك إضافة المزيد من الفئات حسب الحاجة -->
         </select>
 		<br><div id="imageInputsContainer1">
             <label for="productImage1"> الصورة أو الشعار:</label>
@@ -78,8 +75,6 @@
     </form>
 </div>
 
-
-    <!-- يمكنك إضافة المزيد من الأقسام وتخصيصها بنفس الطريقة -->
     <div id="section3" class="section"  >
           
         <form>
@@ -107,9 +102,7 @@
 			<br><br>
                 <button onclick="addNewItem()">إضافة منتج جديد</button> 
         </form>
-        <!-- يمكنك إضافة المزيد من العناصر لهذا القسم -->
     </div>
-
    <div id="section4" class="section" >
           <h2>محتوى المنتجات</h2>
     <p>تستطيع التعديل على المنتجات</p>
@@ -117,8 +110,6 @@
     <ul id="itemList">
         <!-- Product items will be dynamically added here using JavaScript -->
     </ul>
-
-    <!-- يمكنك إضافة المزيد من العناصر لهذا القسم -->
     </div>
     <div id="section5" class="section" >
         <h2>محتوى المنتجات  </h2>
@@ -126,7 +117,6 @@
 		<ul id="itemList"></ul>
 
 <button onclick="deleteSelectedItem()">حذف المنتج المحدد</button>
-        <!-- يمكنك إضافة المزيد من العناصر لهذا القسم -->
     </div>
 	<div id="section6" class="section">
         <form>
@@ -154,9 +144,7 @@
                     <!-- قم بملء هذا القائم المنسدل بخيارات المنتجات من قاعدة البيانات -->
                     <option value="1">منتج 1</option>
                     <option value="2">منتج 2</option>
-                    <!-- أضف المزيد من الخيارات حسب الحاجة -->
                 </select>
-    
                 <br><br>
     
                 <label for="itemQuantity">الكمية:</label>
@@ -177,7 +165,6 @@
                 <select id="existing_property" name="existing_property" onchange="updatePropertyValues()">
                     <option value="color">لون</option>
                     <option value="size">حجم</option>
-                    <!-- يمكنك إضافة المزيد من الخيارات حسب احتياجك -->
                 </select><br><br>
                 <label for="property_value_dropdown">اختر قيمة (إذا كانت محددة مسبقًا):</label>
                 <select id="property_value_dropdown" name="property_value_dropdown">
@@ -230,16 +217,13 @@
     <div>
         <label for="categorySelect"> اختر الفئة الاساسية:</label>
         <select id="categorySelect" onchange="loadSubcategories()">
-            <!-- قم بتعبئة هذا القائمة بفئاتك -->
             <option value="0">اختر فئة</option>
             <option value="1">أقلام</option>
-            <!-- إضافة المزيد حسب الحاجة -->
         </select>
 
         <label for="subcategorySelect"> اختر الفئة التابعة لها:</label>
         <select id="subcategorySelect" onchange="loadProducts()">
-            <!-- سيتم تحميل الفئات التابعة هنا -->
-            <option value="0">اختر فئة تابعة</option>
+            <option value="0">اختر فئة </option>
 			<option value="1">أقلام جيل</option>
         </select>
 
@@ -255,7 +239,6 @@
 			<option value="0">اختر خاصية</option>
             <option value="1">اللون</option>
            
-            <!-- إضافة المزيد حسب الحاجة -->
         </select>
 
         <label for="colorSelect">اختر القيمة:</label>
@@ -263,7 +246,6 @@
 			<option value="0">اختر القيمة</option>
             <option value="blue">أزرق</option>
            
-            <!-- إضافة المزيد حسب الحاجة -->
         </select>
 
         <p>مستوى المخزون: <span id="inventoryLevel">-</span></p>
@@ -273,28 +255,26 @@
 </div>
 </div>
     </main>
-     <footer>
+    
+  <footer>
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
-|
-<a href="privacy.html">سياسة الخصوصية</a> <!-- رابط سياسة الخصوصية -->
-
-<a href="about.html">من نحن</a> <!-- رابط صفحة "من نحن" -->
-|
-    <div class="social-links">
-        <strong>تواصل معنا :</strong>
-        <a href="mailto:info@example.com">
-            <img src="email.png" alt="Email Icon">
-        </a>
-        <a href="link_to_facebook_page">
-            <img src="facebook-icon.png" alt="Facebook Icon">
-        </a>
-        <a href="tel:+123456789">
-            <img src="phone-call.png" alt="Phone Icon">
-        </a>
-          
-    </div>
-     
-</footer>
+        |
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
     <script>
 		  function loadInventory() {
             var productId = document.getElementById('productSelect').value;
