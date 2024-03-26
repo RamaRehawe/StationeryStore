@@ -9,9 +9,19 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = StationeryStore
 build_property.RootNamespace = StationeryStore
-build_property.ProjectDir = C:\Users\HP\Desktop\StationeryStore\
-build_property.RazorLangVersion = 7.0
+build_property.ProjectDir = C:\StationeryStore\StationeryStore\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\HP\Desktop\StationeryStore
+build_property.MSBuildProjectDirectory = C:\StationeryStore\StationeryStore
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/StationeryStore/StationeryStore/Presentation/Pages/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UHJlc2VudGF0aW9uXFBhZ2VzXEFib3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/StationeryStore/StationeryStore/Views/PrivacyPolicy/PrivacyPolicy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmFjeVBvbGljeVxQcml2YWN5UG9saWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 

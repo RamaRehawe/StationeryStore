@@ -16,7 +16,7 @@ namespace StationeryStore
 
         public void SeedDataContext()
         {
-            
+            /*
             if (!dataContext.Users.Any())
             {
                 var users = new List<User>
@@ -438,7 +438,7 @@ namespace StationeryStore
                 dataContext.Reviews.AddRange(reviews);
                 dataContext.SaveChanges();
             }
-
+            */
             
         }
     

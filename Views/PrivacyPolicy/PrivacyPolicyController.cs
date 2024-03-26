@@ -1,10 +1,12 @@
-namespace StationeryStore.Presentation.Controller
+using Microsoft.AspNetCore.Mvc;
+
+namespace StationeryStore.Views.PrivacyPolicy
 {
- [Route("api/[controller]")]
-    [ApiController]
+   
     public class PrivacyPolicyController : Controller
     {
-            [HttpGet]
+        [HttpGet]
+        [Route("/x/y")]
         public IActionResult Index()
         {
             ViewData["Title"] = "سياسة الخصوصية";

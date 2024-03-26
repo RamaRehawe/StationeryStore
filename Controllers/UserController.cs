@@ -26,9 +26,9 @@ namespace StationeryStore.Controllers
             _configuration = configuration;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
-        //[Authorize(Roles = "Admin")]
         public IActionResult GetUsers()
         {
             var users = _mapper.Map<List<UserDto>>(_userRepository.GetUsers());
@@ -38,7 +38,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("signup")]
-        public IActionResult SignUp([FromBody] User user)
+        public IActionResult SignUp([FromBody] SigninDto user)
         {
             var existingUser = _userRepository.GetUserByUsernameAsync(user.Username);
             if (existingUser != null)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StationeryStore.Data;
+using StationeryStore.Dto;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
 
@@ -13,9 +14,9 @@ namespace StationeryStore.Repository
             _context = context;
         }
 
-        public void AddUser(User user)
+        public void AddUser(SigninDto user)
         {
-            _context.Users.Add(user);
+            //_context.Users.Add(user);
             Save();
         }
 

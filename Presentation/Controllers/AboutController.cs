@@ -1,4 +1,6 @@
-namespace StationeryStore.Presentation.Controller
+using Microsoft.AspNetCore.Mvc;
+
+namespace StationeryStore.Presentation.Controllers
 {
     public class AboutController : Controller
     {

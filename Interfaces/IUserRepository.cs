@@ -1,4 +1,5 @@
-﻿using StationeryStore.Models;
+﻿using StationeryStore.Dto;
+using StationeryStore.Models;
 
 namespace StationeryStore.Interfaces
 {
@@ -7,7 +8,7 @@ namespace StationeryStore.Interfaces
         ICollection<User> GetUsers();
         Task<User> GetUserByUsernameAsync(string username);
         Task UpdateTokenByUsernameAsync(string username, string  token);
-        void AddUser(User user);
+        void AddUser(SigninDto user);
         bool Save();
     }
 
