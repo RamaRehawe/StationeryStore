@@ -15,14 +15,9 @@ namespace StationeryStore.Views.Singup
         [HttpPost]
         public async Task<IActionResult> Register(string username, string email, string password)
         {
-            // Implement your logic to create a new user with the provided username, email, and password
-            // You may also want to send a confirmation email to the user
-
-            // Example:
-            // var user = new User { Username = username, Email = email, Password = password };
-            // await _userRepository.AddUserAsync(user);
-            // await _emailService.SendConfirmationEmailAsync(email, confirmationCode);
-
+             var user = new User { Username = username, Email = email, Password = password };
+             await _userRepository.AddUserAsync(user);
+             await _emailService.SendConfirmationEmailAsync(email, confirmationCode);
             return RedirectToAction("Confirmation"); // Redirect to a confirmation page
         }
 
