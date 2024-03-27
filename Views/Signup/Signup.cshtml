@@ -18,16 +18,29 @@
         <img class="driverlogo" src="~/Images/ICO.png" alt="Logo">
     </a>
     <main>
-        <form class="signup-form" asp-controller="Signup" asp-action="Register" method="post">
-            <h2>تسجيل جديد</h2>
-            <input type="text" name="username" placeholder="اسم المستخدم" required="" style="width: 100%;">
-            <input type="email" name="email" placeholder="البريد الإلكتروني" required="" style="width: 100%;">
-            <input type="password" name="password" placeholder="كلمة المرور" required="" style="width: 100%;" id="password" oninput="checkPasswordStrength()" required>
-            <div id="passwordStrength"></div>
-            <input type="password" placeholder="تأكيد كلمة المرور" required="" style="width: 100%;" id="confirm-password">
-            <p class="additional-statement">باستمرارك، فإنك توافق على شروط استخدام المتجر وإشعار الخصوصية.</p>
-            <button type="submit">تسجيل جديد</button>
-        </form>
+      <form class="signup-form" asp-controller="Signup" asp-action="Register" method="post">
+    <h2>تسجيل جديد</h2>
+    <div class="form-group">
+        <label asp-for="Username">اسم المستخدم:</label>
+        <input asp-for="Username" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">البريد الإلكتروني:</label>
+        <input asp-for="Email" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Password">كلمة المرور:</label>
+        <input asp-for="Password" type="password" class="form-control" oninput="checkPasswordStrength()" required />
+        <div id="passwordStrength"></div>
+    </div>
+    <div class="form-group">
+        <label>تأكيد كلمة المرور:</label>
+        <input type="password" name="confirmPassword" class="form-control" required />
+    </div>
+    <p class="additional-statement">باستمرارك، فإنك توافق على شروط استخدام المتجر وإشعار الخصوصية.</p>
+    <button type="submit" class="btn btn-primary">تسجيل جديد</button>
+</form>
+
         <div id="confirmation-modal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
