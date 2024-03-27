@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace StationeryStore.Views.PrivacyPolicy
+namespace StationeryStore.Views.About
 {
     public class AboutController : Controller
     {
