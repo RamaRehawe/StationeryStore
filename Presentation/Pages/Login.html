@@ -106,23 +106,44 @@
             displayCaptcha();
         }
 
-        // التحقق من CAPTCHA وتسجيل الدخول
-        function verifyAndLogin() {
-            // التحقق من الرمز
-            const captchaInput = document.getElementById('captchaInput');
-            const enteredText = captchaInput.value;
-            const storedText = sessionStorage.getItem('captchaText');
+      // تحديث CAPTCHA وتسجيل الدخول
+function verifyAndLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const captchaInput = document.getElementById('captchaInput').value;
 
-            // التحقق مما إذا كان النص المدخل متطابقًا مع النص المخزّن في الذاكرة المؤقتة
-            if (enteredText !== storedText) {
-                alert('فشل التحقق من الرمز. حاول مرة أخرى.');
-                refreshCaptcha();
-                return ;
-            }
-
-            // قم بتنفيذ منطق تسجيل الدخول إذا تم التحقق من الرمز بنجاح
-            login();
+    // Make an AJAX request to the login endpoint
+    fetch('/api/User/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: username,
+            password: password
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Login failed');
         }
+        return response.json();
+    })
+    .then(data => {
+        // Store the JWT token securely
+        sessionStorage.setItem('token', data.token);
+
+        // Redirect to another page upon successful login
+        window.location.href = '/Pages/Home.html';
+    })
+    .catch(error => {
+        alert('Failed to login. Please try again.');
+        console.error('Login error:', error);
+        // Refresh captcha upon login failure
+        refreshCaptcha();
+    });
+}
+
 
         // تحديث CAPTCHA عند الضغط على زر التحديث
         function refreshCaptchaOnClick() {
