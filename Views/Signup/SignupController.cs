@@ -28,6 +28,7 @@ namespace StationeryStore.Views.Singup
 
         public IActionResult Confirmation()
         {
+            ViewBag.Message = "تم التسجيل بنجاح!";
             return View(); // Assuming you have a corresponding View file named Confirmation.cshtml
         }
     }
