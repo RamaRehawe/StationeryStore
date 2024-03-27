@@ -1,1 +1,67 @@
+@{
+    ViewData["Title"] = "من نحن";
+}
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/CSS/Styles.css" />
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+</head>
+<body>
+    <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="Logo">
+    </a>
+    <header>
+        <h1>من نحن</h1>
+    </header>
+    <main>
+        <section>
+            <h2>رؤيتنا</h2>
+            <p>@ViewData["Vision"]</p>
+        </section>
+
+        <section>
+            <h2>مهمتنا</h2>
+            <p>@ViewData["Mission"]</p>
+        </section>
+
+        <section>
+            <h2>قيمنا</h2>
+            <ul>
+                @foreach (var value in (string[])ViewData["Values"])
+                {
+                <li>@value</li>
+                }
+            </ul>
+        </section>
+
+        <section>
+            <h2>اتصل بنا</h2>
+            <p>يمكنك الاتصال بنا عبر البريد الإلكتروني: <a href="mailto:@ViewData[" ContactEmail"]">@ViewData["ContactEmail"]</a></p>
+        </section>
+    </main>
+    <footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+        <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+        |
+        <div class="social-links">
+            <strong>تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+                <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+                <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+                <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+
+        </div>
+    </footer>
+</body>
+</html>
