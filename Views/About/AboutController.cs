@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace StationeryStore.Presentation.Controllers
+namespace StationeryStore.Views.About
 {
     public class AboutController : Controller
     {
+        [HttpGet]
+        [Route("/x/y")]
         public IActionResult Index()
         {
             ViewData["Vision"] = "نسعى لتوفير أفضل مستلزمات القرطاسية بجودة عالية وأسعار معقولة، لتلبية احتياجات عملائنا وتسهيل عمليات التعلم والإبداع.";
@@ -15,3 +17,6 @@ namespace StationeryStore.Presentation.Controllers
         }
     }
 }
+
+   
+ 
