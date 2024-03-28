@@ -3,13 +3,12 @@ using StationeryStore.Models;
 
 namespace StationeryStore.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository
     {
         ICollection<User> GetUsers();
-        Task<User> GetUserByUsernameAsync(string username);
+        User GetUserByUsernameAsync(string username);
         Task UpdateTokenByUsernameAsync(string username, string  token);
-        void AddUser(SigninDto user);
-        bool Save();
+        bool AddUser(User user);
     }
 
 }

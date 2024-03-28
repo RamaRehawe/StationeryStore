@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using StationeryStore.Data;
@@ -38,23 +39,38 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("signup")]
-        public IActionResult SignUp([FromBody] SigninDto user)
+        public async Task<IActionResult> SignUp([FromBody] SignUpDto user)
         {
-            var existingUser = _userRepository.GetUserByUsernameAsync(user.Username);
-            if (existingUser != null)
-            {
-                return BadRequest("Username already exists");
-            }
+            var ruser = _mapper.Map<RegisterUserDto>(user);
+            ruser.UserType = "Customer";
 
-            _userRepository.AddUser(user);
-            return Ok("User signed up successfully!");
+            var res = this.Register(ruser);
+            if (res != null)
+                return res;
+            return await this.Login(new LoginDto
+            {
+                Email = user.Email,
+                Password = user.Password,
+            });
+            //return Ok("User signed up successfully!");
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost("register_user")]
+        public IActionResult RegisterUser([FromBody] RegisterUserDto user)
+        {
+            var res = this.Register(user);
+            if (res != null)
+                return res;
+            return Ok("Done");
+        }
+
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login( LoginDto loginDto)
+        public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            var user = await _userRepository.GetUserByUsernameAsync(loginDto.Email);
+            var user = _userRepository.GetUserByUsernameAsync(loginDto.Email);
 
             if (user == null || user.Password != loginDto.Password)
                 return Unauthorized("Invalid Username or Password");
@@ -95,6 +111,38 @@ namespace StationeryStore.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+         private IActionResult? Register([FromBody] RegisterUserDto user)
+        {
+            if (user == null)
+                return BadRequest(ModelState);
+
+            var newUser = _userRepository.GetUsers()
+                .Where(c => c.Email.Trim().ToUpper() == user.Email.TrimEnd().ToUpper())
+                .FirstOrDefault();
+            if (newUser != null)
+            {
+                ModelState.AddModelError("", "User allready exists");
+                return StatusCode(422, ModelState);
+            }
+            String[] allowed_types = { "Driver", "Customer", "Item Manager" };
+            if (!allowed_types.Contains(user.UserType))
+                ModelState.AddModelError("", "Invalid user type");
+            
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var userMap = _mapper.Map<User>(user);
+            if (!_userRepository.AddUser(userMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while saving");
+                return StatusCode(500, ModelState);
+            }
+
+            return null;
+        }
+
+
 
     }
 }

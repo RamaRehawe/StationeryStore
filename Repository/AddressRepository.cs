@@ -4,13 +4,9 @@ using StationeryStore.Models;
 
 namespace StationeryStore.Repository
 {
-    public class AddressRepository : IAddressRepository
+    public class AddressRepository : BaseRepository, IAddressRepository
     {
-        private readonly DataContext _context;
-        public AddressRepository(DataContext context)
-        {
-            _context = context;
-        }
+        public AddressRepository(DataContext context) : base(context) { }
         public bool AddAddress(Address address)
         {
             _context.Add(address);
@@ -31,13 +27,6 @@ namespace StationeryStore.Repository
         {
             return _context.Addresses.OrderBy(a => a.Id).ToList();
         }
-
-        public bool Save()
-        {
-            var saved = _context.SaveChanges();
-            return saved > 0 ? true : false;
-        }
-
         
     }
 }

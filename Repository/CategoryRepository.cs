@@ -4,13 +4,9 @@ using StationeryStore.Models;
 
 namespace StationeryStore.Repository
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : BaseRepository, ICategoryRepository
     {
-        private readonly DataContext _context;
-        public CategoryRepository(DataContext context)
-        {
-            _context = context;
-        }
+        public CategoryRepository(DataContext context) : base(context) { }
         public bool CategoryExists(int id)
         {
             return _context.Categories.Any(c => c.Id == id);
@@ -32,10 +28,5 @@ namespace StationeryStore.Repository
             return _context.Categories.Where(c => c.Id == id).FirstOrDefault();
         }
 
-        public bool Save()
-        {
-            var saved = _context.SaveChanges();
-            return saved > 0 ? true : false;
-        }
     }
 }

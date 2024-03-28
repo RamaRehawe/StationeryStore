@@ -2,7 +2,7 @@
 
 namespace StationeryStore.Interfaces
 {
-    public interface IProductRepository
+    public interface IProductRepository : IBaseRepository
     {
         ICollection<Product> GetProducts();
     }

@@ -2,12 +2,11 @@
 
 namespace StationeryStore.Interfaces
 {
-    public interface ISubCategoryRepository
+    public interface ISubCategoryRepository : IBaseRepository
     {
         ICollection<SubCategory> GetSubCategories();
         SubCategory GetSubCategory(int id);
         bool SubCategoryExists(int id);
         bool CreateSubCategory(SubCategory subCategory);
-        bool Save();
     }
 }

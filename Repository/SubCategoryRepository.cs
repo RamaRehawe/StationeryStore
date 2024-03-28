@@ -4,14 +4,10 @@ using StationeryStore.Models;
 
 namespace StationeryStore.Repository
 {
-    public class SubCategoryRepository : ISubCategoryRepository
+    public class SubCategoryRepository : BaseRepository, ISubCategoryRepository
     {
-        private readonly DataContext _context;
 
-        public SubCategoryRepository(DataContext context)
-        {
-            _context = context;
-        }
+        public SubCategoryRepository(DataContext context) : base(context) { }
         public bool CreateSubCategory(SubCategory subCategory)
         {
             _context.Add(subCategory);
@@ -21,12 +17,6 @@ namespace StationeryStore.Repository
         public SubCategory GetSubCategory(int id)
         {
             return _context.SubCategories.Where(s => s.Id == id).FirstOrDefault();
-        }
-
-        public bool Save()
-        {
-            var saved = _context.SaveChanges();
-            return saved > 0 ? true : false;
         }
 
         public ICollection<SubCategory> GetSubCategories()
