@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace StationeryStore.Views.PrivacyPolicy
 {
-   
+
     public class PrivacyPolicyController : Controller
     {
         [HttpGet]
-        [Route("/x/y")]
+        [Route("front_privacy_policy")]
         public IActionResult Index()
         {
             ViewData["Title"] = "سياسة الخصوصية";

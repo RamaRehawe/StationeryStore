@@ -5,7 +5,7 @@ namespace StationeryStore.Views.About
     public class AboutController : Controller
     {
         [HttpGet]
-        [Route("/x/y")]
+        [Route("front_about")]
         public IActionResult Index()
         {
             ViewData["Vision"] = "نسعى لتوفير أفضل مستلزمات القرطاسية بجودة عالية وأسعار معقولة، لتلبية احتياجات عملائنا وتسهيل عمليات التعلم والإبداع.";

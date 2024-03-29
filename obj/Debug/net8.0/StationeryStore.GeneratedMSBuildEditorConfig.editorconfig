@@ -18,10 +18,18 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\StationeryStore\StationeryStore
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/StationeryStore/StationeryStore/Presentation/Pages/About.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UHJlc2VudGF0aW9uXFBhZ2VzXEFib3V0LmNzaHRtbA==
+[C:/StationeryStore/StationeryStore/Views/About/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRcQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/StationeryStore/StationeryStore/Views/PrivacyPolicy/PrivacyPolicy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmFjeVBvbGljeVxQcml2YWN5UG9saWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/StationeryStore/StationeryStore/Views/Signup/Confirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2lnbnVwXENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/StationeryStore/StationeryStore/Views/Signup/Signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2lnbnVwXFNpZ251cC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

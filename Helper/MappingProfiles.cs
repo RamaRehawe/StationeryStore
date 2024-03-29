@@ -8,7 +8,7 @@ namespace StationeryStore.Utils
     {
         public MappingProfiles()
         {
-            CreateMap<Product, ProductDto>();
+            CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<User, UserDto>();
             CreateMap<User, SignUpDto>();
             CreateMap<User, RegisterUserDto>().ReverseMap();
