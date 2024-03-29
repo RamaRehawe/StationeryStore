@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "VYY+hRyZ7SlET2tIQXNpVuZqRlMQYSk0hogfdU1PBjk=",
+  "Hash": "VIPC0PVhYsl7L/OQpPINNSJOQ43W43MmQz5Q3YrGCXM=",
   "Source": "StationeryStore",
   "BasePath": "_content/StationeryStore",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "StationeryStore\\wwwroot",
+      "Source": "StationeryStore",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "BasePath": "_content/StationeryStore",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

@@ -145,3 +145,4 @@ C:\StationeryStore\StationeryStore\bin\Debug\net8.0\Microsoft.Extensions.Identit
 C:\StationeryStore\StationeryStore\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.RazorAssemblyInfo.cache
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.RazorAssemblyInfo.cs
+C:\StationeryStore\StationeryStore\bin\Debug\net8.0\StationeryStore.staticwebassets.runtime.json
