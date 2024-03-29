@@ -17,7 +17,7 @@ namespace StationeryStore.Views.Singup
         {
              var user = new User { Username = username, Email = email, Password = password };
              await _userRepository.AddUserAsync(user);
-             await _emailService.SendConfirmationEmailAsync(email, confirmationCode);
+           //  await _emailService.SendConfirmationEmailAsync(email, confirmationCode);
             return RedirectToAction("Confirmation"); // Redirect to a confirmation page
         }
 
