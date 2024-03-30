@@ -1,0 +1,228 @@
+﻿@{
+    ViewData["Title"] = "أقلام";
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فئات المنتجات</title>
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="~/Javascript/Functions.js"></script>
+
+</head>
+
+<body>
+    <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
+    </a>
+    <div class="logout-icon">
+        <a onclick="logout()" id="logoutLink">
+            <img src="~/Images/log-out.png" alt="Logout">
+            <span id="logout-text"> تسجيل الخروج</span>
+        </a>
+    </div>
+    <main>
+        <ul class="tabs">
+            <li class="tab" onclick="showContent('inkpens')">أقلام حبر</li>
+            <li class="tab" onclick="showContent('pencils')">أقلام رصاص</li>
+            <li class="tab" onclick="showContent('drypens')">أقلام جافة</li>
+            <li class="tab" onclick="showContent('gelpens')">أقلام جيل</li>
+            <li class="tab" onclick="showContent('highlighters')">أقلام تحديد</li>
+            <li class="tab" onclick="showContent('markerpens')">أقلام تخطيط</li>
+            <li class="tab" onclick="showContent('correctorpens')">أقلام تصحيح</li>
+            <li class="tab" onclick="showContent('colorpens')">أقلام ملونة</li>
+        </ul>
+
+        <br>
+
+        <div class="tab-content" id="inkpens" style="display: none;">
+
+            <div class="product" data-name="اسم المنتج 1" data-price="75000">
+                <a href="#">
+                    <img src="~/Images/inkpen.jpg" alt="Ink Pen 1">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 75000 ل.س</span>
+                </a>
+            </div>
+
+            <div class="product" data-name="اسم المنتج 2" data-price="90000">
+                <a href="#" class="product-link">
+                    <img src="~/Images/inkpen2.png" alt="Ink Pen 2">
+                    <p>اسم المنتج 2</p>
+                    <span>السعر: 90000 ل.س</span>
+                </a>
+            </div>
+        </div>
+        <div class="tab-content" id="pencils" style="display: none;">
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/pensil1.png" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 2000 ل.س</span>
+                </a>
+            </div>
+
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/Pensil.jpg" alt=" Pen ">
+                    <p>اسم المنتج 2</p>
+                    <span>السعر: 2500 ل.س</span>
+                </a>
+            </div>
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/Pilot_pancil.jpg" alt=" Pen ">
+                    <p>اسم المنتج 3</p>
+                    <span>السعر: 4500 ل.س</span>
+                </a>
+            </div>
+
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/rotring-pancil.jpg" alt=" Pen ">
+                    <p>اسم المنتج 4</p>
+                    <span>السعر: 6500 ل.س</span>
+                </a>
+            </div>
+        </div>
+        <div class="tab-content" id="drypens" style="display: none;">
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/drypens.png" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 3000 ل.س</span>
+                </a>
+            </div>
+
+            <div class="product">
+                <a href="#" class="product-link">
+                    <img src="~/Images/draypens1.png" alt=" Pen ">
+                    <p>اسم المنتج 2</p>
+                    <span>السعر: 4000 ل.س</span>
+                </a>
+            </div>
+            <div class="product">
+                <a href="#" class="product-link">
+                    <img src="~/Images/item_1.png" alt=" Pen ">
+                    <p>اسم المنتج 3</p>
+                    <span>السعر: 5000 ل.س</span>
+                </a>
+            </div>
+        </div>
+        <div class="tab-content" id="gelpens" style="display: none;">
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/gelpensblue.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 5000 ل.س</span>
+                </a>
+            </div>
+        </div>
+        <div class="tab-content" id="colorpens" style="display: none;">
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/gelpens.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 25000 ل.س</span>
+                </a>
+            </div>
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/folomasterpen.JPG" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 15000 ل.س</span>
+                </a>
+            </div>
+        </div>
+        <div class="tab-content" id="markerpens" style="display: none;">
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/pm810-blue.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 6200 ل.س</span>
+                </a>
+            </div>
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/marker.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 6000 ل.س</span>
+                </a>
+            </div>
+        </div>
+        <div class="tab-content" id="highlighters" style="display: none;">
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/highlighter.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 2500 ل.س</span>
+                </a>
+            </div>
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/highlighter1.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 3700 ل.س</span>
+                </a>
+            </div>
+        </div>
+        <div class="tab-content" id="correctorpens" style="display: none;">
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/correction-pen-7ml-quick-drying.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 5000 ل.س</span>
+                </a>
+            </div>
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/correctionpen.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 4500 ل.س</span>
+                </a>
+            </div>
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/corrector.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 4500 ل.س</span>
+                </a>
+            </div>
+            <div class="product">
+                <a href="#">
+                    <img src="~/Images/corrector1.jpg" alt=" Pen ">
+                    <p>اسم المنتج 1</p>
+                    <span>السعر: 4000 ل.س</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+        <a href="front_privacy_policy">سياسة الخصوصية</a>
+        <a href="front_about">من نحن</a>
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+                <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+                <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+                <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
