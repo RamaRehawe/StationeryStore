@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "الصفحة الرئيسية";
 }
 
@@ -30,18 +30,18 @@
             </button>
             <div class="dropdown-content">
                 <button type="button" class="btn-login" onclick="redirectToLogin()">تسجيل الدخول</button><br><br>
-                <span class="new-user">مستخدم جديد <a href="~/Pages/Signup.html" style="text-align: center;color: darkgoldenrod;text-decoration: underline;">ابدأ هنا</a></span>
+                <span class="new-user">مستخدم جديد <a href="front_signup" style="text-align: center;color: darkgoldenrod;text-decoration: underline;">ابدأ هنا</a></span>
             </div>
         </div>
         <div id="user-info" class="hidden">
-            <a href="~/Pages/Proflie.html">
+            <a href="front_profile">
                 <img src="~/Images/user.png" alt="أيقونة المستخدم" id="user-icon">
             </a>
             <span id="user-name">اسم المستخدم</span>
         </div>
         <div class="cart-icon">
             <img src="~/Images/cart.png" alt="Cart">
-            <a href="~/Pages/Cart.html">
+            <a href="front_cart">
                 <span class="cart-text" id="cart">عربة التسوق</span>
             </a>
         </div>
@@ -51,7 +51,7 @@
             <div id="loginPopup">
                 <button id="closeButton" class="close-button">&#10006;</button>
                 <p>يجب عليك تسجيل الدخول لرؤية عنوانك</p>
-                <a href="~/Pages/Login.html">
+                <a href="front_login">
                     <button class="btn-login">تسجيل الدخول</button>
                 </a>
             </div>
@@ -470,7 +470,7 @@
         });
 
         function redirectToLogin() {
-            window.location.href = "~/Pages/Login.html";
+            window.location.href = "front_login";
         }
         // دالة للتنقل إلى الأقسام داخل الصفحة
         function scrollToSection(sectionId) {
