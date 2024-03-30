@@ -1,0 +1,593 @@
+﻿@{
+    ViewData["Title"] = "الصفحة الرئيسية";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="متجر الكتروني لبيع أدوات القرطاسية">
+    <title id="homepage">الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="stylesheet" href="~/CSS/Styles2.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <a href="front_home">
+        <img class="logo" src="~/Images/logo.png" alt="Logo">
+    </a>
+    <header>
+        <div class="login-icon" id="login-icon">
+            <button type="button" class="dropdown-btn">
+                <img src="~/Images/user.png" alt="Login">
+                <span class="login-text" id="login">تسجيل الدخول</span>
+            </button>
+            <div class="dropdown-content">
+                <button type="button" class="btn-login" onclick="redirectToLogin()">تسجيل الدخول</button><br><br>
+                <span class="new-user">مستخدم جديد <a href="~/Pages/Signup.html" style="text-align: center;color: darkgoldenrod;text-decoration: underline;">ابدأ هنا</a></span>
+            </div>
+        </div>
+        <div id="user-info" class="hidden">
+            <a href="~/Pages/Proflie.html">
+                <img src="~/Images/user.png" alt="أيقونة المستخدم" id="user-icon">
+            </a>
+            <span id="user-name">اسم المستخدم</span>
+        </div>
+        <div class="cart-icon">
+            <img src="~/Images/cart.png" alt="Cart">
+            <a href="~/Pages/Cart.html">
+                <span class="cart-text" id="cart">عربة التسوق</span>
+            </a>
+        </div>
+        <div class="location-icon">
+            <img src="~/Images/location.png" alt="location">
+            <a href="#" class="location-text" id="deliveryLink">توصيل إلى سوريا</a>
+            <div id="loginPopup">
+                <button id="closeButton" class="close-button">&#10006;</button>
+                <p>يجب عليك تسجيل الدخول لرؤية عنوانك</p>
+                <a href="~/Pages/Login.html">
+                    <button class="btn-login">تسجيل الدخول</button>
+                </a>
+            </div>
+        </div>
+        <div class="logout-icon">
+            <a href="#" onclick="logout()" id="logoutLink" style="display:none;">
+                <img src="~/Images/log-out.png" alt="Logout">
+                <span id="logout-text"> تسجيل الخروج</span>
+            </a>
+        </div>
+        <ul class="tabs">
+            <li class="tab" onmouseover="showContent('pensCategory')"><i class="fas fa-pen"></i> أقلام وأدوات كتابة</li>
+            <li class="tab" onmouseover="showContent('notebooksCategory')"><i class="fas fa-book"></i> دفاتر وملاحظات</li>
+            <li class="tab" onmouseover="showContent('drawingToolsCategory')"><i class="fas fa-paint-brush"></i>أدوات الرسم</li>
+            <li class="tab" onmouseover="showContent('engineeringToolsCategory')"><i class="fas fa-ruler"></i> أدوات هندسية</li>
+            <li class="tab" onmouseover="showContent('officeToolsCategory')"><i class="fas fa-paperclip"></i> أدوات مكتبية</li>
+            <li class="tab" onmouseover="showContent('notebooksAndJournalsCategory')"><i class="fas fa-file-alt"></i> أوراق ومفكرات</li>
+            <li class="tab" onmouseover="showContent('schoolBagsCategory')">
+                <i class="fa-solid fa-briefcase"></i>
+                حقائب مدرسية
+            </li>
+        </ul>
+        <div class="tab-content" id="pensCategory">
+            <!-- Content for the 'pensCategory' tab -->
+            <a href="#"> أقلام حبر</a>
+            <a href="#">أقلام رصاص</a>
+            <a href="#">أقلام جافة </a>
+            <a href="#">أقلام جيل </a>
+            <a href="#">أقلام تحديد </a>
+            <a href="#">أقلام تخطيط </a>
+            <a href="#">أقلام تصحيح </a>
+            <a href="#">أقلام ملونة </a>
+        </div>
+        <div class="tab-content" id="notebooksCategory">
+            <a href="#">دفاتر عادية</a>
+            <a href="#">دفاتر سلك</a>
+            <a href="#">دفاتر رسم</a>
+            <a href="#"> دفاتر رسم بياني  </a>
+        </div>
+        <div class="tab-content" id="drawingToolsCategory">
+            <a href="#">أقلام حبر فنية </a>
+            <a href="#"> فرش فنية </a>
+            <a href="#">ألوان مائية </a>
+            <a href="#">ألوان خشب</a>
+            <a href="#">ألوان شمعية</a>
+        </div>
+        <div class="tab-content" id="engineeringToolsCategory">
+            <a href="#">أدوات رسم هندسي </a>
+            <a href="#">آلالات حاسبة علمية</a>
+        </div>
+        <div class="tab-content" id="officeToolsCategory">
+            <a href="#">ملصقات وفاصلات </a>
+            <a href="#">دباسات ومزيلات</a>
+            <a href="#">مقصات ومشارط </a>
+            <a href="#">آلالات حاسبة</a>
+            <a href="#">مصنفات</a>
+            <a href="#">ممحاة و مبراة</a>
+            <a href="#">مستلزمات إضافية</a>
+        </div>
+        <div class="tab-content" id="notebooksAndJournalsCategory">
+            <a href="#">أوراق طباعة </a>
+            <a href="#">أوراق ملونة </a>
+            <a href="#">أوراق ملاحظات </a>
+            <a href="#">مفكرات يومية </a>
+        </div>
+        <div class="tab-content" id="schoolBagsCategory">
+            <a href="#">حقائب ظهر مدرسية</a>
+            <a href="#">حقائب أقلام </a>
+            <a href="#">حقائب مستلزمات مدرسية </a>
+        </div>
+    </header>
+    <main>
+
+        <!-- Search form -->
+        <div action="#" method="get" onsubmit="searchProducts(event)" class="search-form">
+            <input type="text" id="search" name="search" placeholder="ابحث هنا...">
+            <button type="submit">ابحث</button>
+        </div>
+
+        <!-- Display search results -->
+        <div id="search-results">
+            <!-- Display search results here -->
+        </div>
+
+        <!-- Filter options (initially hidden) -->
+        <div id="filter-options" style="display: none;">
+            <form action="#" method="get" onsubmit="applyFilters(event)">
+                <label for="color">اختر لون:</label>
+                <select id="color" name="color">
+                    <option value="red">أحمر</option>
+                    <option value="blue">أزرق</option>
+                    <option value="green">أخضر</option>
+                </select>
+
+                <label for="size">اختر حجم:</label>
+                <select id="size" name="size">
+                    <option value="small">صغير</option>
+                    <option value="medium">متوسط</option>
+                    <option value="large">كبير</option>
+                </select>
+
+                <label for="price">اختر السعر:</label>
+                <input type="range" id="price" name="price" min="0" max="1000">
+
+                <button type="submit">تصفية النتائج</button>
+            </form>
+        </div>
+
+
+        <h1>مرحبًا بك في متجر القرطاسية</h1>
+        <p>استكشف مجموعتنا الواسعة من المنتجات القرطاسية وتسوق بأسعار مميزة.</p>
+
+        <!-- يمكنك أن تضيف هنا أي محتوى إضافي لصفحة الرئيسية -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- الشرائح ستتم إضافتها هنا -->
+                <div class="swiper-slide">
+                    <img src="~/Images/product3.jpg" alt="Product3">
+                </div>
+                <div class="swiper-slide">
+                    <img src="~/Images/product1.png" alt="Product1 ">
+                </div>
+                <div class="swiper-slide">
+                    <img src="~/Images/product2.jpg" alt="Product 2">
+                </div>
+            </div>
+            <!-- إضافة التحكم للشرائح -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+        <br>
+        <!-- قائمة المنتجات المميزة -->
+        <br><br>
+        <h1> فئات المنتجات</h1>
+
+        <!-- في section الرئيسية -->
+        <section class="products-grid">
+            <div class="product-item" id="category1">
+                <img src="~/Images/Pens.png" alt="أقلام ">
+                <h3><a href="~/Pages/Subcategories-Pens.html">أقلام وأدوات كتابة</a></h3>
+            </div>
+            <div class="product-item" id="category2">
+                <img src="~/Images/Notebook.png" alt="دفاتر">
+                <h3><a href="~/Pages/Subcategories-Notebook.html">دفاتر وملاحظات</a></h3>
+            </div>
+            <div class="product-item" id="category3">
+                <img src="~/Images/drawing-tools.jpg" alt="أدوات الرسم">
+                <h3><a href="~/Images/Subcategories-Brush.html">أدوات الرسم</a></h3>
+            </div>
+            <div class="product-item" id="category4">
+                <img src="~/Images/set.png" alt="أدوات هندسية">
+                <h3><a href="~/Pages/Subcategories-Ruler.html">أدوات هندسية </a></h3>
+            </div>
+            <div class="product-item" id="category5">
+                <img src="~/Images/office-tools.png" alt="أدوات مكتبية">
+                <h3><a href="~/Pages/Subcategories-Office.html"> أدوات مكتبية </a></h3>
+            </div>
+            <div class="product-item" id="category7">
+                <img src="~/Images/paper.png" alt="أوراق ومفكرات">
+                <h3><a href="~/Pages/Subcategories-Notes.html">أوراق ومفكرات</a></h3>
+            </div>
+            <div class="product-item" id="category6">
+                <img src="~/Images/backpack.png" alt="حقائب مدرسية">
+                <h3><a href="~/Pages/Subcategories-Schoolbag.html">حقائب مدرسية</a></h3>
+            </div>
+        </section>
+        <br><br><br>
+
+        <h1 id="featuredProducts">المنتجات المميزة</h1>
+        <section class="featured-products" style="width: 100%;">
+            <div class="featured-Product">
+                <div>
+                    <h4 id="featuredProduct1Name">اسم المنتج المميز 1</h4>
+                    <p id="featuredProduct1Description">وصف المنتج المميز 1</p>
+                    <span id="price1">السعر: 15000 ل.س</span>
+                </div>
+                <div class="heart-container">
+                    <!-- دائرة القلب -->
+                    <div class="heart-circle">
+                        <span class="heart" onclick="addHeart(this)">&#10084;</span>
+                    </div>
+                </div>
+                <img src="~/Images/folomasterpen.JPG" alt="Featured Product 1">
+            </div>
+
+            <div class="featured-Product">
+                <div>
+                    <h4 id="featuredProduct2Name">اسم المنتج المميز 2</h4>
+                    <p id="featuredProduct2Description">وصف المنتج المميز 2</p>
+                    <span id="price2">السعر: 45000 ل.س</span>
+                </div>
+                <div class="heart-container">
+                    <!-- دائرة القلب -->
+                    <div class="heart-circle">
+                        <span class="heart" onclick="addHeart(this)">&#10084;</span>
+                    </div>
+                </div>
+                <img src="~/Images/santfic-calc.jpg" alt="Featured Product 2">
+            </div>
+            <div class="featured-Product">
+                <div>
+                    <h4 id="featuredProduct1Name">اسم المنتج المميز 3</h4>
+                    <p id="featuredProduct1Description">وصف المنتج المميز 3</p>
+                    <span id="price1">السعر: 35000 ل.س</span>
+                </div>
+                <div class="heart-container">
+                    <!-- دائرة القلب -->
+                    <div class="heart-circle">
+                        <span class="heart" onclick="addHeart(this)">&#10084;</span>
+                    </div>
+                </div>
+                <img src="~/Images/supplies-bags.jpg" alt="Featured Product 1">
+            </div>
+            <div class="featured-Product">
+                <div>
+                    <h4 id="featuredProduct1Name">اسم المنتج المميز 4</h4>
+                    <p id="featuredProduct1Description">وصف المنتج المميز 4</p>
+                    <span id="price1">السعر: 5000 ل.س</span>
+                </div>
+                <div class="heart-container">
+                    <!-- دائرة القلب -->
+                    <div class="heart-circle">
+                        <span class="heart" onclick="addHeart(this)">&#10084;</span>
+                    </div>
+                </div>
+                <img src="~/Images/highlighter.jpg" alt="Featured Product 1">
+            </div>
+            <!-- يمكنك إضافة المزيد من المنتجات المميزة هنا -->
+        </section>
+        <br>
+        <div id="customerReviews" class="customer-reviews">
+            <h3>آراء الزبائن</h3>
+            <p id="rateYourExperience">من فضلك، قيم  تجربتك مع متجر القرطاسية</p>
+            <div class="rating">
+                <span class="star" onclick="rateProduct(1)">&#9733;</span>
+                <span class="star" onclick="rateProduct(2)">&#9733;</span>
+                <span class="star" onclick="rateProduct(3)">&#9733;</span>
+                <span class="star" onclick="rateProduct(4)">&#9733;</span>
+                <span class="star" onclick="rateProduct(5)">&#9733;</span>
+            </div>
+            <button type="button" onclick="submitReview()" id="submit">تقييم</button>
+        </div>
+
+    </main>
+    <footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+        <a href="front_privacy_policy">سياسة الخصوصية</a>
+        <a id="customerServiceLink" href="front_customer_service" onclick="redirectToCustomerService()">خدمة العملاء</a>
+        <span id="loginMessage" class="hiddenMessage">يرجى تسجيل الدخول أولاً!</span>
+        <a href="front_about">من نحن</a>
+        |
+        <div class="social-links">
+            <strong>تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+                <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+
+            <a href="link_to_facebook_page">
+                <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+
+            <a href="tel:+123456789">
+                <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+
+        </div>
+    </footer>
+    <script>
+        function showContent(categoryId) {
+            // Hide all tab contents first
+            var tabContents = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = 'none';
+            }
+
+            // Display the selected category content
+            var categoryElement = document.getElementById(categoryId);
+            if (categoryElement) {
+                categoryElement.style.display = 'block';
+            }
+            // Hide the content after 2 seconds (adjust as needed)
+            setTimeout(function () {
+                categoryElement.style.display = 'none';
+            }, 2000);
+        }
+        function searchProducts(event) {
+            event.preventDefault();
+            var query = document.getElementById('search').value;
+
+            // Display loading indicator
+            showLoadingIndicator();
+
+            fetch(`/api/products/search?query=${query}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displaySearchResults(data);
+                    // Show filter options once search results are available
+                    document.getElementById('filter-options').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    // Handle the error appropriately, e.g., display an error message to the user
+                })
+                .finally(() => {
+                    // Hide loading indicator
+                    hideLoadingIndicator();
+                });
+        }
+
+
+        function applyFilters(event) {
+            event.preventDefault();
+            var color = document.getElementById('color').value;
+            var size = document.getElementById('size').value;
+            var price = document.getElementById('price').value;
+            fetch(`/api/products/filter?color=${color}&size=${size}&price=${price}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => displaySearchResults(data))
+                .catch(error => {
+                    console.error('Error fetching filtered results:', error);
+                    // Handle the error appropriately, e.g., display an error message to the user
+                });
+        }
+
+        function displaySearchResults(results) {
+            var resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p>لا توجد نتائج.</p>';
+                return;
+            }
+
+            results.forEach(product => {
+                var productDiv = document.createElement('div');
+
+                var titleElement = document.createElement('p');
+                titleElement.textContent = product.title;
+                productDiv.appendChild(titleElement);
+
+                var descriptionElement = document.createElement('p');
+                descriptionElement.textContent = product.description;
+                productDiv.appendChild(descriptionElement);
+
+                var priceElement = document.createElement('p');
+                priceElement.textContent = `السعر: ${product.price} دولار`;
+                productDiv.appendChild(priceElement);
+
+                var variancesBtn = document.createElement('button');
+                variancesBtn.textContent = 'عرض التباينات';
+                variancesBtn.onclick = function () {
+                    getVariances(product.id);
+                };
+                productDiv.appendChild(variancesBtn);
+
+                resultsContainer.appendChild(productDiv);
+            });
+        }
+
+        function getVariances(productId) {
+            console.log(`Fetching and displaying variances for product with ID: ${productId}`);
+        }
+        function logout() {
+            // حذف بيانات الدخول من Local Storage
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+            // إخفاء رابط تسجيل الخروج
+            document.getElementById('logoutLink').style.display = 'none';
+            alert('تم تسجيل الخروج بنجاح!');
+            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+            window.location.href = "~/Pages/Home.html";
+        }
+
+        // يتم استدعاء هذا الكود عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function () {
+            // التحقق من وجود بيانات تسجيل الدخول في Local Storage
+            const username = localStorage.getItem('username');
+            const password = localStorage.getItem('password');
+
+            // إذا كانت هناك بيانات تسجيل دخول، عرض رابط تسجيل الخروج
+            if (username && password) {
+                document.getElementById('logoutLink').style.display = 'inline-block';
+            }
+        });
+        const deliveryLink = document.getElementById('deliveryLink');
+        const loginPopup = document.getElementById('loginPopup');
+        const closeButton = document.getElementById('closeButton'); // إضافة زر الإغلاق
+
+        deliveryLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            loginPopup.style.display = 'block';
+
+            // إغلاق الواجهة بعد 5 ثوان
+            setTimeout(() => {
+                loginPopup.style.display = 'none';
+            }, 5000); // 5000 مللي ثانية = 5 ثوان
+        });
+
+        closeButton.addEventListener('click', () => {
+            loginPopup.style.display = 'none';
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCountHome();
+        });
+
+        function redirectToLogin() {
+            window.location.href = "~/Pages/Login.html";
+        }
+        // دالة للتنقل إلى الأقسام داخل الصفحة
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        // إعادة تهيئة Swiper بعد تغيير اللغة
+        if (swiper) {
+            swiper.destroy();
+        }
+        initializeSwiper();
+        // تهيئة Swiper
+        var swiper;
+
+        function initializeSwiper() {
+            swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                effect: 'cube',
+                loop: true, // تمكين حلقة الشرائح
+                autoplay: {
+                    delay: 3500,
+                    disableOnInteraction: false,
+                },
+                initialSlide: 0,
+            });
+        }
+
+        var userRating = 0;
+        var isLoggedIn = false;
+
+        function rateProduct(rating) {
+            if (isLoggedIn) {
+                userRating = rating;
+                updateStars(userRating);
+            } else {
+                alert('يجب عليك تسجيل الدخول لتقييم المنتج.');
+            }
+        }
+
+        function updateStars(count) {
+            var stars = document.querySelectorAll('.rating .star');
+
+            stars.forEach(function (star, index) {
+                if (index < count) {
+                    star.classList.add('selected');
+                } else {
+                    star.classList.remove('selected');
+                }
+            });
+        }
+
+        function submitReview() {
+            if (isLoggedIn && userRating > 0) {
+                alert('تم استلام تقييمك: ' + userRating);
+                // يمكنك إرسال التقييم إلى الخادم أو قاعدة البيانات هنا
+            } else if (!isLoggedIn) {
+                alert('يجب عليك تسجيل الدخول لتقييم المنتج.');
+                // يمكنك توجيه المستخدم إلى صفحة تسجيل الدخول أو اتخاذ إجراء آخر هنا
+            } else {
+                alert('يرجى تحديد تقييم');
+            }
+        }
+
+        function addHeart(element) {
+            element.classList.toggle('active');
+        }
+        function toggleSubcategories(categoryId) {
+            var subcategory = document.getElementById(categoryId);
+            subcategory.style.display = subcategory.style.display === 'block' ? 'none' : 'block';
+        }
+        var isLoggedIn = false; // يمكن تعديل قيمة هذا المتغير بناءً على حالة تسجيل الدخول
+
+        function redirectToCustomerService() {
+            if (!isLoggedIn) {
+                // تنبيه المستخدم بأنه يجب تسجيل الدخول أولاً
+                alert("يرجى تسجيل الدخول أولاً!");
+                // توقف عن الانتقال للرابط الأصلي
+                event.preventDefault();
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            // حدد العنصرين
+            var loginIcon = document.getElementById("login-icon");
+            var userInfo = document.getElementById("user-info");
+
+            // قم بفحص ما إذا كان هناك تسجيل دخول أم لا
+            var isLoggedIn = false; // يجب استبدال هذا بالتحقق الفعلي من تسجيل الدخول
+
+            // إذا لم يتم تسجيل الدخول، فقم بإظهار أيقونة تسجيل الدخول وإخفاء معلومات المستخدم
+            if (!isLoggedIn) {
+                userInfo.classList.add("hidden");
+                loginIcon.style.display = "block";
+            } else {
+                // إذا تم تسجيل الدخول، قم بإظهار معلومات المستخدم وإخفاء أيقونة تسجيل الدخول
+                loginIcon.style.display = "none";
+                userInfo.classList.remove("hidden");
+
+                // يمكنك تغيير هذا الجزء برمز للتحقق من الجلسات أو الكوكيز وعرض معلومات المستخدم بناءً على النتيجة
+                var username = "اسم المستخدم";
+
+                // عرض معلومات المستخدم بعد تسجيل الدخول
+                document.getElementById("user-name").innerText = username;
+            }
+        });
+
+    </script>
+
+</body>
+</html>

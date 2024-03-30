@@ -1,0 +1,79 @@
+@{
+    ViewData["Title"] = "سياسة الخصوصية";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>   
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="/CSS/Styles.css">
+   <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Function.js"></script>
+</head>
+<body>
+    <a href="front_home">
+        <img class="logo" src="~/Images/logo.png" alt="Logo">
+    </a>
+    <header>
+<h1>سياسة الخصوصية</h1>
+</header>
+    <main>
+<section>
+    <h2>مقدمة</h2>
+    <p>@ViewData["Introduction"]</p>
+</section>
+
+<section>
+    <h2>المعلومات التي نقوم بجمعها</h2>
+    <p>@ViewData["DataCollection"]</p>
+</section>
+
+<section>
+    <h2>كيفية استخدام المعلومات</h2>
+    <p>@ViewData["DataUsage"]</p>
+</section>
+
+<section>
+    <h2>مشاركة المعلومات</h2>
+    <p>@ViewData["DataSharing"]</p>
+</section>
+
+<section>
+    <h2>أمان المعلومات</h2>
+    <p>@ViewData["DataSecurity"]</p>
+</section>
+
+<section>
+    <h2>حقوق المستخدمين</h2>
+    <p>@ViewData["UserRights"]</p>
+</section>
+
+<section>
+    <h2>تحديثات لسياسة الخصوصية</h2>
+    <p>@ViewData["Updates"]</p>
+</section>
+    </main>
+<footer>
+    <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+    |
+        <a href="front_about">من نحن</a>
+    |
+    <div class="social-links">
+        <strong> تواصل معنا:</strong>
+        <a href="mailto:info@stationerystore.com">
+            <img src="~/Images/email.png" alt="Email Icon">
+        </a>
+       <a href="link_to_facebook_page">
+            <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+        </a>
+        <a href="tel:+123456789">
+            <img src="~/Images/phone-call.png" alt="Phone Icon">
+        </a>
+    </div>
+</footer>
+
+</body>
+</html>
