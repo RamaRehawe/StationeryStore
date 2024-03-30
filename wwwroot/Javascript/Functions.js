@@ -67,7 +67,7 @@ function logout() {
     document.getElementById('logoutLink').style.display = 'none';
     alert('تم تسجيل الخروج بنجاح!');
     // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
-    window.location.href = "~/Pages/Home.html";
+    window.location.href = "front_home";
 }
 
 function deleteSection(sectionId) {
