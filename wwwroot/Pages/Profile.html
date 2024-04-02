@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي</title>
+   <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
+    </a>
+    <div class="logout-icon">
+        <a  onclick="logout()" id="logoutLink">
+	    <img src="~/Images/log-out.png" alt="Logout">
+            <span id="logout-text"> تسجيل الخروج</span>
+        </a>
+    </div>
+    <main>
+		<div id="sidebar">
+    <a href="#section2" onclick="showSection('section2')">المعلومات الشخصية</a>
+    <a href="#section3" onclick="showSection('section3')">إضافة عنوان المنزل </a>
+    <a href="#section3" onclick="showSection('section4')">إضافة عنوان العمل </a>
+    <a href="#section5" onclick="showSection('section5')">تتبع الطلبية</a>
+    <a href="#section6" onclick="showSection('section6')">الطلبيات السابقة</a>
+
+</div>
+
+<div id="content">
+<div id="section1" class="section active-section">
+    <h2>أهلاً بك، ليس هناك طلبات حالية </h2>
+    <button onclick="redirectToHomePage()">عد للصفحة الرئيسية للتسوق</button>
+	<br>
+	    <p>نحن نفتخر بتوفير تجربة تسوق سلسة ومرضية، ونشجعكم دائمًا على التواصل مع المدير لأي استفسارات أو اقتراحات. نتمنى لكم تجربة تسوق ممتعة!</p>
+	<img  class="second-img" src="~/Images/online-shopping.jpg" alt="صورة تعبيرية عن عمل المتجر الكتروني للقرطاسية">
+
+</div>
+    <div id="section2" class="section">
+    <form>
+        <div class="section-header">
+            <h2>المعلومات الشخصية</h2>
+            <div class="section-actions">
+                <span class="edit-icon" onclick="editSection('section2')">✏️</span>
+                <span class="delete-icon" onclick="deleteSection('section2')">🗑️</span>
+                <span class="save-icon" onclick="saveChanges('section2')" style="display: none;">💾</span>
+            </div>
+        </div>
+        <p>التفاصيل ...</p>
+        <label for="username">اسم المستخدم:</label>
+        <input type="text" id="username" name="username" placeholder="سامي الحلو" required >
+
+        <label for="email">البريد الإلكتروني:</label>
+        <input type="email" id="email" name="email" placeholder="sami_87@gmail.com" required >
+
+        <label for="gender">الجنس:</label>
+        <div class="gender-options">
+            <label>
+                <input type="radio" id="male" name="gender" value="male" required >
+                <span class="radio-text">ذكر</span>
+            </label>
+            <label>
+                <input type="radio" id="female" name="gender" value="female" required >
+                <span class="radio-text">أنثى</span>
+            </label>
+        </div>
+        <label for="birthdate">تاريخ الميلاد:</label>
+        <input type="date" id="birthdate" name="birthdate" >
+
+        <label for="phone">رقم الهاتف:</label>
+        <input type="tel" id="phone" name="phone" required >
+    </form>
+</div>
+
+
+    <div id="section3" class="section"  >
+          
+        <form>
+			 <div class="section-header">
+            <h2>عنوان المنزل</h2>
+            <div class="section-actions">
+                <span class="edit-icon" onclick="editSection('section3')">✏️</span>
+                <span class="delete-icon" onclick="deleteSection('section3')">🗑️</span>
+                <span class="save-icon" onclick="saveChanges('section3')" style="display: none;">💾</span>
+            </div>
+        </div>
+        
+               
+            <label for="work-name">الاسم:</label>
+            <input type="text" id="work-name" name="work-name" required>
+
+            <label for="work-street">الشارع:</label>
+            <input type="text" id="work-street" name="work-street">
+
+            <label for="work-city">المدينة:</label>
+            <input type="text" id="work-city" name="work-city">
+
+            <label for="work-phone">رقم الهاتف:</label>
+            <input type="tel" id="work-phone" name="work-phone">
+		</form>
+      
+    </div>
+
+    <div id="section4" class="section" >
+       <form>
+           <div class="section-header">
+            <h2>عنوان العمل</h2>
+            <div class="section-actions">
+                <span class="edit-icon" onclick="editSection('section4')">✏️</span>
+                <span class="delete-icon" onclick="deleteSection('section4')">🗑️</span>
+                <span class="save-icon" onclick="saveChanges('section4')" style="display: none;">💾</span>
+            </div>
+        </div>
+        
+            <label for="home-name">الاسم:</label>
+            <input type="text" id="home-name" name="home-name" required>
+
+            <label for="home-street">الشارع:</label>
+            <input type="text" id="home-street" name="home-street">
+
+            <label for="home-city">المدينة:</label>
+            <input type="text" id="home-city" name="home-city">
+
+            <label for="home-phone">رقم الهاتف:</label>
+            <input type="tel" id="home-phone" name="home-phone">
+      
+    </form>
+		
+    </div>
+	 <div id="section5" class="section" >
+        <h1>تتبع الطلبية</h1>
+
+        <h2>طلبية رقم 123</h2>
+    <!-- معلومات الطلبية -->
+    <p>معلومات الطلبية هنا...</p>
+   <div id="timeline">
+        <div class="event" data-status="loading">
+            <i class="fas fa-cogs"></i>
+            <span>تحميل البضائع</span>
+			
+        </div>
+	   <li class="line"></li>
+        <div class="event" data-status="shipped">
+            <i class="fas fa-truck"></i>
+            <span>شحن البضائع</span>
+        </div><li class="line"></li>
+        <div class="event" data-status="delivered">
+            <i class="fas fa-box"></i>
+            <span>توصيل البضائع</span>
+        </div>
+    </div>
+	</div>
+     <div id="section6" class="section" >
+       <h2>طلبيات العميل</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>رقم الطلب</th>
+                <th>تاريخ الطلب</th>
+                <th>اسم المنتج</th>
+                <th>الكمية</th>
+                <th>السعر</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2022-02-17</td>
+                <td>اسم المنتج 1</td>
+                <td>2</td>
+                <td>75000 ل.س</td>
+            </tr>
+        </tbody>
+    </table>
+		
+    </div></div>
+    </main>
+    <footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
+  
+</body>
+
+</html>

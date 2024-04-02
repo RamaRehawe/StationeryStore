@@ -1,4 +1,5 @@
-﻿using StationeryStore.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using StationeryStore.Data;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
 
@@ -16,12 +17,14 @@ namespace StationeryStore.Repository
 
         public Product GetProduct(int id)
         {
-            return _context.Products.Where(p => p.Id == id).FirstOrDefault();
+            return _context.Products.Where(p => p.Id == id)
+                .Include(p => p.Reviews)
+                .FirstOrDefault();
         }
 
-        public ICollection<Product> GetProducts()
+        public ICollection<Product> GetProducts(int subId)
         {
-            return _context.Products.OrderBy(p => p.Id).ToList();
+            return _context.Products.Where(p => p.SubCategoryId == subId).ToList();
         }
 
         public bool ProductExists(int id)

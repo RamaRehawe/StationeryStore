@@ -8,21 +8,21 @@ namespace StationeryStore.Utils
     {
         public MappingProfiles()
         {
-            CreateMap<Product, ProductDto>().ReverseMap();
-            CreateMap<User, UserDto>();
-            CreateMap<User, SignUpDto>();
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, SignUpDto>().ReverseMap();
             CreateMap<User, RegisterUserDto>().ReverseMap();
             CreateMap<SignUpDto, RegisterUserDto>().ReverseMap();
-            CreateMap<SignUpDto, User>();
-            CreateMap<UserDto, User>();
-            CreateMap<User, LoginDto>();
-            CreateMap<LoginDto, User>();
-            CreateMap<Address, AddressDto>();
-            CreateMap<AddressDto, Address>();
-            CreateMap<Category, CategoryDto>();
-            CreateMap<CategoryDto, Category>();
-            CreateMap<SubCategory, SubCategoryDto>();
-            CreateMap<SubCategoryDto, SubCategory>();
+            CreateMap<User, LoginDto>().ReverseMap();
+            CreateMap<Address, AddressDto>().ReverseMap();
+            CreateMap<ResCategoryDto, Category>().ReverseMap();
+            CreateMap<ResSubCategoryDto, SubCategory>().ReverseMap();
+            CreateMap<ReqCategoryDto, Category>().ReverseMap();
+            CreateMap<SubCategory, ReqSubCategoryDto>().ReverseMap();
+            CreateMap<Product, ResProductDto>().ReverseMap();
+            CreateMap<Product, ReqProductDto>().ReverseMap();
+            CreateMap<Review, ResReviewDto>().ReverseMap();
+            CreateMap<Review, ReqReviewDto>().ReverseMap();
+
         }
     }
 }

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأكيد التسليم</title>
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+     <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
+    </a>
+	 <div class="logout-icon">
+        <a  onclick="logout()" id="logoutLink">
+	    <img src="~/Images/log-out.png" alt="Logout">
+            <span id="logout-text"> تسجيل الخروج</span>
+        </a>
+    </div> 
+    <main>
+		
+		  <div class="driver-status" onmouseenter="showDriverText()" onmouseleave="hideText('driverText')">
+        <h2>حالة السائق</h2>
+			              <p class="instruction-text" id="driverText" >تحديث حالتك يساعدنا على تحسين تجربتك. اجعل نفسك متاحًا عندما تكون جاهزًا لتسليم الشحنات.</p>
+
+        <label class="switch">
+            <input type="checkbox" id="statusToggle" onchange="updateDriverStatus()">
+            <span class="slider"></span>
+        </label>
+        <p id="statusText">مشغول</p>
+    </div>
+		    <div class="grid-container">
+        <div class="shipments-section" onmouseenter="showShipmentsText()" onmouseleave="hideText('shipmentsText')">
+
+		    <h2>الشحنات بحاجة للتسليم</h2>
+			        <p class="instruction-text" id="shipmentsText">شحنات تنتظر تسليمك! تحقق من القائمة وبدء تسليم الشحنات الخاصة بك.</p>
+
+<!-- جدول الشحنات بحاجة للتسليم -->
+<table>    <thead>
+        <tr>
+            <th>رقم </th>
+            <th>اسم العميل</th>
+            <th>رقم الهاتف</th>
+            <th>عنوان التسليم</th>
+            <th>الحالة</th>
+			<th>إجراءات</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="orderRow1">
+            <td>1</td>
+            <td>اسم العميل 1</td>
+            <td>رقم الهاتف 1</td>
+            <td>عنوان 1</td>
+            <td id="status1">قيد الانتظار</td>
+            <td><button onclick="acceptOrder(1)">قبول الطلب</button></td>
+        </tr>
+        <tr id="orderRow2">
+            <td>2</td>
+            <td>اسم العميل 2</td>
+            <td>رقم الهاتف 2</td>
+            <td>عنوان 2</td>
+            <td id="status2">قيد الانتظار</td>
+            <td><button onclick="acceptOrder(2)">قبول الطلب</button></td>
+        </tr>
+        <!-- يمكنك استخدام بيانات من قاعدة البيانات هنا -->
+    </tbody>
+</table>
+			        </div>
+				
+        <div class="previous-orders-section" onmouseenter="showOrdersText()" onmouseleave="hideText('ordersText')">
+
+		<h2>الطلبيات السابقة</h2>
+ <p class="instruction-text" id="ordersText">استعرض الطلبيات السابقة واطلع على تاريخ تسليمك.</p>
+<table>    <thead>
+        <tr>
+            <th>رقم الطلبية</th>
+            <th>اسم العميل</th>
+            <th>رقم الهاتف</th>
+            <th>عنوان التسليم</th>
+            <th>الحالة</th>
+        </tr>
+    </thead>
+    <tbody id="previousOrders">
+        <!-- يمكنك استخدام بيانات من قاعدة البيانات هنا -->
+    </tbody>
+</table>
+			        </div>
+
+		        <div class="timeline-section" onmouseenter="showTimelineText()" onmouseleave="hideText('timelineText')">
+	
+		<h2>خط الزمني للشحنة</h2>
+  
+        <p class="instruction-text" id="timelineText" style="color: red;">ملاحظة هامة !! لا تقم بالضغط على زر تم التوصيل إلى حين تسليم الشحنة إلى العملاء.</p>
+
+<!-- أزرار التحميل والشحن والتوصيل -->
+<div id="timeline-container">
+  <button onclick="updateTimeline('loadingEvent')"><i class="fas fa-upload"></i> تم التحميل</button>
+  <div class="line"></div>
+  <button onclick="updateTimeline('shippingEvent')"><i class="fas fa-ship"></i> تم الشحن</button>
+  <div class="line"></div>
+  <button onclick="updateTimeline('deliveryEvent', 'تم التوصيل')"><i class="fas fa-truck"></i> تم التوصيل</button>
+</div>
+
+<!-- خط الزمني -->
+<ul id="timeline">
+  <li class="event-delivery" id="loadingEvent"></li>
+  <li class="line"></li>
+  <li class="event-delivery" id="shippingEvent"></li>
+  <li class="line"></li>
+  <li class="event-delivery" id="deliveryEvent"></li>
+</ul>
+					        </div>
+
+
+				        <div class="delivery-confirmation-section" onmouseenter="showConfirmationText()" onmouseleave="hideText('confirmationText')">
+   <div class="deliveryConfirmationForm">
+       
+        
+        <h2>تأكيد التسليم</h2>
+	           <p class="instruction-text" id="confirmationText">أكمل عملك بتأكيد تسليم الشحنات. قد تحتاج إلى إدخال تفاصيل تأكيد لضمان سلامة التسليم.</p>
+            <div class="radio-group">
+                <label for="delivered">حالة التسليم:</label>
+                <div class="delivered">
+                    <input type="radio" id="delivered" name="deliveryStatus" value="delivered" onclick="toggleForms()" class="delivered">
+                    <label for="delivered">تم التسليم</label>
+                    <input type="radio" id="notDelivered" name="deliveryStatus" value="notDelivered" onclick="toggleForms()">
+                    <label for="notDelivered">لم يتم التسليم</label>
+                </div>
+            </div>
+
+            <div id="deliveredForm" style="display: none;">
+                <label for="deliveryPerson">من قام بالتسليم؟</label>
+                <select id="deliveryPerson" name="deliveryPerson">
+                    <option value="owner">لصاحبها</option>
+                    <option value="neighbor">لأحد الجيران</option>
+                </select>
+                <!-- عرض اسم الشخص الذي قام بالتسليم في عنصر منفصل -->
+                <p id="receiverName"></p>
+            </div>
+
+            <div class="notDeliveredForm" id="notDeliveredForm" style="display:none;">
+                <label for="reason">سبب عدم التسليم:</label><br><br>
+             <textarea id="reason" name="reason" rows="4" required="" ></textarea>
+            </div>
+
+            <p id="confirmationMessage"></p>
+            <button type="button" onclick="confirmDelivery()">تأكيد </button>
+   </div>
+							</div>
+     </div>
+
+    </main>
+
+<footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
+    <script>
+		 // Functions to show/hide instruction text
+    function showDriverText() {
+        showText('driverText');
+    }
+
+    function showShipmentsText() {
+        showText('shipmentsText');
+    }
+
+    function showOrdersText() {
+        showText('ordersText');
+    }
+
+    function showTimelineText() {
+        showText('timelineText');
+    }
+
+    function showConfirmationText() {
+        showText('confirmationText');
+    }
+
+    function showText(elementId) {
+        // Show instruction text
+        document.getElementById(elementId).style.display = 'block';
+
+        // Set a timeout to hide the text after 6000 milliseconds (6 seconds)
+        setTimeout(function () {
+            hideText(elementId);
+        }, 6000);
+    }
+
+    function hideText(elementId) {
+        // Hide instruction text
+        document.getElementById(elementId).style.display = 'none';
+    }
+    function acceptOrder(orderId) {
+    // تحديد العناصر في السطر الحالي
+    const currentOrderRow = document.getElementById('orderRow' + orderId);
+    const orderNumber = currentOrderRow.querySelector('td:nth-child(1)').innerText;
+    const customerName = currentOrderRow.querySelector('td:nth-child(2)').innerText;
+    const phoneNumber = currentOrderRow.querySelector('td:nth-child(3)').innerText;
+    const deliveryAddress = currentOrderRow.querySelector('td:nth-child(4)').innerText;
+
+    // تحديد حالة الطلب
+    const orderStatus = 'تم التحميل';
+
+    // إضافة القيم إلى جدول الطلبيات السابقة
+    const previousOrdersTable = document.getElementById('previousOrders');
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `<td>${orderNumber}</td><td>${customerName}</td><td>${phoneNumber}</td><td>${deliveryAddress}</td><td>${orderStatus}</td>`;
+    previousOrdersTable.appendChild(newRow);
+
+    // حذف السطر من جدول الشحنات بحاجة للتسليم
+    const parentTableBody = currentOrderRow.parentNode;
+    parentTableBody.removeChild(currentOrderRow);
+
+    // تحديث حالة السطر الحالي بعد التحقق من وجود العنصر
+    const statusElement = document.getElementById('status' + orderId);
+    if (statusElement) {
+        statusElement.innerText = orderStatus;
+
+        // تعطيل زر القبول بعد التحقق من وجود العنصر
+        const acceptButton = currentOrderRow.querySelector('button');
+        if (acceptButton) {
+            acceptButton.disabled = true;
+        }
+    }
+
+    // إظهار تنبيه
+    alert("تم قبول الطلب رقم " + orderId);
+}
+
+
+
+
+		function updateDriverStatus() {
+    var statusToggle = document.getElementById("statusToggle");
+    var statusText = document.getElementById("statusText");
+
+    if (statusToggle.checked) {
+        statusText.textContent = "متاح";
+        // يمكنك إضافة الكود اللازم هنا لتحديث حالة السائق في قاعدة البيانات (Ajax request أو أي طريقة أخرى).
+    } else {
+        statusText.textContent = "مشغول";
+        // يمكنك إضافة الكود اللازم هنا لتحديث حالة السائق في قاعدة البيانات (Ajax request أو أي طريقة أخرى).
+    }
+}
+		  function logout() {
+            // حذف بيانات الدخول من Local Storage
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+            // إخفاء رابط تسجيل الخروج
+            document.getElementById('logoutLink').style.display = 'none';
+            alert('تم تسجيل الخروج بنجاح!');
+            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+            window.location.href = "home.html";
+        }
+		// دالة لتحديث حالة الشحنة والخط الزمني
+        function updateTimeline(eventId, orderStatus) {
+    // تحديث حالة الشحنة باستناد إلى الزر الذي تم الضغط عليه
+    document.getElementById(eventId).style.backgroundColor = "#2ecc71";
+
+    // إذا كان الزر المضغوط هو زر "تم التوصيل"
+    if (eventId === "deliveryEvent") {
+        // تحديث حالة الشحنة في جدول الطلبيات السابقة إلى القيمة المحددة
+        const previousOrdersTable = document.getElementById('previousOrders');
+        const lastRow = previousOrdersTable.rows.length - 1;
+        const statusCell = previousOrdersTable.rows[lastRow].cells[4]; // الخلية التي تحتوي على حالة الطلب
+        if (statusCell) {
+            statusCell.innerText = orderStatus;
+        }
+            // عرض رسالة توضح أن تم توصيل الطلبية مع رقمها
+            alert(`تم توصيل الطلبية بنجاح!`);
+    }
+}
+        function toggleForms() {
+            var deliveredForm = document.getElementById('deliveredForm');
+            var notDeliveredForm = document.getElementById('notDeliveredForm');
+            var deliveredRadio = document.getElementById('delivered');
+
+            if (deliveredRadio.checked) {
+                deliveredForm.style.display = 'block';
+                notDeliveredForm.style.display = 'none';
+            } else {
+                deliveredForm.style.display = 'none';
+                notDeliveredForm.style.display = 'flex';
+            }
+        }
+
+        function confirmDelivery() {
+            var orderId = document.getElementById('orderId').value;
+            var deliveredRadio = document.getElementById('delivered');
+            var deliveryStatus = deliveredRadio.checked ? deliveredRadio.value : 'notDelivered';
+
+            // التحقق من تحديد حالة التسليم قبل الاستمرار
+            if (deliveryStatus === 'delivered') {
+                var deliveryPerson = document.getElementById('deliveryPerson').value;
+            } else {
+                var reason = document.getElementById('reason').value;
+            }
+
+            // قم بإرسال هذه القيم إلى الـ API
+            fetch('https://your-api-url/confirm-delivery', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    orderId: orderId,
+                    deliveryStatus: deliveryStatus,
+                    deliveryPerson: deliveryPerson,
+                    reason: reason
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    updatePage(data.message, data.deliveryStatus, data.receiverName, data.reason);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function updatePage(message, deliveryStatus, receiverName, reason) {
+            var confirmationMessageElement = document.getElementById('confirmationMessage');
+            confirmationMessageElement.innerText = message;
+
+            var deliveryStatusElement = document.getElementById('deliveryStatus');
+            var receiverNameElement = document.getElementById('receiverName');
+            var reasonElement = document.getElementById('reason');
+
+            // إظهار أو إخفاء الحقل المرتبط بسبب عدم التسليم بناءً على اختيار المستخدم
+            reasonElement.style.display = (deliveryStatus === 'notDelivered') ? 'block' : 'none';
+
+            // تحديث حالة التسليم بناءً على القيمة التي تم استلامها من الـ API
+            deliveryStatusElement.innerText = (deliveryStatus === 'delivered') ? 'تم التسليم' : 'لم يتم التسليم';
+
+            // إذا تم التسليم، قم بإظهار اسم الشخص الذي قام بالاستلام
+            receiverNameElement.innerText = (deliveryStatus === 'delivered') ? 'المستلم: ' + receiverName : '';
+
+            // إذا لم يتم التسليم، قم بإظهار السبب
+            reasonElement.innerText = (deliveryStatus === 'notDelivered') ? 'سبب عدم التسليم: ' + reason : '';
+        }
+		
+
+   
+    </script>
+</body>
+
+</html>

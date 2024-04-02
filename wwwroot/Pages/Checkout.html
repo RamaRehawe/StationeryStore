@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدفع</title>
+    <link rel="stylesheet" href="~/CSS/Styles.css">
+    <link rel="icon" href="~/Images/ICO.png" type="image/png">
+    <script src="~/Javascript/Functions.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+   
+</head>
+<body>
+     <a href="~/Pages/Home.html">
+        <img class="logo" src="~/Images/logo.png" alt="logo">
+    </a>
+      <main>
+        <h1>الدفع</h1>
+        <form class="Checkout-form" onsubmit="return completeOrder()">
+            <label for="username">اسم المستخدم:</label>
+            <input type="text" id="username" required autocomplete="username"  disabled>
+            <br>
+
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" required autocomplete="email"  disabled>
+            
+			
+			<label for="phone">رقم الهاتف:</label>
+            <input type="text" id="phone" required autocomplete="tel"  disabled>
+			
+        <label for="delivery-address">التسليم إلى:</label>
+       <div class="shipping-address">
+    <select id="delivery-address" name="delivery-address">
+        <option value="home" >عنوان المنزل</option>
+        <option value="work">عنوان العمل</option>
+    </select>	   
+</div>
+
+          <!-- قسم تفاصيل الطلب -->
+<div class="order-details">
+    <h2>تفاصيل الطلب</h2>
+    <hr>
+
+    <!-- تفاصيل المنتجات -->
+    <p>المنتج 1: 50000 ل.س</p>
+    <p>المنتج 2: 25000 ل.س</p>
+    <!-- يمكنك إضافة المزيد من التفاصيل حسب الحاجة -->
+
+    <!-- تكاليف الشحن -->
+    <p>تكاليف الشحن: 10000 ل.س</p>
+    <hr>
+
+    <!-- إجمالي الطلب -->
+    <p>إجمالي الطلب: <span id="totalOrderAmount"></span></p>
+<br>
+    
+	<!-- تاريخ التوصيل لكل منتج بشكل منفصل -->
+	<div id="deliveryDate">
+		<p >تاريخ التوصيل:</p>
+    <p>المنتج 1: <span id="deliveryDateProduct1"></span></p>
+    <p>المنتج 2: <span id="deliveryDateProduct2"></span></p>
+	</div>
+
+</div>
+<!-- نهاية قسم تفاصيل الطلب -->
+            <label for="paymentMethod">طريقة الدفع:</label>
+            <select id="paymentMethod" required onchange="displayPaymentNote()">
+                <option value="cashOnDelivery">الدفع عند التسليم</option>
+            </select>
+
+            <div class="payment-note" id="paymentNote"></div>
+
+            <!-- في النموذج -->
+            <button type="submit" class="checkout-button">اتمام الطلب</button>
+        </form>
+    </main>
+
+     <footer>
+        <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
+        |
+      <a href="~/Pages/PrivacyPolicy.cshtml">سياسة الخصوصية</a>
+      <a href="~/Pages/About.cshtml">من نحن</a> 
+        |
+        <div class="social-links">
+            <strong> تواصل معنا:</strong>
+            <a href="mailto:info@example.com">
+      <img src="~/Images/email.png" alt="Email Icon">
+            </a>
+            <a href="link_to_facebook_page">
+      <img src="~/Images/facebook-icon.png" alt="Facebook Icon">
+            </a>
+            <a href="tel:+123456789">
+      <img src="~/Images/phone-call.png" alt="Phone Icon">
+            </a>
+        </div>
+    </footer>
+
+   <script>
+	   
+    // قم بتحميل البيانات من قاعدة البيانات عند تحميل الصفحة
+    window.onload = function () {
+        loadUserData();
+    };
+
+   function loadUserData() {
+    // قم بتحميل البيانات من قاعدة البيانات (استخدم Ajax أو أي تقنية أخرى)
+    // يفترض أن يكون هناك خادم يقوم بالاستجابة للطلب وإرجاع بيانات المستخدم
+
+    // على سبيل المثال:
+    var userData = {
+        username: "اسم العميل",
+        email: "example@example.com",
+        phone: "+9634450556382"
+    };
+
+    // عرض البيانات في النموذج
+    document.getElementById("username").value = userData.username;
+    document.getElementById("email").value = userData.email;
+    document.getElementById("phone").value = userData.phone;
+
+    // تعيين تاريخ التسليم لكل منتج
+    document.getElementById("deliveryDateProduct1").innerText = calculateDeliveryDate(1);
+    document.getElementById("deliveryDateProduct2").innerText = calculateDeliveryDate(2);
+
+    // حساب إجمالي الطلب بناءً على أسعار المنتجات وتكلفة الشحن
+    var product1Price = 50000;
+    var product2Price = 25000;
+    var shippingCost = 10000;
+
+    var totalOrderAmount = product1Price + product2Price + shippingCost;
+
+    // عرض إجمالي الطلب في النموذج
+    document.getElementById("totalOrderAmount").innerText = totalOrderAmount + " ل.س";
+
+    // تنفيذ displayPaymentNote() لضمان عرض الملاحظة حسب طريقة الدفع المختارة
+    displayPaymentNote();
+}
+
+    function completeOrder() {
+    // تعيين تاريخ التسليم لكل منتج
+    document.getElementById("deliveryDateProduct1").innerText = calculateDeliveryDate(1);
+    document.getElementById("deliveryDateProduct2").innerText = calculateDeliveryDate(2);
+
+    // حساب إجمالي الطلب بناءً على أسعار المنتجات وتكلفة الشحن
+    var product1Price = 50000;
+    var product2Price = 25000;
+    var shippingCost = 10000;
+
+    var totalOrderAmount = product1Price + product2Price + shippingCost;
+
+    // عرض إجمالي الطلب في النموذج
+    document.getElementById("totalOrderAmount").innerText = totalOrderAmount + " ل.س";
+
+   // تاريخ التوصيل
+var deliveryDateProduct1 = calculateDeliveryDate(1);
+var deliveryDateProduct2 = calculateDeliveryDate(2);
+
+// تكوين نص تاريخ التوصيل
+var deliveryDateText = "تاريخ التوصيل: " + deliveryDateProduct1 + " و " + deliveryDateProduct2;
+
+// عرض تاريخ التوصيل في النموذج
+document.getElementById("deliveryDate").innerText = deliveryDateText;
+
+    // عرض رسالة تأكيد قبل إتمام الطلب
+    alert("تم تأكيد الطلب \n\n" + "نشكر ثقتكم بنا! ");
+
+    // Add logic to process the order, update inventory, and handle order fulfillment.
+    return false; // لمنع إرسال النموذج
+}
+
+    function calculateDeliveryDate(productNumber) {
+		   // استخدام moment.js لحساب تاريخ التسليم
+        var deliveryDate = moment().add(productNumber * 3, 'days');
+
+        // يمكنك تنسيق التاريخ بشكل مخصص هنا
+        // على سبيل المثال: deliveryDate.format('YYYY-MM-DD')
+
+        return deliveryDate.format('YYYY-MM-DD');
+    }
+
+    function displayPaymentNote() {
+    // الحصول على قيمة طريقة الدفع المختارة من القائمة المنسدلة
+    var selectedPaymentMethod = document.getElementById('paymentMethod').value;
+    
+    // الحصول على عنصر عرض الملاحظة
+    var paymentNote = document.getElementById('paymentNote');
+
+    // فحص إذا كانت طريقة الدفع 'cashOnDelivery'
+    if (selectedPaymentMethod === 'cashOnDelivery') {
+        // إذا كانت 'cashOnDelivery'، عرض ملاحظة حول جمع الدفع عند التسليم
+        paymentNote.textContent = "ملاحظة: سيتم جمع المبلغ عند توصيل الطلب.";
+    } else {
+        // إذا لم تكن 'cashOnDelivery'، قم بتفريغ عرض الملاحظة
+        paymentNote.textContent = "";
+    }
+}
+ // دالة لعرض رسالة تمت الإضافة
+    function showAddMessage() {
+        var addMessage = document.getElementById('addMessage');
+        addMessage.style.display = 'block';
+
+        // يمكنك إضافة أي تحسينات إضافية هنا، مثل إخفاء الرسالة بعد فترة زمنية قصيرة
+        setTimeout(function() {
+            addMessage.style.display = 'none';
+        }, 3000); // يختفي الرسالة بعد 3 ثواني (يمكنك تعديل هذه الفترة حسب الحاجة)
+    }
+</script>
+
+</body>
+</html>
