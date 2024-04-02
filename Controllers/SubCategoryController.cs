@@ -19,32 +19,41 @@ namespace StationeryStore.Controllers
             _subCategoryRepository = subCategoryRepository;
         }
 
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<SubCategory>))]
+        public IActionResult GetSubCategories()
+        {
+            var subCategory = _mapper.Map<List<SubCategoryDto>>(_subCategoryRepository.GetSubCategories());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(subCategory);
+        }
 
-        //[HttpGet("{subCategoryId}")]
-        //[ProducesResponseType(200, Type = typeof(SubCategory))]
-        //[ProducesResponseType(400)]
+        [HttpGet("{subCategoryId}")]
+        [ProducesResponseType(200, Type = typeof(SubCategory))]
+        [ProducesResponseType(400)]
 
-        //public IActionResult GetSubCategory(int subCategoryId)
-        //{
-        //    if (!_subCategoryRepository.SubCategoryExists(subCategoryId))
-        //        return NotFound();
-        //    var subCategory = _mapper.Map<ResSubCategoryDto>(_subCategoryRepository.GetSubCategory(subCategoryId));
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    return Ok(subCategory);
-        //}
+        public IActionResult GetSubCategory(int subCategoryId)
+        {
+            if (!_subCategoryRepository.SubCategoryExists(subCategoryId))
+                return NotFound();
+            var subCategory = _mapper.Map<SubCategoryDto>(_subCategoryRepository.GetSubCategory(subCategoryId));
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            return Ok(subCategory);
+        }
 
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateSubCategory([FromBody] ReqSubCategoryDto subCategoryCreate)
+        public IActionResult CreateSubCategory([FromBody] SubCategoryDto subCategoryCreate)
         {
             if (subCategoryCreate == null)
                 return BadRequest(ModelState);
 
-            var subCategoryMap = _mapper.Map<SubCategory>(subCategoryCreate);
             var subCategory = _subCategoryRepository.GetSubCategories()
-                .Where(c => c.CategoryId == subCategoryMap.CategoryId)
                 .Where(c => c.Name.Trim().ToUpper().Equals(subCategoryCreate.Name.TrimEnd().ToUpper()))
                 .FirstOrDefault();
 
@@ -54,6 +63,7 @@ namespace StationeryStore.Controllers
                 return StatusCode(422, ModelState);
             }
 
+            var subCategoryMap = _mapper.Map<SubCategory>(subCategoryCreate);
             if (!_subCategoryRepository.CreateSubCategory(subCategoryMap))
             {
                 ModelState.AddModelError("", "Something went wrong while saving");
