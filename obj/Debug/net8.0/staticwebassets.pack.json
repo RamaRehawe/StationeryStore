@@ -1,0 +1,97 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\AdminDashboard.html",
+      "PackagePath": "staticwebassets\\Pages\\AdminDashboard.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Cart.html",
+      "PackagePath": "staticwebassets\\Pages\\Cart.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Checkout.html",
+      "PackagePath": "staticwebassets\\Pages\\Checkout.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\CustomerService.html",
+      "PackagePath": "staticwebassets\\Pages\\CustomerService.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\DriverDashboard.html",
+      "PackagePath": "staticwebassets\\Pages\\DriverDashboard.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\ForgotPassword.html",
+      "PackagePath": "staticwebassets\\Pages\\ForgotPassword.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Home.html",
+      "PackagePath": "staticwebassets\\Pages\\Home.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Item.html",
+      "PackagePath": "staticwebassets\\Pages\\Item.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\ItemMangerDashboard.html",
+      "PackagePath": "staticwebassets\\Pages\\ItemMangerDashboard.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Login.html",
+      "PackagePath": "staticwebassets\\Pages\\Login.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Profile.html",
+      "PackagePath": "staticwebassets\\Pages\\Profile.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Signup.html",
+      "PackagePath": "staticwebassets\\Pages\\Signup.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Subcategories-Brush.html",
+      "PackagePath": "staticwebassets\\Pages\\Subcategories-Brush.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Subcategories-Notebook.html",
+      "PackagePath": "staticwebassets\\Pages\\Subcategories-Notebook.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Subcategories-Notes.html",
+      "PackagePath": "staticwebassets\\Pages\\Subcategories-Notes.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Subcategories-Office.html",
+      "PackagePath": "staticwebassets\\Pages\\Subcategories-Office.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Subcategories-Pens.html",
+      "PackagePath": "staticwebassets\\Pages\\Subcategories-Pens.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Subcategories-Ruler.html",
+      "PackagePath": "staticwebassets\\Pages\\Subcategories-Ruler.html"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Pages\\Subcategories-Schoolbag.html",
+      "PackagePath": "staticwebassets\\Pages\\Subcategories-Schoolbag.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StationeryStore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.StationeryStore.props",
+      "PackagePath": "build\\StationeryStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.StationeryStore.props",
+      "PackagePath": "buildMultiTargeting\\StationeryStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.StationeryStore.props",
+      "PackagePath": "buildTransitive\\StationeryStore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -12,6 +12,8 @@
     <Content Remove="wwwroot\CSS\Styles1.css" />
     <Content Remove="wwwroot\CSS\Styles2.css" />
     <Content Remove="wwwroot\CSS\Styles3.css" />
+    <Content Remove="wwwroot\Fonts\fa-regular-400.woff2" />
+    <Content Remove="wwwroot\Fonts\font" />
     <Content Remove="wwwroot\Images\a4paper.jpg" />
     <Content Remove="wwwroot\Images\admin.jpg" />
     <Content Remove="wwwroot\Images\art-ink-pen.png" />
@@ -138,6 +140,8 @@
     <None Include="wwwroot\CSS\Styles1.css" />
     <None Include="wwwroot\CSS\Styles2.css" />
     <None Include="wwwroot\CSS\Styles3.css" />
+    <None Include="wwwroot\Fonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\Fonts\font" />
     <None Include="wwwroot\Images\a4paper.jpg" />
     <None Include="wwwroot\Images\admin.jpg" />
     <None Include="wwwroot\Images\art-ink-pen.png" />
@@ -240,6 +244,25 @@
     <None Include="wwwroot\Images\wirbbook.jpg" />
     <None Include="wwwroot\Images\woodpens.png" />
     <None Include="wwwroot\Javascript\Functions.js" />
+    <None Include="wwwroot\Pages\AdminDashboard.html" />
+    <None Include="wwwroot\Pages\Cart.html" />
+    <None Include="wwwroot\Pages\Checkout.html" />
+    <None Include="wwwroot\Pages\CustomerService.html" />
+    <None Include="wwwroot\Pages\DriverDashboard.html" />
+    <None Include="wwwroot\Pages\ForgotPassword.html" />
+    <None Include="wwwroot\Pages\Home.html" />
+    <None Include="wwwroot\Pages\Item.html" />
+    <None Include="wwwroot\Pages\ItemMangerDashboard.html" />
+    <None Include="wwwroot\Pages\Login.html" />
+    <None Include="wwwroot\Pages\Profile.html" />
+    <None Include="wwwroot\Pages\Signup.html" />
+    <None Include="wwwroot\Pages\Subcategories-Brush.html" />
+    <None Include="wwwroot\Pages\Subcategories-Notebook.html" />
+    <None Include="wwwroot\Pages\Subcategories-Notes.html" />
+    <None Include="wwwroot\Pages\Subcategories-Office.html" />
+    <None Include="wwwroot\Pages\Subcategories-Pens.html" />
+    <None Include="wwwroot\Pages\Subcategories-Ruler.html" />
+    <None Include="wwwroot\Pages\Subcategories-Schoolbag.html" />
   </ItemGroup>
 
 </Project>

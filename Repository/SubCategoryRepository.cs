@@ -1,4 +1,5 @@
-﻿using StationeryStore.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using StationeryStore.Data;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
 
@@ -16,7 +17,9 @@ namespace StationeryStore.Repository
 
         public SubCategory GetSubCategory(int id)
         {
-            return _context.SubCategories.Where(s => s.Id == id).FirstOrDefault();
+            return _context.SubCategories.Where(s => s.Id == id)
+                .Include(s => s.Products)
+                .FirstOrDefault();
         }
 
         public ICollection<SubCategory> GetSubCategories()
