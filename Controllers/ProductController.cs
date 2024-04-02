@@ -19,11 +19,11 @@ namespace StationeryStore.Controllers
             _productRepository = productRepository;
             _mapper = mapper;
         }
-        [HttpGet]
+        [HttpGet("subId")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Product>))]
-        public IActionResult GetProducts()
+        public IActionResult GetProducts(int subId)
         {
-            var products = _mapper.Map<List<ProductDto>>(_productRepository.GetProducts());
+            var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetProducts(subId));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -38,7 +38,7 @@ namespace StationeryStore.Controllers
         {
             if (!_productRepository.ProductExists(productId))
                 return NotFound();
-            var product = _mapper.Map<ProductDto>(_productRepository.GetProduct(productId));
+            var product = _mapper.Map<ResProductDto>(_productRepository.GetProduct(productId));
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(product);
@@ -48,12 +48,13 @@ namespace StationeryStore.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult AddProduct([FromBody] ProductDto productAdd)
+        public IActionResult AddProduct([FromBody] ReqProductDto productAdd)
         {
             if (productAdd == null)
                 return BadRequest(ModelState);
 
-            var product = _productRepository.GetProducts()
+            var productMap = _mapper.Map<Product>(productAdd);
+            var product = _productRepository.GetProducts(productMap.SubCategoryId)
                 .Where(p => p.Name.Trim().ToUpper() == productAdd.Name.TrimEnd().ToUpper())
                 .Where(p => p.Description.Trim().ToUpper() == productAdd.Description.TrimEnd().ToUpper())
                 .FirstOrDefault();
@@ -67,7 +68,6 @@ namespace StationeryStore.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var productMap = _mapper.Map<Product>(productAdd);
             if (!_productRepository.AddProduct(productMap))
             {
                 ModelState.AddModelError("", "Something went wrong while saving");

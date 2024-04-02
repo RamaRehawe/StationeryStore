@@ -23,6 +23,11 @@ namespace StationeryStore.Repository
             return _context.Addresses.Where(a => a.Id == id).FirstOrDefault();
         }
 
+        public ICollection<Address> GetAddressByUser(int userId)
+        {
+            return _context.Addresses.Where(a => a.UserId == userId).ToList();
+        }
+
         public ICollection<Address> GetAddresses()
         {
             return _context.Addresses.OrderBy(a => a.Id).ToList();

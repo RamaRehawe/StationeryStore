@@ -18,11 +18,13 @@ namespace StationeryStore.Controllers
             _categoryRepository = categoryRepository;
             _mapper = mapper;
         }
+
+
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Category>))]
         public IActionResult GetCategories()
         {
-            var category = _mapper.Map<List<CategoryDto>>(_categoryRepository.GetCategories());
+            var category = _mapper.Map<List<ResCategoryDto>>(_categoryRepository.GetCategories());
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -33,12 +35,11 @@ namespace StationeryStore.Controllers
         [HttpGet("{categoryId}")]
         [ProducesResponseType(200, Type = typeof(Category))]
         [ProducesResponseType(400)]
-
         public IActionResult GetCategory(int categoryId) 
         {
             if (!_categoryRepository.CategoryExists(categoryId))
                 return NotFound();
-            var category = _mapper.Map<CategoryDto>(_categoryRepository.GetCategory(categoryId));
+            var category = _mapper.Map<ResCategoryDto>(_categoryRepository.GetCategory(categoryId));
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(category);
@@ -48,7 +49,7 @@ namespace StationeryStore.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateCategory([FromBody] CategoryDto categoryCreate)
+        public IActionResult CreateCategory([FromBody] ReqCategoryDto categoryCreate)
         {
             if(categoryCreate == null)
                 return BadRequest(ModelState);

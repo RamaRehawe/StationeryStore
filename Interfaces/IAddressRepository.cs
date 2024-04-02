@@ -6,6 +6,7 @@ namespace StationeryStore.Interfaces
     {
         ICollection<Address> GetAddresses();
         Address GetAddress(int id);
+        ICollection<Address> GetAddressByUser(int userId);
         bool AddressExists(int id);
         bool AddAddress(Address address);
     }
