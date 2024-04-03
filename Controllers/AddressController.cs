@@ -15,7 +15,8 @@ namespace StationeryStore.Controllers
         private readonly IAddressRepository _addressRepository;
         private readonly IMapper _mapper;
 
-        public AddressController(IAddressRepository addressRepository, IMapper mapper, UserInfoService userInfoService, IUserRepository userRepository)
+        public AddressController(IAddressRepository addressRepository, IMapper mapper, 
+            UserInfoService userInfoService, IUserRepository userRepository)
             : base(userInfoService, userRepository)
         {
             _addressRepository = addressRepository;

@@ -22,8 +22,8 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRcQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/StationeryStore/StationeryStore/Views/Admin/AdminDashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5EYXNoYm9hcmQuY3NodG1s
+[C:/StationeryStore/StationeryStore/Views/AdminDashboard/AdminDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoYm9hcmRcQWRtaW5EYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/StationeryStore/StationeryStore/Views/Cart/Cart.cshtml]
@@ -34,8 +34,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJTZXJ2aWNlXEN1c3RvbWVyU2VydmljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/StationeryStore/StationeryStore/Views/Driver/DriverDashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHJpdmVyXERyaXZlckRhc2hib2FyZC5jc2h0bWw=
+[C:/StationeryStore/StationeryStore/Views/DriverDashboard/DriverDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHJpdmVyRGFzaGJvYXJkXERyaXZlckRhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/StationeryStore/StationeryStore/Views/ForgotPassword/ForgotPassword.cshtml]
@@ -46,8 +46,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/StationeryStore/StationeryStore/Views/ItemManger/ItemMangerDashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbU1hbmdlclxJdGVtTWFuZ2VyRGFzaGJvYXJkLmNzaHRtbA==
+[C:/StationeryStore/StationeryStore/Views/ItemMangerDashboard/ItemMangerDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbU1hbmdlckRhc2hib2FyZFxJdGVtTWFuZ2VyRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/StationeryStore/StationeryStore/Views/Item/Item.cshtml]

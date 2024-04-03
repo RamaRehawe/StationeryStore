@@ -7,7 +7,7 @@ namespace StationeryStore.Services
 {
     public class UserInfoService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        protected  IHttpContextAccessor _httpContextAccessor;
 
         public UserInfoService(IHttpContextAccessor httpContextAccessor)
         {

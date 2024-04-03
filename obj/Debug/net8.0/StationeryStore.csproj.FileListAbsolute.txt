@@ -25,7 +25,6 @@ C:\StationeryStore\StationeryStore\obj\Debug\net8.0\staticwebassets\msbuild.buil
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.StationeryStore.props
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\staticwebassets.pack.json
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\scopedcss\bundle\StationeryStore.styles.css
-C:\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.csproj.CopyComplete
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.dll
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\refint\StationeryStore.dll
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.pdb
@@ -146,3 +145,4 @@ C:\StationeryStore\StationeryStore\bin\Debug\net8.0\Microsoft.Extensions.Options
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.RazorAssemblyInfo.cache
 C:\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.RazorAssemblyInfo.cs
 C:\StationeryStore\StationeryStore\bin\Debug\net8.0\StationeryStore.staticwebassets.runtime.json
+C:\StationeryStore\StationeryStore\obj\Debug\net8.0\Statione.17E185D4.Up2Date
