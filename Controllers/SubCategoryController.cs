@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StationeryStore.Dto;
 using StationeryStore.Interfaces;
@@ -19,21 +20,7 @@ namespace StationeryStore.Controllers
             _subCategoryRepository = subCategoryRepository;
         }
 
-
-        //[HttpGet("{subCategoryId}")]
-        //[ProducesResponseType(200, Type = typeof(SubCategory))]
-        //[ProducesResponseType(400)]
-
-        //public IActionResult GetSubCategory(int subCategoryId)
-        //{
-        //    if (!_subCategoryRepository.SubCategoryExists(subCategoryId))
-        //        return NotFound();
-        //    var subCategory = _mapper.Map<ResSubCategoryDto>(_subCategoryRepository.GetSubCategory(subCategoryId));
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-        //    return Ok(subCategory);
-        //}
-
+        [Authorize(Roles = "Item Manager")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

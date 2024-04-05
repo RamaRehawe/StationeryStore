@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StationeryStore.Dto;
 using StationeryStore.Interfaces;
@@ -45,7 +46,7 @@ namespace StationeryStore.Controllers
             return Ok(category);
         }
 
-
+        [Authorize(Roles = "Item Manager")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
