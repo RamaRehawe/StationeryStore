@@ -82,13 +82,13 @@ namespace StationeryStore.Controllers
 
 
         }
-        [Authorize(Roles = "Admin")]
-        [HttpPost("admin-action")]
-        public IActionResult AdminAction()
-        {
-            // Only users with the "Admin" role can access this endpoint
-            return Ok("Admin action performed successfully!");
-        }
+        //[Authorize(Roles = "Admin")]
+        //[HttpPost("admin-action")]
+        //public IActionResult AdminAction()
+        //{
+        //    // Only users with the "Admin" role can access this endpoint
+        //    return Ok("Admin action performed successfully!");
+        //}
 
         private string GenerateJwtToken(string username, string role)
         {
@@ -112,7 +112,7 @@ namespace StationeryStore.Controllers
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-         private IActionResult? Register([FromBody] RegisterUserDto user)
+        private IActionResult? Register([FromBody] RegisterUserDto user)
         {
             if (user == null)
                 return BadRequest(ModelState);

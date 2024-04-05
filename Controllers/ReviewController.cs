@@ -27,7 +27,7 @@ namespace StationeryStore.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("{productId}")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Review>))]
         public IActionResult GetReviewsByProduct(int proId)
         {
