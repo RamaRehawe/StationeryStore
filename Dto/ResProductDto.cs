@@ -9,6 +9,7 @@ namespace StationeryStore.Dto
         public string Description { get; set; }
         public int SubCategoryId { get; set; }
         public ResSubCategoryDto SubCategory { get; set; }
+        public ICollection<ResRateDto> Rates { get; set; }
         public ICollection<ResReviewDto> Reviews { get; set; }
 
     }

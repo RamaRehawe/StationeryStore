@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using StationeryStore.Dto;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
+using StationeryStore.Repository;
 using StationeryStore.Services;
 
 namespace StationeryStore.Controllers
@@ -27,24 +28,35 @@ namespace StationeryStore.Controllers
         [HttpPost]
         //[ProducesResponseType(204)]
         //[ProducesResponseType(400)]
-        public IActionResult AddProductRate(ReqRateDto rate)
+        public IActionResult AddProductRate([FromBody] ReqRateDto rate)
         {
+            if (rate == null)
+                return BadRequest(ModelState);
+
             var rateMap = _mapper.Map<Rate>(rate);
             rateMap.UserId = base.GetActiveUser()!.Id;
             
             // chaeck if rate exist
-            var isExisted = _rateRepository.GetRateByUserAndProduct(rateMap.UserId, rateMap.ProductId);
+            var isExisted = _rateRepository.GetRateByUserAndProduct(rateMap.UserId, rate.ProductId);
             // if no: add new rate
             if(isExisted == null)
             {
-                _rateRepository.AddRate(rateMap);
                 rateMap.Date = DateTime.Now;
+                if (!_rateRepository.AddRate(rateMap))
+                {
+                    ModelState.AddModelError("", "Something went wrong");
+                    return StatusCode(500, ModelState);
+                }
             }
             else // if yes: update the rate
             {
                 isExisted.Rating = rate.Rating;
                 isExisted.Date = DateTime.Now;
-                _rateRepository.UpdateRate(isExisted);
+                if (!_rateRepository.UpdateRate(isExisted))
+                {
+                    ModelState.AddModelError("", "Something went wrong");
+                    return StatusCode(500, ModelState);
+                }
             }
             return Ok("Succsessfuly added");
         }

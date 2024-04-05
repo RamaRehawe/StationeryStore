@@ -3,6 +3,6 @@
     public class ResRateDto
     {
         public int Rating { get; set; }
-        public int ProductId { get; set; }
+        public int UserId { get; set; }
     }
 }
