@@ -19,6 +19,7 @@ namespace StationeryStore.Repository
         {
             return _context.Products.Where(p => p.Id == id)
                 .Include(p => p.Reviews).Include(p => p.Rates)
+                .Include(p => p.ProductAttributeQuantities)
                 .FirstOrDefault();
         }
 

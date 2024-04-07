@@ -11,6 +11,7 @@ namespace StationeryStore.Dto
         public ResSubCategoryDto SubCategory { get; set; }
         public ICollection<ResRateDto> Rates { get; set; }
         public ICollection<ResReviewDto> Reviews { get; set; }
+        public ICollection<ReqProductAttributeQuantityDto> ProductAttributeQuantities { get; set; }
 
     }
 }
