@@ -106,31 +106,53 @@ namespace StationeryStore.Controllers
         [HttpPut("updateItem/{itemId}")]
         public IActionResult UpdateItemQuantity(int itemId, CartItemDto itemDto)
         {
-            try
+            
+            var userId = base.GetActiveUser()!.Id;
+            var cart = _cartRepository.GetCartByUserId(userId);
+            var existingItem = _cartRepository.GetCartItemById(itemId, cart.Id);
+            if (existingItem == null)
             {
-                var userId = base.GetActiveUser()!.Id;
-                var cart = _cartRepository.GetCartByUserId(userId);
-                var existingItem = _cartRepository.GetCartItemById(itemId, cart.Id);
-                if (existingItem == null)
-                {
-                    return NotFound("Item not found");
-                }
-                var productAttributeQuantity = _cartRepository.GetProductAttributeQuantityById(itemDto.ProductAttributeQuantityId);
-                var subPrice = itemDto.Quantity * productAttributeQuantity.Price;
-                itemDto.SubPrice = subPrice;
-                existingItem.Quantity = itemDto.Quantity;
-                existingItem.CartId = cart.Id; // Assuming the cartId needs to be updated
-                existingItem.ProductAttributeQuantityId = itemDto.ProductAttributeQuantityId;
-                _cartRepository.UpdateCartItem(existingItem);
-
-                return Ok("Item quantity updated successfully");
-
+                return NotFound("Item not found");
             }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "An error occurred while processing the request.");
-            }
+            var productAttributeQuantity = _cartRepository.GetProductAttributeQuantityById(itemDto.ProductAttributeQuantityId);
+            var subPrice = itemDto.Quantity * productAttributeQuantity.Price;
+            itemDto.SubPrice = subPrice;
+            existingItem.Quantity = itemDto.Quantity;
+            existingItem.CartId = cart.Id; // Assuming the cartId needs to be updated
+            existingItem.ProductAttributeQuantityId = itemDto.ProductAttributeQuantityId;
+            _cartRepository.UpdateCartItem(existingItem);
+
+            return Ok("Item quantity updated successfully");
+
         }
+
+        [HttpDelete("deleteItem/{itemId}")]
+        public IActionResult DeleteItemFromCart(int itemId)
+        {
+            var userId = base.GetActiveUser()!.Id;
+            var cart = _cartRepository.GetCartByUserId(userId);
+
+            // Check if the cart exists
+            if (cart == null)
+            {
+                return NotFound("Cart not found");
+            }
+
+            // Retrieve the item from the cart
+            var existingItem = _cartRepository.GetCartItemById(itemId, cart.Id);
+
+            // Check if the item exists in the cart
+            if (existingItem == null)
+            {
+                return NotFound("Item not found in the cart");
+            }
+
+            // Delete the item from the cart
+            _cartRepository.DeleteCartItem(existingItem);
+
+            return Ok("Item deleted from cart successfully");
+        }
+
 
     }
 }

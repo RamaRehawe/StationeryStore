@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using StationeryStore.Data;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
@@ -20,6 +21,12 @@ namespace StationeryStore.Repository
         public void CreateCart(Cart cart)
         {
             _context.Carts.Add(cart);
+            _context.SaveChanges();
+        }
+
+        public void DeleteCartItem(CartItem item)
+        {
+            _context.CartItems.Remove(item);
             _context.SaveChanges();
         }
 

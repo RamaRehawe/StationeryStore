@@ -12,5 +12,6 @@ namespace StationeryStore.Interfaces
         ProductAttributeQuantity GetProductAttributeQuantityById(int productAttributeQuantityId);
         CartItem GetCartItemByCartAndProductAttributeQuantity(int cartId, int productAttributeQuantityId);
         IEnumerable<CartItem> GetCartItemsByCartId(int cartId);
+        void DeleteCartItem(CartItem item);
     }
 }
