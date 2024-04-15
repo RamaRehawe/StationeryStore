@@ -36,6 +36,7 @@ namespace StationeryStore.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetProduct(int productId)
         {
+
             if (!_productRepository.ProductExists(productId))
                 return NotFound();
             var product = _mapper.Map<ResProductDto>(_productRepository.GetProduct(productId));

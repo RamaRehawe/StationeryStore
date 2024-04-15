@@ -50,6 +50,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
 builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
 builder.Services.AddScoped<IRateRepository, RateRepository>();
+builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<IProductAttributeQuantityRepository, ProductAttributeQuantityRepository>();
 builder.Services.AddScoped<UserInfoService>();
 

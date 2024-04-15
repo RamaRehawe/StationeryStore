@@ -24,6 +24,9 @@ namespace StationeryStore.Utils
             CreateMap<Review, ReqReviewDto>().ReverseMap();
             CreateMap<Rate, ReqRateDto>().ReverseMap();
             CreateMap<Rate, ResRateDto>().ReverseMap();
+            CreateMap<Cart, ResCartDto>().ReverseMap();
+            CreateMap<Cart, ReqCartDto>().ReverseMap();
+            CreateMap<CartItem, CartItemDto>().ReverseMap();
             CreateMap<ProductAttributeQuantity, ReqProductAttributeQuantityDto>().ReverseMap();
 
         }
