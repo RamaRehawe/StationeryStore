@@ -54,7 +54,7 @@
                     <div class="section-header">
                         <h2>أضف فئة جديدة</h2>
                         <div class="section-actions">
-                            <span class="edit-icon" onclick="editSection('section2')">✏️</span>
+                            <span class="edit-icon" onclick="editSection('section2')" ✏️</span>
                             <span class="delete-icon" onclick="deleteSection('section2')">🗑️</span>
                             <span class="save-icon" onclick="saveChanges('section2')" style="display: none;">💾</span>
                             <span class="add-category-icon" onclick="toggleAddCategoryFields()" style="display: none;">➕</span> <!-- أيقونة لإظهار/إخفاء حقول الإضافة -->
@@ -63,19 +63,12 @@
                     <p>التفاصيل ...</p>
                     <label for="itemName">اسم الفئة:</label>
                     <input type="text" id="itemName" required><br>
-                    <label for="itemDescription">الوصف:</label>
-                    <input type="text" id="itemDescription" required><br>
                     <label for="itemParent">القسم التابع لها:</label>
                     <br>
                     <select id="itemParent">
-                        <option value="category1">فئة 1</option>
-                        <option value="category2">فئة 2</option>
-                        <option value="category3">فئة 3</option>
                     </select>
-                    <br><div id="imageInputsContainer1">
-                        <label for="productImage1"> الصورة أو الشعار:</label>
-                        <input type="file" class="image-input" name="productImage1" accept="image/*" required>
-                    </div>
+                    <br><br>
+                    <button onclick="addNewSubCategory()">إضافة</button>
                 </form>
             </div>
 
@@ -229,8 +222,6 @@
                 <div>
                     <label for="categorySelect"> اختر الفئة الاساسية:</label>
                     <select id="categorySelect" onchange="loadSubcategories()">
-                        <option value="0">اختر فئة</option>
-                        <option value="1">أقلام</option>
                     </select>
 
                     <label for="subcategorySelect"> اختر الفئة التابعة لها:</label>
@@ -288,6 +279,83 @@
         </div>
     </footer>
     <script>
+
+        // استدعاء طلب API لجلب الفئات
+        fetch('/api/Category')
+            .then(response => response.json())
+            .then(data => {
+                // عرض الفئات كخيارات داخل عنصر select
+                const selectElement = document.getElementById('itemParent');
+                data.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.textContent = category.name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+        // استدعاء طلب API لجلب الفئات
+        fetch('/api/Category')
+            .then(response => response.json())
+            .then(data => {
+                // عرض الفئات كخيارات داخل عنصر select
+                const selectElement = document.getElementById('categorySelect');
+                data.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.textContent = category.name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+        //add subcategory
+        // Function to get the token from local storage
+        function getToken() {
+            return localStorage.getItem('token');
+        }
+        function addNewSubCategory() {
+            const itemName = document.getElementById("itemName").value;
+            const itemParent = document.getElementById("itemParent").value;
+
+            // إنشاء كائن يحتوي على البيانات المدخلة
+            const subCategoryData = {
+                Name: itemName,
+                CategoryId: itemParent
+            };
+
+            // إرسال طلب POST إلى واجهة البرمجة API
+            fetch('/api/SubCategory', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': getToken() // Use getToken() function to get the token
+                },
+                body: JSON.stringify(subCategoryData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to add subcategory');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // عرض رسالة نجاح للمستخدم
+                    alert('Subcategory added successfully!');
+                    // يمكنك إضافة المزيد من الإجراءات هنا بناءً على احتياجات التطبيق
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // عرض رسالة خطأ للمستخدم
+                    alert('An error occurred while adding the subcategory. Please try again later.');
+                });
+        }
+
+
+
+
+
+
+
         function loadInventory() {
             var productId = document.getElementById('productSelect').value;
 
@@ -403,15 +471,15 @@
                 var listItem = document.createElement('li');
                 listItem.className = 'item';
                 listItem.innerHTML = `
-                    <img src="${product.image}" alt="${product.description}">
-                    <span>${product.name}</span>
-                    <label for="itemQuantity">الكمية:</label>
-                    <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
-                    <label for="itemPrice">السعر:</label>
-                    <input type="number" id="itemPrice" min="0" value="${product.price}">
-                    <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
-                    <button onclick="editProduct('${product.id}')">تعديل</button>
-                `;
+                            <img src="${product.image}" alt="${product.description}">
+                            <span>${product.name}</span>
+                            <label for="itemQuantity">الكمية:</label>
+                            <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
+                            <label for="itemPrice">السعر:</label>
+                            <input type="number" id="itemPrice" min="0" value="${product.price}">
+                            <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
+                            <button onclick="editProduct('${product.id}')">تعديل</button>
+                        `;
                 itemList.appendChild(listItem);
             });
         }
@@ -424,15 +492,15 @@
             // Replace the listItem content with an edit form
             var listItem = document.querySelector(`.item[data-product-id="${productId}"]`);
             listItem.innerHTML = `
-                <img src="${product.image}" alt="${product.description}">
-                <span>${product.name}</span>
-                <label for="itemQuantity">الكمية:</label>
-                <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
-                <label for="itemPrice">السعر:</label>
-                <input type="number" id="itemPrice" min="0" value="${product.price}">
-                <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
-                <button onclick="cancelEdit('${product.id}')">إلغاء</button>
-            `;
+                        <img src="${product.image}" alt="${product.description}">
+                        <span>${product.name}</span>
+                        <label for="itemQuantity">الكمية:</label>
+                        <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
+                        <label for="itemPrice">السعر:</label>
+                        <input type="number" id="itemPrice" min="0" value="${product.price}">
+                        <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
+                        <button onclick="cancelEdit('${product.id}')">إلغاء</button>
+                    `;
         }
 
         // Function to cancel the edit and revert to the display mode
@@ -443,13 +511,13 @@
             // Replace the edit form with the original display content
             var listItem = document.querySelector(`.item[data-product-id="${productId}"]`);
             listItem.innerHTML = `
-                <img src="${product.image}" alt="${product.description}">
-                <span>${product.name}</span>
-                <label for="itemQuantity">الكمية: ${product.quantity}</label>
-                <label for="itemPrice">السعر: ${product.price}</label>
-                <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
-                <button onclick="editProduct('${product.id}')">تعديل</button>
-            `;
+                        <img src="${product.image}" alt="${product.description}">
+                        <span>${product.name}</span>
+                        <label for="itemQuantity">الكمية: ${product.quantity}</label>
+                        <label for="itemPrice">السعر: ${product.price}</label>
+                        <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
+                        <button onclick="editProduct('${product.id}')">تعديل</button>
+                    `;
         }
 
         // Function to fetch product details based on productId
@@ -612,11 +680,11 @@
                 var newItem = document.createElement('li');
                 newItem.className = 'item';
                 newItem.innerHTML = `
-                            <img src="${itemImage}" alt="${itemName}">
-                            <span>${itemName}</span>
-                            <span>الكمية: ${itemQuantity}</span>
-                            <button onclick="removeItem(this)">حذف</button>
-                        `;
+                                    <img src="${itemImage}" alt="${itemName}">
+                                    <span>${itemName}</span>
+                                    <span>الكمية: ${itemQuantity}</span>
+                                    <button onclick="removeItem(this)">حذف</button>
+                                `;
                 itemList.appendChild(newItem);
 
                 // Clear input fields

@@ -19,8 +19,8 @@
     <main>
         <form class="login-form" onsubmit="return validateLogin()">
             <h2 id="loginHeader">تسجيل الدخول</h2>
-            <label for="username">اسم المستخدم:</label>
-            <input type="text" placeholder="اسم المستخدم" id="username" autocomplete="username" required>
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" placeholder="البريد الإلكتروني" id="email" autocomplete="email" required>
             <p class="additional-statement"><a href="front_forgot_password" id="forgotPasswordLink" title="نسيت كلمة السر؟">هل نسيت كلمة السر؟</a></p>
             <label for="password">كلمة المرور:</label>
             <input type="password" placeholder="كلمة المرور" id="password" autocomplete="current-password" required>
@@ -37,6 +37,7 @@
             <p class="additional-statement" id="termsPrivacy">باستمرارك، فإنك توافق على شروط استخدام المتجر وإشعار الخصوصية.</p>
             <button type="submit" id="loginButton" onclick="verifyAndLogin()">تسجيل الدخول</button>
         </form>
+
         <div class="combined-line">
             <span></span>
             <label id="newToStore">أنت جديد في متجر القرطاسية؟</label>
@@ -80,10 +81,10 @@
         // إنشاء CAPTCHA كـ SVG
         function createSvg(text) {
             return `
-                        <svg width="120" height="40" xmlns="http://www.w3.org/2000/svg">
-                            <text x="10" y="30" font-family="Arial" font-size="20">${text}</text>
-                        </svg>
-                    `;
+                                <svg width="120" height="40" xmlns="http://www.w3.org/2000/svg">
+                                    <text x="10" y="30" font-family="Arial" font-size="20">${text}</text>
+                                </svg>
+                            `;
         }
 
         // عرض CAPTCHA على الصفحة
@@ -111,7 +112,7 @@
 
         // تحديث CAPTCHA وتسجيل الدخول
         function verifyAndLogin() {
-            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value; // تم تغيير 'username' إلى 'email'
             const password = document.getElementById('password').value;
             const captchaInput = document.getElementById('captchaInput').value;
 
@@ -122,7 +123,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email: username,
+                    email: email, // تم تغيير 'username' إلى 'email'
                     password: password
                 })
             })
@@ -137,7 +138,7 @@
                     sessionStorage.setItem('token', data.token);
 
                     // Redirect to another page upon successful login
-                    window.location.href = '/Pages/Home.html';
+                    window.location.href = 'front_item_manger';
                 })
                 .catch(error => {
                     alert('Failed to login. Please try again.');
@@ -146,6 +147,7 @@
                     refreshCaptcha();
                 });
         }
+
 
 
         // تحديث CAPTCHA عند الضغط على زر التحديث

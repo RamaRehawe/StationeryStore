@@ -23,11 +23,11 @@ namespace StationeryStore.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("myCart")]
         public IActionResult GetCartByUserId()
         {
             var userId = base.GetActiveUser()!.Id;
-            var cart = _mapper.Map<Cart>(_cartRepository.GetCartByUserId(userId));
+            var cart = _cartRepository.GetCartByUserId(userId);
             if (cart == null)
             {
                 return NotFound("Cart not found");
@@ -39,11 +39,16 @@ namespace StationeryStore.Controllers
             foreach (var item in cartItems)
             {
                 var productAttributeQuantity = _cartRepository.GetProductAttributeQuantityById(item.ProductAttributeQuantityId);
+                
                 var subPrice = item.Quantity * productAttributeQuantity.Price;
                 total += subPrice;
-                // Create CartItemDto with SubPrice
-                var cartItemDto = _mapper.Map<CartItemDto>(item);
-                cartItemDto.SubPrice = subPrice;
+                // Manually map CartItem to CartItemDto
+                var cartItemDto = new CartItemDto
+                {
+                    Quantity = item.Quantity,
+                    ProductAttributeQuantityId = item.ProductAttributeQuantityId,
+                    SubPrice = subPrice
+                };
                 cartItemDtos.Add(cartItemDto);
             }
 
@@ -61,14 +66,19 @@ namespace StationeryStore.Controllers
         public IActionResult AddItemToCart(CartItemDto itemDto)
         {
             var productAttributeQuantity = _cartRepository.GetProductAttributeQuantityById(itemDto.ProductAttributeQuantityId);
-            var subPrice = itemDto.Quantity * productAttributeQuantity.Price;
-            itemDto.SubPrice = subPrice;
-
             // Check if the product attribute quantity exists
             if (productAttributeQuantity == null)
             {
                 return NotFound("Product attribute quantity not found");
             }
+            if(productAttributeQuantity.Quantity < itemDto.Quantity)
+            {
+                return BadRequest($"Quantity exceeds available stock for product: {productAttributeQuantity.Product.Name}");
+
+            }
+            var subPrice = itemDto.Quantity * productAttributeQuantity.Price;
+            itemDto.SubPrice = subPrice;
+
 
             // Get the cart by user ID
             var userId = base.GetActiveUser()!.Id;
@@ -85,6 +95,11 @@ namespace StationeryStore.Controllers
             var existingItem = _cartRepository.GetCartItemByCartAndProductAttributeQuantity(cart.Id, productAttributeQuantity.Id);
             if (existingItem != null)
             {
+                if (productAttributeQuantity.Quantity < (itemDto.Quantity + existingItem.Quantity))
+                {
+                    return BadRequest($"Quantity exceeds available stock for product: {productAttributeQuantity.Product.Name}");
+
+                }
                 existingItem.Quantity += itemDto.Quantity;
                 _cartRepository.UpdateCartItem(existingItem);
                 return Ok("Item quantity updated successfully");
@@ -98,33 +113,12 @@ namespace StationeryStore.Controllers
                     ProductAttributeQuantityId = itemDto.ProductAttributeQuantityId,
                     Quantity = itemDto.Quantity,
                 };
-                _cartRepository.AddItemToCart(cart.Id, newItem);
+                _cartRepository.AddItemToCart(newItem);
                 return Ok("Item added to cart successfully");
             }
         }
 
-        [HttpPut("updateItem/{itemId}")]
-        public IActionResult UpdateItemQuantity(int itemId, CartItemDto itemDto)
-        {
-            
-            var userId = base.GetActiveUser()!.Id;
-            var cart = _cartRepository.GetCartByUserId(userId);
-            var existingItem = _cartRepository.GetCartItemById(itemId, cart.Id);
-            if (existingItem == null)
-            {
-                return NotFound("Item not found");
-            }
-            var productAttributeQuantity = _cartRepository.GetProductAttributeQuantityById(itemDto.ProductAttributeQuantityId);
-            var subPrice = itemDto.Quantity * productAttributeQuantity.Price;
-            itemDto.SubPrice = subPrice;
-            existingItem.Quantity = itemDto.Quantity;
-            existingItem.CartId = cart.Id; // Assuming the cartId needs to be updated
-            existingItem.ProductAttributeQuantityId = itemDto.ProductAttributeQuantityId;
-            _cartRepository.UpdateCartItem(existingItem);
-
-            return Ok("Item quantity updated successfully");
-
-        }
+        
 
         [HttpDelete("deleteItem/{itemId}")]
         public IActionResult DeleteItemFromCart(int itemId)

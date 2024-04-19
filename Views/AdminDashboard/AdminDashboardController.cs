@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace StationeryStore.Views.AdminDashboard
 {
@@ -6,6 +7,7 @@ namespace StationeryStore.Views.AdminDashboard
     {
         [HttpGet]
         [Route("front_Admin")]
+        //[Authorize (Roles = "Admin")]
         public IActionResult Index()
         {
             return View("AdminDashboard");

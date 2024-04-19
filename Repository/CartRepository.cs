@@ -12,9 +12,17 @@ namespace StationeryStore.Repository
         {
         }
 
-        public void AddItemToCart(int cartId, CartItem item)
+        public void AddItemToCart(CartItem item)
         {
+            
             _context.CartItems.Add(item);
+            _context.SaveChanges();
+        }
+
+        public void ClearCart(int userId)
+        {
+            var cartItems = _context.CartItems.Where(ci => ci.Cart.UserId == userId).ToList();
+            _context.CartItems.RemoveRange(cartItems);
             _context.SaveChanges();
         }
 
