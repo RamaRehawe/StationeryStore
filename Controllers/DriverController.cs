@@ -5,6 +5,7 @@ using StationeryStore.Dto;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
 using StationeryStore.Services;
+using System.Collections.Generic;
 
 namespace StationeryStore.Controllers
 {
@@ -35,8 +36,22 @@ namespace StationeryStore.Controllers
         [HttpGet("pendingOrders")]
         public IActionResult GetPendingOrders()
         {
-            var pendingOrders = _mapper.Map<List<PendingOrderDto>>(_driverRepository.GetPendingOrders());
-            return Ok(pendingOrders);
+            var pendingOrderDto = new List<PendingOrderDto>();
+            var pendingOrders = _driverRepository.GetPendingOrders();
+            foreach(var pendingOrder in pendingOrders)
+            {
+                var OrderDto = new PendingOrderDto
+                {
+                    OrderStatus = pendingOrder.OrderStatus,
+                    Username = pendingOrder.User.Username,
+                    Phone = pendingOrder.User.Phone,
+                    Title = pendingOrder.Address.Title
+
+                };
+                pendingOrderDto.Add(OrderDto);
+            }
+            //var pendingOrders = _mapper.Map<List<PendingOrderDto>>(_driverRepository.GetPendingOrders());
+            return Ok(pendingOrderDto);
 
         }
 
