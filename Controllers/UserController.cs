@@ -62,6 +62,7 @@ namespace StationeryStore.Controllers
             var res = this.Register(user);
             if (res != null)
                 return res;
+            
             return Ok("Done");
         }
 
@@ -138,7 +139,16 @@ namespace StationeryStore.Controllers
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
             }
-
+            if (userMap.UserType == "Driver")
+            {
+                var driver = new Driver
+                {
+                    DriverStatus = true,
+                    DriverLicense = "0000",
+                    UserId = userMap.Id
+                };
+                _userRepository.AddDriver(driver);
+            }
             return null;
         }
 

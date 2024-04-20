@@ -10,6 +10,12 @@ namespace StationeryStore.Repository
     {
         public UserRepository(DataContext context) : base(context) { }
 
+        public void AddDriver(Driver driver)
+        {
+            _context.Drivers.Add(driver);
+            _context.SaveChanges();
+        }
+
         public bool AddUser(User user)
         {
             _context.Users.Add(user);

@@ -9,6 +9,8 @@ namespace StationeryStore.Interfaces
         User GetUserByUsernameAsync(string username);
         Task UpdateTokenByUsernameAsync(string username, string  token);
         bool AddUser(User user);
+        void AddDriver(Driver driver);
+        
     }
 
 }
