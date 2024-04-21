@@ -10,5 +10,6 @@ namespace StationeryStore.Interfaces
         ICollection<Atribute> GetAttributes();
         Atribute GetAttribute(int id);
         bool Exist(string name);
+        int GetAttributeId(string name);
     }
 }

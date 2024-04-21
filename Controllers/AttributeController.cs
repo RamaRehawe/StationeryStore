@@ -52,11 +52,13 @@ namespace StationeryStore.Controllers
             {
                 Name = attributeDto.Name,
             };
-            if(_attributeRepository.Exist(attribute.Name))
+            var attributeId = 0;
+            if (_attributeRepository.Exist(attribute.Name))
             {
-                return BadRequest("The Attribute Already exist");
+                attributeId = _attributeRepository.GetAttributeId(attribute.Name);
             }
-            var attributeId = _attributeRepository.AddAttribute(attribute);
+            else 
+                attributeId = _attributeRepository.AddAttribute(attribute);
 
             var attributeProduct = new ProductAttribute
             {
@@ -65,9 +67,10 @@ namespace StationeryStore.Controllers
                 Value = attributeDto.Value
                 
             };
-            if(_productAttributeRepository.Exist(attributeProduct.Value))
+
+            if(_productAttributeRepository.Exist(attributeProduct.Value, attributeId))
             {
-                return BadRequest("The value already exist");
+                return BadRequest("The value for this attribute already exist");
             }
             _productAttributeRepository.AddProductAttribute(attributeProduct);
 

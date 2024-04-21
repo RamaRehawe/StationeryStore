@@ -30,6 +30,12 @@ namespace StationeryStore.Repository
                .Include(a => a.ProductAttributes).FirstOrDefault();
         }
 
+        public int GetAttributeId(string name)
+        {
+            var attr = _context.Atributes.Where(a => a.Name == name).FirstOrDefault()!;
+            return attr.Id;
+        }
+
         public ICollection<Atribute> GetAttributes()
         {
             return _context.Atributes.OrderBy(a => a.Id).ToList();

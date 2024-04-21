@@ -16,9 +16,9 @@ namespace StationeryStore.Repository
             _context.SaveChanges();
         }
 
-        public bool Exist(string value)
+        public bool Exist(string value, int attributeId)
         {
-            return _context.ProductAttributes.Any(a => a.Value == value);
+            return _context.ProductAttributes.Any(a => a.Value == value && a.AttributeId == attributeId);
         }
 
         public ICollection<ProductAttribute> GetProductAttributes(int productId)
