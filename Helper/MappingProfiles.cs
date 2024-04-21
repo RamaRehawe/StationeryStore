@@ -37,6 +37,8 @@ namespace StationeryStore.Utils
             //CreateMap<Address, PendingOrderDto>().ReverseMap();
             CreateMap<Atribute, ReqAttributeDto>().ReverseMap();
             CreateMap<Atribute, ResAttributeDto>().ReverseMap();
+            CreateMap<ProductAttribute, ReqProductAttributeDto>().ReverseMap();
+            CreateMap<ProductAttribute, ResProductAttributeDto>().ReverseMap();
 
         }
     }

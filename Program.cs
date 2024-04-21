@@ -55,6 +55,7 @@ builder.Services.AddScoped<IProductAttributeQuantityRepository, ProductAttribute
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 builder.Services.AddScoped<IAttributeRepository, AttributeRepository>();
+builder.Services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
 builder.Services.AddScoped<UserInfoService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
