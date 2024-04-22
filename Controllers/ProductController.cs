@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StationeryStore.Data;
 using StationeryStore.Dto;
@@ -75,6 +76,14 @@ namespace StationeryStore.Controllers
                 return StatusCode(500, ModelState);
             }
             return Ok("Succesfully Added");
+        }
+
+        [HttpGet("allProducts")]
+        [Authorize (Roles = "Admin")]
+        public IActionResult GetAllProducts()
+        {
+            var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetAllProducts());
+            return Ok(products);
         }
     }
 }

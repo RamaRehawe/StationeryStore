@@ -15,13 +15,19 @@ namespace StationeryStore.Repository
             return Save();
         }
 
+        public ICollection<Product> GetAllProducts()
+        {
+            return _context.Products.OrderBy(p => p.Id)
+                .Include(p => p.ProductAttributeQuantities).ToList();
+        }
+
         public Product GetProduct(int id)
         {
             return _context.Products.Where(p => p.Id == id)
                 .Include(p => p.SubCategory)
                 .Include(p => p.Reviews).Include(p => p.Rates)
                 .Include(p => p.ProductAttributeQuantities)
-                .FirstOrDefault();
+                .FirstOrDefault()!;
         }
 
         public ICollection<Product> GetProducts(int subId)
