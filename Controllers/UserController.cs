@@ -27,7 +27,7 @@ namespace StationeryStore.Controllers
             _configuration = configuration;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
@@ -55,34 +55,52 @@ namespace StationeryStore.Controllers
             //return Ok("User signed up successfully!");
         }
 
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         [HttpPost("register_user")]
         public IActionResult RegisterUser([FromBody] RegisterUserDto user)
         {
             var res = this.Register(user);
             if (res != null)
                 return res;
-            
             return Ok("Done");
         }
-
 
         [HttpPost("login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
+            // Retrieve the user by email
             var user = _userRepository.GetUserByUsernameAsync(loginDto.Email);
 
             if (user == null || user.Password != loginDto.Password)
                 return Unauthorized("Invalid Username or Password");
+
             // Generate JWT token
             var token = GenerateJwtToken(user.Email, user.UserType);
+
+            // Update the token for the user in the database
             await _userRepository.UpdateTokenByUsernameAsync(loginDto.Email, token);
-            _userRepository.Save();
-            return Ok(new { Token = token });
 
-
+            // Return the token and user type in the response
+            return Ok(new { Token = token, UserType = user.UserType });
         }
+
+        //[HttpPost("login")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> Login(LoginDto loginDto)
+        //{
+        //    var user = _userRepository.GetUserByUsernameAsync(loginDto.Email);
+
+        //    if (user == null || user.Password != loginDto.Password)
+        //        return Unauthorized("Invalid Username or Password");
+        //    // Generate JWT token
+        //    var token = GenerateJwtToken(user.Email, user.UserType);
+        //    await _userRepository.UpdateTokenByUsernameAsync(loginDto.Email, token);
+        //    _userRepository.Save();
+        //    return Ok(new { Token = token });
+
+
+        //}
         //[Authorize(Roles = "Admin")]
         //[HttpPost("admin-action")]
         //public IActionResult AdminAction()
@@ -129,7 +147,7 @@ namespace StationeryStore.Controllers
             String[] allowed_types = { "Driver", "Customer", "Item Manager" };
             if (!allowed_types.Contains(user.UserType))
                 ModelState.AddModelError("", "Invalid user type");
-            
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
@@ -139,17 +157,36 @@ namespace StationeryStore.Controllers
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
             }
-            if (userMap.UserType == "Driver")
-            {
-                var driver = new Driver
-                {
-                    DriverStatus = true,
-                    DriverLicense = "0000",
-                    UserId = userMap.Id
-                };
-                _userRepository.AddDriver(driver);
-            }
+
             return null;
+        }
+        // UserController.cs
+
+        [HttpPost("add_user")]
+        public IActionResult AddUser([FromBody] RegisterUserDto userData)
+        {
+            if (userData.UserType == "Item Manager")
+            {
+                userData.UserType = "Item Manager";
+                var res = this.Register(userData);
+                if (res != null)
+                    return res;
+
+                return Ok(new { message = "Item manager added successfully!" });
+            }
+            else if (userData.UserType == "Driver")
+            {
+                userData.UserType = "Driver";
+                var res = this.Register(userData);
+                if (res != null)
+                    return res;
+
+                return Ok(new { message = "Driver added successfully!" });
+            }
+            else
+            {
+                return BadRequest(new { message = "Invalid user type." });
+            }
         }
 
 

@@ -10,5 +10,7 @@ namespace StationeryStore.Interfaces
         void UpdateOrderStatue(int orderId);
         ICollection<Order> GetMyOrders(int driverId);
         ICollection<Driver> GetDrivers();
+        void AddDriver(Driver driver); // Add this method for adding a driver
+
     }
 }

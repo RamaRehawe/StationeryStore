@@ -24,7 +24,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet ("orders")]
-        [Authorize (Roles = "Customer")]
+       // [Authorize (Roles = "Customer")]
         public IActionResult GetMyOrders()
         {
             var userId = base.GetActiveUser()!.Id;
@@ -34,7 +34,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet ("{orderId}")]
-        [Authorize (Roles = "Customer")]
+      //  [Authorize (Roles = "Customer")]
         public IActionResult GetOrderById(int orderId)
         {
             var userId = base.GetActiveUser()!.Id;
@@ -48,7 +48,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("placeOrder")]
-        [Authorize (Roles = "Customer")]
+     //   [Authorize (Roles = "Customer")]
         public IActionResult PlaceOrder(PlaceOrderDto placeOrderDto)
         {
             var userId = base.GetActiveUser()!.Id;
@@ -105,7 +105,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet ("status")]
-        [Authorize (Roles = "Customer")]
+      //  [Authorize (Roles = "Customer")]
         public IActionResult GetOrderStatus (int orderId)
         {
             var userId = base.GetActiveUser()!.Id;

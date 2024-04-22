@@ -282,19 +282,6 @@
             </div>
             <!-- يمكنك إضافة المزيد من المنتجات المميزة هنا -->
         </section>
-        <br>
-        <div id="customerReviews" class="customer-reviews">
-            <h3>آراء الزبائن</h3>
-            <p id="rateYourExperience">من فضلك، قيم  تجربتك مع متجر القرطاسية</p>
-            <div class="rating">
-                <span class="star" onclick="rateProduct(1)">&#9733;</span>
-                <span class="star" onclick="rateProduct(2)">&#9733;</span>
-                <span class="star" onclick="rateProduct(3)">&#9733;</span>
-                <span class="star" onclick="rateProduct(4)">&#9733;</span>
-                <span class="star" onclick="rateProduct(5)">&#9733;</span>
-            </div>
-            <button type="button" onclick="submitReview()" id="submit">تقييم</button>
-        </div>
 
     </main>
     <footer>
@@ -465,9 +452,9 @@
         closeButton.addEventListener('click', () => {
             loginPopup.style.display = 'none';
         });
-        document.addEventListener('DOMContentLoaded', function () {
-            updateCartCountHome();
-        });
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     updateCartCountHome();
+        // });
 
         function redirectToLogin() {
             window.location.href = "front_login";
