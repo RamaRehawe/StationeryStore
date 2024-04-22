@@ -28,6 +28,7 @@ namespace StationeryStore.Utils
             CreateMap<Cart, ReqCartDto>().ReverseMap();
             CreateMap<CartItem, CartItemDto>().ReverseMap();
             CreateMap<ProductAttributeQuantity, ReqProductAttributeQuantityDto>().ReverseMap();
+            CreateMap<ProductAttributeQuantity, ResProductAttributeQuantityDto>().ReverseMap();
             CreateMap<Order, PlaceOrderDto>().ReverseMap();
             CreateMap<Order, ResOrderDto>().ReverseMap();
             CreateMap<OrderItem, ResOrderItemDto>().ReverseMap();
@@ -37,6 +38,10 @@ namespace StationeryStore.Utils
             //CreateMap<Address, PendingOrderDto>().ReverseMap();
             CreateMap<Atribute, ReqAttributeDto>().ReverseMap();
             CreateMap<Atribute, ResAttributeDto>().ReverseMap();
+            CreateMap<ProductAttribute, ReqProductAttributeDto>().ReverseMap();
+            CreateMap<ProductAttribute, ResProductAttributeDto>().ReverseMap();
+            CreateMap<ContactInformation, ReqContactInformationDto>().ReverseMap();
+            CreateMap<ContactInformation, ResContactInformationDto>().ReverseMap();
 
         }
     }

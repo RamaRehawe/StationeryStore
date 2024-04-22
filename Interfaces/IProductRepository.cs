@@ -9,5 +9,6 @@ namespace StationeryStore.Interfaces
         Product GetProduct(int id);
         bool ProductExists(int id);
         bool AddProduct(Product product);
+        ICollection<Product> GetAllProducts(); 
     }
 }

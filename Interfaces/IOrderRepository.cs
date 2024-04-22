@@ -8,6 +8,7 @@ namespace StationeryStore.Interfaces
         ICollection<Order> GetOrdersByUserId(int userId);
         Order GetOrderByOrderId(int userId, int orderId);
         void AddItemToOrder(OrderItem item);
+        ICollection<Order> GetOrders();
     }
 
 }

@@ -1,9 +1,9 @@
 ﻿namespace StationeryStore.Dto
 {
-    public class ReqAttributeDto
+    public class ReqProductAttributeDto
     {
-        public string Name { get; set; }
         public string Value { get; set; }
         public int ProductAttributeQuantityId { get; set; }
+        public int AttributeId { get; set; }
     }
 }
