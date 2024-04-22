@@ -9,10 +9,10 @@ namespace StationeryStore.Repository
     {
         public ProductRepository(DataContext context) : base(context) { }
 
-        public ICollection<Product> GetProducts()
+        /*public ICollection<Product> GetProducts()
         {
             return _context.Products.ToList();
-        }
+        }*/
 
         public bool AddProduct(Product product)
         {
