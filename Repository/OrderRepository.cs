@@ -31,6 +31,11 @@ namespace StationeryStore.Repository
                 .Include(o => o.OrderItems).FirstOrDefault();
         }
 
+        public ICollection<Order> GetOrders()
+        {
+            return _context.Orders.OrderBy(o => o.OrderStatus).ToList();
+        }
+
         public ICollection<Order> GetOrdersByUserId(int userId)
         {
             return _context.Orders.Where(o => o.UserId == userId).ToList();

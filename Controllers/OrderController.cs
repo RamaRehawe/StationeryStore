@@ -58,7 +58,7 @@ namespace StationeryStore.Controllers
                 UserId = userId,
                 OrderDate = DateTime.Now.Date,
                 OrderStatus = "Pending",
-                 ShippingCost = 0,
+                 ShippingCost = 15000,
                 AddressId = placeOrderDto.AddressId,
             };
             var cartItems = _cartRepository.GetCartItemsByCartId(cart.Id);
@@ -98,7 +98,7 @@ namespace StationeryStore.Controllers
                 _orderRepository.AddItemToOrder(orderItem);
             }
             // Calculate and set total amount for the order
-            order.TotalAmount = CalculateTotalAmount(order.OrderItems);
+            order.TotalAmount = CalculateTotalAmount(order.OrderItems) + order.ShippingCost;
             // Clear the user's cart
             _cartRepository.ClearCart(userId);
             return Ok("Order placed successfully");
@@ -123,6 +123,13 @@ namespace StationeryStore.Controllers
             }
 
             return Ok(new { Status = orderStatus });
+        }
+
+        [HttpGet ("getAllOrders")]
+        public IActionResult GetAllOrders()
+        {
+            var orders = _mapper.Map<List<ResOrderDto>>(_orderRepository.GetOrders());
+            return Ok(orders);
         }
 
         private double CalculateTotalAmount(ICollection<OrderItem> orderItems)
