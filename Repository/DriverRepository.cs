@@ -11,6 +11,11 @@ namespace StationeryStore.Repository
         {
         }
 
+        public void AddDriver(Driver driver)
+        {
+            _context.Drivers.Add(driver);
+            _context.SaveChanges();
+        }
         public ICollection<Driver> GetDrivers()
         {
             return _context.Drivers.OrderBy(d => d.Id).ToList();

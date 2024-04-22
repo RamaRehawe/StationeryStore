@@ -85,5 +85,17 @@ namespace StationeryStore.Controllers
             var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetAllProducts());
             return Ok(products);
         }
+
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ResProductDto>))]
+        public IActionResult GetAllProducts()
+        {
+            var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetProducts());
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(products);
+        }
     }
 }

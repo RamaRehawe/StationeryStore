@@ -81,10 +81,10 @@
         // إنشاء CAPTCHA كـ SVG
         function createSvg(text) {
             return `
-                                <svg width="120" height="40" xmlns="http://www.w3.org/2000/svg">
-                                    <text x="10" y="30" font-family="Arial" font-size="20">${text}</text>
-                                </svg>
-                            `;
+                                        <svg width="120" height="40" xmlns="http://www.w3.org/2000/svg">
+                                            <text x="10" y="30" font-family="Arial" font-size="20">${text}</text>
+                                        </svg>
+                                    `;
         }
 
         // عرض CAPTCHA على الصفحة
@@ -109,36 +109,58 @@
         function refreshCaptcha() {
             displayCaptcha();
         }
-
-        // تحديث CAPTCHA وتسجيل الدخول
+        ///api/User/login
         function verifyAndLogin() {
-            const email = document.getElementById('email').value; // تم تغيير 'username' إلى 'email'
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const captchaInput = document.getElementById('captchaInput').value;
 
-            // Make an AJAX request to the login endpoint
+            // Perform client-side validation
+            if (!email || !password || !captchaInput) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            const loginData = {
+                email: email,
+                password: password
+            };
+
             fetch('/api/User/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    email: email, // تم تغيير 'username' إلى 'email'
-                    password: password
-                })
+                body: JSON.stringify(loginData)
             })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Login failed');
+                        throw new Error('Failed to login');
                     }
                     return response.json();
                 })
                 .then(data => {
-                    // Store the JWT token securely
-                    sessionStorage.setItem('token', data.token);
+                    // Log the token and user type
+                    console.log('Token:', data.token);
+                    console.log('User Type:', data.userType);
 
-                    // Redirect to another page upon successful login
-                    window.location.href = 'front_item_manger';
+                    // Redirect the user based on user type
+                    switch (data.userType) {
+                        case 'Admin':
+                            window.location.href = 'front_admin';
+                            break;
+                        case 'Customer':
+                            window.location.href = 'front_home';
+                            break;
+                        case 'Item Manager':
+                            window.location.href = 'front_item_manger';
+                            break;
+                        case 'Driver':
+                            window.location.href = 'front_driver';
+                            break;
+                        default:
+                            alert('Unknown user type');
+                    }
                 })
                 .catch(error => {
                     alert('Failed to login. Please try again.');
@@ -147,6 +169,10 @@
                     refreshCaptcha();
                 });
         }
+
+
+
+
 
 
 

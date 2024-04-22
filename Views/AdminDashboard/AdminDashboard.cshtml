@@ -26,14 +26,13 @@
     </div>
     <main>
         <div id="sidebar">
-            <a href="#section2" onclick="showSection('section2')">إضافة سائق</a>
-            <a href="#section3" onclick="showSection('section3')">إضافة مدير المنتجات</a>
+            <a href="#section3" onclick="showSection('section3')">إضافة عاملين في المتجر</a>
             <a href="#section4" onclick="showSection('section4')">عرض المستخدمين</a>
             <a href="#section5" onclick="showSection('section5')">عرض جميع الطلبات</a>
             <a href="#section6" onclick="showSection('section6')">عرض جميع المنتجات</a>
-            <a href="#section7" onclick="showSection('section7')">تحديد تكلفة الشحن</a>
-            <a href="#section8" onclick="showSection('section8')">الشكاوي و الاستفسارات</a>
-            <a href="#section9" onclick="showSection('section9')">تحليل البيانات</a>
+            <a href="#section7" onclick="showSection('section7')">الشكاوي و الاستفسارات</a>
+            <a href="#section8" onclick="showSection('section8')">تحليل البيانات</a>
+            <a href="#section9" onclick="showSection('section9')">تعديل معلومات المتجر</a>
         </div>
 
         <div id="content">
@@ -44,47 +43,36 @@
                 <p>نحن نفتخر بتوفير تجربة تسوق سلسة ومرضية، ونشجعكم دائمًا على التواصل مع المدير لأي استفسارات أو اقتراحات. نتمنى لكم تجربة تسوق ممتعة!</p>
                 <img class="first-img" src="~/Images/admin.jpg" alt="صورة تعبيرية عن عمل المدير في متجر الكتروني للقرطاسية">
             </div>
-            <div id="section2" class="section">
-                <h1>إضافة السائق</h1>
-                <form>
-                    <label for="driverName">اسم السائق:</label>
-                    <input type="text" id="driverName" name="driverName" required>
-
-                    <label for="driverLicense">رقم رخصة القيادة:</label>
-                    <input type="text" id="driverLicense" name="driverLicense" required>
-
-                    <label for="driverPhone">رقم الهاتف:</label>
-                    <input type="tel" id="driverPhone" name="driverPhone" required>
-
-                    <label for="driverAddress">العنوان:</label>
-                    <input type="text" id="driverAddress" name="driverAddress" required>
-
-                    <button type="button" onclick="addDriver()">إضافة</button>
-                </form>
-
-            </div>
-
-
             <div id="section3" class="section">
-                <h1>إضافة مدير المنتجات</h1>
+                <h1>إضافة عاملين في المتجر</h1>
                 <form>
-                    <label for="managerName">الاسم الثلاثي:</label>
+                    <label for="managerName">الاسم:</label>
                     <input type="text" id="managerName" name="managerName" required>
 
-                    <label for="managerEmail">البريد الإلكتروني :</label>
+                    <label for="managerPassword">كلمة المرور:</label>
+                    <input type="password" id="managerPassword" name="managerPassword" required>
+
+                    <label for="managerConfirmPassword">تأكيد كلمة المرور:</label>
+                    <input type="password" id="managerConfirmPassword" name="managerConfirmPassword" required>
+
+                    <label for="managerEmail">البريد الإلكتروني:</label>
                     <input type="email" id="managerEmail" name="managerEmail" required>
 
-                    <label for="managerPhone">رقم الهاتف :</label>
+                    <label for="managerPhone">رقم الهاتف:</label>
                     <input type="tel" id="managerPhone" name="managerPhone" required>
-
-                    <label for="managerAddress">العنوان :</label>
-                    <input type="text" id="managerAddress" name="managerAddress" required>
-
-                    <button type="button" onclick="addManager()">إضافة</button>
+                    <br><br>
+                    <label for="managerType">نوع الموظف:</label>
+                    <select id="managerType" name="managerType" required>
+                        <option value="manager">مدير المنتجات</option>
+                        <option value="driver">السائق</option>
+                    </select><br><br>
+                    <button type="button" onclick="addUser()">إضافة</button>
                 </form>
             </div>
+
             <div id="section4" class="section">
                 <h1>قائمة المستخدمين</h1>
+                <button id="fetchUsersButton">اعرض المستخدمين</button>
 
                 <!-- جدول لعرض بيانات المستخدمين -->
                 <table>
@@ -94,18 +82,14 @@
                             <th>الاسم</th>
                             <th>البريد الإلكتروني</th>
                             <th>الهاتف</th>
-                            <th>العنوان</th>
                         </tr>
                     </thead>
                     <tbody id="usersTableBody">
-                        <!-- ستتم إضافة بيانات المستخدمين هنا باستخدام JavaScript -->
                     </tbody>
                 </table>
             </div>
             <div id="section5" class="section">
-
                 <h1>قائمة الطلبات</h1>
-
                 <!-- جدول لعرض البيانات -->
                 <table>
                     <thead>
@@ -119,11 +103,13 @@
                         <!-- ستتم إضافة البيانات هنا باستخدام JavaScript -->
                     </tbody>
                 </table>
-
             </div>
 
             <div id="section6" class="section">
                 <h1>قائمة المنتجات</h1>
+
+                <!-- زر لجلب بيانات المنتجات -->
+                <button onclick="fetchProducts()">جلب بيانات المنتجات</button>
 
                 <!-- جدول لعرض بيانات المنتجات -->
                 <table>
@@ -131,6 +117,7 @@
                         <tr>
                             <th>الرقم التسلسلي</th>
                             <th>اسم المنتج</th>
+                            <th>الوصف</th>
                             <th>السعر</th>
                             <th>الكمية المتاحة</th>
                         </tr>
@@ -139,33 +126,8 @@
                         <!-- ستتم إضافة بيانات المنتجات هنا باستخدام JavaScript -->
                     </tbody>
                 </table>
-
             </div>
             <div id="section7" class="section">
-                <h1>تحديد تكلفة الشحن</h1>
-                <form>
-                    <label for="transportCost">تكلفة النقل:</label>
-                    <input type="text" id="transportCost" name="transportCost" required>
-
-                    <label for="insuranceCost">تكلفة التأمين:</label>
-                    <input type="text" id="insuranceCost" name="insuranceCost" required>
-
-                    <label for="packingCost">تكلفة التعبئة والتغليف:</label>
-                    <input type="text" id="packingCost" name="packingCost" required>
-
-                    <label for="taxesFees">تكاليف الضرائب والرسوم:</label>
-                    <input type="text" id="taxesFees" name="taxesFees" required>
-
-                    <label for="distance">المسافة (بالكيلومتر):</label>
-                    <input type="text" id="distance" name="distance" required>
-
-                    <button type="button" onclick="calculateShippingCost()">حساب تكلفة الشحن</button>
-
-                    <!-- عنصر لعرض نتيجة التكلفة -->
-                    <div id="shippingCost"></div>
-                </form>
-            </div>
-            <div id="section8" class="section">
                 <h1>إدارة الشكاوي والاستفسارات</h1>
 
                 <table>
@@ -183,18 +145,31 @@
                 </table>
 
             </div>
-            <div id="section9" class="section">
-
+            <div id="section8" class="section">
                 <h1>تحليل البيانات</h1>
                 <button onclick="analyzeSalesData()">تحليل المبيعات</button>
                 <br> <br>
                 <div id="salesAnalysisResults"></div>
-                <br>
-                <button onclick="analyzeCustomerBehavior()">تحليل سلوك العملاء</button>
-                <br> <br>
-                <div id="customerBehaviorAnalysis"></div>
-
             </div>
+            <div id="section9" class="section">
+                <h1>معلومات المتجر</h1>
+                <!-- نموذج لتعديل معلومات المتجر -->
+                <form>
+                    <!-- حقول الإدخال لمعلومات المتجر -->
+                    <label for="storePhone">رقم هاتف المتجر:</label>
+                    <input type="text" id="storePhone" name="storePhone"><br>
+
+                    <label for="storeEmail">البريد الإلكتروني للمتجر:</label>
+                    <input type="email" id="storeEmail" name="storeEmail"><br>
+
+                    <label for="storeSocial">حساب السوشال ميديا للمتجر:</label>
+                    <input type="text" id="storeSocial" name="storeSocial"><br><br>
+
+                    <!-- زر الإرسال -->
+                    <button type="button" onclick="saveChanges()">حفظ التغييرات</button>
+                </form>
+            </div>
+
         </div>
     </main>
     <footer>
@@ -217,6 +192,140 @@
         </div>
     </footer>
     <script>
+        // // الدالة لتحويل قيمة نوع المستخدم
+        // function mapUserType(userType) {
+        //     if (userType === "manager") {
+        //         return "Item Manager";
+        //     }
+        //     else if (userType === "driver") {
+        //         return "Driver";
+        //     }
+        //     // يمكنك إضافة تحويلات إضافية إذا لزم الأمر
+        // }
+        function addUser() {
+            var userTypeElement = document.getElementById("managerType");
+            var userTypeValue = userTypeElement.value;
+            var userType;
+
+            if (userTypeValue === "manager") {
+                userType = "Item Manager";
+            } else if (userTypeValue === "driver") {
+                userType = "Driver";
+            }
+
+            var formData = {
+                Username: document.getElementById("managerName").value,
+                Password: document.getElementById("managerPassword").value,
+                Email: document.getElementById("managerEmail").value,
+                Phone: document.getElementById("managerPhone").value,
+                UserType: userType // Assign converted user type
+            };
+
+            // Check if the selected user type is valid
+            if (userType === "Item Manager" || userType === "Driver") {
+                fetch('/api/User/add_user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data); // Handle success response from backend
+                        // Show success message
+                        alert("تمت الإضافة بنجاح!");
+                        // Clear input fields
+                        document.getElementById("managerName").value = "";
+                        document.getElementById("managerPassword").value = "";
+                        document.getElementById("managerConfirmPassword").value = "";
+                        document.getElementById("managerEmail").value = "";
+                        document.getElementById("managerPhone").value = "";
+                        document.getElementById("managerType").value = ""; // Reset dropdown selection
+                    })
+                    .catch(error => {
+                        console.error('Error:', error); // Handle error
+                        // Show error message
+                        alert("حدث خطأ أثناء الإضافة !");
+                    });
+            } else {
+                // If the selected user type is not valid
+                alert("يرجى اختيار نوع الموظف الصحيح (مدير أو سائق)");
+            }
+        }
+
+
+
+        // استجابة لنقرة زر العرض
+        document.getElementById('fetchUsersButton').addEventListener('click', function () {
+            // إجراء طلب لاسترجاع بيانات المستخدمين
+            fetch('/api/User') // قم بتغيير المسار إلى المسار الصحيح لنهاية الخدمة التي تسترجع بيانات المستخدمين
+                .then(response => response.json())
+                .then(data => {
+                    // عرض بيانات المستخدمين في الجدول
+                    const usersTableBody = document.getElementById('usersTableBody');
+
+                    // تفريغ الجدول قبل إضافة البيانات الجديدة
+                    usersTableBody.innerHTML = '';
+
+                    data.forEach(user => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                                                <td>${user.id}</td>
+                                                <td>${user.username}</td>
+                                                <td>${user.email}</td>
+                                                <td>${user.phone}</td>
+                                            `;
+                        usersTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching users:', error));
+        });
+
+        function fetchProducts() {
+            // قم بجلب بيانات المنتجات من خلال طلب HTTP
+            fetch('/api/ProductAttributeQuantity')
+                .then(response => response.json())
+                .then(products => {
+                    // قم بتحديث جدول المنتجات مع البيانات الجديدة
+                    updateProductTable(products);
+                })
+                .catch(error => console.error('حدث خطأ أثناء جلب بيانات المنتجات:', error));
+        }
+
+        function updateProductTable(products) {
+            const tableBody = document.getElementById('productsTableBody');
+            // قم بمسح البيانات القديمة من جدول المنتجات
+            tableBody.innerHTML = '';
+
+            // قم بإضافة البيانات الجديدة إلى جدول المنتجات
+            products.forEach(product => {
+                const row = `
+                                    <tr>
+                                               <td>${product.productId}</td>
+                                            <td>${product.productName}</td>
+                                            <td>${product.productDescription}</td>
+                                                <td>${product.price}</td>
+                                        <td>${product.quantity}</td>
+                                    </tr>
+                                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+
+
+
+
+
+
+
+
         // يمكنك استخدام JavaScript لتحديث حالة الطلبية وتنشيط الحدث المناسب
         const events = document.querySelectorAll('.event');
 
@@ -300,6 +409,7 @@
             // في هذا المثال، سنقوم بعرض رسالة تأكيد ببساطة
             alert('تم استلام استفسارك، سنقوم بالرد في أقرب وقت ممكن. شكراً لتواصلك معنا!');
         }
+        /*
         const productsData = [
             { id: 1, name: "منتج 1", price: 5000, quantity: 100 },
             { id: 2, name: "منتج 2", price: 2000, quantity: 50 },
@@ -316,7 +426,8 @@
                 <td>${product.quantity}</td>
             `;
             productsTableBody.appendChild(row);
-        });
+        });*/
+        /*
         // مثال على بيانات المستخدمين (يمكن أن تكون جزءًا من قاعدة البيانات)
         const usersData = [
             { id: 1, name: "أحمد", email: "ahmed@example.com", phone: "123-456-789", address: "العنوان الأول" },
@@ -338,7 +449,7 @@
             `;
             tableBody.appendChild(row);
         });
-
+        */
         const requestsData = [
             { id: 1, title: "طلب 1", details: "تفاصيل طلب 1" },
             { id: 2, title: "طلب 2", details: "تفاصيل طلب 2" },
@@ -350,10 +461,10 @@
         requestsData.forEach(request => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                    <td>${request.id}</td>
-                    <td>${request.title}</td>
-                    <td>${request.details}</td>
-                `;
+                                    <td>${request.id}</td>
+                                    <td>${request.title}</td>
+                                    <td>${request.details}</td>
+                                `;
             tableBody1.appendChild(row);
         });
 
@@ -368,47 +479,177 @@
             document.getElementById('shippingCost').innerHTML = "تكلفة الشحن هي: " + totalCost.toFixed(2) + " ل.س";
         }
 
-        function addManager() {
-            var managerName = document.getElementById('managerName').value;
-            var managerEmail = document.getElementById('managerEmail').value;
-            var managerPhone = document.getElementById('managerPhone').value;
-            var managerAddress = document.getElementById('managerAddress').value;
+        /*   function addManager() {
+               var managerName = document.getElementById('managerName').value;
+               var managerEmail = document.getElementById('managerEmail').value;
+               var managerPhone = document.getElementById('managerPhone').value;
+               var managerAddress = document.getElementById('managerAddress').value;
 
-            var managerData = {
-                name: managerName,
-                email: managerEmail,
-                phone: managerPhone,
-                address: managerAddress
-            };
+               var managerData = {
+                   name: managerName,
+                   email: managerEmail,
+                   phone: managerPhone,
+                   address: managerAddress
+               };
 
-            console.log('تمت إضافة مدير المنتجات:', managerData);
-            alert('تمت إضافة مدير المنتجات:\n\n' +
-                'الاسم: ' + managerData.name + '\n' +
-                'البريد الإلكتروني: ' + managerData.email + '\n' +
-                'رقم الهاتف: ' + managerData.phone + '\n' +
-                'العنوان: ' + managerData.address);
-        }
+               console.log('تمت إضافة مدير المنتجات:', managerData);
+               alert('تمت إضافة مدير المنتجات:\n\n' +
+                   'الاسم: ' + managerData.name + '\n' +
+                   'البريد الإلكتروني: ' + managerData.email + '\n' +
+                   'رقم الهاتف: ' + managerData.phone + '\n' +
+                   'العنوان: ' + managerData.address);
+           }*/
+        // function addDriver() {
+        //     // Gather driver information from the form
+        //     var driverName = document.getElementById("driverName").value;
+        //     var driverPassword = document.getElementById("driverPassword").value;
+        //     var driverEmail = document.getElementById("driverEmail").value;
+        //     var driverPhone = document.getElementById("driverPhone").value;
+        //     var driverLicense = document.getElementById("driverLicense").value;
 
-        function addDriver() {
-            var driverName = document.getElementById('driverName').value;
-            var driverLicense = document.getElementById('driverLicense').value;
-            var driverPhone = document.getElementById('driverPhone').value;
-            var driverAddress = document.getElementById('driverAddress').value;
+        //     // Prepare data to be sent to the server for user registration
+        //     var userData = {
+        //         username: driverName,
+        //         password: driverPassword,
+        //         email: driverEmail,
+        //         phone: driverPhone,
+        //         userType: "Driver"
+        //     };
 
-            var driverData = {
-                name: driverName,
-                license: driverLicense,
-                phone: driverPhone,
-                address: driverAddress
-            };
+        //     // Send a POST request to register the user
+        //     fetch('/api/User/register_user', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(userData)
+        //     })
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('User registration failed');
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(user => {
+        //             var userId = user.id;
 
-            console.log('تمت إضافة السائق:', driverData);
-            alert('تمت إضافة السائق:\n\n' +
-                'الاسم: ' + driverData.name + '\n' +
-                'رخصة القيادة: ' + driverData.license + '\n' +
-                'رقم الهاتف: ' + driverData.phone + '\n' +
-                'العنوان: ' + driverData.address);
-        }
+        //             // Prepare data to be sent to the server for adding the driver
+        //             var driverData = {
+        //                 driverLicense: driverLicense,
+        //                 userId: userId
+        //             };
+
+        //             // Send a POST request to add the driver
+        //             return fetch('/api/Driver/add_driver', {
+        //                 method: 'POST',
+        //                 headers: {
+        //                     'Content-Type': 'application/json'
+        //                 },
+        //                 body: JSON.stringify(driverData)
+        //             });
+        //         })
+        //         .then(response => {
+        //             if (response.ok) {
+        //                 // Driver addition successful
+        //                 alert('تمت إضافة السائق بنجاح!');
+        //             } else {
+        //                 // Driver addition failed
+        //                 throw new Error('Driver addition failed');
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error('Error:', error);
+        //             alert('حدث خطأ أثناء إضافة السائق. يرجى المحاولة مرة أخرى.');
+        //         });
+        // }
+
+        // function addDriver() {
+        //     // Gather driver information from the form
+        //     var driverName = document.getElementById("driverName").value;
+        //     var driverPassword = document.getElementById("driverPassword").value;
+        //     var driverEmailElement = document.getElementById("driverEmail"); // Fetch the email input element
+        //     var driverPhone = document.getElementById("driverPhone").value;
+        //     var driverLicense = document.getElementById("driverLicense").value;
+
+        //     // Get the value of the email input element
+        //     var driverEmail = driverEmailElement.value;
+
+        //     // Prepare data to be sent to the server for user registration
+        //     var userData = {
+        //         username: driverName,
+        //         password: driverPassword,
+        //         email: driverEmail, // Use the fetched email value
+        //         phone: driverPhone,
+        //         userType: "Driver" // Assuming the user being registered is a driver
+        //     };
+
+        //     // Send a POST request to register the user
+        //     fetch('/api/User/register_user', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(userData)
+        //     })
+        //         .then(response => response.json())
+        //         .then(user => {
+        //             // Prepare data to be sent to the server for adding the driver
+        //             var driverData = {
+        //                 driverLicense: driverLicense,
+        //                 userId: user.id // Use the ID of the registered user for the driver
+        //             };
+
+        //             // Send a POST request to add the driver
+        //             fetch('/api/Driver/add_driver', {
+        //                 method: 'POST',
+        //                 headers: {
+        //                     'Content-Type': 'application/json'
+        //                 },
+        //                 body: JSON.stringify(driverData)
+        //             })
+        //                 .then(response => {
+        //                     if (response.ok) {
+        //                         // Registration successful
+        //                         alert('تمت إضافة السائق بنجاح!');
+        //                     } else {
+        //                         // Registration failed
+        //                         alert('حدث خطأ أثناء إضافة السائق. يرجى المحاولة مرة أخرى.');
+        //                     }
+        //                 })
+        //                 .catch(error => {
+        //                     console.error('Error adding driver:', error);
+        //                     alert('حدث خطأ أثناء إضافة السائق. يرجى المحاولة مرة أخرى.');
+        //                 });
+        //         })
+        //         .catch(error => {
+        //             console.error('Error registering user:', error);
+        //             alert('حدث خطأ أثناء تسجيل المستخدم. يرجى المحاولة مرة أخرى.');
+        //         });
+        // }
+
+
+
+
+        // function addDriver() {
+        //     var driverName = document.getElementById('driverName').value;
+        //     var driverLicense = document.getElementById('driverLicense').value;
+        //     var driverPhone = document.getElementById('driverPhone').value;
+        //     var driverAddress = document.getElementById('driverAddress').value;
+
+        //     var driverData = {
+        //         name: driverName,
+        //         license: driverLicense,
+        //         phone: driverPhone,
+        //         address: driverAddress
+        //     };
+
+        //     console.log('تمت إضافة السائق:', driverData);
+        //     alert('تمت إضافة السائق:\n\n' +
+        //         'الاسم: ' + driverData.name + '\n' +
+        //         'رخصة القيادة: ' + driverData.license + '\n' +
+        //         'رقم الهاتف: ' + driverData.phone + '\n' +
+        //         'العنوان: ' + driverData.address);
+        // }
         const complaints = [
             { customerName: "اسم العميل", complaintType: "نوع الشكوى", complaintDetails: "تفاصيل الشكوى" },
             { customerName: "اسم العميل الآخر", complaintType: "نوع آخر", complaintDetails: "تفاصيل الشكوى الأخرى" },
@@ -476,16 +717,16 @@
             // ... يمكنك إضافة المزيد من التقييمات
         ];
 
-        function analyzeCustomerBehavior() {
-            var totalCustomers = customerReviews.length;
-            var averageRating = calculateAverageRating(customerReviews);
+        /* function analyzeCustomerBehavior() {
+             var totalCustomers = customerReviews.length;
+             var averageRating = calculateAverageRating(customerReviews);
 
-            var analysisReport = "نتائج التحليل:\n\n";
-            analysisReport += "إجمالي عدد العملاء: " + totalCustomers + "\n";
-            analysisReport += "متوسط التقييم: " + averageRating.toFixed(2) + "\n";
+             var analysisReport = "نتائج التحليل:\n\n";
+             analysisReport += "إجمالي عدد العملاء: " + totalCustomers + "\n";
+             analysisReport += "متوسط التقييم: " + averageRating.toFixed(2) + "\n";
 
-            document.getElementById("customerBehaviorAnalysis").innerText = analysisReport;
-        }
+             document.getElementById("customerBehaviorAnalysis").innerText = analysisReport;
+         }*/
 
         function calculateAverageRating(reviews) {
             var totalRating = reviews.reduce(function (sum, review) {

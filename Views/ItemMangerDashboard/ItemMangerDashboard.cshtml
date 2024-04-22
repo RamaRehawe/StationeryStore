@@ -27,14 +27,10 @@
     </div>
     <main>
         <div id="sidebar">
-            <a href="#section2" onclick="showSection('section2')"> إضافة فئة جديدة</a>
+            <a href="#section2" onclick="showSection('section2')"> إضافة فئة فرعية جديدة</a>
             <a href="#section3" onclick="showSection('section3')">إضافة منتج  </a>
             <a href="#section6" onclick="showSection('section6')">إضافة تفاصيل المنتج</a>
-            <a href="#section4" onclick="showSection('section4')">تعديل منتج</a>
-            <a href="#section5" onclick="showSection('section5')">حذف منتج</a>
-            <a href="#section7" onclick="showSection('section7')">عرض جميع المنتجات</a>
-            <a href="#section8" onclick="showSection('section8')">إدارة المخزون</a>
-
+            <a href="#section4" onclick="showSection('section4')">تعديل المنتجات</a>
         </div>
 
         <div id="content">
@@ -54,7 +50,7 @@
                     <div class="section-header">
                         <h2>أضف فئة جديدة</h2>
                         <div class="section-actions">
-                            <span class="edit-icon" onclick="editSection('section2')" ✏️</span>
+                            <span class="edit-icon" onclick="editSection('section2')">✏️</span>
                             <span class="delete-icon" onclick="deleteSection('section2')">🗑️</span>
                             <span class="save-icon" onclick="saveChanges('section2')" style="display: none;">💾</span>
                             <span class="add-category-icon" onclick="toggleAddCategoryFields()" style="display: none;">➕</span> <!-- أيقونة لإظهار/إخفاء حقول الإضافة -->
@@ -66,6 +62,7 @@
                     <label for="itemParent">القسم التابع لها:</label>
                     <br>
                     <select id="itemParent">
+                        <option value="0"> </option>
                     </select>
                     <br><br>
                     <button onclick="addNewSubCategory()">إضافة</button>
@@ -73,7 +70,6 @@
             </div>
 
             <div id="section3" class="section">
-
                 <form>
                     <div class="section-header">
                         <h2>أضف منتج جديد</h2>
@@ -84,22 +80,19 @@
                         </div>
                     </div>
                     <p>تفاصيل المنتج...</p>
-                    <label for="itemName">اسم المنتج:</label>
-                    <input type="text" id="itemName"><br>
+                    <label for="proudectName">اسم المنتج:</label>
+                    <input type="text" id="proudectName"><br>
                     <label for="itemDescription">الوصف:</label>
                     <input type="text" id="itemDescription"><br>
-                    <label for="itemParent">الفئة التابع لها:</label>
+                    <label for="itemParentsub">الفئة التابع لها:</label>
                     <br>
-                    <select id="itemParent">
-                        <option value="category1">فئة 1</option>
-                        <option value="category2">فئة 2</option>
-                        <option value="category3">فئة 3</option>
-                        <!-- يمكنك إضافة المزيد من الفئات حسب الحاجة -->
+                    <select id="itemParentsub">
                     </select>
                     <br><br>
                     <button onclick="addNewItem()">إضافة منتج جديد</button>
                 </form>
             </div>
+
             <div id="section4" class="section">
                 <h2>محتوى المنتجات</h2>
                 <p>تستطيع التعديل على المنتجات</p>
@@ -108,13 +101,7 @@
                     <!-- Product items will be dynamically added here using JavaScript -->
                 </ul>
             </div>
-            <div id="section5" class="section">
-                <h2>محتوى المنتجات  </h2>
-                <p>تستطيع تحديد المنتجات المراد حذفها</p>
-                <ul id="itemList"></ul>
-
-                <button onclick="deleteSelectedItem()">حذف المنتج المحدد</button>
-            </div>
+           
             <div id="section6" class="section">
                 <form>
                     <fieldset>
@@ -122,27 +109,16 @@
 
                         <label for="mainCategory">الفئة الأساسية:</label>
                         <select id="mainCategory" name="mainCategory">
-                            <option value="pens">أقلام</option>
-                            <option value="notebooks">دفاتر</option>
-                            <!-- أضف المزيد حسب الحاجة -->
                         </select>
-
                         <br>
                         <br>
-
                         <label for="subCategory">الفئة الفرعية:</label>
                         <select id="subCategory" name="subCategory">
-                            <!-- املأ هذا القائم المنسدل باختيارات الفئة الفرعية حسب الفئة الأساسية المختارة -->
-                            <option value="1"> أقلام رصاص</option>
-                            <option value="2">دفاتر رسم</option>
                         </select>
                         <br>
                         <br>
                         <label for="productId">اختر المنتج:</label>
                         <select id="productId" name="productId">
-                            <!-- قم بملء هذا القائم المنسدل بخيارات المنتجات من قاعدة البيانات -->
-                            <option value="1">منتج 1</option>
-                            <option value="2">منتج 2</option>
                         </select>
                         <br>
                         <br>
@@ -208,54 +184,7 @@
 
             </div>
 
-            <div id="section7" class="section">
-                <h2>محتوى المنتجات </h2>
-                <p>تستطيع رؤية المنتجات و تفاصيلها</p>
-                <ul id="itemList"></ul>
-
-                <button onclick="viewAllItems()">عرض جميع المنتجات</button>
-                <!-- يمكنك إضافة المزيد من العناصر لهذا القسم -->
-            </div>
-            <div id="section8" class="section">
-                <h1>إدارة المخزون</h1>
-
-                <div>
-                    <label for="categorySelect"> اختر الفئة الاساسية:</label>
-                    <select id="categorySelect" onchange="loadSubcategories()">
-                    </select>
-
-                    <label for="subcategorySelect"> اختر الفئة التابعة لها:</label>
-                    <select id="subcategorySelect" onchange="loadProducts()">
-                        <option value="0">اختر فئة </option>
-                        <option value="1">أقلام جيل</option>
-                    </select>
-
-                    <label for="productSelect">اختر المنتج:</label>
-                    <select id="productSelect" onchange="loadInventory()">
-                        <!-- سيتم تحميل المنتجات هنا -->
-                        <option value="0">اختر منتجًا</option>
-                        <option value="1">قلم جيل هندي</option>
-                    </select>
-
-                    <label for="propertySelect">اختر الخاصية:</label>
-                    <select id="propertySelect">
-                        <option value="0">اختر خاصية</option>
-                        <option value="1">اللون</option>
-
-                    </select>
-
-                    <label for="colorSelect">اختر القيمة:</label>
-                    <select id="colorSelect">
-                        <option value="0">اختر القيمة</option>
-                        <option value="blue">أزرق</option>
-
-                    </select>
-
-                    <p>مستوى المخزون: <span id="inventoryLevel">-</span></p>
-                    <p>الكمية المطلوبة: <input type="number" id="quantityToOrder" min="1" value="1"></p>
-                    <button onclick="replenishInventory()">إعادة تعبئة المخزون</button>
-                </div>
-            </div>
+          
         </div>
     </main>
 
@@ -279,6 +208,53 @@
         </div>
     </footer>
     <script>
+        // استدعاء طلب API لجلب المنتجات
+        fetch('/api/Product')
+            .then(response => response.json())
+            .then(data => {
+                // عرض أسماء المنتجات في قائمة
+                const selectElement = document.getElementById('productId');
+                data.forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product.id;
+                    option.textContent = product.name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching products:', error));
+
+
+        // استدعاء طلب API لجلب الفئات الفرعية
+        fetch('/api/SubCategory')
+            .then(response => response.json())
+            .then(data => {
+                // عرض الفئات الفرعية كخيارات داخل عنصر select
+                const selectElement = document.getElementById('subCategory');
+                data.forEach(subCategory => {
+                    const option = document.createElement('option');
+                    option.value = subCategory.id;
+                    option.textContent = subCategory.name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching subcategories:', error));
+        // استدعاء طلب API لجلب الفئات
+        fetch('/api/Category')
+            .then(response => response.json())
+            .then(data => {
+                // عرض الفئات كخيارات داخل عنصر select
+                const selectElement = document.getElementById('mainCategory');
+                data.forEach(category => {
+                    const option = document.createElement('option');
+                    option.value = category.id;
+                    option.textContent = category.name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+
+        // تعريف متغير لتخزين رقم الفئة المحددة
+        let selectedCategoryId = null;
 
         // استدعاء طلب API لجلب الفئات
         fetch('/api/Category')
@@ -294,33 +270,27 @@
                 });
             })
             .catch(error => console.error('Error fetching categories:', error));
-        // استدعاء طلب API لجلب الفئات
-        fetch('/api/Category')
-            .then(response => response.json())
-            .then(data => {
-                // عرض الفئات كخيارات داخل عنصر select
-                const selectElement = document.getElementById('categorySelect');
-                data.forEach(category => {
-                    const option = document.createElement('option');
-                    option.value = category.id;
-                    option.textContent = category.name;
-                    selectElement.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Error fetching categories:', error));
-        //add subcategory
-        // Function to get the token from local storage
-        function getToken() {
-            return localStorage.getItem('token');
-        }
+
+        // إضافة مستمع لحدث تغيير القيمة في عنصر select
+        document.getElementById('itemParent').addEventListener('change', function () {
+            // تحديث قيمة المتغير عند تغيير الفئة المحددة
+            selectedCategoryId = this.value;
+        });
+
+        // دالة إضافة الفئة الفرعية
         function addNewSubCategory() {
-            const itemName = document.getElementById("itemName").value;
-            const itemParent = document.getElementById("itemParent").value;
+            const itemName = document.getElementById('itemName').value;
+
+            // التحقق مما إذا كانت الفئة المحددة غير فارغة
+            if (selectedCategoryId === undefined) {
+                alert('يرجى اختيار الفئة أولاً.');
+                return;
+            }
 
             // إنشاء كائن يحتوي على البيانات المدخلة
             const subCategoryData = {
                 Name: itemName,
-                CategoryId: itemParent
+                CategoryId: selectedCategoryId
             };
 
             // إرسال طلب POST إلى واجهة البرمجة API
@@ -328,31 +298,118 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': getToken() // Use getToken() function to get the token
                 },
                 body: JSON.stringify(subCategoryData)
             })
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Failed to add subcategory');
+                        throw new Error('فشلت عملية إضافة الفئة الفرعية');
+                    }
+                    // عرض رسالة نجاح للمستخدم
+                    alert('تمت إضافة الفئة الفرعية بنجاح!');
+                    // تفريغ محتوى حقول الإدخال بعد النجاح
+                    document.getElementById('itemName').value = '';
+                    document.getElementById('itemParent').selectedIndex = 0; // إعادة تحديد القيمة الافتراضية لعنصر الاختيار
+                })
+                .catch(error => {
+                    console.error('خطأ:', error);
+                    // عرض رسالة خطأ للمستخدم
+                    alert('حدث خطأ أثناء إضافة الفئة الفرعية. يرجى المحاولة مرة أخرى لاحقًا.');
+                });
+        }
+        // تعريف متغير لتخزين رقم الفئة الفرعية المحددة
+        let selectedSubCategoryId = null;
+
+        // استدعاء طلب API لجلب الفئات الفرعية
+        fetch('/api/SubCategory')
+            .then(response => response.json())
+            .then(data => {
+                // عرض الفئات الفرعية كخيارات داخل عنصر select
+                const selectElement = document.getElementById('itemParentsub');
+                data.forEach(subCategory => {
+                    const option = document.createElement('option');
+                    option.value = subCategory.id;
+                    option.textContent = subCategory.name;
+                    selectElement.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error fetching subcategories:', error));
+
+        // استماع لحدث change في عنصر select للفئات الفرعية
+        document.getElementById('itemParentsub').addEventListener('change', function () {
+            selectedSubCategoryId = this.value; // تحديث قيمة المتغير عند تغيير القيمة المحددة في القائمة المنسدلة
+        });
+
+        // دالة إضافة منتج جديد
+        function addNewItem() {
+            const productName = document.getElementById('proudectName').value;
+            const itemDescription = document.getElementById('itemDescription').value;
+            const itemParentSub = document.getElementById('itemParentsub').value;
+
+            const newItemData = {
+                Name: productName,
+                Description: itemDescription,
+                SubCategoryId: itemParentSub
+            };
+
+            fetch('/api/Product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newItemData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to add item');
                     }
                     return response.json();
                 })
                 .then(data => {
-                    // عرض رسالة نجاح للمستخدم
-                    alert('Subcategory added successfully!');
-                    // يمكنك إضافة المزيد من الإجراءات هنا بناءً على احتياجات التطبيق
+                    alert('تمت إضافة المنتج بنجاح!');
+                    document.getElementById('proudectName').value = '';
+                    document.getElementById('itemDescription').value = '';
+                    document.getElementById('itemParentsub').selectedIndex = 0;
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    // عرض رسالة خطأ للمستخدم
-                    alert('An error occurred while adding the subcategory. Please try again later.');
+                    alert('حدث خطأ أثناء إضافة المنتج. يرجى المحاولة مرة أخرى لاحقًا.');
                 });
+        }
+
+
+        function viewAllItems() {
+            // جلب بيانات المنتجات من الخادم
+            fetch('/api/Product')
+                .then(response => response.json())
+                .then(products => {
+                    // استدعاء الدالة لعرض بيانات المنتجات في القائمة
+                    displayProducts(products);
+                })
+                .catch(error => console.error('حدث خطأ أثناء جلب بيانات المنتجات:', error));
+        }
+
+        function displayProducts(products) {
+            const itemList = document.getElementById('itemList');
+            // مسح عناصر القائمة القديمة
+            itemList.innerHTML = '';
+
+            // إضافة بيانات المنتجات الجديدة إلى القائمة
+            products.forEach(product => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${product.name}: ${product.description}`;
+                itemList.appendChild(listItem);
+            });
         }
 
 
 
 
+
+
+        ///api/SubCategory
+
+        ///api/Product
 
 
 
@@ -471,19 +528,27 @@
                 var listItem = document.createElement('li');
                 listItem.className = 'item';
                 listItem.innerHTML = `
-                            <img src="${product.image}" alt="${product.description}">
-                            <span>${product.name}</span>
-                            <label for="itemQuantity">الكمية:</label>
-                            <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
-                            <label for="itemPrice">السعر:</label>
-                            <input type="number" id="itemPrice" min="0" value="${product.price}">
-                            <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
-                            <button onclick="editProduct('${product.id}')">تعديل</button>
-                        `;
+         
+                <img src="${product.image}">
+                    <span>${product.name}</span>
+                    <label for="itemQuantity">الكمية:</label>
+                    <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
+                    <label for="itemPrice">السعر:</label>
+                    <input type="number" id="itemPrice" min="0" value="${product.price}">
+                    
+                    <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
+                    <button onclick="editProduct('${product.id}')">تعديل</button>        
+            
+        `;
                 itemList.appendChild(listItem);
+
             });
         }
 
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load product data when the page is loaded
+            viewAllItems();
+        });
         // Function to dynamically generate an edit form for a specific product
         function editProduct(productId) {
             // Fetch product details based on productId (similar to fetching products)
@@ -492,15 +557,15 @@
             // Replace the listItem content with an edit form
             var listItem = document.querySelector(`.item[data-product-id="${productId}"]`);
             listItem.innerHTML = `
-                        <img src="${product.image}" alt="${product.description}">
-                        <span>${product.name}</span>
-                        <label for="itemQuantity">الكمية:</label>
-                        <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
-                        <label for="itemPrice">السعر:</label>
-                        <input type="number" id="itemPrice" min="0" value="${product.price}">
-                        <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
-                        <button onclick="cancelEdit('${product.id}')">إلغاء</button>
-                    `;
+                                <img src="${product.image}"  alt="${product.description}">
+                                <span>${product.name}</span>
+                                <label for="itemQuantity">الكمية:</label>
+                                <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
+                                <label for="itemPrice">السعر:</label>
+                                <input type="number" id="itemPrice" min="0" value="${product.price}">
+                                <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
+                                <button onclick="cancelEdit('${product.id}')">إلغاء</button>
+                            `;
         }
 
         // Function to cancel the edit and revert to the display mode
@@ -511,13 +576,13 @@
             // Replace the edit form with the original display content
             var listItem = document.querySelector(`.item[data-product-id="${productId}"]`);
             listItem.innerHTML = `
-                        <img src="${product.image}" alt="${product.description}">
-                        <span>${product.name}</span>
-                        <label for="itemQuantity">الكمية: ${product.quantity}</label>
-                        <label for="itemPrice">السعر: ${product.price}</label>
-                        <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
-                        <button onclick="editProduct('${product.id}')">تعديل</button>
-                    `;
+                                <img src="${product.image}" alt="${product.description}">
+                                <span>${product.name}</span>
+                                <label for="itemQuantity">الكمية: ${product.quantity}</label>
+                                <label for="itemPrice">السعر: ${product.price}</label>
+                                <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
+                                <button onclick="editProduct('${product.id}')">تعديل</button>
+                            `;
         }
 
         // Function to fetch product details based on productId
@@ -670,30 +735,30 @@
             }
         }
 
-        function addNewItem() {
-            var itemName = document.getElementById('itemName').value;
-            var itemImage = document.getElementById('itemImage').value;
-            var itemQuantity = document.getElementById('itemQuantity').value;
+        /*     function addNewItem() {
+                 var itemName = document.getElementById('itemName').value;
+                 var itemImage = document.getElementById('itemImage').value;
+                 var itemQuantity = document.getElementById('itemQuantity').value;
 
-            if (itemName && itemImage && itemQuantity > 0) {
-                var itemList = document.getElementById('itemList');
-                var newItem = document.createElement('li');
-                newItem.className = 'item';
-                newItem.innerHTML = `
-                                    <img src="${itemImage}" alt="${itemName}">
-                                    <span>${itemName}</span>
-                                    <span>الكمية: ${itemQuantity}</span>
-                                    <button onclick="removeItem(this)">حذف</button>
-                                `;
-                itemList.appendChild(newItem);
+                 if (itemName && itemImage && itemQuantity > 0) {
+                     var itemList = document.getElementById('itemList');
+                     var newItem = document.createElement('li');
+                     newItem.className = 'item';
+                     newItem.innerHTML = `
+                                 <img src="${itemImage}" alt="${itemName}">
+                                 <span>${itemName}</span>
+                                 <span>الكمية: ${itemQuantity}</span>
+                                 <button onclick="removeItem(this)">حذف</button>
+                             `;
+                     itemList.appendChild(newItem);
 
-                // Clear input fields
-                document.getElementById('itemName').value = '';
-                document.getElementById('itemImage').value = '';
-                document.getElementById('itemQuantity').value = 1;
-            }
-        }
-
+                     // Clear input fields
+                     document.getElementById('itemName').value = '';
+                     document.getElementById('itemImage').value = '';
+                     document.getElementById('itemQuantity').value = 1;
+                 }
+             }
+             */
         function updateItemQuantity() {
             var itemName = document.getElementById('itemName').value;
             var itemQuantity = document.getElementById('itemQuantity').value;
@@ -723,21 +788,21 @@
             listItem.parentNode.removeChild(listItem);
         }
 
-        function viewAllItems() {
-            var itemList = document.getElementById('itemList');
-            var items = itemList.getElementsByClassName('item');
+        /*   function viewAllItems() {
+               var itemList = document.getElementById('itemList');
+               var items = itemList.getElementsByClassName('item');
 
-            if (items.length > 0) {
-                console.log("All Items:");
-                for (var i = 0; i < items.length; i++) {
-                    var itemName = items[i].getElementsByTagName('span')[0].textContent;
-                    var itemImage = items[i].getElementsByTagName('img')[0].getAttribute('src');
-                    console.log(`${itemName} - ${itemImage}`);
-                }
-            } else {
-                console.log("No items to display.");
-            }
-        }
+               if (items.length > 0) {
+                   console.log("All Items:");
+                   for (var i = 0; i < items.length; i++) {
+                       var itemName = items[i].getElementsByTagName('span')[0].textContent;
+                       var itemImage = items[i].getElementsByTagName('img')[0].getAttribute('src');
+                       console.log(`${itemName} - ${itemImage}`);
+                   }
+               } else {
+                   console.log("No items to display.");
+               }
+           }*/
         function showSection(sectionId) {
             // إخفاء جميع الأقسام
             var sections = document.querySelectorAll('.section');

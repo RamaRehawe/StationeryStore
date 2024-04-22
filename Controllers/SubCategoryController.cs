@@ -20,7 +20,7 @@ namespace StationeryStore.Controllers
             _subCategoryRepository = subCategoryRepository;
         }
 
-        [Authorize(Roles = "Item Manager")]
+      //  [Authorize(Roles = "Item Manager")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
@@ -47,6 +47,17 @@ namespace StationeryStore.Controllers
                 return StatusCode(500, ModelState);
             }
             return Ok("Succesfully Added");
+        }
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<ResSubCategoryDto>))]
+        public IActionResult GetSubCategories()
+        {
+            var subCategories = _mapper.Map<List<ResSubCategoryDto>>(_subCategoryRepository.GetSubCategories());
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(subCategories);
         }
     }
 }
