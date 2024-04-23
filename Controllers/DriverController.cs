@@ -98,7 +98,7 @@ namespace StationeryStore.Controllers
                     // Assuming the property names in AddDriverDto match the properties in Driver
                     // If not, adjust accordingly
                     UserId = driverDto.UserId,
-                    DriverLicense = driverDto.DriverLicense,
+                    //DriverLicense = driverDto.DriverLicense,
                     // Add any other properties here
                 };
 

@@ -1,6 +1,7 @@
 {
   "Version": 1,
   "Hash": "6NnXMfe/nZ1WCL1I3+BNPk4xM2q1deTGf/ezXpNrPEc=",
+  "Hash": "VIPC0PVhYsl7L/OQpPINNSJOQ43W43MmQz5Q3YrGCXM=",
   "Source": "StationeryStore",
   "BasePath": "_content/StationeryStore",
   "Mode": "Default",
@@ -10,7 +11,7 @@
     {
       "Name": "StationeryStore\\wwwroot",
       "Source": "StationeryStore",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "Pattern": "**"
     }

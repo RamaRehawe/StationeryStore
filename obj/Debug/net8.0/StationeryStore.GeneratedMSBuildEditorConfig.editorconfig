@@ -9,95 +9,95 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = StationeryStore
 build_property.RootNamespace = StationeryStore
-build_property.ProjectDir = C:\Users\oulan\source\repos\StationeryStore\StationeryStore\
+build_property.ProjectDir = C:\StationeryStore\StationeryStore\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\oulan\source\repos\StationeryStore\StationeryStore
+build_property.MSBuildProjectDirectory = C:\StationeryStore\StationeryStore
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/About/About.cshtml]
+[C:/StationeryStore/StationeryStore/Views/About/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRcQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/AdminDashboard/AdminDashboard.cshtml]
+[C:/StationeryStore/StationeryStore/Views/AdminDashboard/AdminDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5EYXNoYm9hcmRcQWRtaW5EYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Cart/Cart.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Cart/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/CustomerService/CustomerService.cshtml]
+[C:/StationeryStore/StationeryStore/Views/CustomerService/CustomerService.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3VzdG9tZXJTZXJ2aWNlXEN1c3RvbWVyU2VydmljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/DriverDashboard/DriverDashboard.cshtml]
+[C:/StationeryStore/StationeryStore/Views/DriverDashboard/DriverDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRHJpdmVyRGFzaGJvYXJkXERyaXZlckRhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/ForgotPassword/ForgotPassword.cshtml]
+[C:/StationeryStore/StationeryStore/Views/ForgotPassword/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZ290UGFzc3dvcmRcRm9yZ290UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Home/Home.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Home/Home.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/ItemMangerDashboard/ItemMangerDashboard.cshtml]
+[C:/StationeryStore/StationeryStore/Views/ItemMangerDashboard/ItemMangerDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbU1hbmdlckRhc2hib2FyZFxJdGVtTWFuZ2VyRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Item/Item.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Item/Item.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxJdGVtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Login/Login.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/PrivacyPolicy/PrivacyPolicy.cshtml]
+[C:/StationeryStore/StationeryStore/Views/PrivacyPolicy/PrivacyPolicy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpdmFjeVBvbGljeVxQcml2YWN5UG9saWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Profile/Profile.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Profile/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Signup/Confirmation.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Signup/Confirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2lnbnVwXENvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Signup/Signup.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Signup/Signup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2lnbnVwXFNpZ251cC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Subcategories/Brushs.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Subcategories/Brushs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViY2F0ZWdvcmllc1xCcnVzaHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Subcategories/Notebooks.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Subcategories/Notebooks.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViY2F0ZWdvcmllc1xOb3RlYm9va3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Subcategories/Notes.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Subcategories/Notes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViY2F0ZWdvcmllc1xOb3Rlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Subcategories/Office.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Subcategories/Office.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViY2F0ZWdvcmllc1xPZmZpY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Subcategories/Pens.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Subcategories/Pens.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViY2F0ZWdvcmllc1xQZW5zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Subcategories/Ruler.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Subcategories/Ruler.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViY2F0ZWdvcmllc1xSdWxlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oulan/source/repos/StationeryStore/StationeryStore/Views/Subcategories/Schoolbags.cshtml]
+[C:/StationeryStore/StationeryStore/Views/Subcategories/Schoolbags.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3ViY2F0ZWdvcmllc1xTY2hvb2xiYWdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
