@@ -1,16 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{4CD992C4-5D9F-410A-9494-293C55DBBBF3}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\home\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{4CD992C4-5D9F-410A-9494-293C55DBBBF3}|StationeryStore.csproj|solutionrelative:views\\home\\home.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4CD992C4-5D9F-410A-9494-293C55DBBBF3}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4CD992C4-5D9F-410A-9494-293C55DBBBF3}|StationeryStore.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\StationeryStore\\StationeryStore\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,49 +9,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 459,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AQIAAFIAAAAAAAAAAAAgwGoAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-23T10:58:50.652Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Home.cshtml",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Home\\Home.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\Home.cshtml",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Home\\Home.cshtml",
-              "RelativeToolTip": "Views\\Home\\Home.cshtml",
-              "ViewState": "AQIAANcAAAAAAAAAAAAAAOoAAABiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-23T08:03:49.377Z",
-              "EditorCaption": ""
             }
           ]
         },
@@ -70,11 +35,7 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
@@ -82,7 +43,11 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
@@ -112,6 +77,10 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{778b5376-ad77-4751-acdc-f3d18343f8dd}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
@@ -132,7 +101,7 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{778b5376-ad77-4751-acdc-f3d18343f8dd}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
