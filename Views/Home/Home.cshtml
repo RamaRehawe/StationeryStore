@@ -62,66 +62,40 @@
                 <span id="logout-text"> تسجيل الخروج</span>
             </a>
         </div>
-        <ul class="tabs">
-            <li class="tab" onmouseover="showContent('pensCategory')"><i class="fas fa-pen"></i> أقلام وأدوات كتابة</li>
-            <li class="tab" onmouseover="showContent('notebooksCategory')"><i class="fas fa-book"></i> دفاتر وملاحظات</li>
-            <li class="tab" onmouseover="showContent('drawingToolsCategory')"><i class="fas fa-paint-brush"></i>أدوات الرسم</li>
-            <li class="tab" onmouseover="showContent('engineeringToolsCategory')"><i class="fas fa-ruler"></i> أدوات هندسية</li>
-            <li class="tab" onmouseover="showContent('officeToolsCategory')"><i class="fas fa-paperclip"></i> أدوات مكتبية</li>
-            <li class="tab" onmouseover="showContent('notebooksAndJournalsCategory')"><i class="fas fa-file-alt"></i> أوراق ومفكرات</li>
-            <li class="tab" onmouseover="showContent('schoolBagsCategory')">
-                <i class="fa-solid fa-briefcase"></i>
-                حقائب مدرسية
-            </li>
-        </ul>
-        <div class="tab-content" id="pensCategory">
-            <!-- Content for the 'pensCategory' tab -->
-            <a href="#"> أقلام حبر</a>
-            <a href="#">أقلام رصاص</a>
-            <a href="#">أقلام جافة </a>
-            <a href="#">أقلام جيل </a>
-            <a href="#">أقلام تحديد </a>
-            <a href="#">أقلام تخطيط </a>
-            <a href="#">أقلام تصحيح </a>
-            <a href="#">أقلام ملونة </a>
-        </div>
-        <div class="tab-content" id="notebooksCategory">
-            <a href="#">دفاتر عادية</a>
-            <a href="#">دفاتر سلك</a>
-            <a href="#">دفاتر رسم</a>
-            <a href="#"> دفاتر رسم بياني  </a>
-        </div>
-        <div class="tab-content" id="drawingToolsCategory">
-            <a href="#">أقلام حبر فنية </a>
-            <a href="#"> فرش فنية </a>
-            <a href="#">ألوان مائية </a>
-            <a href="#">ألوان خشب</a>
-            <a href="#">ألوان شمعية</a>
-        </div>
-        <div class="tab-content" id="engineeringToolsCategory">
-            <a href="#">أدوات رسم هندسي </a>
-            <a href="#">آلالات حاسبة علمية</a>
-        </div>
-        <div class="tab-content" id="officeToolsCategory">
-            <a href="#">ملصقات وفاصلات </a>
-            <a href="#">دباسات ومزيلات</a>
-            <a href="#">مقصات ومشارط </a>
-            <a href="#">آلالات حاسبة</a>
-            <a href="#">مصنفات</a>
-            <a href="#">ممحاة و مبراة</a>
-            <a href="#">مستلزمات إضافية</a>
-        </div>
-        <div class="tab-content" id="notebooksAndJournalsCategory">
-            <a href="#">أوراق طباعة </a>
-            <a href="#">أوراق ملونة </a>
-            <a href="#">أوراق ملاحظات </a>
-            <a href="#">مفكرات يومية </a>
-        </div>
-        <div class="tab-content" id="schoolBagsCategory">
-            <a href="#">حقائب ظهر مدرسية</a>
-            <a href="#">حقائب أقلام </a>
-            <a href="#">حقائب مستلزمات مدرسية </a>
-        </div>
+        <h1> فئات المنتجات</h1>
+
+        <!-- في section الرئيسية -->
+        <section class="products-grid">
+            <div class="product-item" id="category1">
+                <img src="~/Images/Pens.png" alt="أقلام ">
+                <h3><a href="front_pens">أقلام وأدوات كتابة</a></h3>
+            </div>
+            <div class="product-item" id="category2">
+                <img src="~/Images/Notebook.png" alt="دفاتر">
+                <h3><a href="front_notebooks">دفاتر وملاحظات</a></h3>
+            </div>
+            <div class="product-item" id="category3">
+                <img src="~/Images/drawing-tools.jpg" alt="أدوات الرسم">
+                <h3><a href="front_brushs">أدوات الرسم</a></h3>
+            </div>
+            <div class="product-item" id="category4">
+                <img src="~/Images/set.png" alt="أدوات هندسية">
+                <h3><a href="front_ruler">أدوات هندسية </a></h3>
+            </div>
+            <div class="product-item" id="category5">
+                <img src="~/Images/office-tools.png" alt="أدوات مكتبية">
+                <h3><a href="front_office"> أدوات مكتبية </a></h3>
+            </div>
+            <div class="product-item" id="category7">
+                <img src="~/Images/paper.png" alt="أوراق ومفكرات">
+                <h3><a href="front_notes">أوراق ومفكرات</a></h3>
+            </div>
+            <div class="product-item" id="category6">
+                <img src="~/Images/backpack.png" alt="حقائب مدرسية">
+                <h3><a href="front_schoolbags">حقائب مدرسية</a></h3>
+            </div>
+        </section>
+        <br><br><br>
     </header>
     <main>
 
@@ -183,43 +157,7 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <br>
-        <!-- قائمة المنتجات المميزة -->
         <br><br>
-        <h1> فئات المنتجات</h1>
-
-        <!-- في section الرئيسية -->
-        <section class="products-grid">
-            <div class="product-item" id="category1">
-                <img src="~/Images/Pens.png" alt="أقلام ">
-                <h3><a href="front_pens">أقلام وأدوات كتابة</a></h3>
-            </div>
-            <div class="product-item" id="category2">
-                <img src="~/Images/Notebook.png" alt="دفاتر">
-                <h3><a href="front_notebooks">دفاتر وملاحظات</a></h3>
-            </div>
-            <div class="product-item" id="category3">
-                <img src="~/Images/drawing-tools.jpg" alt="أدوات الرسم">
-                <h3><a href="front_brushs">أدوات الرسم</a></h3>
-            </div>
-            <div class="product-item" id="category4">
-                <img src="~/Images/set.png" alt="أدوات هندسية">
-                <h3><a href="front_ruler">أدوات هندسية </a></h3>
-            </div>
-            <div class="product-item" id="category5">
-                <img src="~/Images/office-tools.png" alt="أدوات مكتبية">
-                <h3><a href="front_office"> أدوات مكتبية </a></h3>
-            </div>
-            <div class="product-item" id="category7">
-                <img src="~/Images/paper.png" alt="أوراق ومفكرات">
-                <h3><a href="front_notes">أوراق ومفكرات</a></h3>
-            </div>
-            <div class="product-item" id="category6">
-                <img src="~/Images/backpack.png" alt="حقائب مدرسية">
-                <h3><a href="front_schoolbags">حقائب مدرسية</a></h3>
-            </div>
-        </section>
-        <br><br><br>
 
         <h1 id="featuredProducts">المنتجات المميزة</h1>
         <section class="featured-products" style="width: 100%;">
@@ -282,7 +220,7 @@
             </div>
             <!-- يمكنك إضافة المزيد من المنتجات المميزة هنا -->
         </section>
-
+        <br>
     </main>
     <footer>
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
@@ -295,7 +233,7 @@
         <div class="social-links">
             <strong>تواصل معنا:</strong>
             <a href="@(Url.Content("https://youtube.com/@-StationeryStore?si=XlmT8B-DREJrxxNw"))">
-                <img src="~\Images\Youtube.png" alt="Youtube Icon">
+                <img src="~/Images/Youtube.png" alt="Youtube Icon">
             </a>
 
             <a href="https://www.facebook.com/profile.php?id=61558642717289&mibextid=ZbWKwL">

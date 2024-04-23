@@ -56,7 +56,6 @@
     <Content Remove="wwwroot\Images\highlighter.jpg" />
     <Content Remove="wwwroot\Images\highlighter1.jpg" />
     <Content Remove="wwwroot\Images\ICO.png" />
-    <Content Remove="wwwroot\Images\img" />
     <Content Remove="wwwroot\Images\inkpen.jpg" />
     <Content Remove="wwwroot\Images\inkpen2.png" />
     <Content Remove="wwwroot\Images\itemmanger.png" />
@@ -184,7 +183,6 @@
     <None Include="wwwroot\Images\highlighter.jpg" />
     <None Include="wwwroot\Images\highlighter1.jpg" />
     <None Include="wwwroot\Images\ICO.png" />
-    <None Include="wwwroot\Images\img" />
     <None Include="wwwroot\Images\inkpen.jpg" />
     <None Include="wwwroot\Images\inkpen2.png" />
     <None Include="wwwroot\Images\itemmanger.png" />
