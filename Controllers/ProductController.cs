@@ -88,14 +88,20 @@ namespace StationeryStore.Controllers
 
         //[HttpGet]
         //[ProducesResponseType(200, Type = typeof(IEnumerable<ResProductDto>))]
-        //public IActionResult GetAllProducts()
+        //public IActionResult GetAllProduct()
         //{
         //    var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetProducts());
+        ////[HttpGet]
+        ////[ProducesResponseType(200, Type = typeof(IEnumerable<ResProductDto>))]
+        ////public IActionResult GetAllProducts()
+        ////{
+        ////    var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetProducts());
 
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
+        ////    if (!ModelState.IsValid)
+        ////        return BadRequest(ModelState);
 
-        //    return Ok(products);
-        //}
-    }
+        ////    return Ok(products);
+        ////}
+    
+}
 }
