@@ -88,7 +88,7 @@ namespace StationeryStore.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ResProductDto>))]
-        public IActionResult GetAllProducts()
+        public IActionResult GetAllProduct()
         {
             var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetProducts());
 

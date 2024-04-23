@@ -27,8 +27,7 @@
     <main>
         <div id="sidebar">
             <a href="#section2" onclick="showSection('section2')">المعلومات الشخصية</a>
-            <a href="#section3" onclick="showSection('section3')">إضافة عنوان المنزل </a>
-            <a href="#section3" onclick="showSection('section4')">إضافة عنوان العمل </a>
+            <a href="#section3" onclick="showSection('section3')">إضافة عناوين</a>
             <a href="#section5" onclick="showSection('section5')">تتبع الطلبية</a>
             <a href="#section6" onclick="showSection('section6')">الطلبيات السابقة</a>
 
@@ -48,8 +47,6 @@
                     <div class="section-header">
                         <h2>المعلومات الشخصية</h2>
                         <div class="section-actions">
-                            <span class="edit-icon" onclick="editSection('section2')">✏️</span>
-                            <span class="delete-icon" onclick="deleteSection('section2')">🗑️</span>
                             <span class="save-icon" onclick="saveChanges('section2')" style="display: none;">💾</span>
                         </div>
                     </div>
@@ -76,6 +73,8 @@
 
                     <label for="phone">رقم الهاتف:</label>
                     <input type="tel" id="phone" name="phone" required>
+
+                    <button type="button" onclick="save()">حفظ</button>
                 </form>
             </div>
 
@@ -84,26 +83,28 @@
 
                 <form>
                     <div class="section-header">
-                        <h2>عنوان المنزل</h2>
+                        <h2>إضافة عناوين</h2>
                         <div class="section-actions">
-                            <span class="edit-icon" onclick="editSection('section3')">✏️</span>
-                            <span class="delete-icon" onclick="deleteSection('section3')">🗑️</span>
                             <span class="save-icon" onclick="saveChanges('section3')" style="display: none;">💾</span>
                         </div>
                     </div>
-
-
-                    <label for="work-name">الاسم:</label>
+                    <label for="work-name"> تسمية العنوان:</label>
                     <input type="text" id="work-name" name="work-name" required>
 
-                    <label for="work-street">الشارع:</label>
-                    <input type="text" id="work-street" name="work-street">
-
                     <label for="work-city">المدينة:</label>
-                    <input type="text" id="work-city" name="work-city">
+                    <input type="text" id="work-city" name="work-city" required>
+
+                    <label for="work-street">الشارع:</label>
+                    <input type="text" id="work-street" name="work-street" required>
+
+                    <label for="person-name"> اسم المستلم:</label>
+                    <input type="text" id="person-name" name="person-name" required>
 
                     <label for="work-phone">رقم الهاتف:</label>
-                    <input type="tel" id="work-phone" name="work-phone">
+                    <input type="tel" id="work-phone" name="work-phone" required>
+
+                    <button type="button" onclick="addaddress()">إضافة</button>
+
                 </form>
 
             </div>

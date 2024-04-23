@@ -192,6 +192,77 @@
         </div>
     </footer>
     <script>
+       function populateStoreInformation() {
+    fetch('/api/ContactInformation/getStoreInfos')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch store information');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const storePhoneInput = document.getElementById('storePhone');
+            const storeEmailInput = document.getElementById('storeEmail');
+            const storeSocialInput = document.getElementById('storeSocial');
+
+            // تعيين قيم الحقول من البيانات المسترجعة
+            storePhoneInput.value = data.find(info => info.Type === 'Phone').Value;
+            storeEmailInput.value = data.find(info => info.Type === 'Email').Value;
+            storeSocialInput.value = data.find(info => info.Type === 'Social Media').Value;
+        })
+        .catch(error => {
+            console.error('Error fetching store information:', error);
+        });
+}
+
+// استدعاء الوظيفة لتعبئة حقول النموذج عند تحميل الصفحة
+populateStoreInformation();
+
+        //     // Function to fetch store information and populate the form fields
+        //     function fetchStoreInfo() {
+        //     fetch('/api/ContactInformation/getStoreInfos')
+        //             .then(response => response.json())
+        //             .then(data => {
+        //                 document.getElementById('storePhone').value = data.phone;
+        //                 document.getElementById('storeEmail').value = data.email;
+        //                 document.getElementById('storeSocial').value = data.socialMedia;
+        //             })
+        //             .catch(error => console.error('Error fetching store info:', error));
+        //     }
+
+        // // Function to send updated store information to the backend
+        // function saveChanges() {
+        //     var phone = document.getElementById('storePhone').value;
+        //     var email = document.getElementById('storeEmail').value;
+        //     var socialMedia = document.getElementById('storeSocial').value;
+
+        //     var data = {
+        //         value: phone,
+        //         description: email,
+        //         socialMedia: socialMedia
+        //     };
+
+        //     fetch('/api/ContactInformation/setContactInformation', {
+        //         method: 'PUT',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(data)
+        //     })
+        //         .then(response => response.json())
+        //         .then(updatedInfo => {
+        //             console.log('Updated store information:', updatedInfo);
+        //             // Optionally, perform any additional actions after successful update
+        //         })
+        //         .catch(error => console.error('Error updating store info:', error));
+        // }
+
+        // // Fetch store information when the page loads
+        // window.onload = function () {
+        //     fetchStoreInfo();
+        // };
+  
+
         // // الدالة لتحويل قيمة نوع المستخدم
         // function mapUserType(userType) {
         //     if (userType === "manager") {
