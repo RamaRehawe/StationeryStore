@@ -15,10 +15,11 @@ namespace StationeryStore.Repository
             return _context.ContactInformation.Where(ci => ci.Id == id).FirstOrDefault()!;
         }
 
-        public ContactInformation GetInfos()
+        public IEnumerable<ContactInformation> GetInfos()
         {
-            return _context.ContactInformation.OrderBy(ci => ci.Id).FirstOrDefault()!;
+            return _context.ContactInformation.ToList();
         }
+
 
         public void UpdateInfos(ContactInformation contactInfo)
         {

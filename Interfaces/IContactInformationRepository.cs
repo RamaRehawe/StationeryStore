@@ -5,7 +5,7 @@ namespace StationeryStore.Interfaces
     public interface IContactInformationRepository : IBaseRepository
     {
         void UpdateInfos(ContactInformation contactInfo);
-        ContactInformation GetInfos();
+        IEnumerable<ContactInformation> GetInfos(); 
         ContactInformation GetInfoById(int id);
     }
 }

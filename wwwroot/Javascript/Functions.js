@@ -144,7 +144,7 @@ function showSection(sectionId) {
 }
 
 function redirectToHomePage() {
-    window.location.href = "~/Pages/Home.html";
+    window.location.href = "front_home";
 }
 // سكريبت لتحرير وحفظ المعلومات الشخصية
 function editSection(sectionId) {
@@ -170,100 +170,5 @@ function saveChanges(sectionId) {
 
     // إرسال طلب لحفظ التغييرات، مثلاً إرسال طلب AJAX لتحديث المعلومات الشخصية في قاعدة البيانات
 }
-function checkPasswordStrength() {
-    var password = document.getElementById('password').value;
-    var passwordStrength = document.getElementById('passwordStrength');
-    var strength = 0;
 
-    // تحديد قوة كلمة المرور بناءً على الشروط التالية:
-    // يجب أن تحتوي على 8 أحرف على الأقل
-    // يجب أن تحتوي على حرف كبير وحرف صغير على الأقل
-    // يجب أن تحتوي على رقم واحد على الأقل
-    // يجب أن تحتوي على حرف عربي أو إنجليزي
-
-    // يجب أن تحتوي على 8 أحرف على الأقل
-    if (password.length >= 8) {
-        strength += 1;
-    }
-    
-    // يجب أن تحتوي على حرف كبير وحرف صغير على الأقل
-    if (/[A-Z]/.test(password) && /[a-z]/.test(password)) {
-        strength += 1;
-    }
-    
-    // يجب أن تحتوي على رقم واحد على الأقل
-    if (/\d/.test(password)) {
-        strength += 1;
-    }
-    
-    // يجب أن تحتوي على حرف عربي أو إنجليزي
-    if (/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF\uFB50-\uFDFF\uFE70-\uFEFFa-zA-Z]/.test(password)) {
-        strength += 1;
-    }
-
-    // عرض قوة كلمة المرور
-    switch (strength) {
-        case 1:
-            passwordStrength.innerHTML = "ضعيفة";
-            passwordStrength.style.color = "red";
-            break;
-        case 2:
-            passwordStrength.innerHTML = "متوسطة";
-            passwordStrength.style.color = "orange";
-            break;
-        case 3:
-            passwordStrength.innerHTML = "قوية";
-            passwordStrength.style.color = "green";
-            break;
-        case 4:
-            passwordStrength.innerHTML = "قوية جداً";
-            passwordStrength.style.color = "green";
-            break;
-        default:
-            passwordStrength.innerHTML = "";
-            break;
-    }
-}
-
-// فتح نافذة التأكيد
-function openModal() {
-    var password1 = document.getElementById('password').value;
-    var password2 = document.getElementById('confirm-password').value;
-    
-    if (password1 !== password2) {
-        alert("كلمتا المرور غير متطابقتين. الرجاء المحاولة مرة أخرى.");
-        return;
-    }
-    
-    // إذا كانت كلمتا المرور متطابقتين، قم بفتح النافذة المنبثقة لتأكيد الحساب
-    var modal = document.getElementById("confirmation-modal");
-    modal.style.display = "block";
-}
-
-
-// إغلاق نافذة التأكيد
-function closeModal() {
-    var modal = document.getElementById('confirmation-modal');
-    modal.style.display = "none";
-}
-
-// تأكيد الرمز وإرساله
-function submitConfirmationCode() {
-    var confirmationCode = document.getElementById('confirmation-code').value;
-    
-    // التحقق من أن الرمز المدخل يتطابق مع الرمز المتوقع
-    var expectedCode = "123456"; // يجب استبدال هذا بالرمز الفعلي المتوقع
-    if (confirmationCode === expectedCode) {
-        // إذا كان الرمز صحيحًا، قم بأخذ الإجراء المناسب، مثلاً تسجيل الحساب
-        // تنفيذ عملية تسجيل الحساب هنا
-        alert("تم تأكيد الحساب بنجاح!");
-        // بعد تأكيد الحساب، يمكن إغلاق نافذة التأكيد
-        closeModal();
-        window.location.href = "~/Pages/Home.html";
-
-    } else {
-        // إذا كان الرمز غير صحيح، يمكنك عرض رسالة خطأ للمستخدم أو إجراء أي عملية أخرى
-        alert("الرمز غير صحيح. الرجاء المحاولة مرة أخرى.");
-    }
-}
 

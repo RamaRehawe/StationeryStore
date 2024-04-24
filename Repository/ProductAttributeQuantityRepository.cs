@@ -22,6 +22,7 @@ namespace StationeryStore.Repository
             return _context.ProductAttributesQuantities.Where(pa => pa.Id == id).FirstOrDefault();
         }
 
+
         public bool Update(ProductAttributeQuantity productAttributeQuantity)
         {
             _context.ProductAttributesQuantities.Update(productAttributeQuantity);

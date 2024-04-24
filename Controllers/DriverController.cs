@@ -81,40 +81,7 @@ namespace StationeryStore.Controllers
             var orders = _driverRepository.GetMyOrders(driver.Id);
             return Ok(orders);
         }
-        [HttpPost("add_driver")]
-        public IActionResult AddDriver([FromBody] AddDriverDto driverDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                // Manually map AddDriverDto properties to Driver entity
-                var driver = new Driver
-                {
-                    // Map properties from AddDriverDto to Driver
-                    // Assuming the property names in AddDriverDto match the properties in Driver
-                    // If not, adjust accordingly
-                    UserId = driverDto.UserId,
-                    //DriverLicense = driverDto.DriverLicense,
-                    // Add any other properties here
-                };
-
-                // Add the driver to the repository
-                _driverRepository.AddDriver(driver);
-
-                // Alternatively, you might want to return the created driver's information
-                return Ok(driver);
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions or errors that occur during the operation
-                return StatusCode(500, $"An error occurred while adding the driver: {ex.Message}");
-            }
-
-        }
+      
 
 
     }

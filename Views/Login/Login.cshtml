@@ -148,6 +148,14 @@
                     console.log('Token:', data.token);
                     console.log('User Type:', data.userType);
 
+                    // Save user data in session storage
+                    const userData = {
+                        email: email,
+                        userType: data.userType,
+                        isLoggedIn: true
+                    };
+                    sessionStorage.setItem('userData', JSON.stringify(userData));
+
                     // Redirect the user based on user type
                     switch (data.userType) {
                         case 'Admin':
@@ -175,11 +183,6 @@
         }
 
 
-
-
-
-
-
         // تحديث CAPTCHA عند الضغط على زر التحديث
         function refreshCaptchaOnClick() {
             refreshCaptcha();
@@ -187,12 +190,6 @@
 
         // عرض CAPTCHA عند تحميل الصفحة
         displayCaptcha();
-
-        function login() {
-            // قم بتعيين حالة تسجيل الدخول في الجلسة
-            sessionStorage.setItem('isLoggedIn', 'true');
-            window.location.href = '~/Pages/Home.html';
-        }
 
         function validateLogin() {
             // إلغاء إرسال النموذج الافتراضي

@@ -47,6 +47,7 @@ namespace StationeryStore.Controllers
                 return BadRequest("Somthing went wrong");
             return Ok("updated successfully");
         }
+
         [HttpGet]
         public IActionResult GetAllProductsWithQuantity()
         {

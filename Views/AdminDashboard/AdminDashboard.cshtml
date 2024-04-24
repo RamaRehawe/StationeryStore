@@ -26,15 +26,14 @@
     </div>
     <main>
         <div id="sidebar">
-            <a href="#section3" onclick="showSection('section3')">إضافة عاملين في المتجر</a>
-            <a href="#section4" onclick="showSection('section4')">عرض المستخدمين</a>
-            <a href="#section5" onclick="showSection('section5')">عرض جميع الطلبات</a>
-            <a href="#section6" onclick="showSection('section6')">عرض جميع المنتجات</a>
-            <a href="#section7" onclick="showSection('section7')">الشكاوي و الاستفسارات</a>
-            <a href="#section8" onclick="showSection('section8')">تحليل البيانات</a>
-            <a href="#section9" onclick="showSection('section9')">تعديل معلومات المتجر</a>
+            <a href="#section2" onclick="showSection('section2')">إضافة عاملين في المتجر</a>
+            <a href="#section3" onclick="showSection('section3')">عرض المستخدمين</a>
+            <a href="#section4" onclick="showSection('section4')">عرض جميع الطلبات</a>
+            <a href="#section5" onclick="showSection('section5')">عرض جميع المنتجات</a>
+            <a href="#section6" onclick="showSection('section6')">الشكاوي و الاستفسارات</a>
+            <a href="#section7" onclick="showSection('section7')">تحليل البيانات</a>
+            <a href="#section8" onclick="showSection('section8')">تعديل معلومات المتجر</a>
         </div>
-
         <div id="content">
             <div id="section1" class="section active-section">
                 <h2>أهلاً بك</h2>
@@ -43,7 +42,7 @@
                 <p>نحن نفتخر بتوفير تجربة تسوق سلسة ومرضية، ونشجعكم دائمًا على التواصل مع المدير لأي استفسارات أو اقتراحات. نتمنى لكم تجربة تسوق ممتعة!</p>
                 <img class="first-img" src="~/Images/admin.jpg" alt="صورة تعبيرية عن عمل المدير في متجر الكتروني للقرطاسية">
             </div>
-            <div id="section3" class="section">
+            <div id="section2" class="section">
                 <h1>إضافة عاملين في المتجر</h1>
                 <form>
                     <label for="managerName">الاسم:</label>
@@ -69,12 +68,9 @@
                     <button type="button" onclick="addUser()">إضافة</button>
                 </form>
             </div>
-
-            <div id="section4" class="section">
+            <div id="section3" class="section">
                 <h1>قائمة المستخدمين</h1>
                 <button id="fetchUsersButton">اعرض المستخدمين</button>
-
-                <!-- جدول لعرض بيانات المستخدمين -->
                 <table>
                     <thead>
                         <tr>
@@ -88,30 +84,25 @@
                     </tbody>
                 </table>
             </div>
-            <div id="section5" class="section">
+            <div id="section4" class="section">
                 <h1>قائمة الطلبات</h1>
-                <!-- جدول لعرض البيانات -->
+                <button id="getAllOrdersButton">احصل على كل الطلبات</button>
                 <table>
                     <thead>
                         <tr>
                             <th>رقم الطلب</th>
-                            <th>العنوان</th>
-                            <th>التفاصيل</th>
+                            <th>تاريخ الطلبية</th>
+                            <th>القيمة الإجمالية</th>
+                            <th>حالة الطلبية</th>
                         </tr>
                     </thead>
                     <tbody id="requestsTableBody">
-                        <!-- ستتم إضافة البيانات هنا باستخدام JavaScript -->
                     </tbody>
                 </table>
             </div>
-
-            <div id="section6" class="section">
+            <div id="section5" class="section">
                 <h1>قائمة المنتجات</h1>
-
-                <!-- زر لجلب بيانات المنتجات -->
                 <button onclick="fetchProducts()">جلب بيانات المنتجات</button>
-
-                <!-- جدول لعرض بيانات المنتجات -->
                 <table>
                     <thead>
                         <tr>
@@ -123,13 +114,11 @@
                         </tr>
                     </thead>
                     <tbody id="productsTableBody">
-                        <!-- ستتم إضافة بيانات المنتجات هنا باستخدام JavaScript -->
                     </tbody>
                 </table>
             </div>
-            <div id="section7" class="section">
+            <div id="section6" class="section">
                 <h1>إدارة الشكاوي والاستفسارات</h1>
-
                 <table>
                     <thead>
                         <tr>
@@ -140,22 +129,18 @@
                         </tr>
                     </thead>
                     <tbody id="complaintsTableBody">
-                        <!-- ستتم إضافة بيانات المستخدمين هنا باستخدام JavaScript -->
                     </tbody>
                 </table>
-
             </div>
-            <div id="section8" class="section">
+            <div id="section7" class="section">
                 <h1>تحليل البيانات</h1>
                 <button onclick="analyzeSalesData()">تحليل المبيعات</button>
                 <br> <br>
                 <div id="salesAnalysisResults"></div>
             </div>
-            <div id="section9" class="section">
+            <div id="section8" class="section">
                 <h1>معلومات المتجر</h1>
-                <!-- نموذج لتعديل معلومات المتجر -->
                 <form>
-                    <!-- حقول الإدخال لمعلومات المتجر -->
                     <label for="storePhone">رقم هاتف المتجر:</label>
                     <input type="text" id="storePhone" name="storePhone"><br>
 
@@ -165,11 +150,9 @@
                     <label for="storeSocial">حساب السوشال ميديا للمتجر:</label>
                     <input type="text" id="storeSocial" name="storeSocial"><br><br>
 
-                    <!-- زر الإرسال -->
-                    <button type="button" onclick="saveChanges()">حفظ التغييرات</button>
+                    <button type="button" onclick="save()">حفظ التغييرات</button>
                 </form>
             </div>
-
         </div>
     </main>
     <footer>
@@ -196,87 +179,78 @@
         </div>
     </footer>
     <script>
-       function populateStoreInformation() {
-    fetch('/api/ContactInformation/getStoreInfos')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch store information');
+        window.onload = function () {
+            fillComplaintsTable();
+            showSection('section1');
+        };
+        //getAllOrders
+            document.getElementById('getAllOrdersButton').addEventListener('click', function () {
+                fetch("/api/Order/getAllOrders")
+                    .then(response => response.json())
+                    .then(data => {
+                        var tableBody = document.getElementById('requestsTableBody');
+                        tableBody.innerHTML = ''; // لحذف أي بيانات قديمة قد تكون موجودة في الجدول
+
+                        data.forEach(order => {
+                            var row = "<tr>" +
+                            "<td>" + order.id + "</td>" +
+                                "<td>" + order.orderDate + "</td>" +
+                                "<td>" + order.totalAmount + "</td>" +
+                                "<td>" + order.orderStatus + "</td>" +
+                                "</tr>";
+                            tableBody.innerHTML += row;
+                        });
+                    })
+                    .catch(error => {
+                        console.error("حدث خطأ أثناء جلب البيانات:", error);
+                    });
+            });
+           //edit Info
+        fetch('/api/ContactInformation/getStoreInfos')
+            .then(response => response.json())
+            .then(data => {
+                // تعبئة حقول النموذج بالقيم المسترجعة
+                document.getElementById('storePhone').value = data[0].value;
+                document.getElementById('storeEmail').value = data[1].value;
+                document.getElementById('storeSocial').value = data[2].value;
+            })
+            .catch(error => console.error('حدث خطأ أثناء جلب بيانات معلومات الاتصال:', error));
+        initialPhoneValue = document.getElementById('storePhone').value;
+        initialEmailValue = document.getElementById('storeEmail').value;
+        initialSocialValue = document.getElementById('storeSocial').value;
+        function save() {
+            // جمع البيانات المعدلة من الحقول
+            var currentPhoneValue = document.getElementById('storePhone').value;
+            var currentEmailValue = document.getElementById('storeEmail').value;
+            var currentSocialValue = document.getElementById('storeSocial').value;
+
+            // التأكد من أن هناك تغيير في القيم
+            if (currentPhoneValue !== initialPhoneValue || currentEmailValue !== initialEmailValue || currentSocialValue !== initialSocialValue) {
+                // إرسال البيانات المعدلة إلى الخادم
+                fetch('/api/ContactInformation/setContactInformation', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        // تمرير القيم الحالية للحقول كبيانات المعدلة
+                        storePhone: currentPhoneValue,
+                        storeEmail: currentEmailValue,
+                        storeSocial: currentSocialValue
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // عرض رسالة بنجاح التحديث
+                        alert('تم تحديث البيانات بنجاح!');
+                    })
+                    .catch(error => console.error('حدث خطأ أثناء حفظ التغييرات:', error));
+            } else {
+                // القيم متطابقة، لا حاجة لحفظ التغييرات
+                alert('لا توجد تغييرات لحفظها.');
             }
-            return response.json();
-        })
-        .then(data => {
-            const storePhoneInput = document.getElementById('storePhone');
-            const storeEmailInput = document.getElementById('storeEmail');
-            const storeSocialInput = document.getElementById('storeSocial');
-
-            // تعيين قيم الحقول من البيانات المسترجعة
-            storePhoneInput.value = data.find(info => info.Type === 'Phone').Value;
-            storeEmailInput.value = data.find(info => info.Type === 'Email').Value;
-            storeSocialInput.value = data.find(info => info.Type === 'Social Media').Value;
-        })
-        .catch(error => {
-            console.error('Error fetching store information:', error);
-        });
-}
-
-// استدعاء الوظيفة لتعبئة حقول النموذج عند تحميل الصفحة
-populateStoreInformation();
-
-        //     // Function to fetch store information and populate the form fields
-        //     function fetchStoreInfo() {
-        //     fetch('/api/ContactInformation/getStoreInfos')
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 document.getElementById('storePhone').value = data.phone;
-        //                 document.getElementById('storeEmail').value = data.email;
-        //                 document.getElementById('storeSocial').value = data.socialMedia;
-        //             })
-        //             .catch(error => console.error('Error fetching store info:', error));
-        //     }
-
-        // // Function to send updated store information to the backend
-        // function saveChanges() {
-        //     var phone = document.getElementById('storePhone').value;
-        //     var email = document.getElementById('storeEmail').value;
-        //     var socialMedia = document.getElementById('storeSocial').value;
-
-        //     var data = {
-        //         value: phone,
-        //         description: email,
-        //         socialMedia: socialMedia
-        //     };
-
-        //     fetch('/api/ContactInformation/setContactInformation', {
-        //         method: 'PUT',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(data)
-        //     })
-        //         .then(response => response.json())
-        //         .then(updatedInfo => {
-        //             console.log('Updated store information:', updatedInfo);
-        //             // Optionally, perform any additional actions after successful update
-        //         })
-        //         .catch(error => console.error('Error updating store info:', error));
-        // }
-
-        // // Fetch store information when the page loads
-        // window.onload = function () {
-        //     fetchStoreInfo();
-        // };
-  
-
-        // // الدالة لتحويل قيمة نوع المستخدم
-        // function mapUserType(userType) {
-        //     if (userType === "manager") {
-        //         return "Item Manager";
-        //     }
-        //     else if (userType === "driver") {
-        //         return "Driver";
-        //     }
-        //     // يمكنك إضافة تحويلات إضافية إذا لزم الأمر
-        // }
+        }
+        //add item manager and driver
         function addUser() {
             var userTypeElement = document.getElementById("managerType");
             var userTypeValue = userTypeElement.value;
@@ -333,10 +307,7 @@ populateStoreInformation();
                 alert("يرجى اختيار نوع الموظف الصحيح (مدير أو سائق)");
             }
         }
-
-
-
-        // استجابة لنقرة زر العرض
+        // users info
         document.getElementById('fetchUsersButton').addEventListener('click', function () {
             // إجراء طلب لاسترجاع بيانات المستخدمين
             fetch('/api/User') // قم بتغيير المسار إلى المسار الصحيح لنهاية الخدمة التي تسترجع بيانات المستخدمين
@@ -361,7 +332,7 @@ populateStoreInformation();
                 })
                 .catch(error => console.error('Error fetching users:', error));
         });
-
+        //products info
         function fetchProducts() {
             // قم بجلب بيانات المنتجات من خلال طلب HTTP
             fetch('/api/ProductAttributeQuantity')
@@ -372,7 +343,6 @@ populateStoreInformation();
                 })
                 .catch(error => console.error('حدث خطأ أثناء جلب بيانات المنتجات:', error));
         }
-
         function updateProductTable(products) {
             const tableBody = document.getElementById('productsTableBody');
             // قم بمسح البيانات القديمة من جدول المنتجات
@@ -393,34 +363,9 @@ populateStoreInformation();
             });
         }
 
-
-
-
-
-
-
-
-
         // يمكنك استخدام JavaScript لتحديث حالة الطلبية وتنشيط الحدث المناسب
         const events = document.querySelectorAll('.event');
 
-        // قم بتحديد الحدث الحالي (حسب حالة الشحنة)
-        const currentStatus = 'shipped'; // يمكنك تغيير هذه القيمة بحالة الشحنة الفعلية
-
-        events.forEach(event => {
-            const status = event.getAttribute('data-status');
-
-            // قم بتحديث الحالة النشطة
-            if (status === currentStatus) {
-                event.classList.add('active');
-            } else {
-                event.classList.remove('active');
-            }
-        });
-        function redirectToHomePage() {
-            // استخدام window.location.href لتوجيه المتصفح إلى صفحة home.html
-            window.location.href = 'home.html';
-        }
         function showSection(sectionId) {
             // إخفاء جميع الأقسام
             var sections = document.querySelectorAll('.section');
@@ -439,42 +384,6 @@ populateStoreInformation();
             }
         }
 
-        function editSection(sectionId) {
-            console.log('تم تنفيذ editSection للقسم: ', sectionId);
-
-            // تمكين حقول التحرير
-            var section = document.getElementById(sectionId);
-            var inputs = section.querySelectorAll('input, select');
-            inputs.forEach(function (input) {
-                input.removeAttribute('disabled');
-            });
-
-            // إظهار زر الحفظ
-            var saveIcon = section.querySelector('.save-icon');
-            saveIcon.style.display = 'inline';
-        }
-
-        function deleteSection(sectionId) {
-            // يمكنك إضافة رمز يقوم بحذف القسم أو تنفيذ الإجراء الخاص بك هنا
-            alert('حذف القسم: ' + sectionId);
-        }
-
-        function saveChanges(sectionId) {
-            // حفظ التغييرات هنا (يمكنك إرسالها إلى الخادم أو تنفيذ الإجراء الخاص بك)
-            alert('تم حفظ التغييرات: ' + sectionId);
-
-            // تعطيل حقول التحرير
-            var section = document.getElementById(sectionId);
-            var inputs = section.querySelectorAll('input');
-            inputs.forEach(function (input) {
-                input.setAttribute('disabled', 'true');
-            });
-
-            // إخفاء زر الحفظ
-            var saveIcon = section.querySelector('.save-icon');
-            saveIcon.style.display = 'none';
-        }
-
         function submitForm(event) {
             event.preventDefault();
 
@@ -484,247 +393,7 @@ populateStoreInformation();
             // في هذا المثال، سنقوم بعرض رسالة تأكيد ببساطة
             alert('تم استلام استفسارك، سنقوم بالرد في أقرب وقت ممكن. شكراً لتواصلك معنا!');
         }
-        /*
-        const productsData = [
-            { id: 1, name: "منتج 1", price: 5000, quantity: 100 },
-            { id: 2, name: "منتج 2", price: 2000, quantity: 50 },
-            // ... يمكنك إضافة المزيد من المنتجات هنا
-        ];
-        const productsTableBody = document.getElementById("productsTableBody");
-
-        productsData.forEach(product => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${product.id}</td>
-                <td>${product.name}</td>
-                <td>${product.price}</td>
-                <td>${product.quantity}</td>
-            `;
-            productsTableBody.appendChild(row);
-        });*/
-        /*
-        // مثال على بيانات المستخدمين (يمكن أن تكون جزءًا من قاعدة البيانات)
-        const usersData = [
-            { id: 1, name: "أحمد", email: "ahmed@example.com", phone: "123-456-789", address: "العنوان الأول" },
-            { id: 2, name: "فاطمة", email: "fatima@example.com", phone: "987-654-321", address: "العنوان الثاني" },
-            // ... يمكنك إضافة المزيد من المستخدمين هنا
-        ];
-
-        // استخدام JavaScript لإنشاء صفوف الجدول باستناء البيانات
-        const tableBody = document.getElementById("usersTableBody");
-
-        usersData.forEach(user => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${user.id}</td>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.phone}</td>
-                <td>${user.address}</td> <!-- إضافة العنوان -->
-            `;
-            tableBody.appendChild(row);
-        });
-        */
-        const requestsData = [
-            { id: 1, title: "طلب 1", details: "تفاصيل طلب 1" },
-            { id: 2, title: "طلب 2", details: "تفاصيل طلب 2" },
-            // ... يمكنك إضافة المزيد من الطلبات هنا
-        ];
-
-        const tableBody1 = document.getElementById("requestsTableBody");
-
-        requestsData.forEach(request => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                                    <td>${request.id}</td>
-                                    <td>${request.title}</td>
-                                    <td>${request.details}</td>
-                                `;
-            tableBody1.appendChild(row);
-        });
-
-        function calculateShippingCost() {
-            var transportCost = parseFloat(document.getElementById('transportCost').value);
-            var insuranceCost = parseFloat(document.getElementById('insuranceCost').value);
-            var packingCost = parseFloat(document.getElementById('packingCost').value);
-            var taxesFees = parseFloat(document.getElementById('taxesFees').value);
-            var distance = parseFloat(document.getElementById('distance').value);
-
-            var totalCost = transportCost + insuranceCost + packingCost + taxesFees + (distance * 0.1);
-            document.getElementById('shippingCost').innerHTML = "تكلفة الشحن هي: " + totalCost.toFixed(2) + " ل.س";
-        }
-
-        /*   function addManager() {
-               var managerName = document.getElementById('managerName').value;
-               var managerEmail = document.getElementById('managerEmail').value;
-               var managerPhone = document.getElementById('managerPhone').value;
-               var managerAddress = document.getElementById('managerAddress').value;
-
-               var managerData = {
-                   name: managerName,
-                   email: managerEmail,
-                   phone: managerPhone,
-                   address: managerAddress
-               };
-
-               console.log('تمت إضافة مدير المنتجات:', managerData);
-               alert('تمت إضافة مدير المنتجات:\n\n' +
-                   'الاسم: ' + managerData.name + '\n' +
-                   'البريد الإلكتروني: ' + managerData.email + '\n' +
-                   'رقم الهاتف: ' + managerData.phone + '\n' +
-                   'العنوان: ' + managerData.address);
-           }*/
-        // function addDriver() {
-        //     // Gather driver information from the form
-        //     var driverName = document.getElementById("driverName").value;
-        //     var driverPassword = document.getElementById("driverPassword").value;
-        //     var driverEmail = document.getElementById("driverEmail").value;
-        //     var driverPhone = document.getElementById("driverPhone").value;
-        //     var driverLicense = document.getElementById("driverLicense").value;
-
-        //     // Prepare data to be sent to the server for user registration
-        //     var userData = {
-        //         username: driverName,
-        //         password: driverPassword,
-        //         email: driverEmail,
-        //         phone: driverPhone,
-        //         userType: "Driver"
-        //     };
-
-        //     // Send a POST request to register the user
-        //     fetch('/api/User/register_user', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(userData)
-        //     })
-        //         .then(response => {
-        //             if (!response.ok) {
-        //                 throw new Error('User registration failed');
-        //             }
-        //             return response.json();
-        //         })
-        //         .then(user => {
-        //             var userId = user.id;
-
-        //             // Prepare data to be sent to the server for adding the driver
-        //             var driverData = {
-        //                 driverLicense: driverLicense,
-        //                 userId: userId
-        //             };
-
-        //             // Send a POST request to add the driver
-        //             return fetch('/api/Driver/add_driver', {
-        //                 method: 'POST',
-        //                 headers: {
-        //                     'Content-Type': 'application/json'
-        //                 },
-        //                 body: JSON.stringify(driverData)
-        //             });
-        //         })
-        //         .then(response => {
-        //             if (response.ok) {
-        //                 // Driver addition successful
-        //                 alert('تمت إضافة السائق بنجاح!');
-        //             } else {
-        //                 // Driver addition failed
-        //                 throw new Error('Driver addition failed');
-        //             }
-        //         })
-        //         .catch(error => {
-        //             console.error('Error:', error);
-        //             alert('حدث خطأ أثناء إضافة السائق. يرجى المحاولة مرة أخرى.');
-        //         });
-        // }
-
-        // function addDriver() {
-        //     // Gather driver information from the form
-        //     var driverName = document.getElementById("driverName").value;
-        //     var driverPassword = document.getElementById("driverPassword").value;
-        //     var driverEmailElement = document.getElementById("driverEmail"); // Fetch the email input element
-        //     var driverPhone = document.getElementById("driverPhone").value;
-        //     var driverLicense = document.getElementById("driverLicense").value;
-
-        //     // Get the value of the email input element
-        //     var driverEmail = driverEmailElement.value;
-
-        //     // Prepare data to be sent to the server for user registration
-        //     var userData = {
-        //         username: driverName,
-        //         password: driverPassword,
-        //         email: driverEmail, // Use the fetched email value
-        //         phone: driverPhone,
-        //         userType: "Driver" // Assuming the user being registered is a driver
-        //     };
-
-        //     // Send a POST request to register the user
-        //     fetch('/api/User/register_user', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(userData)
-        //     })
-        //         .then(response => response.json())
-        //         .then(user => {
-        //             // Prepare data to be sent to the server for adding the driver
-        //             var driverData = {
-        //                 driverLicense: driverLicense,
-        //                 userId: user.id // Use the ID of the registered user for the driver
-        //             };
-
-        //             // Send a POST request to add the driver
-        //             fetch('/api/Driver/add_driver', {
-        //                 method: 'POST',
-        //                 headers: {
-        //                     'Content-Type': 'application/json'
-        //                 },
-        //                 body: JSON.stringify(driverData)
-        //             })
-        //                 .then(response => {
-        //                     if (response.ok) {
-        //                         // Registration successful
-        //                         alert('تمت إضافة السائق بنجاح!');
-        //                     } else {
-        //                         // Registration failed
-        //                         alert('حدث خطأ أثناء إضافة السائق. يرجى المحاولة مرة أخرى.');
-        //                     }
-        //                 })
-        //                 .catch(error => {
-        //                     console.error('Error adding driver:', error);
-        //                     alert('حدث خطأ أثناء إضافة السائق. يرجى المحاولة مرة أخرى.');
-        //                 });
-        //         })
-        //         .catch(error => {
-        //             console.error('Error registering user:', error);
-        //             alert('حدث خطأ أثناء تسجيل المستخدم. يرجى المحاولة مرة أخرى.');
-        //         });
-        // }
-
-
-
-
-        // function addDriver() {
-        //     var driverName = document.getElementById('driverName').value;
-        //     var driverLicense = document.getElementById('driverLicense').value;
-        //     var driverPhone = document.getElementById('driverPhone').value;
-        //     var driverAddress = document.getElementById('driverAddress').value;
-
-        //     var driverData = {
-        //         name: driverName,
-        //         license: driverLicense,
-        //         phone: driverPhone,
-        //         address: driverAddress
-        //     };
-
-        //     console.log('تمت إضافة السائق:', driverData);
-        //     alert('تمت إضافة السائق:\n\n' +
-        //         'الاسم: ' + driverData.name + '\n' +
-        //         'رخصة القيادة: ' + driverData.license + '\n' +
-        //         'رقم الهاتف: ' + driverData.phone + '\n' +
-        //         'العنوان: ' + driverData.address);
-        // }
+       
         const complaints = [
             { customerName: "اسم العميل", complaintType: "نوع الشكوى", complaintDetails: "تفاصيل الشكوى" },
             { customerName: "اسم العميل الآخر", complaintType: "نوع آخر", complaintDetails: "تفاصيل الشكوى الأخرى" },
@@ -758,8 +427,6 @@ populateStoreInformation();
         }
 
 
-
-
         const salesData = [
             { month: "يناير", amount: 50000 },
             { month: "فبراير", amount: 75000 },
@@ -784,37 +451,6 @@ populateStoreInformation();
 
             document.getElementById("salesAnalysisResults").innerText = analysisReport;
         }
-
-        const customerReviews = [
-            { customerId: 1, rating: 4, feedback: "منتج رائع" },
-            { customerId: 2, rating: 5, feedback: "خدمة سريعة وفعالة" },
-            { customerId: 3, rating: 3, feedback: "يمكن تحسين الجودة" },
-            // ... يمكنك إضافة المزيد من التقييمات
-        ];
-
-        /* function analyzeCustomerBehavior() {
-             var totalCustomers = customerReviews.length;
-             var averageRating = calculateAverageRating(customerReviews);
-
-             var analysisReport = "نتائج التحليل:\n\n";
-             analysisReport += "إجمالي عدد العملاء: " + totalCustomers + "\n";
-             analysisReport += "متوسط التقييم: " + averageRating.toFixed(2) + "\n";
-
-             document.getElementById("customerBehaviorAnalysis").innerText = analysisReport;
-         }*/
-
-        function calculateAverageRating(reviews) {
-            var totalRating = reviews.reduce(function (sum, review) {
-                return sum + review.rating;
-            }, 0);
-
-            return totalRating / reviews.length;
-        }
-
-        window.onload = function () {
-            fillComplaintsTable();
-            showSection('section1');
-        };
     </script>
 
 </body>
