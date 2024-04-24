@@ -3,8 +3,40 @@
   "WorkspaceRootPath": "C:\\StationeryStore\\StationeryStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\repository\\productattributequantityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:repository\\productattributequantityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\dto\\resproductattributedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:dto\\resproductattributedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\attributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\attributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\dto\\resproductattributequantitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:dto\\resproductattributequantitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\dto\\resimageattributedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:dto\\resimageattributedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\models\\imageattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:models\\imageattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\helper\\mappingprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:helper\\mappingprofiles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\models\\productattributequantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:models\\productattributequantity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,14 +67,118 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProductAttributeQuantityRepository.cs",
-              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Repository\\ProductAttributeQuantityRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\ProductAttributeQuantityRepository.cs",
-              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Repository\\ProductAttributeQuantityRepository.cs",
-              "RelativeToolTip": "Repository\\ProductAttributeQuantityRepository.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAQwBkAAAAJAAAA",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-04-24T06:07:03.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ResProductAttributeDto.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Dto\\ResProductAttributeDto.cs",
+              "RelativeDocumentMoniker": "Dto\\ResProductAttributeDto.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Dto\\ResProductAttributeDto.cs",
+              "RelativeToolTip": "Dto\\ResProductAttributeDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAQAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T05:55:20.147Z",
+              "WhenOpened": "2024-04-24T06:04:14.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AttributeController.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\AttributeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AttributeController.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\AttributeController.cs",
+              "RelativeToolTip": "Controllers\\AttributeController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAvwCsAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T06:04:42.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ImageAttribute.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Models\\ImageAttribute.cs",
+              "RelativeDocumentMoniker": "Models\\ImageAttribute.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Models\\ImageAttribute.cs",
+              "RelativeToolTip": "Models\\ImageAttribute.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T06:01:41.48Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MappingProfiles.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Helper\\MappingProfiles.cs",
+              "RelativeDocumentMoniker": "Helper\\MappingProfiles.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Helper\\MappingProfiles.cs",
+              "RelativeToolTip": "Helper\\MappingProfiles.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAQwC0AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T06:02:12.662Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ResImageAttributeDto.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Dto\\ResImageAttributeDto.cs",
+              "RelativeDocumentMoniker": "Dto\\ResImageAttributeDto.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Dto\\ResImageAttributeDto.cs",
+              "RelativeToolTip": "Dto\\ResImageAttributeDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T06:02:06.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ResProductAttributeQuantityDto.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Dto\\ResProductAttributeQuantityDto.cs",
+              "RelativeDocumentMoniker": "Dto\\ResProductAttributeQuantityDto.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Dto\\ResProductAttributeQuantityDto.cs",
+              "RelativeToolTip": "Dto\\ResProductAttributeQuantityDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T06:00:20.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProductAttributeQuantity.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Models\\ProductAttributeQuantity.cs",
+              "RelativeDocumentMoniker": "Models\\ProductAttributeQuantity.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Models\\ProductAttributeQuantity.cs",
+              "RelativeToolTip": "Models\\ProductAttributeQuantity.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAzwAwAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T06:00:38.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Controllers\\ProductController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAYwCoAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-24T05:59:46.699Z",
               "EditorCaption": ""
             }
           ]
