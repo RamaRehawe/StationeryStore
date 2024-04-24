@@ -11,12 +11,6 @@ namespace StationeryStore.Repository
         {
         }
 
-        public void AddDriver(Driver driver)
-        {
-            _context.Drivers.Add(driver);
-            _context.SaveChanges();
-        }
-
         public void FailDeliver(int orderId, string failDeliver)
         {
             var order = _context.Orders.Where(o => o.Id == orderId).FirstOrDefault();

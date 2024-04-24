@@ -12,7 +12,6 @@ namespace StationeryStore.Interfaces
         ICollection<Order> GetMyOrders(int driverId);
         ICollection<Driver> GetDrivers();
         void FailDeliver(int orderId, string failDeliver);
-        void AddDriver(Driver driver); // Add this method for adding a driver
 
     }
 }
