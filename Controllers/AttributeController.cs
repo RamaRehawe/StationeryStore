@@ -19,15 +19,19 @@ namespace StationeryStore.Controllers
         private readonly IProductAttributeRepository _productAttributeRepository;
         private readonly IMapper _mapper;
         private readonly IImageAttributeRepository _imageAttributeRepository;
+        private readonly IProductAttributeQuantityRepository _productAttributeQuantityRepository;
+
         public AttributeController(IAttributeRepository attributeRepository, 
-            IProductAttributeRepository productAttributeRepository, IMapper mapper
-            , IImageAttributeRepository imageAttributeRepository, UserInfoService userInfoService, 
+            IProductAttributeRepository productAttributeRepository, IMapper mapper,
+            IProductAttributeQuantityRepository productAttributeQuantityRepository,
+            IImageAttributeRepository imageAttributeRepository, UserInfoService userInfoService, 
             IUserRepository userRepository) : base(userInfoService, userRepository)
         {
             _attributeRepository = attributeRepository;
             _productAttributeRepository = productAttributeRepository;
             _mapper = mapper;
             _imageAttributeRepository = imageAttributeRepository;
+            _productAttributeQuantityRepository = productAttributeQuantityRepository;
         }
 
 
@@ -52,8 +56,17 @@ namespace StationeryStore.Controllers
         // POST api/product/{productId}/attributes
         [HttpPost("attributes")]
         public  async Task<IActionResult> AddProductAttributes(IFormFile formFile,
-            [FromForm]ReqAttributeDto attributeDto)
+            [FromForm] ReqAttributeDto attributeDto)
         {
+            var productAttributeQuantity = new ProductAttributeQuantity
+            {
+                Quantity = attributeDto.Quantity,
+                Price = attributeDto.Price,
+                ProductId = attributeDto.ProductId
+            };
+            int productAttributeQuantityId = _productAttributeQuantityRepository.Create(productAttributeQuantity);
+
+
             var attribute = new Atribute
             {
                 Name = attributeDto.Name
@@ -69,7 +82,7 @@ namespace StationeryStore.Controllers
             var attributeProduct = new ProductAttribute
             {
                 AttributeId = attributeId,
-                ProductAttributeQuantityId = attributeDto.ProductAttributeQuantityId,
+                ProductAttributeQuantityId = productAttributeQuantityId,
                 Value = attributeDto.Value
                 
             };
@@ -89,7 +102,7 @@ namespace StationeryStore.Controllers
             var imageAttribute = new ImageAttribute
             {
                 URL = res,
-                ProductAttributeQuantityId = attributeDto.ProductAttributeQuantityId
+                ProductAttributeQuantityId = productAttributeQuantityId
             };
             _imageAttributeRepository.AddImage(imageAttribute);
             

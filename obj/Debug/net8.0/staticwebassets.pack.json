@@ -1,20 +1,20 @@
 {
   "Files": [
     {
-      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string042320242341.png",
-      "PackagePath": "staticwebassets\\Upload\\Product\\string042320242341.png"
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Images\\Youtube.png",
+      "PackagePath": "staticwebassets\\Images\\Youtube.png"
     },
     {
-      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string042320242345.png",
-      "PackagePath": "staticwebassets\\Upload\\Product\\string042320242345.png"
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string042420240120.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\string042420240120.png"
     },
     {
-      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string042320242356.png",
-      "PackagePath": "staticwebassets\\Upload\\Product\\string042320242356.png"
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string042420240851.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\string042420240851.png"
     },
     {
-      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string638495120096050563.png",
-      "PackagePath": "staticwebassets\\Upload\\Product\\string638495120096050563.png"
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string042420240853.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\string042420240853.png"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StationeryStore.Microsoft.AspNetCore.StaticWebAssets.props",

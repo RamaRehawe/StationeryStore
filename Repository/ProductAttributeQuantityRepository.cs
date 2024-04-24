@@ -11,15 +11,18 @@ namespace StationeryStore.Repository
         {
         }
 
-        public bool Create(ProductAttributeQuantity productAttributeQuantity)
+        public int Create(ProductAttributeQuantity productAttributeQuantity)
         {
            _context.ProductAttributesQuantities.Add(productAttributeQuantity);
-            return Save();
+           _context.SaveChanges();
+           return productAttributeQuantity.Id;
         }
 
         public ProductAttributeQuantity GetById(int id)
         {
-            return _context.ProductAttributesQuantities.Where(pa => pa.Id == id).FirstOrDefault();
+            return _context.ProductAttributesQuantities.Where(pa => pa.Id == id)
+                .Include(pa => pa.ImageAttributes).Include(pa => pa.ProductAttributes)
+                .FirstOrDefault();
         }
 
         public bool Update(ProductAttributeQuantity productAttributeQuantity)
