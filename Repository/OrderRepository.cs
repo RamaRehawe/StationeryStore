@@ -25,6 +25,16 @@ namespace StationeryStore.Repository
             return order.Id;
         }
 
+        public ICollection<Order> GetDeliverdOrdersByUserId(int userId)
+        {
+            return _context.Orders.Where(o => o.UserId == userId && o.OrderStatus == "Deliverd").ToList();
+        }
+
+        public ICollection<Order> GetNotDeliverdOrdersByUserId(int userId)
+        {
+            return _context.Orders.Where(o => o.UserId == userId && o.OrderStatus != "Deliverd").ToList();
+        }
+
         public Order GetOrderByOrderId(int userId, int orderId)
         {
             return _context.Orders.Where(o => o.UserId == userId && o.Id == orderId)
