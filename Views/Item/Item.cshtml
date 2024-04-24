@@ -81,13 +81,13 @@
             <div class="delivery-info" id="deliveryInfo">
                 <!-- سيتم تحديث معلومات التسليم هنا -->
             </div>
-            <div class="delivery-options">
+          @*   <div class="delivery-options">
                 <label for="delivery-type">اختر نوع التوصيل:</label>
                 <select id="delivery-type" name="delivery-type" onchange="updateShippingDetails()">
                     <option value="standard" selected>عادي</option>
                     <option value="express">سريع</option>
                 </select>
-            </div>
+            </div> *@
             <br>
             <a href="#" id="showShippingLink">عرض تفاصيل الشحن</a>
             <div class="modal" id="shippingModal">
@@ -338,27 +338,27 @@
                 var currentDate = new Date();
                 var currentHour = currentDate.getHours();
                 var deliveryDateStandard = new Date();
-                var deliveryDateExpress = new Date();
+                // var deliveryDateExpress = new Date();
 
                 // إذا كان الوقت الحالي أكبر من أو يساوي 12 مساءً، فالتوصيل سيكون في اليوم التالي
                 if (currentHour >= 12) {
                     deliveryDateStandard.setDate(currentDate.getDate() + 1);
-                    deliveryDateExpress.setDate(currentDate.getDate() + 1);
+                    // deliveryDateExpress.setDate(currentDate.getDate() + 1);
                 } else {
                     deliveryDateStandard.setDate(currentDate.getDate());
-                    deliveryDateExpress.setDate(currentDate.getDate());
+                    // deliveryDateExpress.setDate(currentDate.getDate());
                 }
 
                 // التوصيل العادي خلال 5 أيام
                 deliveryDateStandard.setDate(deliveryDateStandard.getDate() + 5);
 
-                // التوصيل السريع خلال 2 أيام
-                deliveryDateExpress.setDate(deliveryDateExpress.getDate() + 2);
+                // // التوصيل السريع خلال 2 أيام
+                // deliveryDateExpress.setDate(deliveryDateExpress.getDate() + 2);
 
                 // إضافة متغير currentHour إلى الكائن المرتجع
                 return {
                     standard: deliveryDateStandard,
-                    express: deliveryDateExpress,
+                    // express: deliveryDateExpress,
                     currentHour: currentHour,
                 };
             }
@@ -385,7 +385,6 @@
 
                 var deliveryText = `
                     <p>التوصيل ${formatDate(deliveryDate.standard)}. أطلب خلال ${hoursRemaining} ساعة و ${minutesRemaining} دقيقة</p>
-                    <p>أو احصل على أسرع توصيل ${formatDate(deliveryDate.express)}</p>
                 `;
 
                 deliveryInfo.innerHTML = deliveryText;
@@ -410,21 +409,21 @@
             var shippingDetails = document.getElementById("shippingDetails");
 
             var price = 25000;
-            var standardShippingFee = 10000;
-            var expressShippingFee = 15000; // تكلفة الشحن للتوصيل السريع
+            var standardShippingFee = 15000;
+            // var expressShippingFee = 15000; // تكلفة الشحن للتوصيل السريع
 
-            // قرار استخدام تكلفة الشحن المناسبة بناءً على نوع التوصيل
-            var selectedDeliveryType = document.getElementById("delivery-type").value;
-            var shippingFee = (selectedDeliveryType === "standard") ? standardShippingFee : expressShippingFee;
+            // // قرار استخدام تكلفة الشحن المناسبة بناءً على نوع التوصيل
+            // var selectedDeliveryType = document.getElementById("delivery-type").value;
+            // var shippingFee = (selectedDeliveryType === "standard") ? standardShippingFee;
 
-            var total = price + shippingFee;
+            var total = price + standardShippingFee;
 
             // تحديد رمز العملة
             var currencySymbol = "ل.س ";
 
             // تنسيق الأرقام وإزالة الفواصل
             var formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            var formattedShippingFee = shippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            var formattedShippingFee = standardShippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             var formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
             var detailsText = `
