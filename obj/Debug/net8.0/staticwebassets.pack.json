@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Images\\Youtube.png",
+      "PackagePath": "staticwebassets\\Images\\Youtube.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StationeryStore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.StationeryStore.props",
+      "PackagePath": "build\\StationeryStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.StationeryStore.props",
+      "PackagePath": "buildMultiTargeting\\StationeryStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.StationeryStore.props",
+      "PackagePath": "buildTransitive\\StationeryStore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
