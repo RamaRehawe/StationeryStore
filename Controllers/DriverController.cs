@@ -64,12 +64,21 @@ namespace StationeryStore.Controllers
             return Ok("Order Selected Successfully");
         }
 
-        [HttpPost("updateOrderStatue")]
-        public IActionResult UpdateOrderStatue(int orderId)
+        [HttpPost("shipped")]
+        public IActionResult UpdateOrderStatueToShipped(int orderId)
         {
             var userId = base.GetActiveUser()!.Id;
             var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).FirstOrDefault();
-            _driverRepository.UpdateOrderStatue(orderId);
+            _driverRepository.UpdateOrderStatueToShipped(orderId);
+            return Ok("The order Has been deliverd");
+        }
+
+        [HttpPost("deliverd")]
+        public IActionResult UpdateOrderStatueToDeliverd(int orderId)
+        {
+            var userId = base.GetActiveUser()!.Id;
+            var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).FirstOrDefault();
+            _driverRepository.UpdateOrderStatueToDeliverd(orderId);
             return Ok("The order Has been deliverd");
         }
 
@@ -82,6 +91,24 @@ namespace StationeryStore.Controllers
             return Ok(orders);
         }
       
+
+        [HttpPost("checkDeliverd")]
+        public IActionResult CheckDeliverd(CheckOrderDto checkDto)
+        {
+            var userId = base.GetActiveUser()!?.Id;
+            var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).FirstOrDefault();
+            if (!checkDto.Checked)
+            {
+                _driverRepository.FailDeliver(checkDto.OrderId, checkDto.FailDeliver);
+                return Ok(checkDto.FailDeliver);
+            }
+            else
+            {
+                _driverRepository.UpdateOrderStatueToDeliverd(checkDto.OrderId);
+                return Ok("Order Has been deliverd");
+            }
+
+        }
 
 
     }

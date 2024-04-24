@@ -7,10 +7,11 @@ namespace StationeryStore.Interfaces
         void SetDriverStatus(int driverId, bool status);
         IEnumerable<Order> GetPendingOrders();
         void SelectOrder(int orderId, int driverId);
-        void UpdateOrderStatue(int orderId);
+        void UpdateOrderStatueToShipped(int orderId);
+        void UpdateOrderStatueToDeliverd(int orderId);
         ICollection<Order> GetMyOrders(int driverId);
         ICollection<Driver> GetDrivers();
-        void AddDriver(Driver driver); // Add this method for adding a driver
+        void FailDeliver(int orderId, string failDeliver);
 
     }
 }

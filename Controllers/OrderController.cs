@@ -33,6 +33,25 @@ namespace StationeryStore.Controllers
             return Ok(ordersDto);
         }
 
+        [HttpGet("deliverdOrders")]
+        public IActionResult GetMyDeliverdOrders()
+        {
+            var userId = base.GetActiveUser()!.Id;
+            var orders = _orderRepository.GetDeliverdOrdersByUserId(userId);
+            var ordersDto = _mapper.Map<List<ResOrderDto>>(orders);
+            return Ok(ordersDto);
+        }
+
+        [HttpGet("notDeliverdOrders")]
+        public IActionResult GetMyNotDeliverdOrders()
+        {
+            var userId = base.GetActiveUser()!.Id;
+            var orders = _orderRepository.GetNotDeliverdOrdersByUserId(userId);
+            var ordersDto = _mapper.Map<List<ResOrderDto>>(orders);
+            return Ok(ordersDto);
+        }
+
+
         [HttpGet ("{orderId}")]
       //  [Authorize (Roles = "Customer")]
         public IActionResult GetOrderById(int orderId)

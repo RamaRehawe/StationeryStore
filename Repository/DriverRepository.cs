@@ -11,11 +11,17 @@ namespace StationeryStore.Repository
         {
         }
 
-        public void AddDriver(Driver driver)
+        public void FailDeliver(int orderId, string failDeliver)
         {
-            _context.Drivers.Add(driver);
-            _context.SaveChanges();
+            var order = _context.Orders.Where(o => o.Id == orderId).FirstOrDefault();
+            if (order != null)
+            {
+                order.FailDeliver = failDeliver;
+                order.OrderStatus = "Pending";
+                _context.SaveChanges();
+            }
         }
+
         public ICollection<Driver> GetDrivers()
         {
             return _context.Drivers.OrderBy(d => d.Id).ToList();
@@ -39,7 +45,7 @@ namespace StationeryStore.Repository
             if (order != null) 
             {
                 order.DriverId = driverId;
-                order.OrderStatus = "Shipped";
+                order.OrderStatus = "Pending";
                 var driver = _context.Drivers.Where(d => d.Id == driverId).FirstOrDefault()!;
                 _context.SaveChanges();
             }
@@ -55,12 +61,27 @@ namespace StationeryStore.Repository
             }
         }
 
-        public void UpdateOrderStatue(int orderId)
+        public void UpdateOrderStatueDeliverd(int orderId)
         {
             var order = _context.Orders.Where(o => o.Id == orderId).FirstOrDefault();
             if (order != null)
             {
                 order.OrderStatus = "Deliverd";
+                _context.SaveChanges();
+            }
+        }
+
+        public void UpdateOrderStatueToDeliverd(int orderId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateOrderStatueToShipped(int orderId)
+        {
+            var order = _context.Orders.Where(o => o.Id == orderId).FirstOrDefault();
+            if (order != null)
+            {
+                order.OrderStatus = "Shipped";
                 _context.SaveChanges();
             }
         }

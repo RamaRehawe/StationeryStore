@@ -28,8 +28,8 @@ namespace StationeryStore.Controllers
         public IActionResult AddQuantity(ReqProductAttributeQuantityDto quantityDto)
         {
             var productAttributeQuantity = _mapper.Map<ProductAttributeQuantity>(quantityDto);
-            if (!_productAttributeQuantityRepository.Create(productAttributeQuantity))
-                return BadRequest("Somthing went wrong");
+            int paq = _productAttributeQuantityRepository.Create(productAttributeQuantity);
+                
             return Ok("Added successfully");
         }
 

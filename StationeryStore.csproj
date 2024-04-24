@@ -242,4 +242,8 @@
     <None Include="wwwroot\Javascript\Functions.js" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Upload\Product\" />
+  </ItemGroup>
+
 </Project>
