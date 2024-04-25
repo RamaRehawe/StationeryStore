@@ -114,14 +114,23 @@
             displayCaptcha();
         }
         ///api/User/login
+        ///api/User/login
+        // تحقق وتسجيل الدخول
         function verifyAndLogin() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const captchaInput = document.getElementById('captchaInput').value;
+            const expectedCaptcha = sessionStorage.getItem('captchaText'); // الحصول على الكابتشا المتوقعة من session storage
 
-            // Perform client-side validation
+            // التحقق من ملء جميع الحقول
             if (!email || !password || !captchaInput) {
                 alert('Please fill in all fields.');
+                return;
+            }
+
+            // التحقق من أن قيمة الكابتشا المدخلة تتطابق مع الكابتشا المتوقعة
+            if (captchaInput !== expectedCaptcha) {
+                alert('Invalid captcha. Please try again.');
                 return;
             }
 
@@ -144,25 +153,28 @@
                     return response.json();
                 })
                 .then(data => {
-                    // Log the token and user type
-                    console.log('Token:', data.token);
-                    console.log('User Type:', data.userType);
+                    // تخزين الرمز في LocalStorage
+                    localStorage.setItem('authToken', data.token);
 
-                    // Save user data in session storage
+                    // Set user ID in localStorage
+                    localStorage.setItem('userId', data.userId);
+
+                    // تخزين بيانات المستخدم بما في ذلك معرف المستخدم في session storage
                     const userData = {
                         email: email,
+                        userId: data.userId,
                         userType: data.userType,
                         isLoggedIn: true
                     };
                     sessionStorage.setItem('userData', JSON.stringify(userData));
 
-                    // Redirect the user based on user type
+                    // إعادة توجيه المستخدم بناءً على نوع المستخدم
                     switch (data.userType) {
                         case 'Admin':
                             window.location.href = 'front_admin';
                             break;
                         case 'Customer':
-                            window.location.href = 'front_home';
+                            window.location.href = 'front_profile';
                             break;
                         case 'Item Manager':
                             window.location.href = 'front_item_manger';
@@ -177,16 +189,17 @@
                 .catch(error => {
                     alert('Failed to login. Please try again.');
                     console.error('Login error:', error);
-                    // Refresh captcha upon login failure
-                    refreshCaptcha();
+                    // تحديث الكابتشا في حالة فشل عملية تسجيل الدخول
+                    refreshCaptchaOnClick();
                 });
         }
 
 
-        // تحديث CAPTCHA عند الضغط على زر التحديث
-        function refreshCaptchaOnClick() {
-            refreshCaptcha();
-        }
+
+        // // تحديث CAPTCHA عند الضغط على زر التحديث
+        // function refreshCaptchaOnClick() {
+        //     refreshCaptcha();
+        // }
 
         // عرض CAPTCHA عند تحميل الصفحة
         displayCaptcha();

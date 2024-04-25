@@ -81,13 +81,6 @@
             <div class="delivery-info" id="deliveryInfo">
                 <!-- سيتم تحديث معلومات التسليم هنا -->
             </div>
-          @*   <div class="delivery-options">
-                <label for="delivery-type">اختر نوع التوصيل:</label>
-                <select id="delivery-type" name="delivery-type" onchange="updateShippingDetails()">
-                    <option value="standard" selected>عادي</option>
-                    <option value="express">سريع</option>
-                </select>
-            </div> *@
             <br>
             <a href="#" id="showShippingLink">عرض تفاصيل الشحن</a>
             <div class="modal" id="shippingModal">
@@ -338,27 +331,23 @@
                 var currentDate = new Date();
                 var currentHour = currentDate.getHours();
                 var deliveryDateStandard = new Date();
-                // var deliveryDateExpress = new Date();
+            
 
                 // إذا كان الوقت الحالي أكبر من أو يساوي 12 مساءً، فالتوصيل سيكون في اليوم التالي
                 if (currentHour >= 12) {
                     deliveryDateStandard.setDate(currentDate.getDate() + 1);
-                    // deliveryDateExpress.setDate(currentDate.getDate() + 1);
+                   
                 } else {
                     deliveryDateStandard.setDate(currentDate.getDate());
-                    // deliveryDateExpress.setDate(currentDate.getDate());
+                   
                 }
 
                 // التوصيل العادي خلال 5 أيام
                 deliveryDateStandard.setDate(deliveryDateStandard.getDate() + 5);
 
-                // // التوصيل السريع خلال 2 أيام
-                // deliveryDateExpress.setDate(deliveryDateExpress.getDate() + 2);
-
                 // إضافة متغير currentHour إلى الكائن المرتجع
                 return {
                     standard: deliveryDateStandard,
-                    // express: deliveryDateExpress,
                     currentHour: currentHour,
                 };
             }
@@ -410,11 +399,6 @@
 
             var price = 25000;
             var standardShippingFee = 15000;
-            // var expressShippingFee = 15000; // تكلفة الشحن للتوصيل السريع
-
-            // // قرار استخدام تكلفة الشحن المناسبة بناءً على نوع التوصيل
-            // var selectedDeliveryType = document.getElementById("delivery-type").value;
-            // var shippingFee = (selectedDeliveryType === "standard") ? standardShippingFee;
 
             var total = price + standardShippingFee;
 

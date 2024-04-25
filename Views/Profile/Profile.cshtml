@@ -28,8 +28,8 @@
         <div id="sidebar">
             <a href="#section2" onclick="showSection('section2')">المعلومات الشخصية</a>
             <a href="#section3" onclick="showSection('section3')">إضافة عناوين</a>
-            <a href="#section5" onclick="showSection('section5')">تتبع الطلبية</a>
-            <a href="#section6" onclick="showSection('section6')">الطلبيات السابقة</a>
+            <a href="#section4" onclick="showSection('section4')">تتبع الطلبية</a>
+            <a href="#section5" onclick="showSection('section5')">الطلبيات السابقة</a>
 
         </div>
 
@@ -58,7 +58,7 @@
                     <input type="email" id="email" name="email" required disabled>
 
                     <label for="phone">رقم الهاتف:</label>
-                    <input type="tel" id="phone" name="phone" required disabled>
+                    <input type="tel" id="phone" name="phone" required disabled dir="rtl">
 
                     <label for="gender">الجنس:</label>
                     <div class="gender-options">
@@ -104,39 +104,12 @@
                     <label for="work-phone">رقم الهاتف:</label>
                     <input type="tel" id="work-phone" name="work-phone" required>
 
-                    <button type="button" onclick="addaddress()">إضافة</button>
+                    <button type="button" onclick="addAddress()">إضافة</button>
 
                 </form>
 
             </div>
-
             <div id="section4" class="section">
-                <form>
-                    <div class="section-header">
-                        <h2>عنوان العمل</h2>
-                        <div class="section-actions">
-                            <span class="edit-icon" onclick="editSection('section4')">✏️</span>
-                            <span class="delete-icon" onclick="deleteSection('section4')">🗑️</span>
-                            <span class="save-icon" onclick="saveChanges('section4')" style="display: none;">💾</span>
-                        </div>
-                    </div>
-
-                    <label for="home-name">الاسم:</label>
-                    <input type="text" id="home-name" name="home-name" required>
-
-                    <label for="home-street">الشارع:</label>
-                    <input type="text" id="home-street" name="home-street">
-
-                    <label for="home-city">المدينة:</label>
-                    <input type="text" id="home-city" name="home-city">
-
-                    <label for="home-phone">رقم الهاتف:</label>
-                    <input type="tel" id="home-phone" name="home-phone">
-
-                </form>
-
-            </div>
-            <div id="section5" class="section">
                 <h1>تتبع الطلبية</h1>
 
                 <h2>طلبية رقم 123</h2>
@@ -159,7 +132,7 @@
                     </div>
                 </div>
             </div>
-            <div id="section6" class="section">
+            <div id="section5" class="section">
                 <h2>طلبيات العميل</h2>
 
                 <table>
@@ -172,14 +145,7 @@
                             <th>السعر</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2022-02-17</td>
-                            <td>اسم المنتج 1</td>
-                            <td>2</td>
-                            <td>75000 ل.س</td>
-                        </tr>
+                    <tbody id="lastordertable">
                     </tbody>
                 </table>
 
@@ -210,9 +176,118 @@
         </div>
     </footer>
     <script>
-        function redirectToHomePage() {
-            window.location.href = 'front_home';
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken);
+
+        fetch('/api/User', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
+            .then(response => response.json())
+            .then(userDataArray => {
+                console.log('User data:', userDataArray);
+
+                // استخراج معرف المستخدم من sessionStorage
+                const userData = JSON.parse(sessionStorage.getItem('userData'));
+                if (!userData || !userData.userId) {
+                    console.error('User data not found in sessionStorage or missing userId.');
+                    return;
+                }
+
+                // استخراج معرف المستخدم
+                const loggedInUserId = userData.userId;
+                console.log('Logged in user ID:', loggedInUserId);
+
+                // البحث عن بيانات المستخدم المرتبطة بالمعرف المسجل
+                const loggedInUser = userDataArray.find(user => user.id === loggedInUserId);
+                if (loggedInUser) {
+                    // عرض بيانات المستخدم
+                    document.getElementById('username').value = loggedInUser.username;
+                    document.getElementById('email').value = loggedInUser.email;
+                    document.getElementById('phone').value = loggedInUser.phone;
+                } else {
+                    console.error('Logged in user data not found.');
+                }
+            })
+            .catch(error => console.error('Error fetching user data:', error));
+
+
+        // function redirectToHomePage() {
+        //     window.location.href = 'front_home';
+        // }
+        function addAddress() {
+            // Retrieve authentication token
+            const authToken = localStorage.getItem('authToken');
+            if (!authToken) {
+                console.error('Authentication token not found in localStorage.');
+                return;
+            }
+            console.log('Authentication token:', authToken);
+
+            // Retrieve user ID from sessionStorage or localStorage
+            const userId = sessionStorage.getItem('userId') || localStorage.getItem('userId');
+            if (!userId) {
+                console.error('User ID not found in sessionStorage or localStorage.');
+                return;
+            }
+            console.log('User ID:', userId);
+
+            // Retrieve data from the form
+            const workName = document.getElementById('work-name').value.trim();
+            const workCity = document.getElementById('work-city').value.trim();
+            const workStreet = document.getElementById('work-street').value.trim();
+            const personName = document.getElementById('person-name').value.trim();
+            const workPhone = document.getElementById('work-phone').value.trim();
+
+            // Validate form inputs
+            if (!workName || !workCity || !workStreet || !personName || !workPhone) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            // Assemble data into a JSON object with user ID
+            const addressData = {
+                workName: workName,
+                workCity: workCity,
+                workStreet: workStreet,
+                personName: personName,
+                workPhone: workPhone,
+                userId: userId
+            };
+
+            // Send data to the server using fetch
+            fetch('/api/Address', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                },
+                body: JSON.stringify(addressData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Deal with the response according to your needs
+                    console.log(data);
+                    alert('Address added successfully');
+                    // Optionally clear form inputs or perform any other actions
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                    alert('An error occurred while adding the address');
+                });
         }
+
+
+
+
 
     </script>
 </body>

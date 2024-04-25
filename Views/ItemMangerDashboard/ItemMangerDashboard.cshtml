@@ -154,7 +154,6 @@
             </div>
             <div id="section5" class="section">
                 <h1>قائمة المنتجات</h1>
-                <button onclick="fetchProducts()">جلب بيانات المنتجات</button>
                 <table>
                     <thead>
                         <tr>
@@ -172,7 +171,7 @@
             <div id="section6" class="section">
                 <h2>محتوى المنتجات</h2>
                 <p>تستطيع التعديل على المنتجات</p>
-                <input type="text" id="productSearch" placeholder="ابحث عن المنتج">
+                @* <input type="text" id="productSearch" placeholder="ابحث عن المنتج"> *@
                 <ul id="itemList">
                     <!-- Product items will be dynamically added here using JavaScript -->
                 </ul>
@@ -204,51 +203,48 @@
         </div>
     </footer>
     <script>
-        //products info
-        function fetchProducts() {
-            // قم بجلب بيانات المنتجات من خلال طلب HTTP
-            fetch('/api/ProductAttributeQuantity')
-                .then(response => response.json())
-                .then(products => {
-                    // قم بتحديث جدول المنتجات مع البيانات الجديدة
-                    updateProductTable(products);
-                })
-                .catch(error => console.error('حدث خطأ أثناء جلب بيانات المنتجات:', error));
-        }
-        function updateProductTable(products) {
-            const tableBody = document.getElementById('productsTableBody');
-            // قم بمسح البيانات القديمة من جدول المنتجات
-            tableBody.innerHTML = '';
+        // استدعاء طلب API لجلب الصفات
+        fetch('/api/Attribute/getAllAttribute')
+            .then(response => response.json())
+            .then(data => {
+                const selectElement = document.getElementById('existing_property');
+                data.forEach(attribute => {
+                    const option = document.createElement('option');
+                    option.value = attribute.id;
+                    option.textContent = attribute.name;
+                    selectElement.appendChild(option);
+                });
 
-            // قم بإضافة البيانات الجديدة إلى جدول المنتجات
-            products.forEach(product => {
-                const row = `
-                                            <tr>
-                                                       <td>${product.productId}</td>
-                                                    <td>${product.productName}</td>
-                                                    <td>${product.productDescription}</td>
-                                                        <td>${product.price}</td>
-                                                <td>${product.quantity}</td>
-                                            </tr>
-                                        `;
-                tableBody.innerHTML += row;
-            });
-        }
+                selectElement.addEventListener('change', function () {
+                    const selectedOption = selectElement.options[selectElement.selectedIndex];
+                    const selectedId = selectedOption.value;
 
-        // // استدعاء طلب API لجلب المنتجات
-        // fetch('/api/Product')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // عرض أسماء المنتجات في قائمة
-        //         const selectElement = document.getElementById('productId');
-        //         data.forEach(product => {
-        //             const option = document.createElement('option');
-        //             option.value = product.id;
-        //             option.textContent = product.name;
-        //             selectElement.appendChild(option);
-        //         });
-        //     })
-        //     .catch(error => console.error('Error fetching products:', error));
+                    fetch(`/api/Attribute/selectAttribute?id=${selectedId}`)
+                        .then(response => response.json())
+                        .then(attributeData => {
+                            console.log('Response data:', attributeData); // Log the response data for inspection
+
+                            // Handle the single attribute object
+                            const propertyValueDropdown = document.getElementById('property_value_dropdown');
+                            propertyValueDropdown.innerHTML = ''; // Clear the existing options
+
+                            // Iterate through productAttributes array and create options for each value
+                            attributeData.productAttributes.forEach(productAttribute => {
+                                const option = document.createElement('option');
+                                option.value = productAttribute.value;
+                                option.textContent = productAttribute.value;
+                                propertyValueDropdown.appendChild(option);
+                            });
+                        })
+                        .catch(error => console.error('Error fetching attribute values:', error));
+
+
+
+                });
+            })
+            .catch(error => console.error('Error fetching attributes:', error));
+
+       
         // استدعاء طلب API لجلب المنتجات مع الكمية
         fetch('/api/ProductAttributeQuantity')
             .then(response => response.json())
@@ -433,67 +429,6 @@
         }
 
 
-        // function viewAllItems() {
-        //     // جلب بيانات المنتجات من الخادم
-        //     fetch('/api/Product')
-        //         .then(response => response.json())
-        //         .then(products => {
-        //             // استدعاء الدالة لعرض بيانات المنتجات في القائمة
-        //             displayProducts(products);
-        //         })
-        //         .catch(error => console.error('حدث خطأ أثناء جلب بيانات المنتجات:', error));
-        // }
-
-        // function displayProducts(products) {
-        //     const itemList = document.getElementById('itemList');
-        //     // مسح عناصر القائمة القديمة
-        //     itemList.innerHTML = '';
-
-        //     // إضافة بيانات المنتجات الجديدة إلى القائمة
-        //     products.forEach(product => {
-        //         const listItem = document.createElement('li');
-        //         listItem.textContent = `${product.name}: ${product.description}`;
-        //         itemList.appendChild(listItem);
-        //     });
-        // }
-
-
-
-
-
-
-        ///api/SubCategory
-
-        ///api/Product
-
-
-
-        // function loadInventory() {
-        //     var productId = document.getElementById('productSelect').value;
-
-        //     // قم بتنفيذ طلب AJAX لجلب مستوى المخزون من الخادم
-        //     // يمكنك استخدام XMLHttpRequest أو fetch API
-
-        //     // الآن نفترض أننا قد جلبنا المستوى من الخادم ونعرضه هنا
-        //     var inventoryLevel = 50; // افتراضي
-
-        //     document.getElementById('inventoryLevel').innerText = inventoryLevel;
-        // }
-
-        // function replenishInventory() {
-        //     var quantityToOrder = parseInt(document.getElementById('quantityToOrder').value, 10);
-
-        //     // يمكنك إضافة المزيد من الشروط هنا حسب الحاجة
-        //     if (!isNaN(quantityToOrder) && quantityToOrder > 0) {
-        //         var currentInventory = parseInt(document.getElementById('inventoryLevel').innerText, 10);
-        //         var newInventoryLevel = currentInventory + quantityToOrder;
-        //         document.getElementById('inventoryLevel').innerText = newInventoryLevel;
-
-        //         alert('تم إعادة تعبئة المخزون بنجاح!');
-        //     } else {
-        //         alert('الرجاء إدخال كمية صحيحة لإعادة تعبئة المخزون.');
-        //     }
-        // }
         function updatePropertyValues() {
             const selectedProperty = document.getElementById('existing_property').value;
             const propertyValueInput = document.getElementById('property_value');
@@ -567,43 +502,87 @@
             document.getElementById('propertyName').value = '';
             document.getElementById('propertyValue').value = '';
         }
-        // // Fetch products from the server/database
-        // function fetchProducts() {
-        //     // You need to implement this function to fetch products from the server
-        //     // and call the function displayProducts to populate the itemList
-        // }
+        //products info
+        function fetchProducts() {
+            // قم بجلب بيانات المنتجات من خلال طلب HTTP
+            fetch('/api/ProductAttributeQuantity')
+                .then(response => response.json())
+                .then(products => {
+                    // قم بتحديث جدول المنتجات مع البيانات الجديدة
+                    updateProductTable(products);
+                })
+                .catch(error => console.error('حدث خطأ أثناء جلب بيانات المنتجات:', error));
+        }
+        function updateProductTable(products) {
+            const tableBody = document.getElementById('productsTableBody');
+            // قم بمسح البيانات القديمة من جدول المنتجات
+            tableBody.innerHTML = '';
 
-        // // Display products in the itemList
-        // // Display products in the itemList with edit forms
-        // function displayProducts(products) {
-        //     var itemList = document.getElementById('itemList');
-        //     itemList.innerHTML = ''; // Clear existing items
+            // قم بإضافة البيانات الجديدة إلى جدول المنتجات
+            products.forEach(product => {
+                const row = `
+                                                    <tr>
+                                                               <td>${product.productId}</td>
+                                                            <td>${product.productName}</td>
+                                                            <td>${product.productDescription}</td>
+                                                                <td>${product.price}</td>
+                                                        <td>${product.quantity}</td>
+                                                    </tr>
+                                                `;
+                tableBody.innerHTML += row;
+            });
+        }
+        // Display products in the itemList
+        // Display products in the itemList with edit forms
+        function displayProducts(products) {
+            var itemList = document.getElementById('itemList');
+            itemList.innerHTML = ''; // Clear existing items
 
-        //     products.forEach(function (product) {
-        //         var listItem = document.createElement('li');
-        //         listItem.className = 'item';
-        //         listItem.innerHTML = `
-         
-        //         <img src="${product.image}">
-        //             <span>${product.name}</span>
-        //             <label for="itemQuantity">الكمية:</label>
-        //             <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
-        //             <label for="itemPrice">السعر:</label>
-        //             <input type="number" id="itemPrice" min="0" value="${product.price}">
-                    
-        //             <button onclick="saveChangesByButton(this, '${product.id}')">حفظ التعديلات</button>
-        //             <button onclick="editProduct('${product.id}')">تعديل</button>        
-            
-        // `;
-        //         itemList.appendChild(listItem);
+            products.forEach(function (product) {
+                var listItem = document.createElement('li');
+                listItem.className = 'item';
+                listItem.innerHTML = `
+                                
+                        <img src="${product.image}">
+                            <span>${product.productName}</span>
+                    <label for="itemQuantity">الكمية:</label>
+                            <input type="number" id="itemQuantity" min="1" value="${product.quantity}">
+                    <label for="itemPrice">السعر:</label>
+                    <input type="number" id="itemPrice" min="0" value="${product.price}">
+        <button onclick="saveChangesByButton(this, '${product.id}', '${product.quantity}', '${product.price}')">حفظ التعديلات</button>
 
-        //     });
-        // }
+                        `;
+                itemList.appendChild(listItem);
+            });
+        }
+        // Fetch products and then display them
+        function fetchProducts() {
+            // Fetch products from the API
+            fetch('/api/ProductAttributeQuantity')
+                .then(response => response.json())
+                .then(products => {
+                    // Update the product table
+                    updateProductTable(products);
 
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     // Load product data when the page is loaded
-        //     viewAllItems();
-        // });
+                    // Display products
+                    displayProducts(products);
+                })
+                .catch(error => console.error('Error fetching products:', error));
+        }
+
+        // Call fetchProducts to fetch and display products
+        fetchProducts();
+
+        
+        // Function to save changes for a specific product
+        function saveChangesByButton(button, productId, quantity, price) {
+           
+        }
+
+
+
+
+
         // Function to dynamically generate an edit form for a specific product
         function editProduct(productId) {
             // Fetch product details based on productId (similar to fetching products)
@@ -649,17 +628,9 @@
         }
 
 
-        // Function to save changes for a specific product
-        function saveChangesByButton(button, productId) {
-            var listItem = button.parentNode;
-            var itemQuantity = listItem.querySelector('input#itemQuantity').value;
-            var itemPrice = listItem.querySelector('input#itemPrice').value;
 
-            // Implement code to send the updated data (itemQuantity, itemPrice) to the server
-            // and update the corresponding product in the database
 
-            alert('تم حفظ التعديلات للمنتج ذو الرقم: ' + productId);
-        }
+
 
         // Function to filter products based on the search input
         function filterProducts() {
@@ -749,20 +720,20 @@
 
             var selectedProduct = document.getElementById("product-select").value;
 
-            var productProperties = {
-                product1: {
-                    اللون: ["أحمر", "أزرق", "أخضر"],
-                    الصفحات: ["100", "50", "6"],
-                    النوع: ["غلاف صلب", "غلاف ورقي", "دفتر سلك"],
-                    الحجم: ["قياس كبير", "قياس وسط", "قياس صغير"]
-                },
-                product2: {
-                    اللون: ["أسود", "أبيض", "رمادي"],
-                    الصفحات: ["200", "150", "120"],
-                    النوع: ["غلاف ورقي", "غلاف بلاستيك", "دفتر عادي"],
-                    الحجم: ["قياس صغير", "قياس صغير جداً"]
-                }
-            };
+            // var productProperties = {
+            //     product1: {
+            //         اللون: ["أحمر", "أزرق", "أخضر"],
+            //         الصفحات: ["100", "50", "6"],
+            //         النوع: ["غلاف صلب", "غلاف ورقي", "دفتر سلك"],
+            //         الحجم: ["قياس كبير", "قياس وسط", "قياس صغير"]
+            //     },
+            //     product2: {
+            //         اللون: ["أسود", "أبيض", "رمادي"],
+            //         الصفحات: ["200", "150", "120"],
+            //         النوع: ["غلاف ورقي", "غلاف بلاستيك", "دفتر عادي"],
+            //         الحجم: ["قياس صغير", "قياس صغير جداً"]
+            //     }
+            // };
 
             // إنشاء وعرض الخصائص الخاصة بالمنتج المختار
             if (productProperties[selectedProduct]) {
@@ -789,31 +760,6 @@
                 productPropertiesElement.style.display = "block";
             }
         }
-
-        /*     function addNewItem() {
-                 var itemName = document.getElementById('itemName').value;
-                 var itemImage = document.getElementById('itemImage').value;
-                 var itemQuantity = document.getElementById('itemQuantity').value;
-
-                 if (itemName && itemImage && itemQuantity > 0) {
-                     var itemList = document.getElementById('itemList');
-                     var newItem = document.createElement('li');
-                     newItem.className = 'item';
-                     newItem.innerHTML = `
-                                 <img src="${itemImage}" alt="${itemName}">
-                                 <span>${itemName}</span>
-                                 <span>الكمية: ${itemQuantity}</span>
-                                 <button onclick="removeItem(this)">حذف</button>
-                             `;
-                     itemList.appendChild(newItem);
-
-                     // Clear input fields
-                     document.getElementById('itemName').value = '';
-                     document.getElementById('itemImage').value = '';
-                     document.getElementById('itemQuantity').value = 1;
-                 }
-             }
-             */
         function updateItemQuantity() {
             var itemName = document.getElementById('itemName').value;
             var itemQuantity = document.getElementById('itemQuantity').value;
@@ -843,21 +789,7 @@
             listItem.parentNode.removeChild(listItem);
         }
 
-        /*   function viewAllItems() {
-               var itemList = document.getElementById('itemList');
-               var items = itemList.getElementsByClassName('item');
-
-               if (items.length > 0) {
-                   console.log("All Items:");
-                   for (var i = 0; i < items.length; i++) {
-                       var itemName = items[i].getElementsByTagName('span')[0].textContent;
-                       var itemImage = items[i].getElementsByTagName('img')[0].getAttribute('src');
-                       console.log(`${itemName} - ${itemImage}`);
-                   }
-               } else {
-                   console.log("No items to display.");
-               }
-           }*/
+       
         function showSection(sectionId) {
             // إخفاء جميع الأقسام
             var sections = document.querySelectorAll('.section');
@@ -908,15 +840,15 @@
             // يمكنك إضافة رمز يقوم بحذف القسم أو تنفيذ الإجراء الخاص بك هنا
             alert('تم الحذف ');
         }
-        function saveChangesByButton(button) {
-            var listItem = button.parentNode;
-            var itemName = listItem.querySelector('span').textContent;
-            var itemQuantity = listItem.querySelector('input#itemQuantity').value;
-            var itemPrice = listItem.querySelector('input#itemPrice').value;
+        // function saveChangesByButton(button) {
+        //     var listItem = button.parentNode;
+        //     var itemName = listItem.querySelector('span').textContent;
+        //     var itemQuantity = listItem.querySelector('input#itemQuantity').value;
+        //     var itemPrice = listItem.querySelector('input#itemPrice').value;
 
-            // هنا يمكنك إجراء الإجراءات اللازمة لحفظ التعديلات في قاعدة البيانات أو مكان آخر
-            alert('تم حفظ التعديلات لـ' + itemName + ': الكمية=' + itemQuantity + '، السعر=' + itemPrice);
-        }
+        //     // هنا يمكنك إجراء الإجراءات اللازمة لحفظ التعديلات في قاعدة البيانات أو مكان آخر
+        //     alert('تم حفظ التعديلات لـ' + itemName + ': الكمية=' + itemQuantity + '، السعر=' + itemPrice);
+        // }
         function saveChanges(sectionId) {
             // قم بتحديد الأقسام التي تريد تطبيق السلوك عليها
             var sectionsToCheck = ['section2', 'section3'];
