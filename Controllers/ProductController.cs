@@ -80,12 +80,16 @@ namespace StationeryStore.Controllers
 
         [HttpGet]
         //[Authorize (Roles = "Admin")]
-        public IActionResult GetAllProducts()
+        public IActionResult GetAllProducts(string? search)
         {
-            var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetAllProducts());
+            string s;
+            if (!string.IsNullOrEmpty(search))
+                s = search;
+            else s = "";
+            var products = _mapper.Map<List<ResProductDto>>(_productRepository.GetAllProducts(s));
             return Ok(products);
         }
 
     
-}
+    }
 }

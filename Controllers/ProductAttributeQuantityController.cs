@@ -47,27 +47,5 @@ namespace StationeryStore.Controllers
                 return BadRequest("Somthing went wrong");
             return Ok("updated successfully");
         }
-<<<<<<< Updated upstream
-
-        [HttpGet]
-        public IActionResult GetAllProductsWithQuantity()
-        {
-            var productQuantities = _productAttributeQuantityRepository.GetAllProductsWithQuantity();
-
-            var productWithQuantities = productQuantities.Select(pa => new
-            {
-                ProductId = pa.Product.Id,
-                ProductName = pa.Product.Name,
-                ProductDescription = pa.Product.Description,
-                Quantity = pa.Quantity,
-                Price = pa.Price
-            }).ToList();
-
-            return Ok(productWithQuantities);
-        }
-
-=======
- 
->>>>>>> Stashed changes
     }
 }

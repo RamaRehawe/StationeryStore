@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StationeryStore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< Updated upstream
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8885aa1cd648c595f5ac6632ac01fead6d5a641f")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b87d64337a221737caa36bfaba31e8464ead271")]
->>>>>>> Stashed changes
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bcaba0cad69bd00021e642044735bebab6eb5ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("StationeryStore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StationeryStore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

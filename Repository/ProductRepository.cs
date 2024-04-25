@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StationeryStore.Data;
+using StationeryStore.Dto;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
+using System.Text.RegularExpressions;
 
 namespace StationeryStore.Repository
 {
@@ -20,10 +22,16 @@ namespace StationeryStore.Repository
             return Save();
         }
 
-        public ICollection<Product> GetAllProducts()
+        public ICollection<Product> GetAllProducts(string search)
         {
-            return _context.Products.OrderBy(p => p.Id)
-                .Include(p => p.ProductAttributeQuantities).ToList();
+            if (string.IsNullOrEmpty(search))
+                return _context.Products.OrderBy(p => p.Id)
+                    .Include(p => p.ProductAttributeQuantities).ToList();
+            var regex = new Regex(search, RegexOptions.IgnoreCase);
+            var products = _context.Products.AsEnumerable()
+                                     .Where(p => regex.IsMatch(p.Description) || regex.IsMatch(p.Name))
+                                     .ToList();
+            return products;
         }
 
         public Product GetProduct(int id)

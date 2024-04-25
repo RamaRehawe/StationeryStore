@@ -1,4 +1,5 @@
-﻿using StationeryStore.Models;
+﻿using StationeryStore.Dto;
+using StationeryStore.Models;
 
 namespace StationeryStore.Interfaces
 {
@@ -9,6 +10,6 @@ namespace StationeryStore.Interfaces
         Product GetProduct(int id);
         bool ProductExists(int id);
         bool AddProduct(Product product);
-        ICollection<Product> GetAllProducts(); 
+        ICollection<Product> GetAllProducts(string search); 
     }
 }
