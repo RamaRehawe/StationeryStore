@@ -3,12 +3,21 @@
   "WorkspaceRootPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\",
   "Documents": [
     {
+<<<<<<< Updated upstream
       "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\signup\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:views\\signup\\signup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\customerservice\\customerservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:views\\customerservice\\customerservice.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+=======
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\imageattributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\imageattributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\productattributequantitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\productattributequantitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> Stashed changes
     }
   ],
   "DocumentGroupContainers": [
@@ -39,6 +48,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< Updated upstream
               "Title": "Signup.cshtml",
               "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Signup\\Signup.cshtml",
               "RelativeDocumentMoniker": "Views\\Signup\\Signup.cshtml",
@@ -47,11 +57,22 @@
               "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-24T19:37:01.207Z",
+=======
+              "Title": "ImageAttributeController.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\ImageAttributeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ImageAttributeController.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\ImageAttributeController.cs",
+              "RelativeToolTip": "Controllers\\ImageAttributeController.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAQwCkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T11:25:20.647Z",
+>>>>>>> Stashed changes
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+<<<<<<< Updated upstream
               "Title": "CustomerService.cshtml",
               "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\CustomerService\\CustomerService.cshtml",
               "RelativeDocumentMoniker": "Views\\CustomerService\\CustomerService.cshtml",
@@ -60,6 +81,16 @@
               "ViewState": "AQIAAAkAAAAAAAAAAAAAABcAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-24T19:27:33.34Z",
+=======
+              "Title": "ProductAttributeQuantityController.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\ProductAttributeQuantityController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductAttributeQuantityController.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\ProductAttributeQuantityController.cs",
+              "RelativeToolTip": "Controllers\\ProductAttributeQuantityController.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAA1wBgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-25T11:20:59.637Z",
+>>>>>>> Stashed changes
               "EditorCaption": ""
             }
           ]

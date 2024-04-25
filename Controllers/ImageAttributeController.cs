@@ -18,12 +18,12 @@ namespace StationeryStore.Controllers
         {
         }
 
-        [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile file)
-        {
-            var result = await WriteFile(file);
-            return Ok(result);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> UploadFile(IFormFile file)
+        //{
+        //    var result = await WriteFile(file);
+        //    return Ok(result);
+        //}
 
         private async Task<string> WriteFile(IFormFile file)
         {

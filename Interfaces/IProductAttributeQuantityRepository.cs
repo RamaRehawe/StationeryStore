@@ -7,7 +7,6 @@ namespace StationeryStore.Interfaces
         int Create(ProductAttributeQuantity productAttributeQuantity);
         ProductAttributeQuantity GetById(int id);
         bool Update(ProductAttributeQuantity productAttributeQuantity);
-        ICollection<ProductAttributeQuantity> GetAllProductsWithQuantity();
-
+        
     }
 }

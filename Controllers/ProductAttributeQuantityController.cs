@@ -24,14 +24,14 @@ namespace StationeryStore.Controllers
         }
 
         
-        [HttpPost]
-        public IActionResult AddQuantity(ReqProductAttributeQuantityDto quantityDto)
-        {
-            var productAttributeQuantity = _mapper.Map<ProductAttributeQuantity>(quantityDto);
-            int paq = _productAttributeQuantityRepository.Create(productAttributeQuantity);
+        //[HttpPost]
+        //public IActionResult AddQuantity(ReqProductAttributeQuantityDto quantityDto)
+        //{
+        //    var productAttributeQuantity = _mapper.Map<ProductAttributeQuantity>(quantityDto);
+        //    int paq = _productAttributeQuantityRepository.Create(productAttributeQuantity);
                 
-            return Ok("Added successfully");
-        }
+        //    return Ok("Added successfully");
+        //}
 
         [HttpPut("{id}")]
         public IActionResult UpdateQuantity(int id, ReqProductAttributeQuantityDto quantityDto)
@@ -47,6 +47,7 @@ namespace StationeryStore.Controllers
                 return BadRequest("Somthing went wrong");
             return Ok("updated successfully");
         }
+<<<<<<< Updated upstream
 
         [HttpGet]
         public IActionResult GetAllProductsWithQuantity()
@@ -65,5 +66,8 @@ namespace StationeryStore.Controllers
             return Ok(productWithQuantities);
         }
 
+=======
+ 
+>>>>>>> Stashed changes
     }
 }

@@ -31,11 +31,6 @@ namespace StationeryStore.Repository
             _context.ProductAttributesQuantities.Update(productAttributeQuantity);
             return Save();
         }
-        public ICollection<ProductAttributeQuantity> GetAllProductsWithQuantity()
-        {
-            return _context.ProductAttributesQuantities
-                .Include(pa => pa.Product) // Include the related Product
-                .ToList();
-        }
+        
     }
 }
