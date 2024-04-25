@@ -5205,19 +5205,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\oulan\\.nuget\\packages\\": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
+      "projectUniqueName": "C:\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
       "projectName": "StationeryStore",
-      "projectPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
-      "packagesPath": "C:\\Users\\oulan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\obj\\",
+      "projectPath": "C:\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\StationeryStore\\StationeryStore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\oulan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5312,7 +5312,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

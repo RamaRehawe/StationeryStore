@@ -24,14 +24,14 @@ namespace StationeryStore.Controllers
         }
 
         
-        [HttpPost]
-        public IActionResult AddQuantity(ReqProductAttributeQuantityDto quantityDto)
-        {
-            var productAttributeQuantity = _mapper.Map<ProductAttributeQuantity>(quantityDto);
-            int paq = _productAttributeQuantityRepository.Create(productAttributeQuantity);
+        //[HttpPost]
+        //public IActionResult AddQuantity(ReqProductAttributeQuantityDto quantityDto)
+        //{
+        //    var productAttributeQuantity = _mapper.Map<ProductAttributeQuantity>(quantityDto);
+        //    int paq = _productAttributeQuantityRepository.Create(productAttributeQuantity);
                 
-            return Ok("Added successfully");
-        }
+        //    return Ok("Added successfully");
+        //}
 
         [HttpPut("{id}")]
         public IActionResult UpdateQuantity(int id, ReqProductAttributeQuantityDto quantityDto)
@@ -47,23 +47,5 @@ namespace StationeryStore.Controllers
                 return BadRequest("Somthing went wrong");
             return Ok("updated successfully");
         }
-
-        [HttpGet]
-        public IActionResult GetAllProductsWithQuantity()
-        {
-            var productQuantities = _productAttributeQuantityRepository.GetAllProductsWithQuantity();
-
-            var productWithQuantities = productQuantities.Select(pa => new
-            {
-                ProductId = pa.Product.Id,
-                ProductName = pa.Product.Name,
-                ProductDescription = pa.Product.Description,
-                Quantity = pa.Quantity,
-                Price = pa.Price
-            }).ToList();
-
-            return Ok(productWithQuantities);
-        }
-
     }
 }
