@@ -25,6 +25,11 @@ namespace StationeryStore.Repository
             return order.Id;
         }
 
+        public int GetCompletedOrdersCount()
+        {
+            return _context.Orders.Count(o => o.OrderStatus == "Deliverd");
+        }
+
         public ICollection<Order> GetDeliverdOrdersByUserId(int userId)
         {
             return _context.Orders.Where(o => o.UserId == userId && o.OrderStatus == "Deliverd").ToList();
@@ -49,6 +54,11 @@ namespace StationeryStore.Repository
         public ICollection<Order> GetOrdersByUserId(int userId)
         {
             return _context.Orders.Where(o => o.UserId == userId).ToList();
+        }
+
+        public int GetTotalOrdersCount()
+        {
+            return _context.Orders.Count();
         }
     }
 }

@@ -151,6 +151,27 @@ namespace StationeryStore.Controllers
             return Ok(orders);
         }
 
+        [HttpGet("getOrdersPercentage")]
+        public IActionResult GetOrdersPercentage()
+        {
+            double percentage = CalculateOrderPercentage();
+            return Ok(percentage + "%");
+        }
+
+
+        private double CalculateOrderPercentage()
+        {
+            int totalOrders = _orderRepository.GetTotalOrdersCount();
+            int completedOrders = _orderRepository.GetCompletedOrdersCount();
+
+            if (totalOrders == 0)
+            {
+                return 0; // Avoid division by zero
+            }
+
+            return (double)completedOrders / totalOrders * 100;
+        }
+
         private double CalculateTotalAmount(ICollection<OrderItem> orderItems)
         {
             double totalAmount = 0;

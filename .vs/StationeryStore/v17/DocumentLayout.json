@@ -13,6 +13,8 @@
     {
       "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\attributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\attributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,6 +25,7 @@
         {
           "DockedWidth": 1741,
           "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -65,6 +68,8 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-27T04:54:53.554Z",
               "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Document",
@@ -77,6 +82,14 @@
               "ViewState": "AQIAAMAAAAAAAAAAAADwv4YAAABsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-27T03:09:56.535Z",
+              "Title": "AttributeController.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\AttributeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AttributeController.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\AttributeController.cs",
+              "RelativeToolTip": "Controllers\\AttributeController.cs",
+              "ViewState": "AQIAAKYAAAAAAAAAAAAAAD4AAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T07:35:47.844Z",
               "EditorCaption": ""
             }
           ]

@@ -43,6 +43,7 @@ namespace StationeryStore.Repository
             var user = await _context.Users.Where(u => u.Email == username).FirstAsync();
             user.JwtToken = token;
             _context.Users.Update(user);
+
         }
     }
 }

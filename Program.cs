@@ -13,8 +13,6 @@ using StationeryStore.Services;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -61,7 +59,6 @@ builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 builder.Services.AddScoped<IAttributeRepository, AttributeRepository>();
 builder.Services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
 builder.Services.AddScoped<IImageAttributeRepository, ImageAttributeRepository>();
-//builder.Services.AddSingleton<IWebHostEnvironment, WebHostEnvironment>();
 builder.Services.AddScoped<UserInfoService>();
 builder.Services.AddScoped<IContactInformationRepository, ContactInformationRepository>();
 
@@ -74,6 +71,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
     SeedData(app);
