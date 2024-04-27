@@ -205,7 +205,7 @@
                         console.error("حدث خطأ أثناء جلب البيانات:", error);
                     });
             });
-           //edit Info
+           //edit Info just get
         fetch('/api/ContactInformation/getStoreInfos')
             .then(response => response.json())
             .then(data => {
@@ -215,41 +215,6 @@
                 document.getElementById('storeSocial').value = data[2].value;
             })
             .catch(error => console.error('حدث خطأ أثناء جلب بيانات معلومات الاتصال:', error));
-        initialPhoneValue = document.getElementById('storePhone').value;
-        initialEmailValue = document.getElementById('storeEmail').value;
-        initialSocialValue = document.getElementById('storeSocial').value;
-        function save() {
-            // جمع البيانات المعدلة من الحقول
-            var currentPhoneValue = document.getElementById('storePhone').value;
-            var currentEmailValue = document.getElementById('storeEmail').value;
-            var currentSocialValue = document.getElementById('storeSocial').value;
-
-            // التأكد من أن هناك تغيير في القيم
-            if (currentPhoneValue !== initialPhoneValue || currentEmailValue !== initialEmailValue || currentSocialValue !== initialSocialValue) {
-                // إرسال البيانات المعدلة إلى الخادم
-                fetch('/api/ContactInformation/setContactInformation', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        // تمرير القيم الحالية للحقول كبيانات المعدلة
-                        storePhone: currentPhoneValue,
-                        storeEmail: currentEmailValue,
-                        storeSocial: currentSocialValue
-                    })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        // عرض رسالة بنجاح التحديث
-                        alert('تم تحديث البيانات بنجاح!');
-                    })
-                    .catch(error => console.error('حدث خطأ أثناء حفظ التغييرات:', error));
-            } else {
-                // القيم متطابقة، لا حاجة لحفظ التغييرات
-                alert('لا توجد تغييرات لحفظها.');
-            }
-        }
         //add item manager and driver
         function addUser() {
             var userTypeElement = document.getElementById("managerType");
@@ -335,7 +300,7 @@
         //products info
         function fetchProducts() {
             // قم بجلب بيانات المنتجات من خلال طلب HTTP
-            fetch('/api/ProductAttributeQuantity')
+            fetch('/api/Product')
                 .then(response => response.json())
                 .then(products => {
                     // قم بتحديث جدول المنتجات مع البيانات الجديدة
@@ -343,25 +308,26 @@
                 })
                 .catch(error => console.error('حدث خطأ أثناء جلب بيانات المنتجات:', error));
         }
-        function updateProductTable(products) {
-            const tableBody = document.getElementById('productsTableBody');
-            // قم بمسح البيانات القديمة من جدول المنتجات
-            tableBody.innerHTML = '';
 
-            // قم بإضافة البيانات الجديدة إلى جدول المنتجات
+        function updateProductTable(products) {
+            // Clear the table body
+            document.getElementById('productsTableBody').innerHTML = '';
+
+            // Iterate over each product and append it to the table
             products.forEach(product => {
                 const row = `
-                                    <tr>
-                                               <td>${product.productId}</td>
-                                            <td>${product.productName}</td>
-                                            <td>${product.productDescription}</td>
-                                                <td>${product.price}</td>
-                                        <td>${product.quantity}</td>
-                                    </tr>
-                                `;
-                tableBody.innerHTML += row;
+                    <tr>
+                        <td>${product.id}</td>
+                        <td>${product.name}</td>
+                        <td>${product.description}</td>
+                        <td>${product.productAttributeQuantities[0].price}</td>
+                        <td>${product.productAttributeQuantities[0].quantity}</td>
+                    </tr>
+                `;
+                document.getElementById('productsTableBody').innerHTML += row;
             });
         }
+
 
         // يمكنك استخدام JavaScript لتحديث حالة الطلبية وتنشيط الحدث المناسب
         const events = document.querySelectorAll('.event');

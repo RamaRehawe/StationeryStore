@@ -45,7 +45,7 @@ namespace StationeryStore.Controllers
             var updatedQuantity = _mapper.Map(quantityDto, isExisted);
             if (!_productAttributeQuantityRepository.Update(updatedQuantity))
                 return BadRequest("Somthing went wrong");
-            return Ok("updated successfully");
+            return Ok(new { message = "Updated successfully" });
         }
     }
 }

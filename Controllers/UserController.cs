@@ -80,7 +80,7 @@ namespace StationeryStore.Controllers
 
             // Update the token for the user in the database
             await _userRepository.UpdateTokenByUsernameAsync(loginDto.Email, token);
-
+            _userRepository.Save();
             // Return the token and user type in the response
             return Ok(new { Token = token, UserType = user.UserType , UserId = user.Id });
         }

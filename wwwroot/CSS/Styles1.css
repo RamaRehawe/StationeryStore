@@ -1,3 +1,310 @@
+/*#itemList {
+    list-style: none;
+    padding: 0;
+}*/
+
+.item {
+    border: 1px solid #ddd;
+    margin: 5px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .item img {
+        max-width: 50px;
+        max-height: 50px;
+        margin-right: 10px;
+    }
+
+#sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 97.5%;
+    width: 250px;
+    background-color: #2a2a2a;
+    color: #fff;
+    padding-top: 20px;
+}
+
+    #sidebar a {
+        display: block;
+        padding: 15px;
+        color: #fff;
+        text-decoration: none;
+        border-bottom: 1px solid #555;
+        transition: background-color 0.3s;
+    }
+
+        #sidebar a:hover {
+            background-color: #555;
+        }
+
+#content {
+    margin-right: 260px;
+    padding: 20px;
+}
+
+.section {
+    display: none;
+}
+
+.active-section {
+    display: block;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+    .section-header h2 {
+        margin: 0;
+    }
+
+.section-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.edit-icon,
+.delete-icon,
+.save-icon {
+    cursor: pointer;
+}
+
+form {
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input {
+    padding: 8px;
+    margin-top: 5px;
+    width: 100%;
+}
+
+.product-properties {
+    display: none;
+}
+
+#itemParent {
+    padding: 8px;
+    margin-top: 5px;
+    width: 100%;
+    font-size: 16px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+    #itemParent::-ms-expand,
+    #itemParent::-webkit-inner-spin-button,
+    #itemParent::-webkit-outer-spin-button {
+        display: none;
+    }
+
+#itemParent {
+    padding-right: 5px;
+    background-image: url('down-arrow.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 18px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.actions button {
+    margin-left: 10px;
+}
+
+.product-details {
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: right;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+select {
+    padding: 8px;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    width: 100%;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: Arial,sans-serif;
+}
+
+.shipping-address label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.quantity select, .delivery-options select {
+    width: 50%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+.rating-form {
+    margin-top: 20px;
+}
+
+    .rating-form .rating-stars span {
+        cursor: pointer;
+        font-size: 25px;
+        color: #ccc;
+    }
+
+        .rating-form .rating-stars span.active {
+            color: gold;
+        }
+
+    .rating-form textarea {
+        width: 100%;
+        height: 100px;
+        margin: 10px 0;
+    }
+
+
+.product-ratings {
+    margin-top: 20px;
+}
+
+.user-rating {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+    .user-rating .rating-stars span {
+        font-size: 20px;
+        color: gold;
+    }
+
+    .user-rating p {
+        margin: 0;
+    }
+
+.product-images {
+    display: flex;
+    overflow-x: auto;
+    margin-bottom: 5px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.main-product-image {
+    width: 300px;
+    height: 300px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 600px;
+    direction: rtl;
+}
+
+.close {
+    color: #555;
+    float: right;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* Additional styles for shipping details */
+.shipping-details p {
+    margin: 10px 0;
+    position: relative;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.align-left {
+    position: absolute;
+    left: 0;
+}
+/* Additional styles for the specific paragraph */
+p.red-bold-centered {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
+
+.add-category-icon {
+    cursor: pointer;
+}
+
 #itemList {
     list-style: none;
     padding: 0;
@@ -69,7 +376,7 @@
 .section-actions {
     position: absolute;
     top: 0;
-    left: 0; 
+    left: 0;
     display: flex;
     gap: 10px;
 }
@@ -118,8 +425,8 @@ input {
     }
 
 #itemParent {
-    padding-right: 5px; 
-    background-image: url('down-arrow.png'); 
+    padding-right: 5px;
+    background-image: url('down-arrow.png');
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 18px;
@@ -129,7 +436,7 @@ input {
 }
 
 .actions button {
-    margin-left: 10px; 
+    margin-left: 10px;
 }
 
 .product-details {
@@ -189,11 +496,11 @@ select {
     .rating-form .rating-stars span {
         cursor: pointer;
         font-size: 25px;
-        color: #ccc; 
+        color: #ccc;
     }
 
-    .rating-form .rating-stars span.active {
-            color: gold; 
+        .rating-form .rating-stars span.active {
+            color: gold;
         }
 
     .rating-form textarea {
@@ -240,6 +547,7 @@ select {
     width: 300px;
     height: 300px;
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -297,9 +605,79 @@ p.red-bold-centered {
     color: red;
     font-weight: bold;
     text-align: center;
-    font-size: 18px; 
+    font-size: 18px;
 }
 
 .add-category-icon {
-    cursor: pointer; 
+    cursor: pointer;
 }
+
+.product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Center text horizontally */
+    margin-top: 10px; /* Adjust as needed */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+    .editForm label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .editForm input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .editForm button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .editForm button:hover {
+            background-color: #45a049;
+        }
+
+.editButton {
+    width: 100%;
+    background-color: lightgrey; /* ·Ê‰ Œ·›Ì… «·“— */
+    color: #333; /* ·Ê‰ «·‰’ */
+    padding: 8px 16px; /*  »«⁄œ «·‰’ œ«Œ· «·“— */
+    border: none; /* Õ–› «·ÕœÊœ */
+    border-radius: 4px; /*  œÊÌ— «·ÕÊ«› */
+    cursor: pointer; /*  €ÌÌ— «·„ƒ‘— ⁄‰œ «· ÕÊÌ„ */
+    transition: background-color 0.3s; /*  √ÀÌ— «· ÕÊ· ··Ê‰ ⁄‰œ «· ÕÊÌ„ */
+}
+
+    .editButton:hover {
+        background-color: lightslategray; /* ·Ê‰ Œ·›Ì… «·“— ⁄‰œ «· ÕÊÌ„ */
+    }

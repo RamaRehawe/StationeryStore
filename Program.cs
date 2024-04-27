@@ -63,6 +63,7 @@ builder.Services.AddScoped<IProductAttributeRepository, ProductAttributeReposito
 builder.Services.AddScoped<IImageAttributeRepository, ImageAttributeRepository>();
 //builder.Services.AddSingleton<IWebHostEnvironment, WebHostEnvironment>();
 builder.Services.AddScoped<UserInfoService>();
+builder.Services.AddScoped<IContactInformationRepository, ContactInformationRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen();

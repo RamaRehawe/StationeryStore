@@ -37,25 +37,28 @@ namespace StationeryStore.Controllers
             switch (reqContact.Type)
             {
                 case "storePhone":
-                    contactInfoToUpdate = _contactInformationRepository.GetInfos().FirstOrDefault(ci => ci.Type == "Phone");
+                    contactInfoToUpdate = _contactInformationRepository.GetInfoById(reqContact.Id);
                     break;
                 case "storeEmail":
-                    contactInfoToUpdate = _contactInformationRepository.GetInfos().FirstOrDefault(ci => ci.Type == "Email");
+                    contactInfoToUpdate = _contactInformationRepository.GetInfoById(reqContact.Id);
                     break;
                 case "storeSocial":
-                    contactInfoToUpdate = _contactInformationRepository.GetInfos().FirstOrDefault(ci => ci.Type == "Social Media");
+                    contactInfoToUpdate = _contactInformationRepository.GetInfoById(reqContact.Id);
                     break;
                 default:
-                    return NotFound();
+                    return NotFound(); // If the provided type is not recognized
+            }
+
+            if (contactInfoToUpdate == null)
+            {
+                return NotFound(); // If contact information with the specified ID is not found
             }
 
             contactInfoToUpdate.Value = reqContact.Value;
             _contactInformationRepository.UpdateInfos(contactInfoToUpdate);
 
-            return Ok(contactInfoToUpdate);
+            return Ok(contactInfoToUpdate); // Return the updated contact information
         }
-
-
 
 
 
