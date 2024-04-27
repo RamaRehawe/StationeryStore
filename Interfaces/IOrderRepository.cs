@@ -11,6 +11,8 @@ namespace StationeryStore.Interfaces
         Order GetOrderByOrderId(int userId, int orderId);
         void AddItemToOrder(OrderItem item);
         ICollection<Order> GetOrders();
+        int GetTotalOrdersCount();
+        int GetCompletedOrdersCount();
     }
 
 }

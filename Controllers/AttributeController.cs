@@ -54,7 +54,7 @@ namespace StationeryStore.Controllers
 
 
         // POST api/product/{productId}/attributes
-        [HttpPost("attributes")]
+        [HttpPost("addDetails")]
         public  async Task<IActionResult> AddProductAttributes(IFormFile formFile,
             [FromForm] ReqAttributeDto attributeDto)
         {
@@ -87,11 +87,10 @@ namespace StationeryStore.Controllers
                 
             };
 
-            if(_productAttributeRepository.Exist(attributeProduct.Value, attributeId))
+            if(!_productAttributeRepository.Exist(attributeProduct.Value, attributeId))
             {
-                return BadRequest("The value for this attribute already exist");
+                _productAttributeRepository.AddProductAttribute(attributeProduct);
             }
-            _productAttributeRepository.AddProductAttribute(attributeProduct);
 
             var res1 = WriteFile(formFile);
             var res = await res1;

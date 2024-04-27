@@ -80,7 +80,7 @@ namespace StationeryStore.Controllers
 
             // Update the token for the user in the database
             await _userRepository.UpdateTokenByUsernameAsync(loginDto.Email, token);
-
+            _userRepository.Save();
             // Return the token and user type in the response
             return Ok(new { Token = token, UserType = user.UserType , UserId = user.Id });
         }
@@ -98,16 +98,8 @@ namespace StationeryStore.Controllers
         //    await _userRepository.UpdateTokenByUsernameAsync(loginDto.Email, token);
         //    _userRepository.Save();
         //    return Ok(new { Token = token });
-
-
         //}
-        //[Authorize(Roles = "Admin")]
-        //[HttpPost("admin-action")]
-        //public IActionResult AdminAction()
-        //{
-        //    // Only users with the "Admin" role can access this endpoint
-        //    return Ok("Admin action performed successfully!");
-        //}
+        
 
         private string GenerateJwtToken(string username, string role)
         {

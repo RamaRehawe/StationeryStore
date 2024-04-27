@@ -3,35 +3,8 @@
   "WorkspaceRootPath": "C:\\StationeryStore\\StationeryStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\profile\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:views\\profile\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:interfaces\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.Products.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\productattributequantitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\productattributequantitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\attributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\attributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,7 +14,6 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1741,
-          "SelectedChildIndex": 6,
           "SelectedChildIndex": 5,
           "Children": [
             {
@@ -61,107 +33,20 @@
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T20:10:42.085Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddressController.cs",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\AddressController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AddressController.cs",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\AddressController.cs",
-              "RelativeToolTip": "Controllers\\AddressController.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAAAB4AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T20:10:34.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductAttributeQuantityController.cs",
-              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\ProductAttributeQuantityController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductAttributeQuantityController.cs",
-              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\ProductAttributeQuantityController.cs",
-              "RelativeToolTip": "Controllers\\ProductAttributeQuantityController.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAAwDAAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T13:19:07.61Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Login\\Login.cshtml",
-              "RelativeDocumentMoniker": "Views\\Login\\Login.cshtml",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Login\\Login.cshtml",
-              "RelativeToolTip": "Views\\Login\\Login.cshtml",
-              "ViewState": "AQIAABQAAAAAAAAAAAAAAKAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-25T20:03:10.627Z",
-              "Title": "ProductRepository.cs",
-              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Repository\\ProductRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\ProductRepository.cs",
-              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Repository\\ProductRepository.cs",
-              "RelativeToolTip": "Repository\\ProductRepository.cs",
-              "ViewState": "AQIAABIAAAAQAAAAAAA1wBsAAAAQAAAA",
+              "Title": "AttributeController.cs",
+              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\AttributeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AttributeController.cs",
+              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\AttributeController.cs",
+              "RelativeToolTip": "Controllers\\AttributeController.cs",
+              "ViewState": "AQIAAKYAAAAAAAAAAAAAAD4AAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T13:12:33.778Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "dbo.Products [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.Products.sql",
-              "ToolTip": "dbo.Products [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-25T13:20:26.87Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IProductRepository.cs",
-              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Interfaces\\IProductRepository.cs",
-              "RelativeDocumentMoniker": "Interfaces\\IProductRepository.cs",
-              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Interfaces\\IProductRepository.cs",
-              "RelativeToolTip": "Interfaces\\IProductRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T13:11:30.579Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Profile.cshtml",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Profile\\Profile.cshtml",
-              "RelativeDocumentMoniker": "Views\\Profile\\Profile.cshtml",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Profile\\Profile.cshtml*",
-              "RelativeToolTip": "Views\\Profile\\Profile.cshtml*",
-              "ViewState": "AQIAAPMAAAAAAAAAAAAAAP8AAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-25T00:33:13.399Z",
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
-              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AQIAAEkAAAAAAAAAAAAkwFQAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T13:06:50.286Z",
+              "WhenOpened": "2024-04-27T07:35:47.844Z",
               "EditorCaption": ""
             }
           ]
