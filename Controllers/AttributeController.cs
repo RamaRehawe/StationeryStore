@@ -55,7 +55,7 @@ namespace StationeryStore.Controllers
 
         // POST api/product/{productId}/attributes
         [HttpPost("addDetails")]
-        public  async Task<IActionResult> AddProductAttributes(IFormFile formFile,
+        public  async Task<IActionResult> AddProductAttributes(IFormFile[] productImages,
             [FromForm] ReqAttributeDto attributeDto)
         {
             var productAttributeQuantity = new ProductAttributeQuantity
@@ -87,24 +87,29 @@ namespace StationeryStore.Controllers
                 
             };
 
-            if(!_productAttributeRepository.Exist(attributeProduct.Value, attributeId))
+            
+            if(!_productAttributeRepository.Exist(attributeProduct.Value, attributeId, attributeDto.ProductId))
             {
                 _productAttributeRepository.AddProductAttribute(attributeProduct);
             }
 
-            var res1 = WriteFile(formFile);
-            var res = await res1;
-            if(res.Equals(Empty))
+            foreach(var formFile in productImages) 
             {
-                return BadRequest("file not valid");
-            }
-            var imageAttribute = new ImageAttribute
-            {
-                URL = res,
-                ProductAttributeQuantityId = productAttributeQuantityId
-            };
-            _imageAttributeRepository.AddImage(imageAttribute);
+
+                var res1 = WriteFile(formFile);
+                var res = await res1;
+                if(res.Equals(Empty))
+                {
+                    return BadRequest("file not valid");
+                }
+                var imageAttribute = new ImageAttribute
+                {
+                    URL = res,
+                    ProductAttributeQuantityId = productAttributeQuantityId
+                };
+                _imageAttributeRepository.AddImage(imageAttribute);
             
+            }
             return Ok("Attributes and product attributes added successfully.");
         }
 
@@ -142,7 +147,7 @@ namespace StationeryStore.Controllers
                 var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
                 filename = base.GetActiveUser()!.Username + DateTime.Now.ToString("MMddyyyyHHmm") + extension;
 
-                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product");
+                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Upload\\Product");
 
                 if (!Directory.Exists(filepath))
                 {

@@ -1,4 +1,5 @@
-﻿using StationeryStore.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using StationeryStore.Data;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
 
@@ -16,9 +17,12 @@ namespace StationeryStore.Repository
             _context.SaveChanges();
         }
 
-        public bool Exist(string value, int attributeId)
+        public bool Exist(string value, int attributeId, int productId)
         {
-            return _context.ProductAttributes.Any(a => a.Value == value && a.AttributeId == attributeId);
+
+            return _context.ProductAttributes.Include(i => i.ProductAttributeQuantity)
+                .Any(a => a.Value == value && a.AttributeId == attributeId && 
+                a.ProductAttributeQuantity.ProductId == productId);
         }
 
         public ICollection<ProductAttribute> GetProductAttributes(int productId)

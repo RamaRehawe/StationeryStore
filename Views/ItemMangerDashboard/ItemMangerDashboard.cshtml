@@ -87,7 +87,7 @@
                 </form>
             </div>
             <div id="section4" class="section">
-                <form>
+                <form action="/api/Attribute/addDetails" method="POST" enctype="multipart/form-data">
                     <fieldset>
                         <legend>تفاصيل المنتج</legend>
 
@@ -108,12 +108,12 @@
                         <br>
 
                         <label for="itemQuantity">الكمية:</label>
-                        <input type="number" id="itemQuantity" min="1" value="1" required>
+                        <input type="number" id="itemQuantity" min="1" value="1" name="Quantity" required>
 
                         <br>
 
                         <label for="itemPrice">السعر:</label>
-                        <input type="number" id="itemPrice" min="1000" value="1000" step="500" required>
+                        <input type="number" id="itemPrice" min="1000" value="1000" step="500" name="Price" required>
 
                         <br>
                     </fieldset>
@@ -121,7 +121,7 @@
                     <fieldset>
                         <legend>الخصائص</legend>
                         <label for="existing_property">اختر الخصائص  :</label>
-                        <select id="existing_property" name="existing_property" onchange="updatePropertyValues()">
+                        <select id="existing_property" name="Name" onchange="updatePropertyValues()">
                         </select>
                         <br>
                         <br>
@@ -132,7 +132,7 @@
                         <br>
                         <button onclick="addNewValue()">..أو أضف قيمة جديدة</button>
                         <label for="property_value">قيمة جديدة:</label>
-                        <input type="text" id="property_value" name="property_value" placeholder="" disabled>
+                        <input type="text" id="property_value" name="Value" placeholder="" disabled>
                         <br>
                     </fieldset>
                     <br>
@@ -220,7 +220,7 @@
                 const selectElement = document.getElementById('existing_property');
                 data.forEach(attribute => {
                     const option = document.createElement('option');
-                    option.value = attribute.id;
+                    option.value = attribute.name;
                     option.textContent = attribute.name;
                     selectElement.appendChild(option);
                 });
@@ -697,6 +697,7 @@
             const propertyValueInput = document.getElementById('property_value');
             const propertyValueDropdown = document.getElementById('property_value_dropdown');
 
+            
             // قم بتحديث القيم بناءً على الخاصية المحددة
             switch (selectedProperty) {
                 case 'color':
@@ -1250,6 +1251,15 @@
             var itemPrice = document.getElementById("itemPrice").value;
             var propertyName = document.getElementById("propertyName").value;
             var propertyValue = document.getElementById("propertyValue").value;
+            console.log(
+                 mainCategory,
+                subCategory,
+                productId,
+                itemQuantity,
+                itemPrice,
+                propertyName,
+                propertyValue
+            )
 
             // التحقق من ملء الحقول
             if (mainCategory === "" || subCategory === "" || productId === "" || itemQuantity === "" || itemPrice === "" ||
