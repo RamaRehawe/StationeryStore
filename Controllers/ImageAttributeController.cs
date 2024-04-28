@@ -12,10 +12,16 @@ namespace StationeryStore.Controllers
     public class ImageAttributeController : BaseController
     {
         private readonly IMapper _mapper;
-        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IImageAttributeRepository _imageAttributeRepository;
         public ImageAttributeController(UserInfoService userInfoService, IUserRepository userRepository) : base(userInfoService, userRepository)
         {
+        }
+
+        [HttpGet("getImage")]
+        public IActionResult GetImage(int productId) 
+        {
+            var images = _mapper.Map<List<ResImageAttributeDto>>( _imageAttributeRepository.GetImages(productId));
+            return Ok(images);
         }
 
         //[HttpPost]
@@ -25,31 +31,31 @@ namespace StationeryStore.Controllers
         //    return Ok(result);
         //}
 
-        private async Task<string> WriteFile(IFormFile file)
-        {
-            string filename = "";
-            try
-            {
-                var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-                filename = base.GetActiveUser()!.Username + DateTime.Now.ToString("MMddyyyyHHmm")+ extension;
+        //private async Task<string> WriteFile(IFormFile file)
+        //{
+        //    string filename = "";
+        //    try
+        //    {
+        //        var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
+        //        filename = base.GetActiveUser()!.Username + DateTime.Now.ToString("MMddyyyyHHmm")+ extension;
 
-                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product");
+        //        var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product");
 
-                if (!Directory.Exists(filepath))
-                {
-                    Directory.CreateDirectory(filepath);
-                }
+        //        if (!Directory.Exists(filepath))
+        //        {
+        //            Directory.CreateDirectory(filepath);
+        //        }
 
-                var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product", filename);
-                using (var stream = new FileStream(exactpath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-            return filename;
-        }
+        //        var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product", filename);
+        //        using (var stream = new FileStream(exactpath, FileMode.Create))
+        //        {
+        //            await file.CopyToAsync(stream);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //    return filename;
+        //}
     }
 }

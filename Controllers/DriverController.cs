@@ -70,7 +70,7 @@ namespace StationeryStore.Controllers
             var userId = base.GetActiveUser()!.Id;
             var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).FirstOrDefault();
             _driverRepository.UpdateOrderStatueToShipped(orderId);
-            return Ok("The order Has been deliverd");
+            return Ok("The order Has been shipped");
         }
 
         [HttpPost("deliverd")]

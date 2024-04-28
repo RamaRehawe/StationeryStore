@@ -15,5 +15,10 @@ namespace StationeryStore.Repository
             _context.ImageAttributes.Add(imageAttribute);
             _context.SaveChanges();
         }
+
+        public ICollection<ImageAttribute> GetImages(int productId)
+        {
+            return _context.ImageAttributes.Where(i => i.ProductAttributeQuantity.ProductId == productId).ToList();
+        }
     }
 }

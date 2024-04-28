@@ -61,6 +61,7 @@ builder.Services.AddScoped<IProductAttributeRepository, ProductAttributeReposito
 builder.Services.AddScoped<IImageAttributeRepository, ImageAttributeRepository>();
 builder.Services.AddScoped<UserInfoService>();
 builder.Services.AddScoped<IContactInformationRepository, ContactInformationRepository>();
+builder.Services.AddScoped<ICustomerServiceRepository, CustomerServiceRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen();

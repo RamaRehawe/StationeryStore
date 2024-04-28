@@ -73,7 +73,19 @@ namespace StationeryStore.Repository
 
         public void UpdateOrderStatueToDeliverd(int orderId)
         {
-            throw new NotImplementedException();
+            var order = _context.Orders.Where(o => o.Id == orderId).FirstOrDefault();
+            if (order != null)
+            {
+                order.OrderStatus = "Deliverd";
+                var orderItems = _context.OrderItems.Where(oi => oi.OrderId == orderId).ToList();
+                foreach (var orderItem in orderItems)
+                {
+                    orderItem.OrderedByUser = true;
+                }
+                order.FailDeliver = "";
+                _context.SaveChanges();
+
+            }
         }
 
         public void UpdateOrderStatueToShipped(int orderId)
