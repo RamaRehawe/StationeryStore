@@ -134,7 +134,7 @@
             </div>
             <div id="section7" class="section">
                 <h1>تحليل البيانات</h1>
-                <button onclick="analyzeSalesData()">تحليل المبيعات</button>
+                <button id="analyzeButton">تحليل المبيعات</button>
                 <br> <br>
                 <div id="salesAnalysisResults"></div>
             </div>
@@ -179,6 +179,23 @@
         </div>
     </footer>
     <script>
+
+        // Function to handle the click event of the button
+        function analyzeSalesData() {
+            // Send an AJAX request to the backend endpoint
+            fetch('/api/Order/getOrdersPercentage')
+                .then(response => response.text()) // Assuming the response is text
+                .then(data => {
+                    // Update the sales analysis results div with the percentage
+                    document.getElementById('salesAnalysisResults').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Attach the analyzeSalesData function to the button click event
+        document.getElementById('analyzeButton').addEventListener('click', analyzeSalesData);
         window.onload = function () {
             fillComplaintsTable();
             showSection('section1');
@@ -384,39 +401,39 @@
             }
         }
 
-        function updateComplaintStatus(index) {
-            var statusSelect = document.getElementById("statusSelect" + index);
-            var selectedStatus = statusSelect.value;
+        // function updateComplaintStatus(index) {
+        //     var statusSelect = document.getElementById("statusSelect" + index);
+        //     var selectedStatus = statusSelect.value;
 
-            complaints[index].status = selectedStatus;
-            fillComplaintsTable();
-        }
+        //     complaints[index].status = selectedStatus;
+        //     fillComplaintsTable();
+        // }
 
 
-        const salesData = [
-            { month: "يناير", amount: 50000 },
-            { month: "فبراير", amount: 75000 },
-            { month: "مارس", amount: 100000 },
-            // ... يمكنك إضافة المزيد من بيانات المبيعات
-        ];
+        // const salesData = [
+        //     { month: "يناير", amount: 50000 },
+        //     { month: "فبراير", amount: 75000 },
+        //     { month: "مارس", amount: 100000 },
+        //     // ... يمكنك إضافة المزيد من بيانات المبيعات
+        // ];
 
-        function analyzeSalesData() {
-            var totalSales = salesData.reduce(function (sum, sale) {
-                return sum + sale.amount;
-            }, 0);
+        // function analyzeSalesData() {
+        //     var totalSales = salesData.reduce(function (sum, sale) {
+        //         return sum + sale.amount;
+        //     }, 0);
 
-            var salesRatioData = salesData.map(function (sale) {
-                var ratio = (sale.amount / totalSales) * 100;
-                return { month: sale.month, ratio: ratio.toFixed(2) + "%" };
-            });
+        //     var salesRatioData = salesData.map(function (sale) {
+        //         var ratio = (sale.amount / totalSales) * 100;
+        //         return { month: sale.month, ratio: ratio.toFixed(2) + "%" };
+        //     });
 
-            var analysisReport = "نتائج التحليل:\n\n";
-            salesRatioData.forEach(function (sale) {
-                analysisReport += sale.month + ": " + sale.ratio + "\n";
-            });
+        //     var analysisReport = "نتائج التحليل:\n\n";
+        //     salesRatioData.forEach(function (sale) {
+        //         analysisReport += sale.month + ": " + sale.ratio + "\n";
+        //     });
 
-            document.getElementById("salesAnalysisResults").innerText = analysisReport;
-        }
+        //     document.getElementById("salesAnalysisResults").innerText = analysisReport;
+        // }
     </script>
 
 </body>
