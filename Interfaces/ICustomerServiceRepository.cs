@@ -6,7 +6,7 @@ namespace StationeryStore.Interfaces
     {
         void AddComplain(CustomerService customerService);
         ICollection<CustomerService> GetComplains();
-        ICollection<CustomerService> GetMyComplains(int userId);
+        ICollection<CustomerService> GetMyComplainsByUserId(int userId);
         void SetResponse(int complaineId);
     }
 }

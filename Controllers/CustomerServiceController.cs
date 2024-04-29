@@ -47,7 +47,7 @@ namespace StationeryStore.Controllers
         public IActionResult GetMyComplains()
         {
             var userId = base.GetActiveUser()!.Id;
-            var complains = _mapper.Map<List<ResCustomerServiceDto>>( _customerServiceRepository.GetMyComplains(userId));
+            var complains = _mapper.Map<List<ResCustomerServiceDto>>( _customerServiceRepository.GetMyComplainsByUserId(userId));
             return Ok(complains);
         }
 

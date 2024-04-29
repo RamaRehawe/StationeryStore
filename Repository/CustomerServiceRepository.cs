@@ -22,7 +22,7 @@ namespace StationeryStore.Repository
             return _context.CustomerServices.OrderBy(cs => cs.Id).ToList();
         }
 
-        public ICollection<CustomerService> GetMyComplains(int userId)
+        public ICollection<CustomerService> GetMyComplainsByUserId(int userId)
         {
             return _context.CustomerServices.Where(cs => cs.UserId == userId).ToList();
         }
