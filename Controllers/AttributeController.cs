@@ -51,6 +51,7 @@ namespace StationeryStore.Controllers
 
             return Ok(result);
         }
+        //
 
 
         // POST api/product/{productId}/attributes
@@ -58,6 +59,7 @@ namespace StationeryStore.Controllers
         public  async Task<IActionResult> AddProductAttributes(IFormFile[] productImages,
             [FromForm] ReqAttributeDto attributeDto)
         {
+          
             var productAttributeQuantity = new ProductAttributeQuantity
             {
                 Quantity = attributeDto.Quantity,

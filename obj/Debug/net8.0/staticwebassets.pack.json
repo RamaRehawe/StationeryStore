@@ -5,6 +5,15 @@
       "PackagePath": "staticwebassets\\Images\\Youtube.png"
     },
     {
+      "Id": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\444042720241859.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\444042720241859.png"
+    },
+    {
+      "Id": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\Ziad042720241559.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\Ziad042720241559.png"
+    },
+    {
+      "Id": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string042420240120.png",
       "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\string042420240120.png",
       "PackagePath": "staticwebassets\\Upload\\Product\\string042420240120.png"
     },
