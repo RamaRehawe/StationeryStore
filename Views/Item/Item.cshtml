@@ -148,6 +148,8 @@
 
     <script>
         var addedRow = false; // متغير لتتبع ما إذا تمت إضافة الصف الإضافي
+        const authToken = localStorage.getItem('authToken');
+        const userId = localStorage.getItem('userId'); // Assuming you store the user ID in localStorage
 
         function addRow() {
             if (!addedRow) {
@@ -160,6 +162,86 @@
                 addedRow = true; // تعيين المتغير إلى القيمة true للدلالة على إضافة الصف الإضافي
             }
         }
+
+
+        // في دالة لإضافة المنتج إلى سلة التسوق
+        function addToCart(productId) {
+            // قم بفحص حالة تسجيل الدخول
+            var isLoggedIn = checkLoginStatus();
+
+            if (isLoggedIn) {
+                // استدعاء الدالة المحسنة لإضافة المنتج إلى سلة التسوق
+                addToCartWithDetails(productId, 123, 1); // Replace 123 and 1 with actual values
+            } else {
+                // لم يتم تسجيل الدخول، قم بتوجيه المستخدم إلى صفحة تسجيل الدخول
+                alert('يجب عليك تسجيل الدخول لإضافة المنتج إلى سلة التسوق.');
+                window.location.href = 'front_login'; // قم بتغيير 'login.html' إلى عنوان URL الصحيح لصفحة تسجيل الدخول
+            }
+        }
+
+        // الدالة المحسنة لإضافة المنتج إلى سلة التسوق بمعلومات محددة
+        function addToCartWithDetails(productId, productAttributeQuantityId, quantity) {
+            // Create the data object to send in the request body
+            const data = {
+                ProductAttributeQuantityId: productAttributeQuantityId,
+                Quantity: quantity
+            };
+
+            // Send an HTTP POST request to the server
+            fetch('/api/Cart/addItem', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(errorMsg => Promise.reject(new Error(errorMsg)));
+                    }
+                    return response.text();
+                })
+                .then(result => {
+                    alert(result); // Show success message to the user
+                    // Optionally, update UI or perform additional actions
+                    window.location.href = 'front_cart'; 
+
+                })
+                .catch(error => {
+                    alert(error.message); // Show error message to the user
+                    console.error('Error adding item to cart:', error);
+                });
+        }
+        function redirectToCheckout() {
+            fetch('/api/Order/placeOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                },
+                body: JSON.stringify({
+                    // Pass any required data for the order here, such as addressId
+                    addressId: '123' // Replace with the actual addressId
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to place order');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Order placed successfully, redirect to the checkout page
+                    window.location.href = 'front_checkout'; // Replace 'front_checkout' with the actual URL of the checkout page
+                })
+                .catch(error => {
+                    console.error('Error placing order:', error);
+                    alert('Failed to place order. Please try again.');
+                });
+        }
+
+
         // JavaScript code
         document.addEventListener("DOMContentLoaded", function () {
             var showShippingLink = document.getElementById("showShippingLink");
@@ -286,26 +368,16 @@
 
         // قم بتعريف دالة لفحص حالة تسجيل الدخول
         function checkLoginStatus() {
-            var isLoggedIn = false; // قم بتعيين هذا القيمة إلى true إذا كان المستخدم قد قام بتسجيل الدخول
+            // قم بالتحقق مما إذا كان هناك رمز مميز مخزن في تخزين المتصفح المحلي
+            const authToken = localStorage.getItem('authToken');
+
+            // قم بتحقق من وجود الرمز المميز
+            const isLoggedIn = authToken !== null;
 
             return isLoggedIn;
         }
 
-        // في دالة لإضافة المنتج إلى سلة التسوق
-        function addToCart(productId) {
-            // قم بفحص حالة تسجيل الدخول
-            var isLoggedIn = checkLoginStatus();
 
-            if (isLoggedIn) {
-                // تم إضافة المنتج إلى سلة التسوق
-                alert('تمت إضافة المنتج إلى سلة التسوق.');
-                // يمكنك أيضا تحديد عنوان URL لصفحة سلة التسوق هنا
-            } else {
-                // لم يتم تسجيل الدخول، قم بتوجيه المستخدم إلى صفحة تسجيل الدخول
-                alert('يجب عليك تسجيل الدخول لإضافة المنتج إلى سلة التسوق.');
-                window.location.href = 'front_login'; // قم بتغيير 'login.html' إلى عنوان URL الصحيح لصفحة تسجيل الدخول
-            }
-        }
 
         // دالة لعرض رسالة تمت الإضافة
         function showAddMessage() {

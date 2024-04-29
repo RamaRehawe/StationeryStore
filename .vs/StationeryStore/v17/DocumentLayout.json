@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\itemmangerdashboard\\itemmangerdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:views\\itemmangerdashboard\\itemmangerdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\item\\item.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:views\\item\\item.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\cart\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:views\\cart\\cart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\driverdashboard\\driverdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:views\\driverdashboard\\driverdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1405,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,15 +50,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ItemMangerDashboard.cshtml",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "RelativeDocumentMoniker": "Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "RelativeToolTip": "Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 3,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "Controllers\\OrderController.cs",
+              "ViewState": "AQIAAF8AAAAAAAAAAAAswHsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T23:09:32.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DriverDashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\DriverDashboard\\DriverDashboard.cshtml",
+              "RelativeDocumentMoniker": "Views\\DriverDashboard\\DriverDashboard.cshtml",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\DriverDashboard\\DriverDashboard.cshtml",
+              "RelativeToolTip": "Views\\DriverDashboard\\DriverDashboard.cshtml",
+              "ViewState": "AQIAACMBAAAAAAAAAAAAADMBAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-29T22:34:56.721Z",
+              "WhenOpened": "2024-04-29T22:41:08.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Item.cshtml",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Item\\Item.cshtml",
+              "RelativeDocumentMoniker": "Views\\Item\\Item.cshtml",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Item\\Item.cshtml",
+              "RelativeToolTip": "Views\\Item\\Item.cshtml",
+              "ViewState": "AQIAAIAAAAAAAAAAAAAAAM8AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-29T22:39:06.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\CartController.cs",
+              "RelativeToolTip": "Controllers\\CartController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAI0AAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-29T22:38:13.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cart.cshtml",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Cart\\Cart.cshtml",
+              "RelativeDocumentMoniker": "Views\\Cart\\Cart.cshtml",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Cart\\Cart.cshtml",
+              "RelativeToolTip": "Views\\Cart\\Cart.cshtml",
+              "ViewState": "AQIAAAIBAAAAAAAAAAAAAC4BAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-29T22:38:00.862Z",
               "EditorCaption": ""
             }
           ]
