@@ -88,7 +88,7 @@
             </div>
             <div id="section4" class="section">
                 <form  action="/api/Attribute/addDetails" method="POST" enctype="multipart/form-data">
-                    <fieldset>
+                    <fieldset >
                         <legend>تفاصيل المنتج</legend>
 
                         <label for="mainCategory">الفئة الأساسية:</label>
@@ -118,34 +118,39 @@
                         <br>
                     </fieldset>
                     <br>
-                    <fieldset>
+                    <fieldset id="1" >
                         <legend>الخصائص</legend>
                         <label for="existing_property">اختر الخصائص  :</label>
-                        <select id="existing_property" name="Name" >
+                        <select id="existing_property" name="Name1" >
                         </select>
                         <br>
-                       
                         <label for="property_value_dropdown" hidden></label>
                         <select id="property_value_dropdown" name="property_value_dropdown" hidden>
                         </select>
-                        
-                        <button type="button" onclick="enableInputField()">أضف قيمة الخصائص</button>
                         <label for="property_value">القيمة:</label>
-                        <input type="text" id="property_value" name="Value" placeholder="" disabled>
+                        <input type="text" id="property_value" name="Value1" placeholder="" >
                         <br>
+                        <button onclick="addRow()">أضف خاصية جديدة</button>
+                        <br>
+                        <br>
+                        <div id="select-container" style="display: none;"></div>
+
                     </fieldset>
                     <br>
                     <fieldset>
                         <legend>الصورة أو الشعار</legend>
 
                         <div id="imageInputsContainer">
-                            <label for="productImage">صورة المنتج:</label>
-                            <input type="file" id="productImage" class="image-input" name="productImage" accept="image/*" required>
+                            <label for="productImage1">صور المنتج :</label>
+                            <input type="file" class="image-input" name="productImages[]" accept="image/*" required>
                         </div>
+
+                        <span id="addImage" style="cursor: pointer; color: blue; left: 10px;">+</span>
 
                     </fieldset>
                     <br>
                     <button type="submit" id="submitButton" >حفظ</button>
+                   
                 </form>
 
             </div>
@@ -199,6 +204,75 @@
         </div>
     </footer>
     <script>
+        var imageCounter = 2; // بداية عداد الصور من 2
+
+        document.getElementById('addImage').addEventListener('click', function () {
+            var container = document.getElementById('imageInputsContainer');
+            var newInput = document.createElement('input');
+            newInput.type = 'file';
+            newInput.className = 'image-input';
+            newInput.name = 'productImages[]';
+            newInput.accept = 'image/*';
+            newInput.required = true;
+            container.appendChild(document.createElement('br'));
+            container.appendChild(newInput);
+
+            // زيادة عداد الصور
+            imageCounter++;
+        });
+        var addedRow = false; // متغير لتتبع ما إذا تمت إضافة الصف الإضافي
+
+        function addRow() {
+            if (!addedRow) {
+                // Fetch attributes from the API
+                fetch('/api/Attribute/getAllAttribute')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Create a new div to contain the new row
+                        const newRow = document.createElement('div');
+
+                        // Create the new select element for properties
+                        const newPropertySelect = document.createElement('select');
+                        newPropertySelect.setAttribute('id', 'new_property');
+                        newPropertySelect.setAttribute('name', 'Name2');
+
+                        // Create an option for the select element (you can add more options as needed)
+                        const option = document.createElement('option');
+                        option.textContent = 'خاصية جديدة';
+                        newPropertySelect.appendChild(option);
+
+                        // Iterate over each attribute and create an option element for it
+                        data.forEach(attribute => {
+                            const option = document.createElement('option');
+                            option.value = attribute.id;
+                            option.textContent = attribute.name;
+                            newPropertySelect.appendChild(option);
+                        });
+
+                        // Append the new select element to the div
+                        newRow.appendChild(newPropertySelect);
+
+                        // Create the input field for the value
+                        const propertyValueInput = document.createElement('input');
+                        propertyValueInput.setAttribute('type', 'text');
+                        propertyValueInput.setAttribute('name', 'Value2');
+                        propertyValueInput.setAttribute('placeholder', 'القيمة');
+
+                        // Append the input field to the div
+                        newRow.appendChild(propertyValueInput);
+
+                        // Get the fieldset with id "1"
+                        const fieldset = document.getElementById('1');
+
+                        // Append the new row to the fieldset
+                        fieldset.appendChild(newRow);
+
+                        addedRow = true; // تعيين المتغير إلى القيمة true للدلالة على إضافة الصف الإضافي
+                    })
+                    .catch(error => console.error('Error fetching attributes:', error));
+            }
+        }
+
         // Fetch attribute data and populate the select element
         fetch('/api/Attribute/getAllAttribute')
             .then(response => response.json())
@@ -240,6 +314,8 @@
                 });
             })
             .catch(error => console.error('Error fetching attributes:', error));
+        // Fetch attribute data and populate the select element
+      
 
         // Function to enable input field and disable dropdown
         function enableInputField() {

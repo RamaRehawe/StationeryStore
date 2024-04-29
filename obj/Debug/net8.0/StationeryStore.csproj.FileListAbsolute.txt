@@ -294,3 +294,4 @@ C:\Users\oulan\source\repos\StationeryStore\StationeryStore\obj\Debug\net8.0\ref
 C:\Users\oulan\source\repos\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.pdb
 C:\Users\oulan\source\repos\StationeryStore\StationeryStore\obj\Debug\net8.0\StationeryStore.genruntimeconfig.cache
 C:\Users\oulan\source\repos\StationeryStore\StationeryStore\obj\Debug\net8.0\ref\StationeryStore.dll
+C:\Users\oulan\source\repos\StationeryStore\StationeryStore\bin\Debug\net8.0\Serilog.dll

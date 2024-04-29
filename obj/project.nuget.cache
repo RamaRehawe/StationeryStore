@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VDq1wuTNfgjHiVGE4iZW9Xh9zOM/hj3yXIoGEE3zfmiojQRBHIJJLxDdpT5n7PnZTTdgAQ/ITfbmf1t9PkYlfA==",
+  "dgSpecHash": "z9QckAxEQKcSqaS2yCNlBuBrxxggm1VgRk3OYdEY4jYZjfRFyA0Y2r8Ngb68TJV7f/qExEzemor3zPgKGQQOng==",
   "success": true,
   "projectFilePath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
   "expectedPackageFiles": [
@@ -71,6 +71,7 @@
     "C:\\Users\\oulan\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\oulan\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\oulan\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\oulan\\.nuget\\packages\\serilog\\3.1.1\\serilog.3.1.1.nupkg.sha512",
     "C:\\Users\\oulan\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\oulan\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\oulan\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

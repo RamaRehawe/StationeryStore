@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1H5SBbQuHPAUMH1feK/44uUYsb34zkzTN5sL4VBWUpA=",
+  "Hash": "91zJQVvdXLovA8CsDQ+ff/gzqiL7atQ4WWlPrkyJCLc=",
   "Source": "StationeryStore",
   "BasePath": "_content/StationeryStore",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Images\\Youtube.png",
+      "SourceId": "StationeryStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "BasePath": "_content/StationeryStore",
+      "RelativePath": "Images/Youtube.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Youtube.png"
+    },
     {
       "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image042920241723.png",
       "SourceId": "StationeryStore",

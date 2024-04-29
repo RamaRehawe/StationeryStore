@@ -12,83 +12,109 @@ namespace StationeryStore
         public Seed(DataContext context)
         {
             this.dataContext = context;
+            SeedDataContext();
+
         }
 
         public void SeedDataContext()
         {
+            //try
+            //{
+            //    if (!dataContext.Users.Any())
+            //    {
+            //        var users = new List<User>
+            //        {
+            //            new User
+            //    {
+            //        Username = "admin",
+            //        Password = "admin123",
+            //        Email = "admin@example.com",
+            //        Phone = "1234567890",
+            //        UserType = "Admin",
+            //        JwtToken = null, // assuming no token initially
+            //        Birthdate = null, // assuming no birthdate initially
+            //        Gender = null // assuming no gender initially
+                    
+            //    },
+            //        new User
+            //        {
+            //            Username = "item_manager",
+            //            Password = "item123",
+            //            Email = "manager@example.com",
+            //            Phone = "9876543210",
+            //            UserType = "Item Manager",
+            //            JwtToken = null, // assuming no token initially
+            //        Birthdate = null, // assuming no birthdate initially
+            //        Gender = null // assuming no gender initially
+            //        },
+            //        new User
+            //        {
+            //            Username = "driver1",
+            //            Password = "driver123",
+            //            Email = "driver1@example.com",
+            //            Phone = "5555555555",
+            //            UserType = "Driver",
+            //            JwtToken = null, // assuming no token initially
+            //        Birthdate = null, // assuming no birthdate initially
+            //        Gender = null // assuming no gender initially
+            //        },
+            //        new User
+            //        {
+            //            Username = "customer1",
+            //            Password = "customer123",
+            //            Email = "customer1@example.com",
+            //            Phone = "9999999999",
+            //            UserType = "Customer",
+            //            JwtToken = null, // assuming no token initially
+            //        Birthdate = null, // assuming no birthdate initially
+            //        Gender = null // assuming no gender initially
+            //        }
+
+            //    };
+
+            //        dataContext.Users.AddRange(users);
+            //        dataContext.SaveChanges();
+
+            //        Console.WriteLine("Users seeded successfully!");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Users already exist in the database.");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"Error seeding Users: {ex.Message}");
+            //}
+            //if (!dataContext.ContactInformation.Any())
+            //{
+            //    var contactInfo = new List<ContactInformation>
+            //    {
+            //        // Sample data for contact information
+            //        new ContactInformation
+            //        {
+            //            Type = "Phone",
+            //            Value = "1234567890",
+            //            Description = "Main phone number"
+            //        },
+            //        new ContactInformation
+            //        {
+            //            Type = "Email",
+            //            Value = "Info@StationeryStore.com",
+            //            Description = "Main email address"
+            //        },
+            //        new ContactInformation
+            //        {
+            //            Type = "SocialMedia",
+            //            Value = "https://www.facebook.com/profile.php?id=61558642717289&mibextid=ZbWKwL",
+            //            Description = "Facebook page"
+            //        },
+            //    };
+
+            //    dataContext.ContactInformation.AddRange(contactInfo);
+            //    dataContext.SaveChanges();
+            //}
             /*
-            if (!dataContext.Users.Any())
-            {
-                var users = new List<User>
-                {
-                    new User
-                    {
-                        Username = "admin",
-                        Password = "admin123",
-                        Email = "admin@example.com",
-                        Phone = "1234567890",
-                        UserType = "Admin"
-                    },
-                    new User
-                    {
-                        Username = "item_manager",
-                        Password = "item123",
-                        Email = "manager@example.com",
-                        Phone = "9876543210",
-                        UserType = "Item Manager"
-                    },
-                    new User
-                    {
-                        Username = "driver1",
-                        Password = "driver123",
-                        Email = "driver1@example.com",
-                        Phone = "5555555555",
-                        UserType = "Driver"
-                    },
-                    new User
-                    {
-                        Username = "customer1",
-                        Password = "customer123",
-                        Email = "customer1@example.com",
-                        Phone = "9999999999",
-                        UserType = "Customer"
-                    }
-                };
-
-
-                dataContext.Users.AddRange(users);
-                dataContext.SaveChanges();
-            }
-
-            if (!dataContext.Addresses.Any())
-            {
-                var addresses = new List<Address>
-                {
-                    // Sample data for addresses
-                    new Address
-                    {
-                        Title = "Home",
-                        City = "City1",
-                        Street = "Street1",
-                        Name = "John Doe",
-                        Phone = "1234567890",
-                        UserId = 4
-                    },
-                    new Address
-                    {
-                        Title = "Work",
-                        City = "City2",
-                        Street = "Street2",
-                        Name = "Jane Doe",
-                        Phone = "9876543210",
-                        UserId = 4
-                    }
-                };
-
-                dataContext.Addresses.AddRange(addresses);
-                dataContext.SaveChanges();
-            }
-
             if (!dataContext.Admins.Any())
             {
                 var admins = new List<Admin>
@@ -199,34 +225,7 @@ namespace StationeryStore
 
             
 
-            if (!dataContext.ContactInformation.Any())
-            {
-                var contactInfo = new List<ContactInformation>
-                {
-                    // Sample data for contact information
-                    new ContactInformation
-                    {
-                        Type = "Phone",
-                        Value = "1234567890",
-                        Description = "Main phone number"
-                    },
-                    new ContactInformation
-                    {
-                        Type = "Email",
-                        Value = "contact@example.com",
-                        Description = "Main email address"
-                    },
-                    new ContactInformation
-                    {
-                        Type = "SocialMedia",
-                        Value = "https://www.facebook.com/example",
-                        Description = "Facebook page"
-                    },
-                };
-
-                dataContext.ContactInformation.AddRange(contactInfo);
-                dataContext.SaveChanges();
-            }
+           
 
             if (!dataContext.CustomerServices.Any())
             {
@@ -439,9 +438,11 @@ namespace StationeryStore
                 dataContext.SaveChanges();
             }
             */
-            
+
         }
     
+
     
     }
+
 }

@@ -74,6 +74,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
 if (args.Length == 1 && args[0].ToLower() == "seeddata")
     SeedData(app);
 
@@ -87,6 +88,17 @@ void SeedData(IHost app)
         service.SeedDataContext();
     }
 }
+
+//// Call the SeedDataContext method directly
+//using (var scope = app.Services.CreateScope())
+//{
+//    var scopedServices = scope.ServiceProvider;
+//    var seedService = scopedServices.GetRequiredService<Seed>();
+//    seedService.SeedDataContext();
+//}
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
