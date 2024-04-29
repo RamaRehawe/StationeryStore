@@ -5,6 +5,7 @@
       "PackagePath": "staticwebassets\\Images\\Youtube.png"
     },
     {
+<<<<<<< Updated upstream
       "Id": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\444042720241859.png",
       "PackagePath": "staticwebassets\\Upload\\Product\\444042720241859.png"
     },
@@ -26,6 +27,8 @@
       "PackagePath": "staticwebassets\\Upload\\Product\\string042420240853.png"
     },
     {
+=======
+>>>>>>> Stashed changes
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StationeryStore.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

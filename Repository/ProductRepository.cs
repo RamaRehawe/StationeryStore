@@ -28,7 +28,7 @@ namespace StationeryStore.Repository
                 return _context.Products.OrderBy(p => p.Id)
                     .Include(p => p.ProductAttributeQuantities).ToList();
             var regex = new Regex(search, RegexOptions.IgnoreCase);
-            var products = _context.Products.AsEnumerable()
+            var products = _context.Products.Include(p => p.ProductAttributeQuantities).AsEnumerable()
                                      .Where(p => regex.IsMatch(p.Description) || regex.IsMatch(p.Name))
                                      .ToList();
             return products;

@@ -79,7 +79,6 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet]
-        //[Authorize (Roles = "Admin")]
         public IActionResult GetAllProducts(string? search)
         {
             string s;

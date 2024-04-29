@@ -22,11 +22,10 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet("getImage")]
-        public IActionResult GetImage(int productId) 
+        public IActionResult GetImage(int producAttributeQuantitytId) 
         {
-            var images = "localhost";
-             images +=   _imageAttributeRepository.GetImages(productId);
-            int x = 1;
+            var images = "https://localhost:7214/";
+            images +=   _imageAttributeRepository.GetImages(producAttributeQuantitytId);
             return Ok(images);
         }
 

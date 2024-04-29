@@ -5,6 +5,6 @@ namespace StationeryStore.Interfaces
     public interface IImageAttributeRepository : IBaseRepository
     {
         void AddImage(ImageAttribute imageAttribute);
-        string GetImages(int productId);
+        string GetImages(int producAttributeQuantitytId);
     }
 }

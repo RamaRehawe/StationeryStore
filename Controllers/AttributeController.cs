@@ -7,6 +7,7 @@ using StationeryStore.Interfaces;
 using StationeryStore.Models;
 using StationeryStore.Services;
 using System;
+using static System.Net.WebRequestMethods;
 
 namespace StationeryStore.Controllers
 {
@@ -112,11 +113,12 @@ namespace StationeryStore.Controllers
                 _imageAttributeRepository.AddImage(imageAttribute);
             
             }
-            return Ok("Attributes and product attributes added successfully.");
+            return Redirect(url: "https://localhost:7214/front_item_manger");
         }
 
 
         [HttpPost("createAttribute")]
+       
         public IActionResult CreateAttribute(ReqAttributeDto attribute)
         {
             var attributeMap = _mapper.Map<Atribute>(attribute);
@@ -149,7 +151,7 @@ namespace StationeryStore.Controllers
                 var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
                 filename = base.GetActiveUser()!.Username + DateTime.Now.ToString("MMddyyyyHHmm") + extension;
 
-                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Upload\\Product");
+                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product");
 
                 if (!Directory.Exists(filepath))
                 {

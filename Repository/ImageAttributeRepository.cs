@@ -16,10 +16,10 @@ namespace StationeryStore.Repository
             _context.SaveChanges();
         }
 
-        public string GetImages(int productId)
+        public string GetImages(int producAttributeQuantitytId)
         {
             var images = _context.ImageAttributes
-                .Where(i => i.ProductAttributeQuantityId == productId)
+                .Where(i => i.ProductAttributeQuantityId == producAttributeQuantitytId)
                           .FirstOrDefault();
 
             // Check if images is null before accessing its properties

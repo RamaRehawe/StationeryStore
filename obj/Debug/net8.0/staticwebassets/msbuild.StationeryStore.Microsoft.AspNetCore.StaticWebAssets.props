@@ -16,6 +16,7 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Images\Youtube.png))</OriginalItemSpec>
     </StaticWebAsset>
+<<<<<<< Updated upstream
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Upload\Product\444042720241859.png))">
       <SourceType>Package</SourceType>
       <SourceId>StationeryStore</SourceId>
@@ -96,5 +97,7 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\Upload\Product\Ziad042720241559.png))</OriginalItemSpec>
     </StaticWebAsset>
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>
