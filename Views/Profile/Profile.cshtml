@@ -451,6 +451,39 @@
                 }
             })
             .catch(error => console.error('Error fetching order status:', error));
+        function save() {
+            // Get form data
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const birthdate = document.getElementById('birthdate').value;
+
+            // Construct JSON object
+            const profileData = {
+                gender: gender,
+                birthdate: birthdate
+            };
+
+            // Send data to backend
+            fetch('/api/User/update_profile', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                },
+                body: JSON.stringify(profileData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('تمت إضافة بيانات المستخدم الجديدة');
+                        // Optionally, redirect or perform any other actions after successful update
+                    } else {
+                        throw new Error('لم يتم التعديل');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to update user');
+                });
+        }
 
 
         function logout() {

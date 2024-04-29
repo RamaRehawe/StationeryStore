@@ -24,7 +24,7 @@
     </div>
     <main>
 
-        <div class="product-details">
+        <div class="product-details" id="product-table">
             <h2>أقلام حبر ملونة</h2>
             <p> أقلام حبر جاف كباس ذات جودة عالية...</p>
             <div class="product-images" id="thumbnail-container">
@@ -38,42 +38,22 @@
                         <th>القيمة</th>
                     </tr>
                     <tr>
-                        <td>عدد العناصر:</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>نوع القلم:</td>
-                        <td>قلم كباس</td>
-                    </tr>
-                    <tr>
-                        <td>اللون:</td>
                         <td>
-                            <select id="colorSelect">
-                                <option value="ملون">ملون</option>
-                                <option value="أحمر">أحمر</option>
-                                <option value="أزرق">أزرق</option>
+                            <select id="attribute-name" name="Name">
+                                <option value="">اختر الخاصية</option>
+                               
                             </select>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>حجم القلم:</td>
                         <td>
-                            <select id="sizeSelect">
-                                <option value="كبير">كبير</option>
-                                <option value="صغير">صغير</option>
+                            <select id="attribute-name" name="Value">
+                                <option value="">اختر القيمة</option>
                             </select>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>بلد المنشأ:</td>
-                        <td>
-                            <select id="originSelect">
-
-                                <option value="الصين">الصين</option>
-                            </select>
-                        </td>
-                    </tr>
+                    </tr>    
+                   
                 </table>
+                <button onclick="addRow()">أضف خاصية جديدة</button>
+
             </div>
 
             <p id="price" class="price">السعر: 25000 ل.س</p>
@@ -167,7 +147,19 @@
     </footer>
 
     <script>
+        var addedRow = false; // متغير لتتبع ما إذا تمت إضافة الصف الإضافي
 
+        function addRow() {
+            if (!addedRow) {
+                var table = document.getElementById("product-table");
+                var newRow = table.getElementsByTagName('tbody')[0].insertRow(); // الحصول على الصف الجديد من الجدول
+                var cell1 = newRow.insertCell(0); // إضافة خلية للصف الجديد
+                var cell2 = newRow.insertCell(1); // إضافة خلية للصف الجديد
+                cell1.innerHTML = "<select><option value=''>اختر الخاصية</option></select>"; // إضافة قائمة لاختيار الخاصية
+                cell2.innerHTML = "<select><option value=''>اختر القيمة</option></select>"; // إضافة قائمة لإدخال القيمة
+                addedRow = true; // تعيين المتغير إلى القيمة true للدلالة على إضافة الصف الإضافي
+            }
+        }
         // JavaScript code
         document.addEventListener("DOMContentLoaded", function () {
             var showShippingLink = document.getElementById("showShippingLink");

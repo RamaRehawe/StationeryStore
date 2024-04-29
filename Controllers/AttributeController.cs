@@ -57,10 +57,14 @@ namespace StationeryStore.Controllers
 
         // POST api/product/{productId}/attributes
         [HttpPost("addDetails")]
-        public  async Task<IActionResult> AddProductAttributes(IFormFile[] productImages,
-            [FromForm] ReqAttributeDto attributeDto)
+        public async Task<IActionResult> AddProductAttributes(IFormFile productImage, [FromForm] ReqAttributeDto attributeDto)
         {
-          
+            if (productImage == null)
+            {
+                ModelState.AddModelError("productImage", "يجب تحديد صورة المنتج.");
+                return BadRequest(ModelState);
+            }
+
             var productAttributeQuantity = new ProductAttributeQuantity
             {
                 Quantity = attributeDto.Quantity,
@@ -68,7 +72,6 @@ namespace StationeryStore.Controllers
                 ProductId = attributeDto.ProductId
             };
             int productAttributeQuantityId = _productAttributeQuantityRepository.Create(productAttributeQuantity);
-
 
             var attribute = new Atribute
             {
@@ -79,42 +82,42 @@ namespace StationeryStore.Controllers
             {
                 attributeId = _attributeRepository.GetAttributeId(attribute.Name);
             }
-            else 
+            else
+            {
                 attributeId = _attributeRepository.AddAttribute(attribute);
+            }
 
             var attributeProduct = new ProductAttribute
             {
                 AttributeId = attributeId,
                 ProductAttributeQuantityId = productAttributeQuantityId,
                 Value = attributeDto.Value
-                
             };
 
-            
-            if(!_productAttributeRepository.Exist(attributeProduct.Value, attributeId, attributeDto.ProductId))
+            if (!_productAttributeRepository.Exist(attributeProduct.Value, attributeId, attributeDto.ProductId))
             {
                 _productAttributeRepository.AddProductAttribute(attributeProduct);
             }
 
-            foreach(var formFile in productImages) 
+            // Process the single product image
+            var res1 = WriteFile(productImage);
+            var res = await res1;
+            if (res.Equals(Empty))
             {
-
-                var res1 = WriteFile(formFile);
-                var res = await res1;
-                if(res.Equals(Empty))
-                {
-                    return BadRequest("file not valid");
-                }
-                var imageAttribute = new ImageAttribute
-                {
-                    URL = res,
-                    ProductAttributeQuantityId = productAttributeQuantityId
-                };
-                _imageAttributeRepository.AddImage(imageAttribute);
-            
+                return BadRequest("file not valid");
             }
-            return Redirect(url: "https://localhost:7214/front_item_manger");
+
+            var imageAttribute = new ImageAttribute
+            {
+                URL = res,
+                ProductAttributeQuantityId = productAttributeQuantityId
+            };
+            _imageAttributeRepository.AddImage(imageAttribute);
+
+            // Return a script to display an alert and redirect
+            return Content("<script>alert('Added Successfuly'); window.location.href = '/front_item_manger';</script>", "text/html");
         }
+
 
 
         [HttpPost("createAttribute")]
@@ -141,7 +144,37 @@ namespace StationeryStore.Controllers
                 return NotFound();
             return Ok(attribute);
         }
+        //private async Task<string> WriteFile(IFormFile file)
+        //{
+        //    try
+        //    {
+        //        // Generate unique filename
+        //        var extension = Path.GetExtension(file.FileName);
+        //        var filename = $"{base.GetActiveUser()!.Username}{DateTime.Now:MMddyyyyHHmm}{extension}";
 
+        //        // Construct file path
+        //        var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Upload", "Product");
+        //        var exactpath = Path.Combine(directoryPath, filename);
+
+        //        // Create directory if it doesn't exist
+        //        Directory.CreateDirectory(directoryPath);
+
+        //        // Save file to specified location
+        //        using (var stream = new FileStream(exactpath, FileMode.Create))
+        //        {
+        //            await file.CopyToAsync(stream);
+        //        }
+
+        //        // Return relative path of uploaded file
+        //        return Path.Combine("wwwroot", "Upload", "Product", filename);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log the exception
+        //        Console.WriteLine($"Error writing file: {ex.Message}");
+        //        return "";
+        //    }
+        //}
 
         private async Task<string> WriteFile(IFormFile file)
         {
@@ -149,27 +182,27 @@ namespace StationeryStore.Controllers
             try
             {
                 var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-                filename = base.GetActiveUser()!.Username + DateTime.Now.ToString("MMddyyyyHHmm") + extension;
+                filename = "image" +DateTime.Now.ToString("MMddyyyyHHmm") + extension;
 
-                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product");
+                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Upload\\Product");
 
                 if (!Directory.Exists(filepath))
                 {
                     Directory.CreateDirectory(filepath);
                 }
 
-                var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product", filename);
+                var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Upload\\Product", filename);
                 using (var stream = new FileStream(exactpath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
-                return Path.Combine("wwwroot/Upload/Product", filename); ;
+                return Path.Combine("wwwroot\\Upload\\Product", filename); ;
             }
             catch (Exception ex)
             {
                 return "";
             }
-            
+
         }
     }
 }

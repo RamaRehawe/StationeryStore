@@ -21,7 +21,7 @@ namespace StationeryStore.Repository
         {
 
             return _context.ProductAttributes.Include(i => i.ProductAttributeQuantity)
-                .Any(a => a.Value == value && a.AttributeId == attributeId && 
+                .Any(a => a.Value == value && a.AttributeId == attributeId &&
                 a.ProductAttributeQuantity.ProductId == productId);
         }
 

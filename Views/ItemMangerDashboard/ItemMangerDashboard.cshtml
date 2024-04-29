@@ -87,7 +87,7 @@
                 </form>
             </div>
             <div id="section4" class="section">
-                <form action="/api/Attribute/addDetails" method="POST" enctype="multipart/form-data">
+                <form  action="/api/Attribute/addDetails" method="POST" enctype="multipart/form-data">
                     <fieldset>
                         <legend>تفاصيل المنتج</legend>
 
@@ -121,17 +121,16 @@
                     <fieldset>
                         <legend>الخصائص</legend>
                         <label for="existing_property">اختر الخصائص  :</label>
-                        <select id="existing_property" name="Name" onchange="updatePropertyValues()">
+                        <select id="existing_property" name="Name" >
                         </select>
                         <br>
-                        <br>
-                        <label for="property_value_dropdown">اختر قيمة (إذا كانت معرفة مسبقًا):</label>
-                        <select id="property_value_dropdown" name="property_value_dropdown">
+                       
+                        <label for="property_value_dropdown" hidden></label>
+                        <select id="property_value_dropdown" name="property_value_dropdown" hidden>
                         </select>
-                        <br>
-                        <br>
-                        <button onclick="addNewValue()">..أو أضف قيمة جديدة</button>
-                        <label for="property_value">قيمة جديدة:</label>
+                        
+                        <button type="button" onclick="enableInputField()">أضف قيمة الخصائص</button>
+                        <label for="property_value">القيمة:</label>
                         <input type="text" id="property_value" name="Value" placeholder="" disabled>
                         <br>
                     </fieldset>
@@ -140,15 +139,13 @@
                         <legend>الصورة أو الشعار</legend>
 
                         <div id="imageInputsContainer">
-                            <label for="productImage1">صور المنتج :</label>
-                            <input type="file" class="image-input" name="productImages[]" accept="image/*" required>
+                            <label for="productImage">صورة المنتج:</label>
+                            <input type="file" id="productImage" class="image-input" name="productImage" accept="image/*" required>
                         </div>
-
-                        <span id="addImage" style="cursor: pointer; color: blue; left: 10px;">+</span>
 
                     </fieldset>
                     <br>
-                    <button type="submit" id="submitButton" onclick="handleSubmit()">حفظ</button>
+                    <button type="submit" id="submitButton" >حفظ</button>
                 </form>
 
             </div>
@@ -202,163 +199,62 @@
         </div>
     </footer>
     <script>
-        function addNewValue() {
-            // تعطيل قائمة القيم
-            document.getElementById('property_value_dropdown').disabled = true;
-
-            // إزالة العناصر من قائمة القيم
-            var valueDropdown = document.getElementById('property_value_dropdown');
-            valueDropdown.innerHTML = '';
-
-            // تفعيل حقل الإدخال
-            document.getElementById('property_value').disabled = false;
-        }
-        // استدعاء طلب API لجلب الصفات
+        // Fetch attribute data and populate the select element
         fetch('/api/Attribute/getAllAttribute')
             .then(response => response.json())
             .then(data => {
                 const selectElement = document.getElementById('existing_property');
                 data.forEach(attribute => {
                     const option = document.createElement('option');
-                    option.value = attribute.name;
+                    option.value = attribute.id;
                     option.textContent = attribute.name;
                     selectElement.appendChild(option);
                 });
 
+                // Event listener for select element
                 selectElement.addEventListener('change', function () {
                     const selectedOption = selectElement.options[selectElement.selectedIndex];
                     const selectedId = selectedOption.value;
 
+                    // Fetch values from the API and populate the dropdown
                     fetch(`/api/Attribute/selectAttribute?id=${selectedId}`)
                         .then(response => response.json())
                         .then(attributeData => {
                             console.log('Response data:', attributeData); // Log the response data for inspection
 
-                            // Handle the single attribute object
                             const propertyValueDropdown = document.getElementById('property_value_dropdown');
                             propertyValueDropdown.innerHTML = ''; // Clear the existing options
 
-                            // Iterate through productAttributes array and create options for each value
                             attributeData.productAttributes.forEach(productAttribute => {
                                 const option = document.createElement('option');
                                 option.value = productAttribute.value;
                                 option.textContent = productAttribute.value;
                                 propertyValueDropdown.appendChild(option);
                             });
+
+                            // Enable the dropdown and disable the input field
+                            document.getElementById('property_value_dropdown').disabled = false;
+                            document.getElementById('property_value').disabled = true;
                         })
                         .catch(error => console.error('Error fetching attribute values:', error));
-
-
-
                 });
             })
             .catch(error => console.error('Error fetching attributes:', error));
-        // // استدعاء طلب API لجلب الصفات
-        // fetch('/api/Attribute/getAllAttribute')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         const selectElement = document.getElementById('existing_property');
-        //         data.forEach(attribute => {
-        //             const option = document.createElement('option');
-        //             option.value = attribute.id;
-        //             option.textContent = attribute.name;
-        //             selectElement.appendChild(option);
-        //         });
 
-        //         selectElement.addEventListener('change', function () {
-        //             const selectedOption = selectElement.options[selectElement.selectedIndex];
-        //             const selectedId = selectedOption.value;
+        // Function to enable input field and disable dropdown
+        function enableInputField() {
+            // تعطيل قائمة القيم
+                document.getElementById('property_value_dropdown').disabled = true;
 
-        //             fetch(`/api/Attribute/selectAttribute?id=${selectedId}`)
-        //                 .then(response => response.json())
-        //                 .then(attributeData => {
-        //                     console.log('Response data:', attributeData); // Log the response data for inspection
+             // إزالة العناصر من قائمة القيم
+                var valueDropdown = document.getElementById('property_value_dropdown');
+                valueDropdown.innerHTML = '';
 
-        //                     // Handle the single attribute object
-        //                     const propertyValueDropdown = document.getElementById('property_value_dropdown');
-        //                     propertyValueDropdown.innerHTML = ''; // Clear the existing options
-
-        //                     // Iterate through productAttributes array and create options for each value
-        //                     attributeData.productAttributes.forEach(productAttribute => {
-        //                         const option = document.createElement('option');
-        //                         option.value = productAttribute.value;
-        //                         option.textContent = productAttribute.value;
-        //                         propertyValueDropdown.appendChild(option);
-        //                     });
-        //                 })
-        //                 .catch(error => console.error('Error fetching attribute values:', error));
-
-
-
-        //         });
-        //     })
-        //     .catch(error => console.error('Error fetching attributes:', error));
-        // fetch('/api/Attribute/getAllAttribute')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         const selectElement = document.getElementById('existing_property');
-        //         data.forEach(attribute => {
-        //             const option = document.createElement('option');
-        //             option.value = attribute.id;
-        //             option.textContent = attribute.name;
-        //             selectElement.appendChild(option);
-        //         });
-
-        //         selectElement.addEventListener('change', function () {
-        //             const selectedOption = selectElement.options[selectElement.selectedIndex];
-        //             const selectedId = selectedOption.value;
-
-        //             if (selectedId === 'other') {
-        //                 // إذا تم اختيار "أخرى"، قم بتفعيل حقل الإدخال وتعطيل قائمة القيم
-        //                 document.getElementById('property_value').disabled = false;
-        //                 document.getElementById('property_value_dropdown').disabled = true;
-        //             } else {
-        //                 // إذا تم اختيار خيار آخر، قم بجلب القيم من API وملء قائمة القيم
-        //                 fetch(`/api/Attribute/selectAttribute?id=${selectedId}`)
-        //                     .then(response => response.json())
-        //                     .then(attributeData => {
-        //                         console.log('Response data:', attributeData); // Log the response data for inspection
-
-        //                         // Handle the single attribute object
-        //                         const propertyValueDropdown = document.getElementById('property_value_dropdown');
-        //                         propertyValueDropdown.innerHTML = ''; // Clear the existing options
-
-        //                         // Iterate through productAttributes array and create options for each value
-        //                         attributeData.productAttributes.forEach(productAttribute => {
-        //                             const option = document.createElement('option');
-        //                             option.value = productAttribute.value;
-        //                             option.textContent = productAttribute.value;
-        //                             propertyValueDropdown.appendChild(option);
-        //                         });
-
-        //                         // تفعيل قائمة القيم وتعطيل حقل الإدخال
-        //                         document.getElementById('property_value_dropdown').disabled = false;
-        //                         document.getElementById('property_value').disabled = true;
-        //                     })
-        //                     .catch(error => console.error('Error fetching attribute values:', error));
-        //             }
-        //         });
-        //     })
-        //     .catch(error => console.error('Error fetching attributes:', error));
-
-        // Function to fetch categories and populate the main category select element
-        function fetchCategories() {
-            fetch('/api/Category')
-                .then(response => response.json())
-                .then(data => {
-                    const mainCategorySelect = document.getElementById('mainCategory');
-                    data.forEach(category => {
-                        const option = document.createElement('option');
-                        option.value = category.id;
-                        option.textContent = category.name;
-                        mainCategorySelect.appendChild(option);
-                    });
-                    // Trigger change event to populate subcategories based on the selected main category
-                    mainCategorySelect.dispatchEvent(new Event('change'));
-                })
-                .catch(error => console.error('Error fetching categories:', error));
+              // تفعيل حقل الإدخال
+                document.getElementById('property_value').disabled = false;
         }
-        // Function to fetch categories and populate the main category select element
+
+
         function fetchCategories() {
             fetch('/api/Category')
                 .then(response => response.json())
@@ -439,105 +335,6 @@
 
 
 
-        // // استدعاء طلب API لجلب المنتجات مع الكمية
-        // fetch('/api/Product')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // عرض أسماء المنتجات في قائمة
-        //         const selectElement = document.getElementById('productId');
-        //         // Clear existing options
-        //         selectElement.innerHTML = '';
-        //         data.forEach(product => {
-        //             // Assuming each product has only one productAttributeQuantity for simplicity
-        //             const productAttributeQuantity = product.productAttributeQuantities[0];
-        //             const option = document.createElement('option');
-        //             option.value = product.id; // Use the actual product id here
-        //             option.textContent = `${product.name} - الكمية: ${productAttributeQuantity.quantity}`; // Display product name and quantity
-        //             selectElement.appendChild(option);
-        //         });
-        //     })
-        //     .catch(error => console.error('Error fetching products with quantity:', error));
-
-        // // استدعاء طلب API لجلب الفئات الفرعية
-        // fetch('/api/SubCategory')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // عرض الفئات الفرعية كخيارات داخل عنصر select
-        //         const selectElement = document.getElementById('subCategory');
-        //         data.forEach(subCategory => {
-        //             const option = document.createElement('option');
-        //             option.value = subCategory.id;
-        //             option.textContent = subCategory.name;
-        //             selectElement.appendChild(option);
-        //         });
-        //     })
-        //     .catch(error => console.error('Error fetching subcategories:', error));
-
-        // // استدعاء طلب API لجلب الفئات
-        // fetch('/api/Category')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         // عرض الفئات كخيارات داخل عنصر select
-        //         const selectElement = document.getElementById('mainCategory');
-        //         data.forEach(category => {
-        //             const option = document.createElement('option');
-        //             option.value = category.id;
-        //             option.textContent = category.name;
-        //             selectElement.appendChild(option);
-        //         });
-        //     })
-        //     .catch(error => console.error('Error fetching categories:', error));
-
-
-        // // استدعاء طلب API لجلب المنتجات مع الكمية باستخدام subId
-        // function fetchProductsBySubId(subId) {
-        //     fetch(`/api/Product/subId?subId=${subId}`)
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // عرض أسماء المنتجات في قائمة
-        //             const selectElement = document.getElementById('productId');
-        //             // Clear existing options
-        //             selectElement.innerHTML = '';
-        //             data.forEach(product => {
-        //                 // Assuming each product has only one productAttributeQuantity for simplicity
-        //                 const productAttributeQuantity = product.productAttributeQuantities[0];
-        //                 const option = document.createElement('option');
-        //                 option.value = product.id; // Use the actual product id here
-        //                 option.textContent = `${product.name}`; // Display product name
-        //                 selectElement.appendChild(option);
-        //             });
-        //         })
-        //         .catch(error => console.error('Error fetching products with quantity:', error));
-        // }
-
-        // // عند تغيير الفئة الفرعية، قم بجلب المنتجات المرتبطة بها باستخدام ال subId
-        // document.getElementById('subCategory').addEventListener('change', function () {
-        //     const subId = this.value;
-        //     fetchProductsBySubId(subId);
-        // });
-
-        // // عند تغيير الفئة الفرعية، قم بجلب المنتجات المرتبطة بها
-        // document.getElementById('subCategory').addEventListener('change', function () {
-        //     const subcategoryId = this.value;
-        //     console.log(subcategoryId);
-        //     fetchProductsBySubcategory(subcategoryId);
-        // });
-
-        // // استماع لتغيير القيمة المحددة في القائمة المنسدلة
-        // document.getElementById('productId').addEventListener('change', function () {
-        //     const productId = this.value;
-        //     // استدعاء طلب API لجلب الكمية والسعر للمنتج المحدد
-        //     fetch('/api/Product/{productId}')
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // تحديث حقول الكمية والسعر بالقيم المسترجعة
-        //             document.getElementById('itemQuantity').value = data.quantity;
-        //             document.getElementById('itemPrice').value = data.price;
-        //         })
-        //         .catch(error => console.error('Error fetching product details:', error));
-        // });
-
-
         // استدعاء طلب API لجلب الفئات الفرعية
         fetch('/api/SubCategory')
             .then(response => response.json())
@@ -552,21 +349,7 @@
                 });
             })
             .catch(error => console.error('Error fetching subcategories:', error));
-        // استدعاء طلب API لجلب الفئات
-        fetch('/api/Category')
-            .then(response => response.json())
-            .then(data => {
-                // عرض الفئات كخيارات داخل عنصر select
-                const selectElement = document.getElementById('mainCategory');
-                data.forEach(category => {
-                    const option = document.createElement('option');
-                    option.value = category.id;
-                    option.textContent = category.name;
-                    selectElement.appendChild(option);
-                });
-            })
-            .catch(error => console.error('Error fetching categories:', error));
-
+        
         // تعريف متغير لتخزين رقم الفئة المحددة
         let selectedCategoryId = null;
 
@@ -692,29 +475,7 @@
         }
 
 
-        function updatePropertyValues() {
-            const selectedProperty = document.getElementById('existing_property').value;
-            const propertyValueInput = document.getElementById('property_value');
-            const propertyValueDropdown = document.getElementById('property_value_dropdown');
-
-
-            // قم بتحديث القيم بناءً على الخاصية المحددة
-            switch (selectedProperty) {
-                case 'color':
-                    populateDropdown(propertyValueDropdown, ['أحمر', 'أخضر', 'أسود']);
-                    propertyValueInput.placeholder = 'أو أضف قيمة جديدة';
-                    break;
-                case 'size':
-                    populateDropdown(propertyValueDropdown, ['صغير', 'متوسط', 'كبير']);
-                    propertyValueInput.placeholder = 'أو أضف قيمة جديدة';
-                    break;
-                // يمكنك إضافة حالات إضافية للخصائص الأخرى
-                default:
-                    // يمكنك تحديد القيم الافتراضية أو تركها فارغة
-                    populateDropdown(propertyValueDropdown, []);
-                    propertyValueInput.placeholder = '';
-            }
-        }
+       
 
         function populateDropdown(select, values) {
             // مسح الخيارات الحالية
@@ -728,44 +489,7 @@
                 select.add(option);
             });
         }
-        var imageCounter = 2; // بداية عداد الصور من 2
-
-        document.getElementById('addImage').addEventListener('click', function () {
-            var container = document.getElementById('imageInputsContainer');
-            var newInput = document.createElement('input');
-            newInput.type = 'file';
-            newInput.className = 'image-input';
-            newInput.name = 'productImages[]';
-            newInput.accept = 'image/*';
-            newInput.required = true;
-            container.appendChild(document.createElement('br'));
-            container.appendChild(newInput);
-
-            // زيادة عداد الصور
-            imageCounter++;
-        });
-        function addProperty() {
-            // احصل على المنتج المحدد، واسم الخاصية، وقيمة الخاصية
-            var productId = document.getElementById('productId').value;
-            var propertyName = document.getElementById('propertyName').value;
-            var propertyValue = document.getElementById('propertyValue').value;
-
-            // قم بإجراء التحقق من الصحة إذا كان ذلك ضروريًا
-
-            // أنشئ كائنًا لتمثيل الخاصية
-            var property = {
-                productId: productId,
-                propertyName: propertyName,
-                propertyValue: propertyValue
-            };
-
-            // يمكنك إرسال هذه البيانات إلى الخادم باستخدام AJAX أو التعامل معها كما هو مطلوب
-            console.log(property);
-
-            // قم بتفريغ حقول النموذج
-            document.getElementById('propertyName').value = '';
-            document.getElementById('propertyValue').value = '';
-        }
+      
         //products info
         function fetchProducts() {
             // قم بجلب بيانات المنتجات من خلال طلب HTTP
@@ -876,32 +600,10 @@
 
                 });
         }
-        // Fetch products and then display them
-        // function fetchProducts() {
-        //     // Fetch products from the API
-        //     fetch('/api/Product')
-        //         .then(response => response.json())
-        //         .then(products => {
-        //             // Update the product table
-        //             updateProductTable(products);
-
-        //             // Display products
-        //             displayProducts(products);
-        //         })
-        //         .catch(error => console.error('Error fetching products:', error));
-        // }
+      
 
         // Call fetchProducts to fetch and display products
         fetchProducts();
-
-
-        // Function to save changes for a specific product
-        function saveChangesByButton(button, productId, quantity, price) {
-
-        }
-
-
-
 
 
         // Function to dynamically generate an edit form for a specific product
@@ -1033,82 +735,6 @@
             }
         }
 
-        function showProductProperties() {
-            var productPropertiesElement = document.getElementById("product-properties");
-
-            // مسح العنصر لتجنب تكرار القيم
-            productPropertiesElement.innerHTML = "";
-
-            var selectedProduct = document.getElementById("product-select").value;
-
-            // var productProperties = {
-            //     product1: {
-            //         اللون: ["أحمر", "أزرق", "أخضر"],
-            //         الصفحات: ["100", "50", "6"],
-            //         النوع: ["غلاف صلب", "غلاف ورقي", "دفتر سلك"],
-            //         الحجم: ["قياس كبير", "قياس وسط", "قياس صغير"]
-            //     },
-            //     product2: {
-            //         اللون: ["أسود", "أبيض", "رمادي"],
-            //         الصفحات: ["200", "150", "120"],
-            //         النوع: ["غلاف ورقي", "غلاف بلاستيك", "دفتر عادي"],
-            //         الحجم: ["قياس صغير", "قياس صغير جداً"]
-            //     }
-            // };
-
-            // إنشاء وعرض الخصائص الخاصة بالمنتج المختار
-            if (productProperties[selectedProduct]) {
-                for (var property in productProperties[selectedProduct]) {
-                    var label = document.createElement("label");
-                    label.textContent = property + ":";
-
-                    var select = document.createElement("select");
-                    select.id = property;
-
-                    for (var option of productProperties[selectedProduct][property]) {
-                        var optionElement = document.createElement("option");
-                        optionElement.value = option;
-                        optionElement.textContent = option;
-                        select.appendChild(optionElement);
-                    }
-
-                    // إضافة label و select إلى العنصر الخاص بالخصائص
-                    productPropertiesElement.appendChild(label);
-                    productPropertiesElement.appendChild(select);
-                }
-
-                // إظهار عنصر الخصائص بعد ملء القيم
-                productPropertiesElement.style.display = "block";
-            }
-        }
-        function updateItemQuantity() {
-            var itemName = document.getElementById('itemName').value;
-            var itemQuantity = document.getElementById('itemQuantity').value;
-
-            if (itemName && itemQuantity > 0) {
-                var itemList = document.getElementById('itemList');
-                var existingItems = itemList.getElementsByClassName('item');
-
-                for (var i = 0; i < existingItems.length; i++) {
-                    var existingName = existingItems[i].getElementsByTagName('span')[0].textContent;
-
-                    if (existingName === itemName) {
-                        var quantitySpan = existingItems[i].getElementsByTagName('span')[1];
-                        quantitySpan.textContent = `الكمية: ${itemQuantity}`;
-                        break;
-                    }
-                }
-
-                // Clear input fields
-                document.getElementById('itemName').value = '';
-                document.getElementById('itemQuantity').value = 1;
-            }
-        }
-
-        function removeItem(button) {
-            var listItem = button.parentNode;
-            listItem.parentNode.removeChild(listItem);
-        }
 
 
         function showSection(sectionId) {
@@ -1161,53 +787,7 @@
             // يمكنك إضافة رمز يقوم بحذف القسم أو تنفيذ الإجراء الخاص بك هنا
             alert('تم الحذف ');
         }
-        // function saveChangesByButton(button) {
-        //     var listItem = button.parentNode;
-        //     var itemName = listItem.querySelector('span').textContent;
-        //     var itemQuantity = listItem.querySelector('input#itemQuantity').value;
-        //     var itemPrice = listItem.querySelector('input#itemPrice').value;
-
-        //     // هنا يمكنك إجراء الإجراءات اللازمة لحفظ التعديلات في قاعدة البيانات أو مكان آخر
-        //     alert('تم حفظ التعديلات لـ' + itemName + ': الكمية=' + itemQuantity + '، السعر=' + itemPrice);
-        // }
-        // function saveChanges(sectionId) {
-        //     // قم بتحديد الأقسام التي تريد تطبيق السلوك عليها
-        //     var sectionsToCheck = ['section2', 'section3'];
-
-        //     // فحص ما إذا كانت القسم الحالي ينتمي إلى الأقسام المحددة
-        //     if (sectionsToCheck.includes(sectionId)) {
-        //         // قم بالتحقق من تعبئة القيم
-        //         var section = document.getElementById(sectionId);
-        //         var itemName = section.querySelector('#itemName').value;
-        //         var itemDescription = section.querySelector('#itemDescription').value;
-        //         var itemParent = section.querySelector('#itemParent').value;
-        //         var productImage = section.querySelector('.image-input').value;
-
-        //         // فحص ما إذا كانت القيم فارغة
-        //         if (itemName === '' || itemDescription === '' || itemParent === '' || productImage === '') {
-        //             alert('يرجى تعبئة جميع الحقول قبل الحفظ');
-        //             return; // توقف عن تنفيذ الوظيفة إذا لم تكن القيم معبأة بالكامل
-        //         }
-        //     }
-
-        //     // تنفيذ السلوك المطلوب بناءً على الأقسام المحددة
-        //     var section = document.getElementById(sectionId);
-        //     var inputs = section.querySelectorAll('input');
-        //     inputs.forEach(function (input) {
-        //         input.setAttribute('disabled', 'true');
-        //     });
-
-        //     var saveIcon = section.querySelector('.save-icon');
-        //     saveIcon.style.display = 'none';
-
-        //     // حفظ التغييرات هنا (يمكنك إرسالها إلى الخادم أو تنفيذ الإجراء الخاص بك)
-        //     alert('تم حفظ التغييرات ');
-
-        //     // إظهار أيقونة الإضافة بعد الحفظ
-        //     var addCategoryIcon = section.querySelector('.add-category-icon');
-        //     addCategoryIcon.style.display = 'inline';
-        // }
-
+        
         window.onload = function () {
             // قم بإظهار القسم الأول الذي يحتوي على الصورة
             showSection('section1');
@@ -1243,57 +823,7 @@
                 addCategoryIcon.style.display = saveIcon.style.display !== 'none' ? 'inline' : 'none'; // تبديل عرض أيقونة الإضافة
             }
         }
-        function handleSubmit() {
-            var mainCategory = document.getElementById("mainCategory").value;
-            var subCategory = document.getElementById("subCategory").value;
-            var productId = document.getElementById("productId").value;
-            var itemQuantity = document.getElementById("itemQuantity").value;
-            var itemPrice = document.getElementById("itemPrice").value;
-            var propertyName = document.getElementById("propertyName").value;
-            var propertyValue = document.getElementById("propertyValue").value;
-            console.log(
-                mainCategory,
-                subCategory,
-                productId,
-                itemQuantity,
-                itemPrice,
-                propertyName,
-                propertyValue
-            )
-
-            // التحقق من ملء الحقول
-            if (mainCategory === "" || subCategory === "" || productId === "" || itemQuantity === "" || itemPrice === "" ||
-                propertyName === "" || propertyValue === "") {
-                alert("يرجى ملء جميع الحقول");
-                return false;
-            } else {
-                // عرض واجهة المنبثقة للتأكيد
-                var confirmation = confirm("هل تريد حفظ هذه المعلومات؟");
-                if (confirmation) {
-                    // إظهار رسالة تم الحفظ بنجاح
-                    alert("تم الحفظ بنجاح!");
-                    // تفريغ الحقول
-                    document.getElementById("mainCategory").value = "";
-                    document.getElementById("subCategory").value = "";
-                    document.getElementById("productId").value = "";
-                    document.getElementById("itemQuantity").value = "";
-                    document.getElementById("itemPrice").value = "";
-                    document.getElementById("existing_property").value = "";
-                    document.getElementById("property_value_dropdown").value = "";
-                    document.getElementById("propertyName").value = "";
-                    document.getElementById("propertyValue").value = "";
-                    // تفريغ حقول الصور
-                    var imageInputs = document.querySelectorAll('.image-input');
-                    for (var i = 0; i < imageInputs.length; i++) {
-                        imageInputs[i].value = "";
-                    }
-                    return true;
-                } else {
-                    // إلغاء الحفظ
-                    return false;
-                }
-            }
-        }
+        
         function logout() {
             // حذف الـ token من الجلسة
             localStorage.removeItem('authToken');
