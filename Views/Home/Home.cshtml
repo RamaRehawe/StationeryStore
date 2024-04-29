@@ -50,10 +50,7 @@
             <a href="#" class="location-text" id="deliveryLink">توصيل إلى سوريا</a>
             <div id="loginPopup">
                 <button id="closeButton" class="close-button">&#10006;</button>
-                <p>يجب عليك تسجيل الدخول لرؤية عنوانك</p>
-                <a href="front_login">
-                    <button class="btn-login">تسجيل الدخول</button>
-                </a>
+                <p>متجرنا لديه خدمة التوصيل و الشحن إلى جميع المحافظات السورية</p>
             </div>
         </div>
         <div class="logout-icon">
@@ -100,16 +97,18 @@
     <main>
 
         <!-- Search form -->
-        <div action="#" method="get" onsubmit="searchProducts(event)" class="search-form">
-            <input type="text" id="search" name="search" placeholder="ابحث هنا...">
-            <button type="submit">ابحث</button>
+        <div class="search-form">
+            <form class="search-form" onsubmit="searchProducts(event)">
+                <input type="text" id="search" name="search" placeholder="ابحث هنا...">
+                <button type="submit">ابحث</button>
+            </form>
         </div>
 
         <!-- Display search results -->
         <div id="search-results">
             <!-- Display search results here -->
         </div>
-
+@* 
         <!-- Filter options (initially hidden) -->
         <div id="filter-options" style="display: none;">
             <form action="#" method="get" onsubmit="applyFilters(event)">
@@ -132,7 +131,7 @@
 
                 <button type="submit">تصفية النتائج</button>
             </form>
-        </div>
+        </div> *@
 
 
         <h1>مرحبًا بك في متجر القرطاسية</h1>
@@ -226,8 +225,7 @@
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
         |
         <a href="front_privacy_policy">سياسة الخصوصية</a>
-        <a id="customerServiceLink" href="front_customer_service" onclick="redirectToCustomerService()">خدمة العملاء</a>
-        <span id="loginMessage" class="hiddenMessage">يرجى تسجيل الدخول أولاً!</span>
+        <a id="customerServiceLink" href="front_customer_service">خدمة العملاء</a>
         <a href="front_about">من نحن</a>
         |
         <div class="social-links">
@@ -247,6 +245,123 @@
         </div>
     </footer>
     <script>
+        // إخفاء رابط تسجيل الخروج ولوغو المستخدم وعرض رابط تسجيل الدخول
+        document.getElementById('logoutLink').style.display = 'none';
+        document.getElementById('user-info').style.display = 'none';
+        document.getElementById('login-icon').style.display = 'inline-block';
+
+        // التحقق من وجود الـ token في الجلسة
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken);
+        // عندما يكون هناك token
+        if (authToken) {
+            // عرض رابط تسجيل الخروج ولوغو المستخدم
+            document.getElementById('logoutLink').style.display = 'inline-block';
+            document.getElementById('user-info').style.display = 'inline-block';
+            document.getElementById('login-icon').style.display = 'none';
+
+            // جلب بيانات المستخدم باستخدام التوكن
+            fetch('/api/User', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
+                .then(response => response.json())
+                .then(userDataArray => {
+                    console.log('User data:', userDataArray);
+
+                    // استخراج معرف المستخدم من sessionStorage
+                    const userData = JSON.parse(sessionStorage.getItem('userData'));
+                    if (!userData || !userData.userId) {
+                        console.error('User data not found in sessionStorage or missing userId.');
+                        return;
+                    }
+
+                    // استخراج معرف المستخدم
+                    const loggedInUserId = userData.userId;
+
+                    // البحث عن بيانات المستخدم المرتبطة بالمعرف المسجل
+                    const loggedInUser = userDataArray.find(user => user.id === loggedInUserId);
+                    if (loggedInUser) {
+                        // عرض بيانات المستخدم
+                        document.getElementById("user-name").innerText = loggedInUser.username;
+                    } else {
+                        console.error('Logged in user data not found.');
+                    }
+                })
+                .catch(error => console.error('Error fetching user data:', error));
+        } else {
+            // عندما لا يكون هناك token
+            // إظهار رابط تسجيل الدخول وإخفاء رابط تسجيل الخروج ولوغو المستخدم
+            document.getElementById('logoutLink').style.display = 'none';
+            document.getElementById('user-info').style.display = 'none';
+            document.getElementById('login-icon').style.display = 'inline-block';
+        }
+
+
+        function searchProducts(event) {
+            event.preventDefault(); // منع السلوك الافتراضي لنموذج البحث
+
+            const searchTerm = document.getElementById('search').value.trim(); // الحصول على مصطلح البحث وإزالة الفراغات الزائدة
+            const searchResultsContainer = document.getElementById('search-results'); // الحصول على عنصر العرض لنتائج البحث
+
+            // إرسال طلب GET إلى نهاية الويب API باستخدام fetch
+            fetch(`/api/Product?search=${searchTerm}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch search results');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // معالجة البيانات المسترجعة هنا، على سبيل المثال، عرضها في عنصر العرض لنتائج البحث
+                    displaySearchResults(data, searchResultsContainer);
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    // يمكنك إضافة تنبيه أو رسالة خطأ هنا
+                });
+        }
+
+        function displaySearchResults(results, container) {
+            console.log(results); // Log the results to inspect the structure
+
+            var resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p>لا توجد نتائج.</p>';
+                return;
+            }
+
+            results.forEach(product => {
+                var productDiv = document.createElement('div');
+
+                var titleElement = document.createElement('p');
+                titleElement.textContent = product.name;
+                productDiv.appendChild(titleElement);
+
+                var descriptionElement = document.createElement('p');
+                descriptionElement.textContent = product.description;
+                productDiv.appendChild(descriptionElement);
+
+                if (product.productAttributeQuantities && product.productAttributeQuantities.length > 0) {
+                    var priceElement = document.createElement('p');
+                    priceElement.textContent = `السعر: ${product.productAttributeQuantities[0].price} ل.س`;
+                    productDiv.appendChild(priceElement);
+                } else {
+                    var priceElement = document.createElement('p');
+                    priceElement.textContent = `السعر: ${product.productAttributeQuantities[0].price} ل.س`;
+                    productDiv.appendChild(priceElement);
+                }
+
+                resultsContainer.appendChild(productDiv);
+            });
+        }
+
+
         function showContent(categoryId) {
             // Hide all tab contents first
             var tabContents = document.getElementsByClassName('tab-content');
@@ -264,115 +379,94 @@
                 categoryElement.style.display = 'none';
             }, 2000);
         }
-        function searchProducts(event) {
-            event.preventDefault();
-            var query = document.getElementById('search').value;
+        // function searchProducts(event) {
+        //     event.preventDefault();
+        //     var query = document.getElementById('search').value;
 
-            // Display loading indicator
-            showLoadingIndicator();
+        //     // Display loading indicator
+        //     showLoadingIndicator();
 
-            fetch(`/api/products/search?query=${query}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    displaySearchResults(data);
-                    // Show filter options once search results are available
-                    document.getElementById('filter-options').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error fetching search results:', error);
-                    // Handle the error appropriately, e.g., display an error message to the user
-                })
-                .finally(() => {
-                    // Hide loading indicator
-                    hideLoadingIndicator();
-                });
-        }
+        //     fetch(`/api/products/search?query=${query}`)
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('Network response was not ok');
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             displaySearchResults(data);
+        //             // Show filter options once search results are available
+        //             document.getElementById('filter-options').style.display = 'block';
+        //         })
+        //         .catch(error => {
+        //             console.error('Error fetching search results:', error);
+        //             // Handle the error appropriately, e.g., display an error message to the user
+        //         })
+        //         .finally(() => {
+        //             // Hide loading indicator
+        //             hideLoadingIndicator();
+        //         });
+        // }
 
 
-        function applyFilters(event) {
-            event.preventDefault();
-            var color = document.getElementById('color').value;
-            var size = document.getElementById('size').value;
-            var price = document.getElementById('price').value;
-            fetch(`/api/products/filter?color=${color}&size=${size}&price=${price}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => displaySearchResults(data))
-                .catch(error => {
-                    console.error('Error fetching filtered results:', error);
-                    // Handle the error appropriately, e.g., display an error message to the user
-                });
-        }
+        // function applyFilters(event) {
+        //     event.preventDefault();
+        //     var color = document.getElementById('color').value;
+        //     var size = document.getElementById('size').value;
+        //     var price = document.getElementById('price').value;
+        //     fetch(`/api/products/filter?color=${color}&size=${size}&price=${price}`)
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('Network response was not ok');
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => displaySearchResults(data))
+        //         .catch(error => {
+        //             console.error('Error fetching filtered results:', error);
+        //             // Handle the error appropriately, e.g., display an error message to the user
+        //         });
+        // }
 
-        function displaySearchResults(results) {
-            var resultsContainer = document.getElementById('search-results');
-            resultsContainer.innerHTML = '';
+        // function displaySearchResults(results) {
+        //     var resultsContainer = document.getElementById('search-results');
+        //     resultsContainer.innerHTML = '';
 
-            if (results.length === 0) {
-                resultsContainer.innerHTML = '<p>لا توجد نتائج.</p>';
-                return;
-            }
+        //     if (results.length === 0) {
+        //         resultsContainer.innerHTML = '<p>لا توجد نتائج.</p>';
+        //         return;
+        //     }
 
-            results.forEach(product => {
-                var productDiv = document.createElement('div');
+        //     results.forEach(product => {
+        //         var productDiv = document.createElement('div');
 
-                var titleElement = document.createElement('p');
-                titleElement.textContent = product.title;
-                productDiv.appendChild(titleElement);
+        //         var titleElement = document.createElement('p');
+        //         titleElement.textContent = product.title;
+        //         productDiv.appendChild(titleElement);
 
-                var descriptionElement = document.createElement('p');
-                descriptionElement.textContent = product.description;
-                productDiv.appendChild(descriptionElement);
+        //         var descriptionElement = document.createElement('p');
+        //         descriptionElement.textContent = product.description;
+        //         productDiv.appendChild(descriptionElement);
 
-                var priceElement = document.createElement('p');
-                priceElement.textContent = `السعر: ${product.price} دولار`;
-                productDiv.appendChild(priceElement);
+        //         var priceElement = document.createElement('p');
+        //         priceElement.textContent = `السعر: ${product.productAttributeQuantities[0].price} ل.س`;
+        //         productDiv.appendChild(priceElement);
 
-                var variancesBtn = document.createElement('button');
-                variancesBtn.textContent = 'عرض التباينات';
-                variancesBtn.onclick = function () {
-                    getVariances(product.id);
-                };
-                productDiv.appendChild(variancesBtn);
+        //         // var variancesBtn = document.createElement('button');
+        //         // variancesBtn.textContent = 'عرض التباينات';
+        //         // variancesBtn.onclick = function () {
+        //         //     getVariances(product.id);
+        //         // };
+        //         // productDiv.appendChild(variancesBtn);
 
-                resultsContainer.appendChild(productDiv);
-            });
-        }
+        //         resultsContainer.appendChild(productDiv);
+        //     });
+        // }
 
-        function getVariances(productId) {
-            console.log(`Fetching and displaying variances for product with ID: ${productId}`);
-        }
-        function logout() {
-            // حذف بيانات الدخول من Local Storage
-            localStorage.removeItem('username');
-            localStorage.removeItem('password');
-            // إخفاء رابط تسجيل الخروج
-            document.getElementById('logoutLink').style.display = 'none';
-            alert('تم تسجيل الخروج بنجاح!');
-            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
-            window.location.href = "~/Pages/Home.html";
-        }
-
-        // يتم استدعاء هذا الكود عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function () {
-            // التحقق من وجود بيانات تسجيل الدخول في Local Storage
-            const username = localStorage.getItem('username');
-            const password = localStorage.getItem('password');
-
-            // إذا كانت هناك بيانات تسجيل دخول، عرض رابط تسجيل الخروج
-            if (username && password) {
-                document.getElementById('logoutLink').style.display = 'inline-block';
-            }
-        });
+        // function getVariances(productId) {
+        //     console.log(`Fetching and displaying variances for product with ID: ${productId}`);
+        // }
+       
         const deliveryLink = document.getElementById('deliveryLink');
         const loginPopup = document.getElementById('loginPopup');
         const closeButton = document.getElementById('closeButton'); // إضافة زر الإغلاق
@@ -390,10 +484,7 @@
         closeButton.addEventListener('click', () => {
             loginPopup.style.display = 'none';
         });
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     updateCartCountHome();
-        // });
-
+       
         function redirectToLogin() {
             window.location.href = "front_login";
         }
@@ -404,7 +495,6 @@
                 section.scrollIntoView({ behavior: 'smooth' });
             }
         }
-        // إعادة تهيئة Swiper بعد تغيير اللغة
         if (swiper) {
             swiper.destroy();
         }
@@ -434,41 +524,6 @@
             });
         }
 
-        var userRating = 0;
-        var isLoggedIn = false;
-
-        function rateProduct(rating) {
-            if (isLoggedIn) {
-                userRating = rating;
-                updateStars(userRating);
-            } else {
-                alert('يجب عليك تسجيل الدخول لتقييم المنتج.');
-            }
-        }
-
-        function updateStars(count) {
-            var stars = document.querySelectorAll('.rating .star');
-
-            stars.forEach(function (star, index) {
-                if (index < count) {
-                    star.classList.add('selected');
-                } else {
-                    star.classList.remove('selected');
-                }
-            });
-        }
-
-        function submitReview() {
-            if (isLoggedIn && userRating > 0) {
-                alert('تم استلام تقييمك: ' + userRating);
-                // يمكنك إرسال التقييم إلى الخادم أو قاعدة البيانات هنا
-            } else if (!isLoggedIn) {
-                alert('يجب عليك تسجيل الدخول لتقييم المنتج.');
-                // يمكنك توجيه المستخدم إلى صفحة تسجيل الدخول أو اتخاذ إجراء آخر هنا
-            } else {
-                alert('يرجى تحديد تقييم');
-            }
-        }
 
         function addHeart(element) {
             element.classList.toggle('active');
@@ -477,40 +532,25 @@
             var subcategory = document.getElementById(categoryId);
             subcategory.style.display = subcategory.style.display === 'block' ? 'none' : 'block';
         }
-        var isLoggedIn = false; // يمكن تعديل قيمة هذا المتغير بناءً على حالة تسجيل الدخول
+       
 
-        function redirectToCustomerService() {
-            if (!isLoggedIn) {
-                // تنبيه المستخدم بأنه يجب تسجيل الدخول أولاً
-                alert("يرجى تسجيل الدخول أولاً!");
-                // توقف عن الانتقال للرابط الأصلي
-                event.preventDefault();
-            }
+        function logout() {
+            // حذف الـ token من الجلسة
+            localStorage.removeItem('authToken');
+
+            // إخفاء رابط تسجيل الخروج ولوغو المستخدم
+            document.getElementById('logoutLink').style.display = 'none';
+            document.getElementById('userLogo').style.display = 'none';
+
+            // إظهار رابط تسجيل الدخول
+            document.getElementById('loginLink').style.display = 'inline-block';
+
+            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+            window.location.href = "front_home";
         }
-        document.addEventListener("DOMContentLoaded", function () {
-            // حدد العنصرين
-            var loginIcon = document.getElementById("login-icon");
-            var userInfo = document.getElementById("user-info");
 
-            // قم بفحص ما إذا كان هناك تسجيل دخول أم لا
-            var isLoggedIn = false; // يجب استبدال هذا بالتحقق الفعلي من تسجيل الدخول
+       
 
-            // إذا لم يتم تسجيل الدخول، فقم بإظهار أيقونة تسجيل الدخول وإخفاء معلومات المستخدم
-            if (!isLoggedIn) {
-                userInfo.classList.add("hidden");
-                loginIcon.style.display = "block";
-            } else {
-                // إذا تم تسجيل الدخول، قم بإظهار معلومات المستخدم وإخفاء أيقونة تسجيل الدخول
-                loginIcon.style.display = "none";
-                userInfo.classList.remove("hidden");
-
-                // يمكنك تغيير هذا الجزء برمز للتحقق من الجلسات أو الكوكيز وعرض معلومات المستخدم بناءً على النتيجة
-                var username = "اسم المستخدم";
-
-                // عرض معلومات المستخدم بعد تسجيل الدخول
-                document.getElementById("user-name").innerText = username;
-            }
-        });
 
     </script>
 

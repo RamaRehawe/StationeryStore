@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خدمة العملاء</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/CSS/Styles.css">
     <link rel="icon" href="~/Images/ICO.png" type="image/png">
     <script src="~/Javascript/Functions.js"></script>
@@ -19,23 +19,23 @@
         <h1>خدمة العملاء</h1>
     </header>
     <main>
-        <form class="contact-form" onsubmit="submitForm(event)">
+        <form class="contact-form">
             <label for="username">اسم المستخدم:</label>
             <input type="text" id="username" disabled>
             <br>
-            <label for="phoneNumber">رقم الهاتف:</label>
-            <input type="text" id="phoneNumber" disabled>
+            <label for="phone">رقم الهاتف:</label>
+            <input type="text" id="phone" disabled>
             <br>
             <label for="inquiryType">نوع الاستفسار:</label>
             <select id="inquiryType" name="inquiryType" required>
-                <option value="general">استفسار عام</option>
+                <option value="generalinquiry">استفسار عام</option>
                 <option value="complaint">شكوى</option>
             </select>
             <br>
             <label for="customerMessage">رسالتك:</label>
             <textarea id="customerMessage" name="customerMessage" rows="4" required></textarea>
             <br>
-            <button type="submit">إرسال</button>
+            <button type="button" onclick="sendComplaint()">إرسال</button>
         </form>
     </main>
     <footer>
@@ -62,14 +62,104 @@
         </div>
     </footer>
     <script>
-        var userInformation = {
-            username: "اسم المستخدم الخاص بك",
-            phoneNumber: "رقم الهاتف الخاص بك"
-        };
+        const authToken = localStorage.getItem('authToken');
+        console.log(authToken);
 
-        // جلب معلومات المستخدم وتعبئة حقول الإدخال
-        document.getElementById("username").value = userInformation.username;
-        document.getElementById("phoneNumber").value = userInformation.phoneNumber;
+        fetch('/api/User', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
+            .then(response => response.json())
+            .then(userDataArray => {
+                console.log('User data:', userDataArray);
+
+                // استخراج معرف المستخدم من sessionStorage
+                const userData = JSON.parse(sessionStorage.getItem('userData'));
+                if (!userData || !userData.userId) {
+                    console.error('User data not found in sessionStorage or missing userId.');
+                    return;
+                }
+
+                // استخراج معرف المستخدم
+                const loggedInUserId = userData.userId;
+
+                // البحث عن بيانات المستخدم المرتبطة بالمعرف المسجل
+                const loggedInUser = userDataArray.find(user => user.id === loggedInUserId);
+                if (loggedInUser) {
+                    // عرض بيانات المستخدم
+                    document.getElementById('username').value = loggedInUser.username;
+                    document.getElementById('phone').value = loggedInUser.phone;
+                } else {
+                    console.error('Logged in user data not found.');
+                }
+            })
+            .catch(error => console.error('Error fetching user data:', error));
+        
+        function sendComplaint() {
+            // استخراج معرف المستخدم من sessionStorage
+            const userData = JSON.parse(sessionStorage.getItem('userData'));
+            if (!userData || !userData.userId) {
+                console.error('User data not found in sessionStorage or missing userId.');
+                return;
+            }
+
+            // استخراج معرف المستخدم
+            const loggedInUserId = userData.userId;
+
+            // الحصول على قيمة الاستفسار من القائمة المنسدلة
+            const inquiryType = document.getElementById('inquiryType').value;
+
+            // تحويل قيمة الاستفسار إلى القيمة المنطقية (bit)
+            const type = inquiryType === 'complaint' ? true : false;
+            // استخراج قيمة الرسالة من النموذج
+            const details = document.getElementById('customerMessage').value.trim();
+
+            // التحقق مما إذا كانت قيمة الرسالة غير فارغة
+            if (details === "") {
+                alert('يرجى كتابة رسالتك قبل إرسال الشكوى.');
+                return; // إيقاف إرسال الشكوى إذا كانت الرسالة فارغة
+            }
+
+            // Construct the complaint object with user ID
+            const complaint = {
+                type: type,
+                details: details,
+            };
+            
+            // Send the complaint data to the server
+            fetch('/api/CustomerService/addComplain', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken // Assuming authToken is obtained and stored correctly
+                },
+                body: JSON.stringify(complaint)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to send complaint');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Complaint sent successfully:', data);
+                    // Handle any success actions, e.g., display a success message
+                    alert('تم إرسال البيانات بنجاح ');
+                    details.value = '';
+                    window.location.href = 'front_home';
+
+                })
+                .catch(error => {
+                    console.error('Error sending complaint:', error);
+                    // Handle any error actions, e.g., display an error message
+                    alert('لم يتم الإرسال ');
+
+                });
+        }
+
     </script>
 </body>
 </html>

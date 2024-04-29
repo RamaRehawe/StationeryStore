@@ -368,7 +368,13 @@
             // إذا لم يتم التسليم، قم بإظهار السبب
             reasonElement.innerText = (deliveryStatus === 'notDelivered') ? 'سبب عدم التسليم: ' + reason : '';
         }
+        function logout() {
+            // حذف الـ token من الجلسة
+            localStorage.removeItem('authToken');
 
+            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+            window.location.href = "front_home";
+        }
 
 
     </script>

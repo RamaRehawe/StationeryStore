@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\StationeryStore\\StationeryStore\\StationeryStore.csproj": {}
+    "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\StationeryStore.csproj": {}
   },
   "projects": {
-    "C:\\StationeryStore\\StationeryStore\\StationeryStore.csproj": {
+    "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\StationeryStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
+        "projectUniqueName": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
         "projectName": "StationeryStore",
-        "projectPath": "C:\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\StationeryStore\\StationeryStore\\obj\\",
+        "projectPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\StationeryStore.csproj",
+        "packagesPath": "C:\\Users\\oulan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\oulan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,27 +55,27 @@
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.3, )"
+              "version": "[8.0.4, )"
             },
             "Microsoft.Extensions.Logging": {
               "target": "Package",
@@ -109,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

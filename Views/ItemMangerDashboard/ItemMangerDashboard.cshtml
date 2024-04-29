@@ -1578,7 +1578,13 @@
                 addCategoryIcon.style.display = saveIcon.style.display !== 'none' ? 'inline' : 'none'; // تبديل عرض أيقونة الإضافة
             }
         }
-        
+        function logout() {
+            // حذف الـ token من الجلسة
+            localStorage.removeItem('authToken');
+
+            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+            window.location.href = "front_home";
+        }
            
 
 

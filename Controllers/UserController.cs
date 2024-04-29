@@ -7,6 +7,7 @@ using StationeryStore.Data;
 using StationeryStore.Dto;
 using StationeryStore.Interfaces;
 using StationeryStore.Models;
+using StationeryStore.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -180,6 +181,31 @@ namespace StationeryStore.Controllers
                 return BadRequest(new { message = "Invalid user type." });
             }
         }
+
+        [HttpPost("update_profile")]
+        public IActionResult UpdateProfile([FromBody] UpdateProfileDto profileData)
+        {
+            
+            // Retrieve user by user ID
+            var userId = base.GetActiveUser()!.Id;
+            var user = _userRepository.GetUserById(userId);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            // Update gender and birthdate
+            user.Gender = profileData.Gender;
+            user.Birthdate = profileData.Birthdate;
+
+            // Save changes to the database
+            _userRepository.UpdateUser(user);
+            _userRepository.Save();
+
+            return Ok("Profile updated successfully");
+        }
+
 
 
 

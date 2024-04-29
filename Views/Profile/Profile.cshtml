@@ -82,7 +82,7 @@
             </div>
 
 
-            <div id="section3" class="section">
+            <div id="section3" class="section" >
 
                 <form>
                     <div class="section-header">
@@ -114,9 +114,8 @@
             <div id="section4" class="section">
                 <h1>تتبع الطلبية</h1>
 
-                <h2>طلبية رقم 123</h2>
-                <!-- معلومات الطلبية -->
-                <p>معلومات الطلبية هنا...</p>
+                <h2>طلبية رقم 1</h2>
+        
                 <div id="timeline">
                     <div class="event" data-status="loading">
                         <i class="fas fa-cogs"></i>
@@ -135,16 +134,15 @@
                 </div>
             </div>
             <div id="section5" class="section">
-                <h2>طلبيات العميل</h2>
+                <h2>جميع الطلبيات</h2>
 
                 <table>
                     <thead>
                         <tr>
                             <th>رقم الطلب</th>
                             <th>تاريخ الطلب</th>
-                            <th>اسم المنتج</th>
-                            <th>الكمية</th>
-                            <th>السعر</th>
+                            <th>حالة الطلب</th>
+                            <th>القيمة الإجمالية</th>
                         </tr>
                     </thead>
                     <tbody id="lastordertable">
@@ -195,6 +193,12 @@
         </div>
     </footer>
     <script>
+        const alertMessage = localStorage.getItem('alertMessage');
+        if (alertMessage) {
+            alert(alertMessage);
+            // Optionally, clear the alert message from local storage after displaying it
+            localStorage.removeItem('alertMessage');
+        }
         const authToken = localStorage.getItem('authToken');
         console.log(authToken);
 
@@ -233,10 +237,53 @@
             })
             .catch(error => console.error('Error fetching user data:', error));
 
+        // Function to translate order status to Arabic
+        function translateStatus(status) {
+            switch (status) {
+                case 'loading':
+                    return 'جارٍ التحميل';
+                case 'shipped':
+                    return 'تم الشحن';
+                case 'delivered':
+                    return 'تم التوصيل';
+                default:
+                    return 'غير معروف';
+            }
+        }
 
-        // function redirectToHomePage() {
-        //     window.location.href = 'front_home';
-        // }
+
+        // Fetch data from API endpoint
+        fetch('/api/Order/orders', {
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Get reference to the table body
+                const tableBody = document.getElementById('lastordertable');
+
+                // Loop through each order and create table rows
+                data.forEach(order => {
+                    // Create a new table row
+                    const row = document.createElement('tr');
+
+                    // Populate the row with order data
+                    row.innerHTML = `
+                               <td>${order.id}</td>
+                        <td>${order.orderDate}</td>
+                            <td>${translateStatus(order.orderStatus)}</td>
+                                <td>${order.totalAmount}</td>
+
+                    `;
+
+                    // Append the row to the table body
+                    tableBody.appendChild(row);
+
+                });
+            })
+            .catch(error => console.error('Error fetching orders:', error));
+
         function addAddress() {
             const authToken = localStorage.getItem('authToken');
             if (!authToken) {
@@ -352,8 +399,67 @@
 
         // Call fetchMyAddresses function when the page loads or when needed
         fetchMyAddresses();
+        // Define the order ID you want to track
+        const orderId = 1; // Replace order.id with the actual order ID you want to track
+
+        // Fetch order status
+        fetch(`/api/Order/status?orderId=${orderId}`, {
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                const status = data.status;
+                const timeline = document.getElementById('timeline');
+
+                // Update timeline based on order status
+                switch (status) {
+                    case 'loading':
+                        // Set loading status
+                        timeline.innerHTML += `
+                        <div class="event" data-status="loading">
+                            <i class="fas fa-cogs"></i>
+                                    <span style="background-color:darkgoldenrod">تم تحميل البضائع</span>
+                        </div>
+                    `;
+                        break;
+                    case 'shipped':
+                        // Set shipped status
+                        timeline.innerHTML += `
+                        <li class="line"></li>
+                        <div class="event" data-status="shipped">
+                            <i class="fas fa-truck"></i>
+                                    <span style="background-color:darkgoldenrod">تم الشحن</span>
+                        </div>
+                    `;
+                        break;
+                    case 'delivered':
+                        // Set delivered status
+                        timeline.innerHTML += `
+                        <li class="line"></li>
+                        <div class="event" data-status="delivered" >
+                                    <i class="fas fa-box" ></i>
+                                            <span style="background-color:darkgoldenrod">تم التوصيل</span>
+                        </div>
+                    `;
+                        break;
+                    default:
+                        // Handle other statuses or errors
+                        console.error('Unknown status:', status);
+                        break;
+                }
+            })
+            .catch(error => console.error('Error fetching order status:', error));
 
 
+        function logout() {
+            // حذف الـ token من الجلسة
+            localStorage.removeItem('authToken');
+
+            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+            window.location.href = "front_home";
+        }
 
 
 

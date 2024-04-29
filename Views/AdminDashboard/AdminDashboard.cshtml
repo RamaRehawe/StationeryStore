@@ -122,7 +122,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>اسم العميل</th>
+                            <th>معرف الاستفسار</th>
                             <th>نوع الشكوى أو الاستفسار</th>
                             <th>تفاصيل الشكوى أو الاستفسار</th>
                             <th>حالة الشكوى</th>
@@ -179,6 +179,114 @@
         </div>
     </footer>
     <script>
+        // Fetch data from the API endpoint
+        function fetchComplaintsFromAPI() {
+            fetch('/api/CustomerService/getComplains') // Assuming the API endpoint is hosted on the same domain
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Once data is received, call a function to populate the HTML table with the data
+                    populateComplaintsTable(data);
+                })
+                .catch(error => {
+                    console.error('There was a problem fetching the complaints:', error);
+                });
+        }
+
+        // Populate the HTML table with the fetched data
+        function populateComplaintsTable(complaints) {
+            const complaintsTableBody = document.getElementById('complaintsTableBody');
+
+            complaints.forEach(complaint => {
+                const row = document.createElement('tr');
+
+                const customerNameCell = document.createElement('td');
+                customerNameCell.textContent = complaint.id // Assigning ID to the cell
+                row.appendChild(customerNameCell);
+
+                const typeCell = document.createElement('td');
+                typeCell.textContent = complaint.type ? "شكوى" : "استفسار عام"; // Set text based on boolean value
+                row.appendChild(typeCell);
+
+                const detailsCell = document.createElement('td');
+                detailsCell.textContent = complaint.details;
+                row.appendChild(detailsCell);
+
+                const statusCell = document.createElement('td');
+                // Create a dropdown menu with options based on adminResponse value
+                const selectElement = document.createElement('select');
+                selectElement.id = 'statusSelect_' + complaint.id; // Use complaint ID as part of the ID
+
+                const option1 = document.createElement('option');
+                option1.value = 'False';
+                option1.textContent = 'قيد المراجعة';
+
+                const option2 = document.createElement('option');
+                option2.value = 'True';
+                option2.textContent = 'تم التعامل معها';
+
+                // Set the selected option based on the boolean value of adminResponse
+                if (complaint.adminResponse) {
+                    option2.selected = true;
+                } else {
+                    option1.selected = true;
+                }
+
+                selectElement.appendChild(option1);
+                selectElement.appendChild(option2);
+
+                statusCell.appendChild(selectElement);
+                row.appendChild(statusCell);
+
+                // Add event listener for change event on select element
+                selectElement.addEventListener('change', function () {
+                    // Check if the selected option is option2 ("resolved")
+                    if (this.value === 'True') {
+                        // Make an AJAX request to the server to update the AdminResponse value
+
+                        const complaintId = complaint.id;
+
+                        fetch(`/api/CustomerService/adminResponse?complaineId=${complaintId}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+
+                            })
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                               
+                                // Optionally, display a success message or perform other actions
+                                alert('تم التعامل مع الاستفسار بنجاح. !');
+                                localStorage.setItem('alertMessage', 'تم التعامل مع الاستفسار بنجاح. شكراً لتواصلك معنا!');
+
+                               
+                            })
+                            .catch(error => {
+                                console.error('There was a problem updating the AdminResponse:', error);
+                                // Optionally, display an error message to the user
+                                alert('حدثت مشكلة أثناء تحديث الرد.');
+                            });
+                    }
+                });
+
+
+                complaintsTableBody.appendChild(row);
+            });
+        }
+
+        // Call the function to fetch complaints when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchComplaintsFromAPI();
+        });
 
         // Function to handle the click event of the button
         function analyzeSalesData() {
@@ -197,9 +305,21 @@
         // Attach the analyzeSalesData function to the button click event
         document.getElementById('analyzeButton').addEventListener('click', analyzeSalesData);
         window.onload = function () {
-            fillComplaintsTable();
             showSection('section1');
         };
+        // Function to translate order status to Arabic
+        function translateStatus(status) {
+            switch (status) {
+                case 'loading':
+                    return 'جارٍ التحميل';
+                case 'shipped':
+                    return 'تم الشحن';
+                case 'delivered':
+                    return 'تم التوصيل';
+                default:
+                    return 'غير معروف';
+            }
+        }
         //getAllOrders
             document.getElementById('getAllOrdersButton').addEventListener('click', function () {
                 fetch("/api/Order/getAllOrders")
@@ -213,7 +333,7 @@
                             "<td>" + order.id + "</td>" +
                                 "<td>" + order.orderDate + "</td>" +
                                 "<td>" + order.totalAmount + "</td>" +
-                                "<td>" + order.orderStatus + "</td>" +
+                                "<td>" + translateStatus(order.orderStatus) + "</td>" +
                                 "</tr>";
                             tableBody.innerHTML += row;
                         });
@@ -366,74 +486,16 @@
                 saveIcon.style.display = 'inline';
             }
         }
+        function logout() {
+            // حذف الـ token من الجلسة
+            localStorage.removeItem('authToken');
 
-        function submitForm(event) {
-            event.preventDefault();
-
-            // يمكنك إضافة الكود اللازم هنا لمعالجة النموذج والرد على العميل
-            // يمكن استخدام JavaScript أو تقديم طلب AJAX للتفاعل مع الخادم
-
-            // في هذا المثال، سنقوم بعرض رسالة تأكيد ببساطة
-            alert('تم استلام استفسارك، سنقوم بالرد في أقرب وقت ممكن. شكراً لتواصلك معنا!');
+            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+            window.location.href = "front_home";
         }
        
-        const complaints = [
-            { customerName: "اسم العميل", complaintType: "نوع الشكوى", complaintDetails: "تفاصيل الشكوى" },
-            { customerName: "اسم العميل الآخر", complaintType: "نوع آخر", complaintDetails: "تفاصيل الشكوى الأخرى" },
-            // قم بإضافة المزيد من الشكاوى حسب الحاجة
-        ];
-        function fillComplaintsTable() {
-            var complaintsTableBody = document.getElementById("complaintsTableBody");
-            complaintsTableBody.innerHTML = "";
-
-            // Assuming complaints is defined somewhere
-            for (var i = 0; i < complaints.length; i++) {
-                var row = complaintsTableBody.insertRow();
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                var cell4 = row.insertCell(3);
-
-                cell1.innerHTML = complaints[i].customerName;
-                cell2.innerHTML = complaints[i].complaintType;
-                cell3.innerHTML = complaints[i].complaintDetails;
-                cell4.innerHTML = "<select id='statusSelect" + i + "'><option value='pending'>قيد المراجعة</option><option value='resolved'>تم التعامل معها</option></select>";
-            }
-        }
-
-        // function updateComplaintStatus(index) {
-        //     var statusSelect = document.getElementById("statusSelect" + index);
-        //     var selectedStatus = statusSelect.value;
-
-        //     complaints[index].status = selectedStatus;
-        //     fillComplaintsTable();
-        // }
-
-
-        // const salesData = [
-        //     { month: "يناير", amount: 50000 },
-        //     { month: "فبراير", amount: 75000 },
-        //     { month: "مارس", amount: 100000 },
-        //     // ... يمكنك إضافة المزيد من بيانات المبيعات
-        // ];
-
-        // function analyzeSalesData() {
-        //     var totalSales = salesData.reduce(function (sum, sale) {
-        //         return sum + sale.amount;
-        //     }, 0);
-
-        //     var salesRatioData = salesData.map(function (sale) {
-        //         var ratio = (sale.amount / totalSales) * 100;
-        //         return { month: sale.month, ratio: ratio.toFixed(2) + "%" };
-        //     });
-
-        //     var analysisReport = "نتائج التحليل:\n\n";
-        //     salesRatioData.forEach(function (sale) {
-        //         analysisReport += sale.month + ": " + sale.ratio + "\n";
-        //     });
-
-        //     document.getElementById("salesAnalysisResults").innerText = analysisReport;
-        // }
+       
+       
     </script>
 
 </body>

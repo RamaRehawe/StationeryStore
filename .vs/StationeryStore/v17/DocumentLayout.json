@@ -1,39 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\StationeryStore\\StationeryStore\\",
+  "WorkspaceRootPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\controllers\\imageattributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\imageattributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.ProductAttributesQuantities.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.ImageAttributes.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\stationerystore\\stationerystore\\interfaces\\iimageattributerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:interfaces\\iimageattributerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\attributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:controllers\\attributecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\admindashboard\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:views\\admindashboard\\admindashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.Atributes.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.ProductAttributes.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.ProductAttributesQuantities.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\profile\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C0278C9B-E8A8-465A-941F-83F7AD574BD8}|StationeryStore.csproj|solutionrelative:views\\profile\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,21 +17,20 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 1741,
-          "SelectedChildIndex": 6,
-          "SelectedChildIndex": 8,
+          "DockedWidth": 1009,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Bookmark",
@@ -64,134 +38,36 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Controllers\\UserController.cs",
+              "ViewState": "AQIAALYAAAAAAAAAAAAAABQAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-28T23:07:47.009Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "dbo.ProductAttributesQuantities [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.ProductAttributesQuantities.sql",
-              "ToolTip": "dbo.ProductAttributesQuantities [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-27T13:08:36.516Z",
-              "Title": "dbo.Users [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.Users.sql",
-              "ToolTip": "dbo.Users [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-27T21:56:16.834Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "dbo.ImageAttributes [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.ImageAttributes.sql",
-              "ToolTip": "dbo.ImageAttributes [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-27T13:08:24.522Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ImageAttributeController.cs",
-              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Controllers\\ImageAttributeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ImageAttributeController.cs",
-              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Controllers\\ImageAttributeController.cs",
-              "RelativeToolTip": "Controllers\\ImageAttributeController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABYAAAAMAAAA",
-              "Title": "AttributeController.cs",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\AttributeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AttributeController.cs",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\AttributeController.cs",
-              "RelativeToolTip": "Controllers\\AttributeController.cs",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAAAG4AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T12:45:56.002Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "dbo.Users [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.Users.sql",
-              "ToolTip": "dbo.Users [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-27T12:50:24.943Z",
-              "WhenOpened": "2024-04-27T21:07:32.938Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "dbo.Atributes [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.Atributes.sql",
-              "ToolTip": "dbo.Atributes [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-27T20:54:29.873Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "dbo.ProductAttributes [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.ProductAttributes.sql",
-              "ToolTip": "dbo.ProductAttributes [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-27T20:54:19.481Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IImageAttributeRepository.cs",
-              "DocumentMoniker": "C:\\StationeryStore\\StationeryStore\\Interfaces\\IImageAttributeRepository.cs",
-              "RelativeDocumentMoniker": "Interfaces\\IImageAttributeRepository.cs",
-              "ToolTip": "C:\\StationeryStore\\StationeryStore\\Interfaces\\IImageAttributeRepository.cs",
-              "RelativeToolTip": "Interfaces\\IImageAttributeRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA8AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T12:47:57.71Z",
-              "DocumentIndex": 0,
-              "Title": "ItemMangerDashboard.cshtml",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "RelativeDocumentMoniker": "Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "RelativeToolTip": "Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "ViewState": "AQIAALIAAAAAAAAAAAAAANIAAAALAAAA",
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Profile\\Profile.cshtml",
+              "RelativeDocumentMoniker": "Views\\Profile\\Profile.cshtml",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Profile\\Profile.cshtml",
+              "RelativeToolTip": "Views\\Profile\\Profile.cshtml",
+              "ViewState": "AQIAAD0AAAAAAAAAAAAUwE8AAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-27T03:09:56.535Z",
+              "WhenOpened": "2024-04-28T23:07:13.556Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdminDashboard.cshtml",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\AdminDashboard\\AdminDashboard.cshtml",
-              "RelativeDocumentMoniker": "Views\\AdminDashboard\\AdminDashboard.cshtml",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\AdminDashboard\\AdminDashboard.cshtml",
-              "RelativeToolTip": "Views\\AdminDashboard\\AdminDashboard.cshtml",
-              "ViewState": "AQIAAF8AAAAAAAAAAAAAABoBAABHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-27T15:16:12.627Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "dbo.ProductAttributesQuantities [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/stationerystore/True/SqlTable/dbo.ProductAttributesQuantities.sql",
-              "ToolTip": "dbo.ProductAttributesQuantities [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-27T20:54:25.257Z"
             }
           ]
         },
         {
-          "DockedWidth": 189,
+          "DockedWidth": 921,
           "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -199,6 +75,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Bookmark",
@@ -228,10 +108,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{778b5376-ad77-4751-acdc-f3d18343f8dd}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
@@ -252,7 +128,7 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:0:0:{778b5376-ad77-4751-acdc-f3d18343f8dd}"
             }
           ]
         }
