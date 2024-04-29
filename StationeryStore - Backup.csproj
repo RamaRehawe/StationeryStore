@@ -1,0 +1,250 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>false</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\CSS\Styles.css" />
+    <Content Remove="wwwroot\CSS\Styles1.css" />
+    <Content Remove="wwwroot\CSS\Styles2.css" />
+    <Content Remove="wwwroot\CSS\Styles3.css" />
+    <Content Remove="wwwroot\Images\a4paper.jpg" />
+    <Content Remove="wwwroot\Images\admin.jpg" />
+    <Content Remove="wwwroot\Images\art-ink-pen.png" />
+    <Content Remove="wwwroot\Images\backpack.png" />
+    <Content Remove="wwwroot\Images\backpack1.png" />
+    <Content Remove="wwwroot\Images\brushs.jpg" />
+    <Content Remove="wwwroot\Images\calc.png" />
+    <Content Remove="wwwroot\Images\cart.png" />
+    <Content Remove="wwwroot\Images\casine.jpg" />
+    <Content Remove="wwwroot\Images\child.jpg" />
+    <Content Remove="wwwroot\Images\clasor.png" />
+    <Content Remove="wwwroot\Images\Colored-Ink-Pen.jpg" />
+    <Content Remove="wwwroot\Images\colorpaper.jpg" />
+    <Content Remove="wwwroot\Images\colorpen.png" />
+    <Content Remove="wwwroot\Images\colorpens.png" />
+    <Content Remove="wwwroot\Images\correction-pen-7ml-quick-drying.jpg" />
+    <Content Remove="wwwroot\Images\correctionpen.jpg" />
+    <Content Remove="wwwroot\Images\corrector.jpg" />
+    <Content Remove="wwwroot\Images\corrector1.jpg" />
+    <Content Remove="wwwroot\Images\crayons.png" />
+    <Content Remove="wwwroot\Images\cuter-plast.jpg" />
+    <Content Remove="wwwroot\Images\cuter.jpg" />
+    <Content Remove="wwwroot\Images\cuter1.png" />
+    <Content Remove="wwwroot\Images\dailyplanner.png" />
+    <Content Remove="wwwroot\Images\dailyplanner1.png" />
+    <Content Remove="wwwroot\Images\dividers.png" />
+    <Content Remove="wwwroot\Images\dividers1.png" />
+    <Content Remove="wwwroot\Images\down-arrow.png" />
+    <Content Remove="wwwroot\Images\drawing-tools.jpg" />
+    <Content Remove="wwwroot\Images\draypens1.png" />
+    <Content Remove="wwwroot\Images\drypens.png" />
+    <Content Remove="wwwroot\Images\email.png" />
+    <Content Remove="wwwroot\Images\emnotes-open-black.jpg" />
+    <Content Remove="wwwroot\Images\erser.jpg" />
+    <Content Remove="wwwroot\Images\facebook-icon.png" />
+    <Content Remove="wwwroot\Images\file-bag.jpg" />
+    <Content Remove="wwwroot\Images\folomasterpen.JPG" />
+    <Content Remove="wwwroot\Images\gelpens.jpg" />
+    <Content Remove="wwwroot\Images\gelpensblue.jpg" />
+    <Content Remove="wwwroot\Images\grafh.jpg" />
+    <Content Remove="wwwroot\Images\hardcover.jpg" />
+    <Content Remove="wwwroot\Images\highlighter.jpg" />
+    <Content Remove="wwwroot\Images\highlighter1.jpg" />
+    <Content Remove="wwwroot\Images\ICO.png" />
+    <Content Remove="wwwroot\Images\inkpen.jpg" />
+    <Content Remove="wwwroot\Images\inkpen2.png" />
+    <Content Remove="wwwroot\Images\itemmanger.png" />
+    <Content Remove="wwwroot\Images\item_1.png" />
+    <Content Remove="wwwroot\Images\item_2.png" />
+    <Content Remove="wwwroot\Images\item_3.png" />
+    <Content Remove="wwwroot\Images\item_4.png" />
+    <Content Remove="wwwroot\Images\item_5.png" />
+    <Content Remove="wwwroot\Images\item_6.png" />
+    <Content Remove="wwwroot\Images\laxlp.jpg" />
+    <Content Remove="wwwroot\Images\location.png" />
+    <Content Remove="wwwroot\Images\log-out.png" />
+    <Content Remove="wwwroot\Images\logo.png" />
+    <Content Remove="wwwroot\Images\mapped-kids-stapler.jpg" />
+    <Content Remove="wwwroot\Images\marker.jpg" />
+    <Content Remove="wwwroot\Images\new-project-.jpg" />
+    <Content Remove="wwwroot\Images\new-project.jpg" />
+    <Content Remove="wwwroot\Images\new-projecth.jpg" />
+    <Content Remove="wwwroot\Images\Notebook.png" />
+    <Content Remove="wwwroot\Images\notebooks.png" />
+    <Content Remove="wwwroot\Images\notepaper.png" />
+    <Content Remove="wwwroot\Images\office-tools.png" />
+    <Content Remove="wwwroot\Images\online-shopping.jpg" />
+    <Content Remove="wwwroot\Images\paper.png" />
+    <Content Remove="wwwroot\Images\Penbags.jpg" />
+    <Content Remove="wwwroot\Images\Pens.png" />
+    <Content Remove="wwwroot\Images\Pensil.jpg" />
+    <Content Remove="wwwroot\Images\pensil1.png" />
+    <Content Remove="wwwroot\Images\phone-call.png" />
+    <Content Remove="wwwroot\Images\pices.png" />
+    <Content Remove="wwwroot\Images\Pilot_pancil.jpg" />
+    <Content Remove="wwwroot\Images\plaste.png" />
+    <Content Remove="wwwroot\Images\plaster.png" />
+    <Content Remove="wwwroot\Images\pm810-blue.jpg" />
+    <Content Remove="wwwroot\Images\product1.png" />
+    <Content Remove="wwwroot\Images\product2.jpg" />
+    <Content Remove="wwwroot\Images\product3.jpg" />
+    <Content Remove="wwwroot\Images\remover.jpg" />
+    <Content Remove="wwwroot\Images\rotring-pancil.jpg" />
+    <Content Remove="wwwroot\Images\round.png" />
+    <Content Remove="wwwroot\Images\ruler.png" />
+    <Content Remove="wwwroot\Images\santfic-calc.jpg" />
+    <Content Remove="wwwroot\Images\sax.jpg" />
+    <Content Remove="wwwroot\Images\set-calc.jpg" />
+    <Content Remove="wwwroot\Images\set-mabed.jpg" />
+    <Content Remove="wwwroot\Images\set.png" />
+    <Content Remove="wwwroot\Images\Sharpener.png" />
+    <Content Remove="wwwroot\Images\sketch.jpg" />
+    <Content Remove="wwwroot\Images\stamp-pad.jpg" />
+    <Content Remove="wwwroot\Images\STAPLER.jpg" />
+    <Content Remove="wwwroot\Images\supplies-bags.jpg" />
+    <Content Remove="wwwroot\Images\Untitled.png" />
+    <Content Remove="wwwroot\Images\user.png" />
+    <Content Remove="wwwroot\Images\watercolor.jpg" />
+    <Content Remove="wwwroot\Images\wirbbook.jpg" />
+    <Content Remove="wwwroot\Images\woodpens.png" />
+    <Content Remove="wwwroot\Javascript\Functions.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Microsoft.NET.Sdk.Razor" Version="3.1.32" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\CSS\Styles.css" />
+    <None Include="wwwroot\CSS\Styles1.css" />
+    <None Include="wwwroot\CSS\Styles2.css" />
+    <None Include="wwwroot\CSS\Styles3.css" />
+    <None Include="wwwroot\Images\a4paper.jpg" />
+    <None Include="wwwroot\Images\admin.jpg" />
+    <None Include="wwwroot\Images\art-ink-pen.png" />
+    <None Include="wwwroot\Images\backpack.png" />
+    <None Include="wwwroot\Images\backpack1.png" />
+    <None Include="wwwroot\Images\brushs.jpg" />
+    <None Include="wwwroot\Images\calc.png" />
+    <None Include="wwwroot\Images\cart.png" />
+    <None Include="wwwroot\Images\casine.jpg" />
+    <None Include="wwwroot\Images\child.jpg" />
+    <None Include="wwwroot\Images\clasor.png" />
+    <None Include="wwwroot\Images\Colored-Ink-Pen.jpg" />
+    <None Include="wwwroot\Images\colorpaper.jpg" />
+    <None Include="wwwroot\Images\colorpen.png" />
+    <None Include="wwwroot\Images\colorpens.png" />
+    <None Include="wwwroot\Images\correction-pen-7ml-quick-drying.jpg" />
+    <None Include="wwwroot\Images\correctionpen.jpg" />
+    <None Include="wwwroot\Images\corrector.jpg" />
+    <None Include="wwwroot\Images\corrector1.jpg" />
+    <None Include="wwwroot\Images\crayons.png" />
+    <None Include="wwwroot\Images\cuter-plast.jpg" />
+    <None Include="wwwroot\Images\cuter.jpg" />
+    <None Include="wwwroot\Images\cuter1.png" />
+    <None Include="wwwroot\Images\dailyplanner.png" />
+    <None Include="wwwroot\Images\dailyplanner1.png" />
+    <None Include="wwwroot\Images\dividers.png" />
+    <None Include="wwwroot\Images\dividers1.png" />
+    <None Include="wwwroot\Images\down-arrow.png" />
+    <None Include="wwwroot\Images\drawing-tools.jpg" />
+    <None Include="wwwroot\Images\draypens1.png" />
+    <None Include="wwwroot\Images\drypens.png" />
+    <None Include="wwwroot\Images\email.png" />
+    <None Include="wwwroot\Images\emnotes-open-black.jpg" />
+    <None Include="wwwroot\Images\erser.jpg" />
+    <None Include="wwwroot\Images\facebook-icon.png" />
+    <None Include="wwwroot\Images\file-bag.jpg" />
+    <None Include="wwwroot\Images\folomasterpen.JPG" />
+    <None Include="wwwroot\Images\gelpens.jpg" />
+    <None Include="wwwroot\Images\gelpensblue.jpg" />
+    <None Include="wwwroot\Images\grafh.jpg" />
+    <None Include="wwwroot\Images\hardcover.jpg" />
+    <None Include="wwwroot\Images\highlighter.jpg" />
+    <None Include="wwwroot\Images\highlighter1.jpg" />
+    <None Include="wwwroot\Images\ICO.png" />
+    <None Include="wwwroot\Images\inkpen.jpg" />
+    <None Include="wwwroot\Images\inkpen2.png" />
+    <None Include="wwwroot\Images\itemmanger.png" />
+    <None Include="wwwroot\Images\item_1.png" />
+    <None Include="wwwroot\Images\item_2.png" />
+    <None Include="wwwroot\Images\item_3.png" />
+    <None Include="wwwroot\Images\item_4.png" />
+    <None Include="wwwroot\Images\item_5.png" />
+    <None Include="wwwroot\Images\item_6.png" />
+    <None Include="wwwroot\Images\laxlp.jpg" />
+    <None Include="wwwroot\Images\location.png" />
+    <None Include="wwwroot\Images\log-out.png" />
+    <None Include="wwwroot\Images\logo.png" />
+    <None Include="wwwroot\Images\mapped-kids-stapler.jpg" />
+    <None Include="wwwroot\Images\marker.jpg" />
+    <None Include="wwwroot\Images\new-project-.jpg" />
+    <None Include="wwwroot\Images\new-project.jpg" />
+    <None Include="wwwroot\Images\new-projecth.jpg" />
+    <None Include="wwwroot\Images\Notebook.png" />
+    <None Include="wwwroot\Images\notebooks.png" />
+    <None Include="wwwroot\Images\notepaper.png" />
+    <None Include="wwwroot\Images\office-tools.png" />
+    <None Include="wwwroot\Images\online-shopping.jpg" />
+    <None Include="wwwroot\Images\paper.png" />
+    <None Include="wwwroot\Images\Penbags.jpg" />
+    <None Include="wwwroot\Images\Pens.png" />
+    <None Include="wwwroot\Images\Pensil.jpg" />
+    <None Include="wwwroot\Images\pensil1.png" />
+    <None Include="wwwroot\Images\phone-call.png" />
+    <None Include="wwwroot\Images\pices.png" />
+    <None Include="wwwroot\Images\Pilot_pancil.jpg" />
+    <None Include="wwwroot\Images\plaste.png" />
+    <None Include="wwwroot\Images\plaster.png" />
+    <None Include="wwwroot\Images\pm810-blue.jpg" />
+    <None Include="wwwroot\Images\product1.png" />
+    <None Include="wwwroot\Images\product2.jpg" />
+    <None Include="wwwroot\Images\product3.jpg" />
+    <None Include="wwwroot\Images\remover.jpg" />
+    <None Include="wwwroot\Images\rotring-pancil.jpg" />
+    <None Include="wwwroot\Images\round.png" />
+    <None Include="wwwroot\Images\ruler.png" />
+    <None Include="wwwroot\Images\santfic-calc.jpg" />
+    <None Include="wwwroot\Images\sax.jpg" />
+    <None Include="wwwroot\Images\set-calc.jpg" />
+    <None Include="wwwroot\Images\set-mabed.jpg" />
+    <None Include="wwwroot\Images\set.png" />
+    <None Include="wwwroot\Images\Sharpener.png" />
+    <None Include="wwwroot\Images\sketch.jpg" />
+    <None Include="wwwroot\Images\stamp-pad.jpg" />
+    <None Include="wwwroot\Images\STAPLER.jpg" />
+    <None Include="wwwroot\Images\supplies-bags.jpg" />
+    <None Include="wwwroot\Images\Untitled.png" />
+    <None Include="wwwroot\Images\user.png" />
+    <None Include="wwwroot\Images\watercolor.jpg" />
+    <None Include="wwwroot\Images\wirbbook.jpg" />
+    <None Include="wwwroot\Images\woodpens.png" />
+    <None Include="wwwroot\Javascript\Functions.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Upload\Product\" />
+  </ItemGroup>
+
+</Project>

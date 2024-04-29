@@ -59,7 +59,16 @@ function showContent(tabName) {
         categoryElement.style.display = 'grid';
     }
 }
-
+function logout() {
+    // حذف بيانات الدخول من Local Storage
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    // إخفاء رابط تسجيل الخروج
+    document.getElementById('logoutLink').style.display = 'none';
+    alert('تم تسجيل الخروج بنجاح!');
+    // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+    window.location.href = "front_home";
+}
 
 function deleteSection(sectionId) {
     // العثور على القسم المحدد

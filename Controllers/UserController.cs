@@ -16,18 +16,21 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
-        public UserController(IUserRepository userRepository, IMapper mapper, IConfiguration configuration)
+
+        public UserController(IMapper mapper, IConfiguration configuration,UserInfoService userInfoService, IUserRepository userRepository) : base(userInfoService, userRepository)
         {
-            _userRepository = userRepository;
+            _configuration  = configuration;
             _mapper = mapper;
-            _configuration = configuration;
+            _userRepository = userRepository;
+
         }
 
+        
         //[Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
@@ -100,7 +103,44 @@ namespace StationeryStore.Controllers
         //    _userRepository.Save();
         //    return Ok(new { Token = token });
         //}
-        
+
+
+        [HttpPost("add_user")]
+        public IActionResult AddUser([FromBody] RegisterUserDto userData)
+        {
+            if (userData.UserType == "Item Manager")
+            {
+                userData.UserType = "Item Manager";
+                var res = this.Register(userData);
+                if (res != null)
+                    return res;
+
+                return Ok(new { message = "Item manager added successfully!" });
+            }
+            else if (userData.UserType == "Driver")
+            {
+                userData.UserType = "Driver";
+                var res = this.Register(userData);
+                if (res != null)
+                    return res;
+
+                return Ok(new { message = "Driver added successfully!" });
+            }
+            else
+            {
+                return BadRequest(new { message = "Invalid user type." });
+            }
+        }
+
+        [HttpPost("update_profile")]
+        public IActionResult UpdateProfile (ReqUpdateProfileDto profileData)
+        {
+            var user = base.GetActiveUser()!;
+            user.Birthdate = profileData.Birthdate;
+            user.Gender = profileData.Gender;
+            _userRepository.UpdateUser(user);
+            return Ok("User has been updated");
+        }
 
         private string GenerateJwtToken(string username, string role)
         {
@@ -153,58 +193,7 @@ namespace StationeryStore.Controllers
 
             return null;
         }
-        // UserController.cs
-
-        [HttpPost("add_user")]
-        public IActionResult AddUser([FromBody] RegisterUserDto userData)
-        {
-            if (userData.UserType == "Item Manager")
-            {
-                userData.UserType = "Item Manager";
-                var res = this.Register(userData);
-                if (res != null)
-                    return res;
-
-                return Ok(new { message = "Item manager added successfully!" });
-            }
-            else if (userData.UserType == "Driver")
-            {
-                userData.UserType = "Driver";
-                var res = this.Register(userData);
-                if (res != null)
-                    return res;
-
-                return Ok(new { message = "Driver added successfully!" });
-            }
-            else
-            {
-                return BadRequest(new { message = "Invalid user type." });
-            }
-        }
-
-        [HttpPost("update_profile")]
-        public IActionResult UpdateProfile([FromBody] UpdateProfileDto profileData)
-        {
-            
-            // Retrieve user by user ID
-            var userId = base.GetActiveUser()!.Id;
-            var user = _userRepository.GetUserById(userId);
-
-            if (user == null)
-            {
-                return NotFound("User not found");
-            }
-
-            // Update gender and birthdate
-            user.Gender = profileData.Gender;
-            user.Birthdate = profileData.Birthdate;
-
-            // Save changes to the database
-            _userRepository.UpdateUser(user);
-            _userRepository.Save();
-
-            return Ok("Profile updated successfully");
-        }
+       
 
 
 
