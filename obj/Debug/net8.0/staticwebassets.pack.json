@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Images\\Youtube.png",
+      "PackagePath": "staticwebassets\\Images\\Youtube.png"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image042920242258.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\image042920242258.png"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image042920242336.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\image042920242336.png"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240002.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\image043020240002.png"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240153.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\image043020240153.png"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240157.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\image043020240157.png"
+    },
+    {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240212.png",
+      "PackagePath": "staticwebassets\\Upload\\Product\\image043020240212.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StationeryStore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.StationeryStore.props",
+      "PackagePath": "build\\StationeryStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.StationeryStore.props",
+      "PackagePath": "buildMultiTargeting\\StationeryStore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.StationeryStore.props",
+      "PackagePath": "buildTransitive\\StationeryStore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
