@@ -36,13 +36,23 @@ namespace StationeryStore.Repository
 
         public Product GetProduct(int id)
         {
-            return _context.Products.Where(p => p.Id == id)
+            var product = _context.Products.Where(p => p.Id == id)
                 .Include(p => p.SubCategory)
                 .Include(p => p.Reviews).Include(p => p.Rates)
                 .Include(p => p.ProductAttributeQuantities)
                 .ThenInclude(p => p.ProductAttributes)
                 .ThenInclude(p => p.Attribute)
                 .FirstOrDefault()!;
+            var list = product.ProductAttributeQuantities.ToList();
+            for(int i=0; i<product.ProductAttributeQuantities.Count; i++)
+            {
+                list[i].ImageAttributes = _context.ImageAttributes
+                    .Where(p => p.ProductAttributeQuantityId == list[i].Id)
+                    .ToList();
+            }
+            product.ProductAttributeQuantities = list;
+
+            return product;
         }
 
         public ICollection<Product> GetProducts(int subId)

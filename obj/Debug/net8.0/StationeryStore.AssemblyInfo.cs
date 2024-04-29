@@ -15,6 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b59ec83745ceb79f15b8973472596fdb2a050597")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+951d351bfd9ce4f5f005787b6d8f687b245dff12")]
 [assembly: System.Reflection.AssemblyProductAttribute("StationeryStore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StationeryStore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

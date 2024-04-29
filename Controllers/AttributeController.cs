@@ -57,21 +57,14 @@ namespace StationeryStore.Controllers
 
         // POST api/product/{productId}/attributes
         [HttpPost("addDetails")]
-        public async Task<IActionResult> AddProductAttributes(IFormFile productImage, [FromForm] ReqAttributeDto attributeDto)
+        public async Task<IActionResult> AddProductAttributes([FromForm] ReqAttributeDto attributeDto)
         {
-            if (productImage == null)
-            {
-                ModelState.AddModelError("productImage", "يجب تحديد صورة المنتج.");
-                return BadRequest(ModelState);
-            }
-
             var productAttributeQuantity = new ProductAttributeQuantity
             {
                 Quantity = attributeDto.Quantity,
                 Price = attributeDto.Price,
                 ProductId = attributeDto.ProductId
             };
-            int productAttributeQuantityId = _productAttributeQuantityRepository.Create(productAttributeQuantity);
 
             var attribute1 = new Atribute
             {
@@ -107,7 +100,7 @@ namespace StationeryStore.Controllers
             var attributeProduct1 = new ProductAttribute
             {
                 AttributeId = attributeId1,
-                ProductAttributeQuantityId = productAttributeQuantityId,
+                //ProductAttributeQuantityId = productAttributeQuantityId,
                 Value = attributeDto.Value1
             };
             ProductAttribute? attributeProduct2 = null;
@@ -116,36 +109,42 @@ namespace StationeryStore.Controllers
                 attributeProduct2 = new ProductAttribute
                 {
                     AttributeId = attributeId2,
-                    ProductAttributeQuantityId = productAttributeQuantityId,
+                    //ProductAttributeQuantityId = productAttributeQuantityId,
                     Value = attributeDto.Value2!
                 };
             }
-
+            int productAttributeQuantityId = 0;
             if (!_productAttributeRepository.Exist(attributeProduct1, attributeProduct2, attributeDto.ProductId))
             {
+                productAttributeQuantityId = _productAttributeQuantityRepository.Create(productAttributeQuantity);
+
+                attributeProduct1.ProductAttributeQuantityId = productAttributeQuantityId;
                 _productAttributeRepository.AddProductAttribute(attributeProduct1);
                 if (attributeProduct2 != null)
                 {
+                    attributeProduct2.ProductAttributeQuantityId = productAttributeQuantityId;
                     _productAttributeRepository.AddProductAttribute(attributeProduct2);
                 }
             }
             else
                 return BadRequest("already exists");
-
-            // Process the single product image
-            var res1 = WriteFile(productImage);
-            var res = await res1;
-            if (res.Equals(Empty))
+            foreach(var  productImage in Request.Form.Files.ToList())
             {
-                return BadRequest("file not valid");
+                var res1 = WriteFile(productImage);
+                var res = await res1;
+                if (res.Equals(Empty))
+                {
+                    return BadRequest("file not valid");
+                }
+
+                var imageAttribute = new ImageAttribute
+                {
+                    URL = res,
+                    ProductAttributeQuantityId = productAttributeQuantityId
+                };
+                _imageAttributeRepository.AddImage(imageAttribute);
+
             }
-
-            var imageAttribute = new ImageAttribute
-            {
-                URL = res,
-                ProductAttributeQuantityId = productAttributeQuantityId
-            };
-            _imageAttributeRepository.AddImage(imageAttribute);
 
             // Return a script to display an alert and redirect
             return Content("<script>alert('Added Successfuly'); window.location.href = '/front_item_manger';</script>", "text/html");
