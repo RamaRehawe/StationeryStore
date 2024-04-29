@@ -246,7 +246,7 @@
                         // Iterate over each attribute and create an option element for it
                         data.forEach(attribute => {
                             const option = document.createElement('option');
-                            option.value = attribute.id;
+                            option.value = attribute.name;
                             option.textContent = attribute.name;
                             newPropertySelect.appendChild(option);
                         });
