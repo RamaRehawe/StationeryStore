@@ -7,6 +7,7 @@ using StationeryStore.Interfaces;
 using StationeryStore.Models;
 using StationeryStore.Services;
 using System;
+using static System.Net.WebRequestMethods;
 
 namespace StationeryStore.Controllers
 {
@@ -56,7 +57,7 @@ namespace StationeryStore.Controllers
 
         // POST api/product/{productId}/attributes
         [HttpPost("addDetails")]
-        public  async Task<IActionResult> AddProductAttributes(IFormFile formFile,
+        public  async Task<IActionResult> AddProductAttributes(IFormFile[] productImages,
             [FromForm] ReqAttributeDto attributeDto)
         {
           
@@ -89,29 +90,35 @@ namespace StationeryStore.Controllers
                 
             };
 
-            if(!_productAttributeRepository.Exist(attributeProduct.Value, attributeId))
+            
+            if(!_productAttributeRepository.Exist(attributeProduct.Value, attributeId, attributeDto.ProductId))
             {
                 _productAttributeRepository.AddProductAttribute(attributeProduct);
             }
 
-            var res1 = WriteFile(formFile);
-            var res = await res1;
-            if(res.Equals(Empty))
+            foreach(var formFile in productImages) 
             {
-                return BadRequest("file not valid");
-            }
-            var imageAttribute = new ImageAttribute
-            {
-                URL = res,
-                ProductAttributeQuantityId = productAttributeQuantityId
-            };
-            _imageAttributeRepository.AddImage(imageAttribute);
+
+                var res1 = WriteFile(formFile);
+                var res = await res1;
+                if(res.Equals(Empty))
+                {
+                    return BadRequest("file not valid");
+                }
+                var imageAttribute = new ImageAttribute
+                {
+                    URL = res,
+                    ProductAttributeQuantityId = productAttributeQuantityId
+                };
+                _imageAttributeRepository.AddImage(imageAttribute);
             
-            return Ok("Attributes and product attributes added successfully.");
+            }
+            return Redirect(url: "https://localhost:7214/front_item_manger");
         }
 
 
         [HttpPost("createAttribute")]
+       
         public IActionResult CreateAttribute(ReqAttributeDto attribute)
         {
             var attributeMap = _mapper.Map<Atribute>(attribute);

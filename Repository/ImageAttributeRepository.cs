@@ -16,9 +16,23 @@ namespace StationeryStore.Repository
             _context.SaveChanges();
         }
 
-        public ICollection<ImageAttribute> GetImages(int productId)
+        public string GetImages(int producAttributeQuantitytId)
         {
-            return _context.ImageAttributes.Where(i => i.ProductAttributeQuantity.ProductId == productId).ToList();
+            var images = _context.ImageAttributes
+                .Where(i => i.ProductAttributeQuantityId == producAttributeQuantitytId)
+                          .FirstOrDefault();
+
+            // Check if images is null before accessing its properties
+            if (images != null)
+            {
+                return images.URL;
+            }
+            else
+            {
+                // Handle the case where no image is found for the given product ID
+                // For example, you can return a default image URL or throw an exception
+                return "default-image-url.jpg";
+            }
         }
     }
 }

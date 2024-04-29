@@ -13,14 +13,19 @@ namespace StationeryStore.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IImageAttributeRepository _imageAttributeRepository;
-        public ImageAttributeController(UserInfoService userInfoService, IUserRepository userRepository) : base(userInfoService, userRepository)
+        public ImageAttributeController(IImageAttributeRepository imageAttributeRepository,
+            IMapper mapper,
+            UserInfoService userInfoService, IUserRepository userRepository) : base(userInfoService, userRepository)
         {
+            _mapper = mapper;
+            _imageAttributeRepository = imageAttributeRepository;
         }
 
         [HttpGet("getImage")]
-        public IActionResult GetImage(int productId) 
+        public IActionResult GetImage(int producAttributeQuantitytId) 
         {
-            var images = _mapper.Map<List<ResImageAttributeDto>>( _imageAttributeRepository.GetImages(productId));
+            var images = "https://localhost:7214/";
+            images +=   _imageAttributeRepository.GetImages(producAttributeQuantitytId);
             return Ok(images);
         }
 
@@ -37,7 +42,7 @@ namespace StationeryStore.Controllers
         //    try
         //    {
         //        var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-        //        filename = base.GetActiveUser()!.Username + DateTime.Now.ToString("MMddyyyyHHmm")+ extension;
+        //        filename = base.GetActiveUser()!.Username + DateTime.Now.ToString("MMddyyyyHHmm") + extension;
 
         //        var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product");
 
