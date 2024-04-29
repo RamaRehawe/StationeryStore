@@ -40,6 +40,8 @@ namespace StationeryStore.Repository
                 .Include(p => p.SubCategory)
                 .Include(p => p.Reviews).Include(p => p.Rates)
                 .Include(p => p.ProductAttributeQuantities)
+                .ThenInclude(p => p.ProductAttributes)
+                .ThenInclude(p => p.Attribute)
                 .FirstOrDefault()!;
         }
 

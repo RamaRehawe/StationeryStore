@@ -190,6 +190,8 @@ namespace StationeryStore.Controllers
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
             }
+            if (userMap.UserType == "Driver")
+                _userRepository.AddDriver(new Driver { DriverStatus = false, UserId = userMap.Id });
 
             return null;
         }

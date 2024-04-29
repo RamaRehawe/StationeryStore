@@ -6,7 +6,7 @@ namespace StationeryStore.Interfaces
     {
         void SetDriverStatus(int driverId, bool status);
         IEnumerable<Order> GetPendingOrders();
-        void SelectOrder(int orderId, int driverId);
+        bool SelectOrder(int orderId, int driverId);
         void UpdateOrderStatueToShipped(int orderId);
         void UpdateOrderStatueToDeliverd(int orderId);
         ICollection<Order> GetMyOrders(int driverId);

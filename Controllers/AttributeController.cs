@@ -73,31 +73,64 @@ namespace StationeryStore.Controllers
             };
             int productAttributeQuantityId = _productAttributeQuantityRepository.Create(productAttributeQuantity);
 
-            var attribute = new Atribute
+            var attribute1 = new Atribute
             {
-                Name = attributeDto.Name
+                Name = attributeDto.Name1
             };
-            var attributeId = 0;
-            if (_attributeRepository.Exist(attribute.Name))
+            var attributeId1 = 0;
+            if (_attributeRepository.Exist(attribute1.Name))
             {
-                attributeId = _attributeRepository.GetAttributeId(attribute.Name);
+                attributeId1 = _attributeRepository.GetAttributeId(attribute1.Name);
             }
             else
             {
-                attributeId = _attributeRepository.AddAttribute(attribute);
+                attributeId1 = _attributeRepository.AddAttribute(attribute1);
             }
 
-            var attributeProduct = new ProductAttribute
+            var attributeId2 = 0;
+            if(attributeDto.Name2 != null && attributeDto.Value2 != null)
             {
-                AttributeId = attributeId,
+                var attribute2 = new Atribute
+                {
+                    Name = attributeDto.Name1
+                };
+                if (_attributeRepository.Exist(attribute2.Name))
+                {
+                    attributeId2 = _attributeRepository.GetAttributeId(attribute2.Name);
+                }
+                else
+                {
+                    attributeId2 = _attributeRepository.AddAttribute(attribute2);
+                }
+            }
+
+            var attributeProduct1 = new ProductAttribute
+            {
+                AttributeId = attributeId1,
                 ProductAttributeQuantityId = productAttributeQuantityId,
-                Value = attributeDto.Value
+                Value = attributeDto.Value1
             };
-
-            if (!_productAttributeRepository.Exist(attributeProduct.Value, attributeId, attributeDto.ProductId))
+            ProductAttribute? attributeProduct2 = null;
+            if(attributeId2 != 0)
             {
-                _productAttributeRepository.AddProductAttribute(attributeProduct);
+                attributeProduct2 = new ProductAttribute
+                {
+                    AttributeId = attributeId2,
+                    ProductAttributeQuantityId = productAttributeQuantityId,
+                    Value = attributeDto.Value2!
+                };
             }
+
+            if (!_productAttributeRepository.Exist(attributeProduct1, attributeProduct2, attributeDto.ProductId))
+            {
+                _productAttributeRepository.AddProductAttribute(attributeProduct1);
+                if (attributeProduct2 != null)
+                {
+                    _productAttributeRepository.AddProductAttribute(attributeProduct2);
+                }
+            }
+            else
+                return BadRequest("already exists");
 
             // Process the single product image
             var res1 = WriteFile(productImage);
