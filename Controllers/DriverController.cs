@@ -42,6 +42,7 @@ namespace StationeryStore.Controllers
             {
                 var OrderDto = new PendingOrderDto
                 {
+                    Id = pendingOrder.Id,
                     OrderStatus = pendingOrder.OrderStatus,
                     Username = pendingOrder.User.Username,
                     Phone = pendingOrder.User.Phone,
@@ -59,9 +60,11 @@ namespace StationeryStore.Controllers
         public IActionResult SelectOrder(int orderId)
         {
             var userId = base.GetActiveUser()!.Id;
-            var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).FirstOrDefault();
-            _driverRepository.SelectOrder(orderId, driver.Id);
-            return Ok("Order Selected Successfully");
+            var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).First();
+            if (_driverRepository.SelectOrder(orderId, driver.Id))
+                return Ok("Order Selected Successfully");
+            else
+                return BadRequest("order cannot be selected");
         }
 
         [HttpPost("loading")]

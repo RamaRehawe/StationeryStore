@@ -60,6 +60,7 @@ builder.Services.AddScoped<IAttributeRepository, AttributeRepository>();
 builder.Services.AddScoped<IProductAttributeRepository, ProductAttributeRepository>();
 builder.Services.AddScoped<IImageAttributeRepository, ImageAttributeRepository>();
 builder.Services.AddScoped<UserInfoService>();
+builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<IContactInformationRepository, ContactInformationRepository>();
 builder.Services.AddScoped<ICustomerServiceRepository, CustomerServiceRepository>();
 

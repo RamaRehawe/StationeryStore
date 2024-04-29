@@ -40,7 +40,26 @@ namespace StationeryStore.Controllers
 
             if (!_productRepository.ProductExists(productId))
                 return NotFound();
-            var product = _mapper.Map<ResProductDto>(_productRepository.GetProduct(productId));
+            var pro = _productRepository.GetProduct(productId);
+            var product = _mapper.Map<ResProductDto>(pro);
+            var list1 = product.ProductAttributeQuantities.ToList();
+            var list2 = pro.ProductAttributeQuantities.ToList();
+            for(int i=0; i<list1.Count; i++)
+            {
+                if (list2[i].ProductAttributes.Count > 0)
+                {
+                    list1[i].Name1 = list2[i].ProductAttributes.ToList()[0].Attribute.Name;
+                    list1[i].Value1 = list2[i].ProductAttributes.ToList()[0].Value;
+                }
+                if (list2[i].ProductAttributes.Count > 1)
+                {
+                    list1[i].Name2 = list2[i].ProductAttributes.ToList()[1].Attribute.Name;
+                    list1[i].Value2 = list2[i].ProductAttributes.ToList()[1].Value;
+                }
+
+            }
+            product.ProductAttributeQuantities = list1;
+            int x = 1;
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             return Ok(product);

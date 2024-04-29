@@ -6,6 +6,6 @@ namespace StationeryStore.Interfaces
     {
         ICollection<ProductAttribute> GetProductAttributes(int productId);
         void AddProductAttribute(ProductAttribute attributeProduct);
-        bool Exist(string value, int attributeId, int productId);
+        bool Exist(ProductAttribute productAttribute1, ProductAttribute? productAttribute2, int productId);
     }
 }

@@ -21,13 +21,16 @@ namespace StationeryStore.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly EmailService _emailService;
 
-        public UserController(IMapper mapper, IConfiguration configuration,UserInfoService userInfoService, IUserRepository userRepository) : base(userInfoService, userRepository)
+        public UserController(IMapper mapper, IConfiguration configuration,
+            UserInfoService userInfoService, 
+            IUserRepository userRepository, EmailService emailService) : base(userInfoService, userRepository)
         {
             _configuration  = configuration;
             _mapper = mapper;
             _userRepository = userRepository;
-
+            _emailService = emailService;
         }
 
         
@@ -51,6 +54,7 @@ namespace StationeryStore.Controllers
             var res = this.Register(ruser);
             if (res != null)
                 return res;
+
             return await this.Login(new LoginDto
             {
                 Email = user.Email,
@@ -190,6 +194,8 @@ namespace StationeryStore.Controllers
                 ModelState.AddModelError("", "Something went wrong while saving");
                 return StatusCode(500, ModelState);
             }
+            if (userMap.UserType == "Driver")
+                _userRepository.AddDriver(new Driver { DriverStatus = false, UserId = userMap.Id });
 
             return null;
         }

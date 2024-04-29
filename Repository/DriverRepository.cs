@@ -34,11 +34,13 @@ namespace StationeryStore.Repository
 
         public IEnumerable<Order> GetPendingOrders()
         {
-            return _context.Orders.Where(o => o.OrderStatus == "Pending").Include(o => o.User)
+            return _context.Orders
+                .Where(o => o.OrderStatus == "Pending")
+                .Where(o => o.DriverId == null).Include(o => o.User)
                 .Include(o => o.Address).ToList();
         }
 
-        public void SelectOrder(int orderId, int driverId)
+        public bool SelectOrder(int orderId, int driverId)
         {
             var order = _context.Orders.Where(o => o.Id ==  orderId).FirstOrDefault();
 
@@ -48,7 +50,9 @@ namespace StationeryStore.Repository
                 order.OrderStatus = "Pending";
                 var driver = _context.Drivers.Where(d => d.Id == driverId).FirstOrDefault()!;
                 _context.SaveChanges();
+                return true;
             }
+            return false;
         }
 
         public void SetDriverStatus(int driverId, bool status)
