@@ -98,27 +98,25 @@
             </div>
 
             <div class="timeline-section" onmouseenter="showTimelineText()" onmouseleave="hideText('timelineText')">
-
                 <h2>خط الزمني للشحنة</h2>
-
                 <p class="instruction-text" id="timelineText" style="color: red;">ملاحظة هامة !! لا تقم بالضغط على زر تم التوصيل إلى حين تسليم الشحنة إلى العملاء.</p>
 
                 <!-- أزرار التحميل والشحن والتوصيل -->
                 <div id="timeline-container">
-                    <button onclick="updateTimeline('loadingEvent')"><i class="fas fa-upload"></i> تم التحميل</button>
+                    <button onclick="updateTimeline('loading')"><i class="fas fa-upload"></i> تم التحميل</button>
                     <div class="line"></div>
-                    <button onclick="updateTimeline('shippingEvent')"><i class="fas fa-ship"></i> تم الشحن</button>
+                    <button onclick="updateTimeline('shipped')"><i class="fas fa-ship"></i> تم الشحن</button>
                     <div class="line"></div>
-                    <button onclick="updateTimeline('deliveryEvent', 'تم التوصيل')"><i class="fas fa-truck"></i> تم التوصيل</button>
+                    <button onclick="updateTimeline('deliverd', 'تم التوصيل')"><i class="fas fa-truck"></i> تم التوصيل</button>
                 </div>
 
                 <!-- خط الزمني -->
                 <ul id="timeline">
-                    <li class="event-delivery" id="loadingEvent"></li>
+                    <li class="event-delivery" id="loadingEvent">تحميل الشحنة</li>
                     <li class="line"></li>
-                    <li class="event-delivery" id="shippingEvent"></li>
+                    <li class="event-delivery" id="shippingEvent">شحن الشحنة</li>
                     <li class="line"></li>
-                    <li class="event-delivery" id="deliveryEvent"></li>
+                    <li class="event-delivery" id="deliveryEvent">توصيل الشحنة</li>
                 </ul>
             </div>
 
@@ -215,7 +213,114 @@
                 })
                 .catch(error => console.error('Error:', error));
         }
+        function acceptOrder(orderId) {
+            // Send an HTTP POST request to the server
+            fetch('/api/Driver/selectOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                },
+                body: JSON.stringify({
+                    orderId: orderId
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Update the status in the table
+                    const statusCell = document.getElementById('status' + orderId);
+                    statusCell.textContent = 'تم القبول'; // Assuming the response from the server indicates successful acceptance
+                })
+                .catch(error => console.error('Error accepting order:', error));
+        }
 
+        function updateTimeline(eventName, status) {
+            // Send an HTTP POST request to the server based on the event name
+            fetch('/api/Driver/' + eventName, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                },
+                body: JSON.stringify({
+                    orderId: 1 // Replace 1 with the actual order ID
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Update the timeline UI based on the response
+                    const eventElement = document.getElementById(eventName);
+                    eventElement.textContent = status || ''; // Set the status if provided
+                    eventElement.classList.add('event-delivered'); // Assuming successful delivery
+                })
+                .catch(error => console.error('Error updating timeline:', error));
+        }
+        // Function to fetch previous orders from the server
+        function fetchPreviousOrders() {
+            fetch('/api/Driver/GetMyOrders')
+                .then(response => response.json())
+                .then(data => {
+                    const previousOrdersTable = document.getElementById('previousOrders');
+
+                    // Clear any existing rows from the table
+                    previousOrdersTable.innerHTML = '';
+
+                    // Iterate over the orders data and create table rows
+                    data.forEach(order => {
+                        const newRow = document.createElement('tr');
+                        newRow.innerHTML = `
+                                <td>${order.orderNumber}</td>
+                                <td>${order.customerName}</td>
+                                <td>${order.customerPhone}</td>
+                                <td>${order.deliveryAddress}</td>
+                                <td>${order.status}</td>
+                            `;
+                        previousOrdersTable.appendChild(newRow);
+                    });
+                })
+                .catch(error => console.error('Error fetching previous orders:', error));
+        }
+
+        // Call fetchPreviousOrders function when the page loads
+        window.onload = fetchPreviousOrders;
+        function confirmDelivery() {
+            // Get the selected delivery status (delivered or not delivered)
+            const deliveryStatus = document.querySelector('input[name="deliveryStatus"]:checked').value;
+
+            // Get the delivery person if delivered
+            const deliveryPerson = deliveryStatus === 'delivered' ? document.getElementById('deliveryPerson').value : null;
+
+            // Get the reason for not delivering if not delivered
+            const reason = deliveryStatus === 'notDelivered' ? document.getElementById('reason').value : null;
+
+            // Create the data object to send in the request body
+            const data = {
+                Checked: deliveryStatus === 'delivered',
+                OrderId: 123, // Replace with the actual order ID
+                FailDeliver: reason
+            };
+
+            // Send an HTTP POST request to the server
+            fetch('/api/Driver/checkDeliverd', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    // Display confirmation message based on the server response
+                    const confirmationMessage = document.getElementById('confirmationMessage');
+                    if (result === 'Order Has been deliverd') {
+                        confirmationMessage.textContent = 'تم تأكيد التسليم بنجاح';
+                    } else {
+                        confirmationMessage.textContent = 'تم تحديث حالة التسليم';
+                    }
+                })
+                .catch(error => console.error('Error confirming delivery:', error));
+        }
         // Functions to show/hide instruction text
         function showDriverText() {
             showText('driverText');

@@ -64,6 +64,15 @@ namespace StationeryStore.Controllers
             return Ok("Order Selected Successfully");
         }
 
+        [HttpPost("loading")]
+        public IActionResult UpdateOrderStatueToLoading(int orderId)
+        {
+            var userId = base.GetActiveUser()!.Id;
+            var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).FirstOrDefault();
+            _driverRepository.UpdateOrderStatueToShipped(orderId);
+            return Ok("The order Has been loading");
+        }
+
         [HttpPost("shipped")]
         public IActionResult UpdateOrderStatueToShipped(int orderId)
         {
