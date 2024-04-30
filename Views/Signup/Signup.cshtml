@@ -28,7 +28,7 @@
             <p class="additional-statement">باستمرارك، فإنك توافق على شروط استخدام المتجر وإشعار الخصوصية.</p>
             <button type="submit" >تسجيل جديد</button>
         </form>
-        <div id="confirmation-modal" class="modal">
+      @*   <div id="confirmation-modal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
                 <h2>تأكيد الحساب</h2>
@@ -37,7 +37,7 @@
                 <!-- تغيير نوع الزر إلى button -->
                 <button type="button" onclick="submitConfirmationCode()">تأكيد</button>
             </div>
-        </div>
+        </div> *@
 
     </main>
     <footer>
@@ -88,7 +88,7 @@
                     // Handle response from the server
                     console.log(data);
                     // Show success message
-                    alert("تمت الإضافة بنجاح!");
+                    alert("تم إنشاء حساب بنجاح!");
                     // فتح واجهة التأكيد
                     openModal();
                     // Clear input fields
@@ -96,12 +96,14 @@
                     document.getElementById('password').value = '';
                     document.getElementById('email').value = '';
                     document.getElementById('phone').value = '';
-                    
+
+                    window.location.href = "front_home";
+
                 })
                 .catch(error => {
                     console.error('Error:', error);
                  
-                    alert("حدث خطأ أثناء الإضافة !");
+                    alert("حدث خطأ أثناء إنشاء الحساب !");
                 });
         });
         function checkPasswordStrength() {
@@ -159,46 +161,7 @@
             }
         }
 
-        // فتح نافذة التأكيد
-        function openModal() {
-            var password1 = document.getElementById('password').value;
-            var password2 = document.getElementById('confirm-password').value;
-
-            if (password1 !== password2) {
-                alert("كلمتا المرور غير متطابقتين. الرجاء المحاولة مرة أخرى.");
-                return;
-            }
-            // إذا كانت كلمتا المرور متطابقتين، قم بفتح النافذة المنبثقة لتأكيد الحساب
-            var modal = document.getElementById("confirmation-modal");
-            modal.style.display = "block";
-        }
-
-
-        // إغلاق نافذة التأكيد
-        function closeModal() {
-            var modal = document.getElementById('confirmation-modal');
-            modal.style.display = "none";
-        }
-
-        // تأكيد الرمز وإرساله
-        function submitConfirmationCode() {
-            var confirmationCode = document.getElementById('confirmation-code').value;
-
-            // التحقق من أن الرمز المدخل يتطابق مع الرمز المتوقع
-            var expectedCode = "123456"; // يجب استبدال هذا بالرمز الفعلي المتوقع
-            if (confirmationCode === expectedCode) {
-                // إذا كان الرمز صحيحًا، قم بأخذ الإجراء المناسب، مثلاً تسجيل الحساب
-                // تنفيذ عملية تسجيل الحساب هنا
-                alert("تم تأكيد الحساب بنجاح!");
-                // بعد تأكيد الحساب، يمكن إغلاق نافذة التأكيد
-                closeModal();
-                window.location.href = "front_home";
-
-            } else {
-                // إذا كان الرمز غير صحيح، يمكنك عرض رسالة خطأ للمستخدم أو إجراء أي عملية أخرى
-                alert("الرمز غير صحيح. الرجاء المحاولة مرة أخرى.");
-            }
-        }
+       
     </script>
 </body>
 </html>
