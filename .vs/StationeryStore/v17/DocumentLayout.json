@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\itemmangerdashboard\\itemmangerdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:views\\itemmangerdashboard\\itemmangerdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1405,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,19 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ItemMangerDashboard.cshtml",
-              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "RelativeDocumentMoniker": "Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "RelativeToolTip": "Views\\ItemMangerDashboard\\ItemMangerDashboard.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-29T22:34:56.721Z",
-              "EditorCaption": ""
             }
           ]
         },

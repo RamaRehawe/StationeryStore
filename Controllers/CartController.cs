@@ -10,7 +10,7 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Customer")]
+    //[Authorize(Roles = "Customer")]
     public class CartController : BaseController
     {
         private readonly ICartRepository _cartRepository;
@@ -22,7 +22,6 @@ namespace StationeryStore.Controllers
             _mapper = mapper;
         }
 
-
         [HttpGet("myCart")]
         public IActionResult GetCartByUserId()
         {
@@ -33,34 +32,61 @@ namespace StationeryStore.Controllers
                 return NotFound("Cart not found");
             }
             var cartItems = _cartRepository.GetCartItemsByCartId(cart.Id);
-            // Calculate the subprice for each item and sum up the total price
-            double total = 0;
-            var cartItemDtos = new List<CartItemDto>();
-            foreach (var item in cartItems)
+
+            // Construct the response DTO
+            var resCartDto = new ResCartDto
             {
-                var productAttributeQuantity = _cartRepository.GetProductAttributeQuantityById(item.ProductAttributeQuantityId);
-                
-                var subPrice = item.Quantity * productAttributeQuantity.Price;
-                total += subPrice;
-                // Manually map CartItem to CartItemDto
-                var cartItemDto = new CartItemDto
+                CartItems = cartItems.Select(item => new CartItemDto
                 {
                     Quantity = item.Quantity,
                     ProductAttributeQuantityId = item.ProductAttributeQuantityId,
-                    SubPrice = subPrice
-                };
-                cartItemDtos.Add(cartItemDto);
-            }
-
-            // Create ResCartDto with CartItems and TotalPrice
-            var resCartDto = new ResCartDto
-            {
-                CartItems = cartItemDtos,
-                TotalPrice = total
+                    SubPrice = item.Quantity * item.ProductAttributeQuantity.Price
+                }).ToList(),
+                TotalPrice = cartItems.Sum(item => item.Quantity * item.ProductAttributeQuantity.Price)
             };
 
             return Ok(resCartDto);
         }
+
+
+        //[HttpGet("myCart")]
+        //public IActionResult GetCartByUserId()
+        //{
+        //    var userId = base.GetActiveUser()!.Id;
+        //    var cart = _cartRepository.GetCartByUserId(userId);
+        //    if (cart == null)
+        //    {
+        //        return NotFound("Cart not found");
+        //    }
+        //    var cartItems = _cartRepository.GetCartItemsByCartId(cart.Id);
+        //    // Calculate the subprice for each item and sum up the total price
+        //    double total = 0;
+        //    var cartItemDtos = new List<CartItemDto>();
+        //    foreach (var item in cartItems)
+        //    {
+        //        var productAttributeQuantity = _cartRepository.GetProductAttributeQuantityById(item.ProductAttributeQuantityId);
+
+        //        var subPrice = item.Quantity * productAttributeQuantity.Price;
+        //        total += subPrice;
+        //        // Manually map CartItem to CartItemDto
+        //        var cartItemDto = new CartItemDto
+        //        {
+        //            Quantity = item.Quantity,
+        //            ProductAttributeQuantityId = item.ProductAttributeQuantityId,
+        //            SubPrice = subPrice
+        //        };
+        //        cartItemDtos.Add(cartItemDto);
+        //    }
+
+        //    // Create ResCartDto with CartItems and TotalPrice
+        //    var resCartDto = new ResCartDto
+        //    {
+        //        CartItems = cartItemDtos,
+        //        TotalPrice = total
+        //    };
+
+        //    return Ok(resCartDto);
+        //}
 
         [HttpPost("addItem")]
         public IActionResult AddItemToCart(CartItemDto itemDto)
