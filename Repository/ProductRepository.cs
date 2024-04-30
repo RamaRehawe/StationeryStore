@@ -57,7 +57,10 @@ namespace StationeryStore.Repository
 
         public ICollection<Product> GetProducts(int subId)
         {
-            return _context.Products.Where(p => p.SubCategoryId == subId).ToList();
+            return _context.Products.Where(p => p.SubCategoryId == subId)
+                .Include(p => p.SubCategory).Include(p => p.ProductAttributeQuantities)
+                .ThenInclude(p => p.ImageAttributes)
+                .ToList();
         }
 
         public bool ProductExists(int id)
