@@ -98,8 +98,34 @@ namespace StationeryStore.Controllers
         public IActionResult GetMyOrders()
         {
             var userId = base.GetActiveUser()!.Id;
-            var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).FirstOrDefault();
-            var orders = _driverRepository.GetMyOrders(driver.Id);
+            var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).First();
+            var ord = _driverRepository.GetMyOrders(driver.Id);
+            var orders = _mapper.Map<List<ResGetMyOrdersDto>>(ord);
+            for(int i=0; i<orders.Count; i++)
+            {
+                var list = orders[i].OrderItems.ToList();
+                var list2 = ord[i].OrderItems.ToList();
+                
+                for (int j = 0; j < orders[i].OrderItems.Count; j++)
+                {
+                    list[j].Name = list2[j].ProductAttributeQuantity.Product.Name;
+                    if(list2[j].ProductAttributeQuantity.ProductAttributes.Count > 0)
+                    {
+                        list[j].Atribute = list2[j].ProductAttributeQuantity.ProductAttributes.ToList()[0].Attribute.Name;
+                        list[j].Value = list2[j].ProductAttributeQuantity.ProductAttributes.ToList()[0].Value;
+
+                    }
+                    if(list2[j].ProductAttributeQuantity.ProductAttributes.Count > 1)
+                    {
+                        list[j].Atribute2 = list2[j].ProductAttributeQuantity.ProductAttributes.ToList()[1].Attribute.Name;
+                        list[j].Value2 = list2[j].ProductAttributeQuantity.ProductAttributes.ToList()[1].Value;
+
+                    }
+                    
+                }
+                orders[i].OrderItems = list;
+            }
+
             return Ok(orders);
         }
       

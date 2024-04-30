@@ -27,9 +27,30 @@ namespace StationeryStore.Repository
             return _context.Drivers.OrderBy(d => d.Id).ToList();
         }
 
-        public ICollection<Order> GetMyOrders(int driverId)
+        public List<Order> GetMyOrders(int driverId)
         {
-            return _context.Orders.Where(o => o.DriverId == driverId).ToList();
+            var orders =  _context.Orders.Where(o => o.DriverId == driverId)
+                .Include(o => o.Address)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(o => o.ProductAttributeQuantity)
+                        .ThenInclude(o => o.ProductAttributes)
+                            .ThenInclude(o => o.Attribute)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(o => o.ProductAttributeQuantity)
+                        .ThenInclude(o => o.Product)
+                .ToList();
+            //foreach(var order in orders)
+            //{
+            //    var list = order.OrderItems.ToList();
+            //    for (int i = 0; i < order.OrderItems.Count; i++)
+            //    {
+                    
+            //    }
+            //    order.OrderItems = list;
+            //}
+
+            return orders;
+
         }
 
         public IEnumerable<Order> GetPendingOrders()
