@@ -9,7 +9,7 @@ namespace StationeryStore.Interfaces
         bool SelectOrder(int orderId, int driverId);
         void UpdateOrderStatueToShipped(int orderId);
         void UpdateOrderStatueToDeliverd(int orderId);
-        ICollection<Order> GetMyOrders(int driverId);
+        List<Order> GetMyOrders(int driverId);
         ICollection<Driver> GetDrivers();
         void FailDeliver(int orderId, string failDeliver);
 

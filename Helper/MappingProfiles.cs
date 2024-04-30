@@ -49,6 +49,7 @@ namespace StationeryStore.Utils
             CreateMap<CustomerService, ResCustomerServiceDto>().ReverseMap();
             CreateMap<User, ReqUpdateProfileDto>().ReverseMap();
             CreateMap<User, EmailDto>().ReverseMap();
+            CreateMap<Order, ResGetMyOrdersDto>().ReverseMap();
 
         }
     }
