@@ -33,12 +33,12 @@
                     <p>يجب عليك <a href="front_login">تسجيل الدخول</a> أولاً.</p>
                 </div>
                 <!-- Cart items will be dynamically added here -->
-                <a href="#" class="remove-link" onclick="deleteCartItem(itemId)">حذف</a>
-                <div class="cart-total" id="cart-total">
+                <a href="#" class="remove-link" onclick="deleteCartItem(itemId)" style="display: none;">حذف</a>
+                <div class="cart-total" id="cart-total" style="display: none;">
                     <p>إجمالي الفاتورة:  ل.س 0</p>
                 </div>
                 <br>
-                <button class="checkout-btn" id="checkout-btn">اتمام الشراء</button>
+                <button class="checkout-btn" id="checkout-btn" style="display: none;">اتمام الشراء</button>
             </form>
         </section>
 
@@ -150,80 +150,24 @@
             }
         }
         window.addEventListener('DOMContentLoaded', function () {
-            fetchCartData();
+            fetchCartItems();
         });
 
-        function fetchCartData() {
-            fetch('/api/Cart/myCart')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch cart data');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    updateCartUI(data);
-                })
-                .catch(error => {
-                    console.error('Error fetching cart data:', error);
-                });
-        }
-
-        function updateCartUI(cartData) {
-            const cartContainer = document.getElementById('cart-container');
-            const cartForm = cartContainer.querySelector('.cart-form');
-
-            // Check if the cart is empty
-            if (cartData.cartItems.length === 0) {
-                const emptyCartMessage = cartContainer.querySelector('#empty-cart-message');
-                emptyCartMessage.style.display = 'block';
-                cartForm.style.display = 'none';
-            } else {
-                const emptyCartMessageCart = cartContainer.querySelector('#empty-cart-message-cart');
-                emptyCartMessageCart.style.display = 'none';
-                const cartTotal = cartContainer.querySelector('#cart-total');
-                const checkoutBtn = cartContainer.querySelector('#checkout-btn');
-                const emptyCartMessage = cartContainer.querySelector('#empty-cart-message');
-                const items = cartData.cartItems;
-                let totalPrice = 0;
-
-                // Clear previous cart items
-                const existingCartItems = cartForm.querySelectorAll('.cart-item');
-                existingCartItems.forEach(item => item.remove());
-
-                // Add cart items to the UI
-                items.forEach(item => {
-                    const cartItem = document.createElement('div');
-                    cartItem.classList.add('cart-item');
-                    // Construct the HTML for the cart item using item data
-                    // Append cart item to the form
-                    cartForm.insertBefore(cartItem, cartTotal);
-                    totalPrice += item.subPrice;
-                });
-
-                // Update total price
-                cartTotal.querySelector('p').textContent = `إجمالي الفاتورة: ل.س ${totalPrice}`;
-
-                // Show the cart form
-                cartForm.style.display = 'block';
-                // Hide the empty cart message
-                emptyCartMessage.style.display = 'none';
-            }
-        }
-        // Function to fetch cart items from the backend API
         function fetchCartItems() {
             fetch('/api/Cart/myCart')
                 .then(response => response.json())
                 .then(data => {
                     const cartContainer = document.getElementById('cart-container');
                     const cartForm = cartContainer.querySelector('.cart-form');
+                    const emptyCartMessage = cartContainer.querySelector('#empty-cart-message-cart');
+                    const loginAlert = cartContainer.querySelector('#login-alert');
+                    const removeLink = cartContainer.querySelector('.remove-link');
+                    const cartTotal = cartContainer.querySelector('#cart-total');
+                    const checkoutBtn = cartContainer.querySelector('#checkout-btn');
 
-                    // Check if the cart has items
                     if (data.cartItems.length > 0) {
-                        // Clear any existing cart items
                         cartForm.innerHTML = '';
 
-                        // Iterate over each cart item and create HTML for it
                         data.cartItems.forEach(item => {
                             const cartItemHtml = `
                                 <div class="cart-item">
@@ -231,22 +175,27 @@
                                     <a href="#" class="remove-link" onclick="deleteCartItem(${item.itemId})">حذف</a>
                                 </div>
                             `;
-                            // Append the cart item HTML to the cart form
                             cartForm.insertAdjacentHTML('beforeend', cartItemHtml);
                         });
 
-                        // Update the total cart price
-                        const cartTotal = cartContainer.querySelector('#cart-total p');
-                        cartTotal.textContent = `إجمالي الفاتورة:  ل.س ${data.totalPrice}`;
+                        cartTotal.querySelector('p').textContent = `إجمالي الفاتورة: ل.س ${data.totalPrice}`;
+                        cartTotal.style.display = 'block';
+                        checkoutBtn.style.display = 'block';
+                        emptyCartMessage.style.display = 'none';
+                        loginAlert.style.display = 'none';
+                        removeLink.style.display = 'block'; // Display the remove link for each item
                     } else {
-                        // Show empty cart message
-                        const emptyCartMessage = cartContainer.querySelector('#empty-cart-message-cart');
+                        cartTotal.style.display = 'none';
+                        checkoutBtn.style.display = 'none';
                         emptyCartMessage.style.display = 'block';
+                        loginAlert.style.display = 'block';
+                        removeLink.style.display = 'none'; // Hide the remove link when the cart is empty
                     }
                 })
                 .catch(error => console.error('Error fetching cart items:', error));
         }
 
+       
         // Function to delete a cart item
         function deleteCartItem(itemId) {
             // Send DELETE request to backend API
@@ -309,15 +258,6 @@
         }
 
 
-        // function clearCart() {
-        //     // قم بتفريغ السلة هنا، يمكنك استخدام الطريقة التي تفضلها
-        //     // على سبيل المثال، يمكنك حذف جميع العناصر في السلة أو حفظها لاستخدامها في وقت لاحق
-        //     var cartItems = document.querySelectorAll('.cart-item');
-        //     cartItems.forEach(function (cartItem) {
-        //         cartItem.remove();
-        //     });
-        //     updateTotal(); // قم بتحديث إجمالي السلة
-        // }
 
         function displayEmptyCartMessage() {
             // عرض رسالة السلة فارغة ورابط تسجيل الدخول
@@ -331,21 +271,7 @@
                 loginAlert.style.display = 'block';
             }
         }
-        // function getCartItemCount() {
-        //     const cartItems = document.querySelectorAll('.cart-item');
-        //     return cartItems.length;
-        // }
-
-        // let cartItemCount = getCartItemCount();
-
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     updateTotal();
-
-        //     const cartItemCountElement = document.getElementById('cart-item-count');
-        //     if (cartItemCountElement) {
-        //         cartItemCountElement.textContent = cartItemCount;
-        //     }
-        // });
+      
 
         function updateItemTotal(select) {
             var cartItem = select.closest('.cart-item');
@@ -411,23 +337,7 @@
             }
         }
 
-        // function saveForLater(link) {
-        //     var cartItem = link.closest('.cart-item');
-
-        //     if (cartItem) {
-        //         cartItem.remove();
-        //         updateTotal(); // Update the total price.
-        //     }
-        // }
-
-        // function removeFromCart(link) {
-        //     var cartItem = link.closest('.cart-item');
-
-        //     if (cartItem) {
-        //         cartItem.remove();
-        //         updateTotal(); // Update the total price.
-        //     }
-        // }
+       
         function logout() {
             // حذف الـ token من الجلسة
             localStorage.removeItem('authToken');
@@ -435,6 +345,104 @@
             // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
             window.location.href = "front_home";
         }
+        // window.addEventListener('DOMContentLoaded', function () {
+        //     fetchCartData();
+        // });
+
+        // function fetchCartData() {
+        //     fetch('/api/Cart/myCart')
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('Failed to fetch cart data');
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             updateCartUI(data);
+        //         })
+        //         .catch(error => {
+        //             console.error('Error fetching cart data:', error);
+        //         });
+        // }
+
+        // function updateCartUI(cartData) {
+        //     const cartContainer = document.getElementById('cart-container');
+        //     const cartForm = cartContainer.querySelector('.cart-form');
+
+        //     // Check if the cart is empty
+        //     if (cartData.cartItems.length === 0) {
+        //         const emptyCartMessage = cartContainer.querySelector('#empty-cart-message');
+        //         emptyCartMessage.style.display = 'block';
+        //         cartForm.style.display = 'none';
+        //     } else {
+        //         const emptyCartMessageCart = cartContainer.querySelector('#empty-cart-message-cart');
+        //         emptyCartMessageCart.style.display = 'none';
+        //         const cartTotal = cartContainer.querySelector('#cart-total');
+        //         const checkoutBtn = cartContainer.querySelector('#checkout-btn');
+        //         const emptyCartMessage = cartContainer.querySelector('#empty-cart-message');
+        //         const items = cartData.cartItems;
+        //         let totalPrice = 0;
+
+        //         // Clear previous cart items
+        //         const existingCartItems = cartForm.querySelectorAll('.cart-item');
+        //         existingCartItems.forEach(item => item.remove());
+
+        //         // Add cart items to the UI
+        //         items.forEach(item => {
+        //             const cartItem = document.createElement('div');
+        //             cartItem.classList.add('cart-item');
+        //             // Construct the HTML for the cart item using item data
+        //             // Append cart item to the form
+        //             cartForm.insertBefore(cartItem, cartTotal);
+        //             totalPrice += item.subPrice;
+        //         });
+
+        //         // Update total price
+        //         cartTotal.querySelector('p').textContent = `إجمالي الفاتورة: ل.س ${totalPrice}`;
+
+        //         // Show the cart form
+        //         cartForm.style.display = 'block';
+        //         // Hide the empty cart message
+        //         emptyCartMessage.style.display = 'none';
+        //     }
+        // }
+        // // Function to fetch cart items from the backend API
+        // function fetchCartItems() {
+        //     fetch('/api/Cart/myCart')
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             const cartContainer = document.getElementById('cart-container');
+        //             const cartForm = cartContainer.querySelector('.cart-form');
+
+        //             // Check if the cart has items
+        //             if (data.cartItems.length > 0) {
+        //                 // Clear any existing cart items
+        //                 cartForm.innerHTML = '';
+
+        //                 // Iterate over each cart item and create HTML for it
+        //                 data.cartItems.forEach(item => {
+        //                     const cartItemHtml = `
+        //                         <div class="cart-item">
+        //                             <!-- Add cart item details here -->
+        //                             <a href="#" class="remove-link" onclick="deleteCartItem(${item.itemId})">حذف</a>
+        //                         </div>
+        //                     `;
+        //                     // Append the cart item HTML to the cart form
+        //                     cartForm.insertAdjacentHTML('beforeend', cartItemHtml);
+        //                 });
+
+        //                 // Update the total cart price
+        //                 const cartTotal = cartContainer.querySelector('#cart-total p');
+        //                 cartTotal.textContent = `إجمالي الفاتورة:  ل.س ${data.totalPrice}`;
+        //             } else {
+        //                 // Show empty cart message
+        //                 const emptyCartMessage = cartContainer.querySelector('#empty-cart-message-cart');
+        //                 emptyCartMessage.style.display = 'block';
+        //             }
+        //         })
+        //         .catch(error => console.error('Error fetching cart items:', error));
+        // }
+
     </script>
 
 </body>

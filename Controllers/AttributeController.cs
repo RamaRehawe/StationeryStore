@@ -208,33 +208,62 @@ namespace StationeryStore.Controllers
         //    }
         //}
 
+        //private async Task<string> WriteFile(IFormFile file)
+        //{
+        //    string filename = "";
+        //    try
+        //    {
+        //        var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
+        //        filename = "image" +DateTime.Now.ToString("MMddyyyyHHmm") + extension;
+
+        //        var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product");
+
+        //        if (!Directory.Exists(filepath))
+        //        {
+        //            Directory.CreateDirectory(filepath);
+        //        }
+
+        //        var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product", filename);
+        //        using (var stream = new FileStream(exactpath, FileMode.Create))
+        //        {
+        //            await file.CopyToAsync(stream);
+        //        }
+        //        return Path.Combine("wwwroot/Upload/Product", filename); ;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return "";
+        //    }
+
+        //}
         private async Task<string> WriteFile(IFormFile file)
         {
             string filename = "";
             try
             {
                 var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-                filename = "image" +DateTime.Now.ToString("MMddyyyyHHmm") + extension;
+                filename = "image" + DateTime.Now.ToString("MMddyyyyHHmm") + extension;
 
-                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Upload\\Product");
+                var uploadPath = Path.Combine("wwwroot", "Upload", "Product");
 
-                if (!Directory.Exists(filepath))
+                if (!Directory.Exists(uploadPath))
                 {
-                    Directory.CreateDirectory(filepath);
+                    Directory.CreateDirectory(uploadPath);
                 }
 
-                var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Upload\\Product", filename);
-                using (var stream = new FileStream(exactpath, FileMode.Create))
+                var exactPath = Path.Combine(uploadPath, filename);
+                using (var stream = new FileStream(exactPath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
-                return Path.Combine("wwwroot\\Upload\\Product", filename); ;
+
+                return Path.Combine("Upload", "Product", filename);
             }
             catch (Exception ex)
             {
                 return "";
             }
-
         }
+
     }
 }

@@ -44,7 +44,7 @@ namespace StationeryStore.Controllers
             var product = _mapper.Map<ResProductDto>(pro);
             var list1 = product.ProductAttributeQuantities.ToList();
             var list2 = pro.ProductAttributeQuantities.ToList();
-            for(int i=0; i<list1.Count; i++)
+            for (int i = 0; i < list1.Count; i++)
             {
                 if (list2[i].ProductAttributes.Count > 0)
                 {

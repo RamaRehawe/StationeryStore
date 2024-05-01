@@ -12,94 +12,113 @@
     <link rel="stylesheet" href="~/CSS/Styles.css">
     <link rel="icon" href="~/Images/ICO.png" type="image/png">
     <script src="~/Javascript/Functions.js"></script>
+    <style>
+        .tab-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 10px;
+            justify-content: space-around;
+            justify-content: space-around;
+            color: black;
+            transform: scale(1.05);
+            box-sizing: border-box;
+        }
+
+            .tab-content a {
+                text-decoration: none;
+                color: #333;
+                transition: background-color 0.3s, color 0.3s;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+                background-color: #fff;
+                transition: transform 0.3s ease-in-out;
+            }
+
+                .tab-content a img {
+                    height: 210px;
+                    width: auto;
+                    border-bottom: 1px solid #ddd;
+                    border-radius: 5px;
+                }
+
+                .tab-content a p {
+                    margin: 10px 0;
+                }
+
+
+                .tab-content a:hover {
+                    color: black;
+                    transform: scale(1.05);
+                }
+
+
+        .product {
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            background-color: #fff;
+            transition: transform 0.3s ease-in-out;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ddd; /* Add a 1px solid border with a light gray color */
+            border-radius: 8px; /* Add border radius for rounded corners */
+            padding: 10px; /* Add some padding to create space between the border and content */
+            margin-bottom: 20px; /* Add margin to create space between each product */
+            transition: transform 0.3s ease-in-out; /* Add transition effect for smooth hover animation */
+        }
+
+            .product:hover {
+                transform: scale(1.05); /* Scale up the product slightly on hover */
+            }
+
+    </style>
 </head>
 
 <body>
     <a href="front_home">
         <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
-    <div class="logout-icon">
-        <a onclick="logout()" id="logoutLink">
-            <img src="~/Images/log-out.png" alt="Logout">
-            <span id="logout-text"> تسجيل الخروج</span>
-        </a>
-    </div>
+   
 
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="showContent('artinkpens')">أقلام حبر فنية</li>
-            <li class="tab" onclick="showContent('brushs')">فرش فنية</li>
-            <li class="tab" onclick="showContent('watercolor')">ألوان مائية</li>
-            <li class="tab" onclick="showContent('woodcolor')">ألوان خشب</li>
-            <li class="tab" onclick="showContent('crayons')">ألوان شمعية</li>
+            <li class="tab" onclick="handleCategoryClick(18)">أقلام حبر فنية</li>
+            <li class="tab" onclick="handleCategoryClick(10)">فرش فنية</li>
+            <li class="tab" onclick="handleCategoryClick(13)">ألوان مائية</li>
+            <li class="tab" onclick="handleCategoryClick(15)">ألوان خشب</li>
+            <li class="tab" onclick="handleCategoryClick(17)">ألوان شمعية</li>
         </ul>
         <br>
+        <!-- Tab contents -->
         <div class="tab-content" id="artinkpens" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/art-ink-pen.png" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 15000 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product">
-                <a href="#" class="product-link">
-                    <img src="~/Images/Colored-Ink-Pen.jpg" alt=" Pen ">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 90000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-artinkpens"></div>
         </div>
         <div class="tab-content" id="crayons" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/crayons.png" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 10000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/colorpen.png" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 12000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-crayons"></div>
         </div>
         <div class="tab-content" id="woodcolor" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/colorpens.png" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 10000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/woodpens.png" alt=" Pen ">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 20000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-woodcolor"></div>
         </div>
         <div class="tab-content" id="brushs" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/brushs.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 10000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-brushs"></div>
         </div>
         <div class="tab-content" id="watercolor" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/watercolor.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 10000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-watercolor"></div>
         </div>
     </main>
 
@@ -126,7 +145,112 @@
 
         </div>
     </footer>
+    <script>
 
+        // Function to fetch product data when a category is clicked
+        function fetchProducts(subId, targetId) {
+            fetch(`https://localhost:7214/api/Product/subId?subId=${subId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // After receiving data, update the interface to display the products
+                    updateProductList(data, targetId);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        // Function to handle click event on a category
+        function handleCategoryClick(subId) {
+            // Call the function to fetch product data based on subId
+            switch (subId) {
+                case 18:
+                    fetchProducts(18, 'product-list-artinkpens');
+                    break;
+                case 10:
+                    fetchProducts(10, 'product-list-crayons');
+                    break;
+                case 13:
+                    fetchProducts(13, 'product-list-woodcolor');
+                    break;
+                case 15:
+                    fetchProducts(15, 'product-list-brushs');
+                    break;
+                case 17:
+                    fetchProducts(17, 'product-list-watercolor');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Function to update the product list based on received products
+        function updateProductList(products, targetId) {
+            const productList = document.getElementById(targetId);
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Show all tab contents
+            tabContents.forEach(tab => {
+                tab.style.display = 'grid';
+            });
+
+            // Clear previous products
+            productList.innerHTML = '';
+
+            // Add each product to the product list
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
+
+                // Product images
+                const productImages = document.createElement('div');
+                productImages.classList.add('product-images');
+                product.productAttributeQuantities.forEach(attribute => {
+                    attribute.imageAttributes.forEach(image => {
+                        const imageElement = document.createElement('img');
+                        imageElement.src = image.url;
+                        productImages.appendChild(imageElement);
+                    });
+                });
+
+                // Product name
+                const productName = document.createElement('p');
+                productName.textContent = product.name;
+
+                // Product price
+                const productPrice = document.createElement('span');
+                productPrice.textContent = `السعر: ${product.productAttributeQuantities[0].price} ل.س`; // Assuming the price is the same for all variants
+
+
+
+                // Product link
+                const productLink = document.createElement('a');
+                productLink.href = `front_item?id=${product.id}`; // Set the href attribute to the product page URL with the product id
+                productLink.textContent = 'تفاصيل المنتج'; // Text for the link
+
+                // Append elements to product container
+                productElement.appendChild(productName);
+                productElement.appendChild(productPrice);
+                productElement.appendChild(productImages);
+                productElement.appendChild(productLink);
+
+                // Append product container to product list
+                productList.appendChild(productElement);
+            });
+        }
+
+
+    </script>
 </body>
 
 </html>

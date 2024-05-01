@@ -12,225 +12,124 @@
     <link rel="stylesheet" href="~/CSS/Styles.css">
     <link rel="icon" href="~/Images/ICO.png" type="image/png">
     <script src="~/Javascript/Functions.js"></script>
+    <style>
+        .tab-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 10px;
+            justify-content: space-around;
+            justify-content: space-around;
+            color: black;
+            transform: scale(1.05);
+            box-sizing: border-box;
+        }
+
+            .tab-content a {
+                text-decoration: none;
+                color: #333;
+                transition: background-color 0.3s, color 0.3s;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+                background-color: #fff;
+                transition: transform 0.3s ease-in-out;
+            }
+
+                .tab-content a img {
+                    height: 210px;
+                    width: auto;
+                    border-bottom: 1px solid #ddd;
+                    border-radius: 5px;
+                }
+
+                .tab-content a p {
+                    margin: 10px 0;
+                }
+
+
+                .tab-content a:hover {
+                    color: black;
+                    transform: scale(1.05);
+                }
+
+
+        .product {
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            background-color: #fff;
+            transition: transform 0.3s ease-in-out;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ddd; /* Add a 1px solid border with a light gray color */
+            border-radius: 8px; /* Add border radius for rounded corners */
+            padding: 10px; /* Add some padding to create space between the border and content */
+            margin-bottom: 20px; /* Add margin to create space between each product */
+            transition: transform 0.3s ease-in-out; /* Add transition effect for smooth hover animation */
+        }
+
+            .product:hover {
+                transform: scale(1.05); /* Scale up the product slightly on hover */
+            }
+
+    </style>
 </head>
 
 <body>
     <a href="front_home">
         <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
-    <div class="logout-icon">
-        <a onclick="logout()" id="logoutLink">
-            <img src="~/Images/log-out.png" alt="Logout">
-            <span id="logout-text"> تسجيل الخروج</span>
-        </a>
-    </div>
+   
 
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="showContent('Adhesives-dividers')">ملصقات وفاصلات</li>
-            <li class="tab" onclick="showContent('staplers-removers')">دباسات ومزيلات</li>
-            <li class="tab" onclick="showContent('scissors-scalpels')">مقصات ومشارط</li>
-            <li class="tab" onclick="showContent('Calculators')">آلالات حاسبة</li>
-            <li class="tab" onclick="showContent('Workbooks')">مصنفات</li>
-            <li class="tab" onclick="showContent('eraser-sharpener')">ممحاة و مبراة</li>
-            <li class="tab" onclick="showContent('tools')"> مستلزمات إضافية </li>
+            <li class="tab" onclick="handleCategoryClick(9)">ملصقات وفاصلات</li>
+            <li class="tab" onclick="handleCategoryClick()">دباسات ومزيلات</li>
+            <li class="tab" onclick="handleCategoryClick(6)">مقصات ومشارط</li>
+            <li class="tab" onclick="handleCategoryClick()">آلالات حاسبة</li>
+            <li class="tab" onclick="handleCategoryClick(12)">مصنفات</li>
+            <li class="tab" onclick="handleCategoryClick()">ممحاة و مبراة</li>
+            <li class="tab" onclick="handleCategoryClick(11)">مستلزمات إضافية</li>
 
         </ul>
         <br>
+        <!-- Tab contents -->
         <div class="tab-content" id="Adhesives-dividers" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/plaste.png" alt="">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 5000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/Untitled.png" alt="">
-                    <p>اسم المنتج 5</p>
-                    <span>السعر: 7500 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/dividers.png" alt="">
-                    <p>اسم المنتج 3</p>
-                    <span>السعر: 4500 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/dividers1.png" alt="">
-                    <p>اسم المنتج 4</p>
-                    <span>السعر: 4500 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/plaster.png" alt="">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 5500 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/cuter-plast.jpg" alt="">
-                    <p>اسم المنتج 5</p>
-                    <span>السعر: 11500 ل.س</span>
-                </a>
-            </div>
-        </div>
-        <div class="tab-content" id="eraser-sharpener" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/erser.jpg" alt=" ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 2000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/Sharpener.png" alt=" ">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 2000 ل.س</span>
-                </a>
-            </div>
-        </div>
-        <div class="tab-content" id="scissors-scalpels" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/cuter.jpg" alt="  ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 3000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/cuter1.png" alt="  ">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 2500 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/child.jpg" alt="  ">
-                    <p>اسم المنتج 3</p>
-                    <span>السعر: 3000 ل.س</span>
-                </a>
-            </div>
-        </div>
-        <div class="tab-content" id="Workbooks" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/clasor.png" alt="">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 3500 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/new-projecth.jpg" alt="">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 2000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/new-project.jpg" alt="">
-                    <p>اسم المنتج 3</p>
-                    <span>السعر: 3000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/new-project-.jpg" alt="">
-                    <p>اسم المنتج 4</p>
-                    <span>السعر: 8000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/file-bag.jpg" alt="">
-                    <p>اسم المنتج 5</p>
-                    <span>السعر: 8500 ل.س</span>
-                </a>
-            </div>
-        </div>
-        <div class="tab-content" id="tools" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/stamp-pad.jpg" alt="">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 7500 ل.س</span>
-                </a>
-            </div>
-        </div>
-        <div class="tab-content" id="Calculators" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/calc.png" alt="">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 3500 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/casine.jpg" alt="">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 52000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-Adhesives-dividers"></div>
         </div>
         <div class="tab-content" id="staplers-removers" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/laxlp.jpg" alt="">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 9500 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/mapped-kids-stapler.jpg" alt="">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 3800 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/sax.jpg" alt="">
-                    <p>اسم المنتج 3</p>
-                    <span>السعر: 4800 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/STAPLER.jpg" alt="">
-                    <p>اسم المنتج 4</p>
-                    <span>السعر: 6750 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/pices.png" alt="">
-                    <p>اسم المنتج 5</p>
-                    <span>السعر: 3000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/remover.jpg" alt="">
-                    <p>اسم المنتج 6</p>
-                    <span>السعر: 3000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-staplers-removers"></div>
         </div>
+        <div class="tab-content" id="scissors-scalpels" style="display: none;">
+            <div id="product-list-scissors-scalpels"></div>
         </div>
+        <div class="tab-content" id="Calculators" style="display: none;">
+            <div id="product-list-Calculators"></div>
+        </div>
+        <div class="tab-content" id="Workbooks" style="display: none;">
+            <div id="product-list-Workbooks"></div>
+        </div>
+        <div class="tab-content" id="eraser-sharpener" style="display: none;">
+            <div id="product-list-eraser-sharpener"></div>
+        </div>
+        <div class="tab-content" id="tools" style="display: none;">
+            <div id="product-list-tools"></div>
+        </div>
+       
     </main>
 
     <footer>
@@ -256,7 +155,116 @@
 
         </div>
     </footer>
+    <script>
 
+        // Function to fetch product data when a category is clicked
+        function fetchProducts(subId, targetId) {
+            fetch(`https://localhost:7214/api/Product/subId?subId=${subId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // After receiving data, update the interface to display the products
+                    updateProductList(data, targetId);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        // Function to handle click event on a category
+        function handleCategoryClick(subId) {
+            // Call the function to fetch product data based on subId
+            switch (subId) {
+                case 9:
+                    fetchProducts(9, 'product-list-Adhesives-dividers');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-staplers-removers');
+                    break;
+                case 6:
+                    fetchProducts(6, 'product-list-scissors-scalpels');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-Calculators');
+                    break;
+                case 12:
+                    fetchProducts(12, 'product-list-Workbooks');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-eraser-sharpener');S
+                    break;
+                case 11:
+                    fetchProducts(11, 'product-list-tools');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Function to update the product list based on received products
+        function updateProductList(products, targetId) {
+            const productList = document.getElementById(targetId);
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Show all tab contents
+            tabContents.forEach(tab => {
+                tab.style.display = 'grid';
+            });
+
+            // Clear previous products
+            productList.innerHTML = '';
+
+            // Add each product to the product list
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
+
+                // Product images
+                const productImages = document.createElement('div');
+                productImages.classList.add('product-images');
+                product.productAttributeQuantities.forEach(attribute => {
+                    attribute.imageAttributes.forEach(image => {
+                        const imageElement = document.createElement('img');
+                        imageElement.src = image.url;
+                        productImages.appendChild(imageElement);
+                    });
+                });
+
+                // Product name
+                const productName = document.createElement('p');
+                productName.textContent = product.name;
+
+                // Product price
+                const productPrice = document.createElement('span');
+                productPrice.textContent = `السعر: ${product.productAttributeQuantities[0].price} ل.س`; // Assuming the price is the same for all variants
+
+
+
+                // Product link
+                const productLink = document.createElement('a');
+                productLink.href = `front_item?id=${product.id}`; // Set the href attribute to the product page URL with the product id
+                productLink.textContent = 'تفاصيل المنتج'; // Text for the link
+
+                // Append elements to product container
+                productElement.appendChild(productName);
+                productElement.appendChild(productPrice);
+                productElement.appendChild(productImages);
+                productElement.appendChild(productLink);
+
+                // Append product container to product list
+                productList.appendChild(productElement);
+            });
+        }
+    </script>
 </body>
 
 </html>

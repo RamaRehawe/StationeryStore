@@ -13,194 +13,126 @@
     <link rel="icon" href="~/Images/ICO.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="~/Javascript/Functions.js"></script>
+    <style>
+        .tab-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 10px;
+            justify-content: space-around;
+            justify-content: space-around;
+            color: black;
+            transform: scale(1.05);
+            box-sizing: border-box;
+        }
 
+            .tab-content a {
+                text-decoration: none;
+                color: #333;
+                transition: background-color 0.3s, color 0.3s;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                box-sizing: border-box;
+                background-color: #fff;
+                transition: transform 0.3s ease-in-out;
+            }
+
+                .tab-content a img {
+                    height: 210px;
+                    width: auto;
+                    border-bottom: 1px solid #ddd;
+                    border-radius: 5px;
+                }
+
+                .tab-content a p {
+                    margin: 10px 0;
+                }
+
+
+                .tab-content a:hover {
+                    color: black;
+                    transform: scale(1.05);
+                }
+
+
+        .product {
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            background-color: #fff;
+            transition: transform 0.3s ease-in-out;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ddd; /* Add a 1px solid border with a light gray color */
+            border-radius: 8px; /* Add border radius for rounded corners */
+            padding: 10px; /* Add some padding to create space between the border and content */
+            margin-bottom: 20px; /* Add margin to create space between each product */
+            transition: transform 0.3s ease-in-out; /* Add transition effect for smooth hover animation */
+        }
+
+            .product:hover {
+                transform: scale(1.05); /* Scale up the product slightly on hover */
+            }
+
+    </style>
 </head>
 
 <body>
     <a href="front_home">
         <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
-    <div class="logout-icon">
-        <a onclick="logout()" id="logoutLink">
-            <img src="~/Images/log-out.png" alt="Logout">
-            <span id="logout-text"> تسجيل الخروج</span>
-        </a>
-    </div>
+   
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="showContent('inkpens')">أقلام حبر</li>
-            <li class="tab" onclick="showContent('pencils')">أقلام رصاص</li>
-            <li class="tab" onclick="showContent('drypens')">أقلام جافة</li>
-            <li class="tab" onclick="showContent('gelpens')">أقلام جيل</li>
-            <li class="tab" onclick="showContent('highlighters')">أقلام تحديد</li>
-            <li class="tab" onclick="showContent('markerpens')">أقلام تخطيط</li>
-            <li class="tab" onclick="showContent('correctorpens')">أقلام تصحيح</li>
-            <li class="tab" onclick="showContent('colorpens')">أقلام ملونة</li>
+            <li class="tab" onclick="handleCategoryClick(3)">أقلام حبر</li>
+            <li class="tab" onclick="handleCategoryClick(4)">أقلام رصاص</li>
+            <li class="tab" onclick="handleCategoryClick()">أقلام جافة</li>
+            <li class="tab" onclick="handleCategoryClick()">أقلام جيل</li>
+            <li class="tab" onclick="handleCategoryClick()">أقلام تحديد</li>
+            <li class="tab" onclick="handleCategoryClick()">أقلام تخطيط</li>
+            <li class="tab" onclick="handleCategoryClick()">أقلام ملونة</li>
+
         </ul>
-
         <br>
-
+        <!-- Tab contents -->
         <div class="tab-content" id="inkpens" style="display: none;">
-
-            <div class="product" data-name="اسم المنتج 1" data-price="75000">
-                <a href="#">
-                    <img src="~/Images/inkpen.jpg" alt="Ink Pen 1">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 75000 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product" data-name="اسم المنتج 2" data-price="90000">
-                <a href="#" class="product-link">
-                    <img src="~/Images/inkpen2.png" alt="Ink Pen 2">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 90000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-inkpens"></div>
         </div>
         <div class="tab-content" id="pencils" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/pensil1.png" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 2000 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/Pensil.jpg" alt=" Pen ">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 2500 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/Pilot_pancil.jpg" alt=" Pen ">
-                    <p>اسم المنتج 3</p>
-                    <span>السعر: 4500 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/rotring-pancil.jpg" alt=" Pen ">
-                    <p>اسم المنتج 4</p>
-                    <span>السعر: 6500 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-pencils"></div>
         </div>
         <div class="tab-content" id="drypens" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/drypens.png" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 3000 ل.س</span>
-                </a>
-            </div>
-
-            <div class="product">
-                <a href="#" class="product-link">
-                    <img src="~/Images/draypens1.png" alt=" Pen ">
-                    <p>اسم المنتج 2</p>
-                    <span>السعر: 4000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#" class="product-link">
-                    <img src="~/Images/item_1.png" alt=" Pen ">
-                    <p>اسم المنتج 3</p>
-                    <span>السعر: 5000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-drypens"></div>
         </div>
         <div class="tab-content" id="gelpens" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/gelpensblue.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 5000 ل.س</span>
-                </a>
-            </div>
-        </div>
-        <div class="tab-content" id="colorpens" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/gelpens.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 25000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/folomasterpen.JPG" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 15000 ل.س</span>
-                </a>
-            </div>
-        </div>
-        <div class="tab-content" id="markerpens" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/pm810-blue.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 6200 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/marker.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 6000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-gelpens"></div>
         </div>
         <div class="tab-content" id="highlighters" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/highlighter.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 2500 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/highlighter1.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 3700 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-highlighters"></div>
+        </div>
+        <div class="tab-content" id="markerpens" style="display: none;">
+            <div id="product-list-markerpens"></div>
         </div>
         <div class="tab-content" id="correctorpens" style="display: none;">
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/correction-pen-7ml-quick-drying.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 5000 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/correctionpen.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 4500 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/corrector.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 4500 ل.س</span>
-                </a>
-            </div>
-            <div class="product">
-                <a href="#">
-                    <img src="~/Images/corrector1.jpg" alt=" Pen ">
-                    <p>اسم المنتج 1</p>
-                    <span>السعر: 4000 ل.س</span>
-                </a>
-            </div>
+            <div id="product-list-correctorpens"></div>
         </div>
+        <div class="tab-content" id="colorpens" style="display: none;">
+            <div id="product-list-colorpens"></div>
+        </div>
+       
     </main>
 
     <footer>
@@ -226,7 +158,119 @@
 
         </div>
     </footer>
+    <script>
 
+        // Function to fetch product data when a category is clicked
+        function fetchProducts(subId, targetId) {
+            fetch(`https://localhost:7214/api/Product/subId?subId=${subId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // After receiving data, update the interface to display the products
+                    updateProductList(data, targetId);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        // Function to handle click event on a category
+        function handleCategoryClick(subId) {
+            // Call the function to fetch product data based on subId
+            switch (subId) {
+                case :
+                    fetchProducts(, 'product-list-inkpens');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-pencils');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-drypens');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-gelpens');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-highlighters');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-markerpens');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-correctorpens');
+                    break;
+                case :
+                    fetchProducts(, 'product-list-colorpens');
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        // Function to update the product list based on received products
+        function updateProductList(products, targetId) {
+            const productList = document.getElementById(targetId);
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Show all tab contents
+            tabContents.forEach(tab => {
+                tab.style.display = 'grid';
+            });
+
+            // Clear previous products
+            productList.innerHTML = '';
+
+            // Add each product to the product list
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
+
+                // Product images
+                const productImages = document.createElement('div');
+                productImages.classList.add('product-images');
+                product.productAttributeQuantities.forEach(attribute => {
+                    attribute.imageAttributes.forEach(image => {
+                        const imageElement = document.createElement('img');
+                        imageElement.src = image.url;
+                        productImages.appendChild(imageElement);
+                    });
+                });
+
+                // Product name
+                const productName = document.createElement('p');
+                productName.textContent = product.name;
+
+                // Product price
+                const productPrice = document.createElement('span');
+                productPrice.textContent = `السعر: ${product.productAttributeQuantities[0].price} ل.س`; // Assuming the price is the same for all variants
+
+
+
+                // Product link
+                const productLink = document.createElement('a');
+                productLink.href = `front_item?id=${product.id}`; // Set the href attribute to the product page URL with the product id
+                productLink.textContent = 'تفاصيل المنتج'; // Text for the link
+
+                // Append elements to product container
+                productElement.appendChild(productName);
+                productElement.appendChild(productPrice);
+                productElement.appendChild(productImages);
+                productElement.appendChild(productLink);
+
+                // Append product container to product list
+                productList.appendChild(productElement);
+            });
+        }
+    </script>
 </body>
 
 </html>

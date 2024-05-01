@@ -16,20 +16,14 @@
     <a href="front_home">
         <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
-    <div class="logout-icon">
-        <a onclick="logout()" id="logoutLink">
-            <img src="~/Images/log-out.png" alt="Logout">
-            <span id="logout-text"> تسجيل الخروج</span>
-        </a>
-    </div>
     <main>
 
         <div class="product-details" id="product-table">
-            <h2>أقلام حبر ملونة</h2>
-            <p> أقلام حبر جاف كباس ذات جودة عالية...</p>
+            <h2></h2>
+            <p></p>
             <div class="product-images" id="thumbnail-container">
             </div>
-            <img src="~/Images/item_1.png" alt="Main Product Image" class="main-product-image" id="main-product-image">
+            <img  alt="Main Product Image" class="main-product-image" id="main-product-image">
 
             <div class="product-details">
                 <table>
@@ -56,7 +50,7 @@
 
             </div>
 
-            <p id="price" class="price">السعر: 25000 ل.س</p>
+            <p id="price" class="price"></p>
 
             <div class="delivery-info" id="deliveryInfo">
                 <!-- سيتم تحديث معلومات التسليم هنا -->
@@ -76,12 +70,9 @@
                 <p>متوفر في المخزن</p>
                 <label class="quantity-label">الكمية :</label>
                 <select class="quantity-select" id="quantitySelect" onchange="updateQuantityInput()">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="10">10</option>
+                   
                 </select>
             </div>
-
 
             <div class="actions">
                 <button class="add-to-cart" onclick="addToCart()">إضافة إلى السلة</button>
@@ -147,6 +138,19 @@
     </footer>
 
     <script>
+
+        // استخراج query string من عنوان الصفحة الحالي
+        const queryString = window.location.search;
+
+        // إنشاء كائن URLSearchParams للعمل مع query string
+        const urlParams = new URLSearchParams(queryString);
+
+        // استخراج قيمة المعلمة id من query string
+        const productId = urlParams.get('id');
+
+        // الآن لديك قيمة productId التي تم تمريرها من الصفحة الأولى
+        console.log(productId); // يجب عرض قيمة id هنا
+
         var addedRow = false; // متغير لتتبع ما إذا تمت إضافة الصف الإضافي
         const authToken = localStorage.getItem('authToken');
         const userId = localStorage.getItem('userId'); // Assuming you store the user ID in localStorage
@@ -162,6 +166,49 @@
                 addedRow = true; // تعيين المتغير إلى القيمة true للدلالة على إضافة الصف الإضافي
             }
         }
+
+        // استدعاء الـ API لجلب معلومات المنتج بناءً على الـ id المسترد
+        fetch(`/api/Product/GetProduct?productId=${productId}`)
+            .then(response => response.json())
+            .then(productData => {
+                // استخدام بيانات المنتج لتحديث عناصر الصفحة HTML
+                document.getElementById('product-table').innerHTML = `
+                    <h2>${productData.name}</h2>
+                    <p>${productData.description}</p>
+                    <div class="product-images" id="thumbnail-container"></div>
+                    <img src="${productData.productAttributeQuantities[0].imageAttributes[0].url}" alt="Main Product Image" class="main-product-image" id="main-product-image">
+
+                    <!-- إضافة بيانات المنتج الأخرى هنا -->
+                    <table>
+                        <tr>
+                            <th>الخاصية</th>
+                            <th>القيمة</th>
+                        </tr>
+                        <tr>
+                            <td>${productData.productAttributeQuantities[0].name1}</td>
+                            <td>${productData.productAttributeQuantities[0].value1}</td>
+                        </tr>
+                        <!-- يمكنك إضافة المزيد من الخصائص هنا -->
+                    </table>
+
+                    <p id="price" class="price">السعر: ${productData.productAttributeQuantities[0].price} ل.س</p>
+                    <!-- يمكنك إضافة المزيد من المعلومات هنا، مثل معلومات التسليم والإضافة إلى السلة -->
+                `;
+
+                // إضافة الصور المصغرة
+                var thumbnailContainer = document.getElementById("thumbnail-container");
+                productData.productAttributeQuantities.forEach(function (quantity) {
+                    var img = document.createElement("img");
+                    img.src = quantity.imageAttributes[0].url;
+                    img.alt = "Product Thumbnail";
+                    img.className = "thumbnail";
+                    img.addEventListener("click", function () {
+                        changeMainImage(quantity.imageAttributes[0].url);
+                    });
+                    thumbnailContainer.appendChild(img);
+                });
+            })
+            .catch(error => console.error('حدث خطأ في جلب معلومات المنتج:', error));
 
 
         // في دالة لإضافة المنتج إلى سلة التسوق
@@ -256,31 +303,55 @@
             });
         });
 
+        // قم بتحديد المتغير الذي يحتوي على بيانات المنتج المستردة
+        var productData = /* احصل على بيانات المنتج من الـ API */;
 
-        // Thumbnails array
-        var thumbnails = [
-            "/Images/item_1.png",
-            "/Images/item_2.png",
-            "/Images/item_3.png",
-            "/Images/item_4.png",
-            "/Images/item_5.png",
-            "/Images/item_6.png"
-        ];
+        // قم بجلب مصفوفة الصور من بيانات المنتج
+        var productImages = productData.productImages;
 
-        // Add thumbnails dynamically
-        var thumbnailContainer = document.getElementById("thumbnail-container");
+        // إذا كانت هناك صور متوفرة للمنتج
+        if (productImages && productImages.length > 0) {
+            // حدد عنصر الصور المصغرة
+            var thumbnailContainer = document.getElementById("thumbnail-container");
 
-        thumbnails.forEach(function (thumbnail) {
-            var img = document.createElement("img");
-            img.src = thumbnail;
-            img.alt = "Product Thumbnail";
-            img.className = "thumbnail";
-            img.addEventListener("click", function () {
-                changeMainImage(thumbnail);
+            // حلق عبر كل صورة وأضفها كصور مصغرة
+            productImages.forEach(function (image) {
+                var img = document.createElement("img");
+                img.src = image.url;
+                img.alt = "Product Thumbnail";
+                img.className = "thumbnail";
+                img.addEventListener("click", function () {
+                    changeMainImage(image.url);
+                });
+
+                thumbnailContainer.appendChild(img);
             });
+        }
 
-            thumbnailContainer.appendChild(img);
-        });
+        // // Thumbnails array
+        // var thumbnails = [
+        //     "/Images/item_1.png",
+        //     "/Images/item_2.png",
+        //     "/Images/item_3.png",
+        //     "/Images/item_4.png",
+        //     "/Images/item_5.png",
+        //     "/Images/item_6.png"
+        // ];
+
+        // // Add thumbnails dynamically
+        // var thumbnailContainer = document.getElementById("thumbnail-container");
+
+        // thumbnails.forEach(function (thumbnail) {
+        //     var img = document.createElement("img");
+        //     img.src = thumbnail;
+        //     img.alt = "Product Thumbnail";
+        //     img.className = "thumbnail";
+        //     img.addEventListener("click", function () {
+        //         changeMainImage(thumbnail);
+        //     });
+
+        //     thumbnailContainer.appendChild(img);
+        // });
 
         function changeMainImage(newSrc) {
             var mainImage = document.getElementById('main-product-image');
@@ -364,7 +435,6 @@
         }
         // متغير لتتبع حالة المنتج (في السلة أو في قائمة الرغبات)
         var isInCart = false;
-        var isInWishlist = false;
 
         // قم بتعريف دالة لفحص حالة تسجيل الدخول
         function checkLoginStatus() {
@@ -461,7 +531,7 @@
         function updateShippingDetails() {
             var shippingDetails = document.getElementById("shippingDetails");
 
-            var price = 25000;
+            var price = product.productAttributeQuantities[0].price;
             var standardShippingFee = 15000;
 
             var total = price + standardShippingFee;
@@ -487,16 +557,7 @@
 
             shippingDetails.innerHTML = detailsText;
         }
-        function logout() {
-            // حذف بيانات الدخول من Local Storage
-            localStorage.removeItem('username');
-            localStorage.removeItem('password');
-            // إخفاء رابط تسجيل الخروج
-            document.getElementById('logoutLink').style.display = 'none';
-            alert('تم تسجيل الخروج بنجاح!');
-            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
-            window.location.href = "front_home";
-        }
+       
     </script>
 
 </body>
