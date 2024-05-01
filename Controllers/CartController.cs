@@ -10,7 +10,7 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Roles = "Customer")]
+    [Authorize(Roles = "Customer")]
     public class CartController : BaseController
     {
         private readonly ICartRepository _cartRepository;
