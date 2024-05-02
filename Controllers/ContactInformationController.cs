@@ -20,15 +20,7 @@ namespace StationeryStore.Controllers
             _mapper = mapper;
         }
 
-        //[HttpPut("setContactInformation")]
-        //public IActionResult UpdateContactInformation(int id, ReqContactInformationDto reqContact)
-        //{
-        //    var existed = _contactInformationRepository.GetInfoById(id);
-        //    existed.Value = reqContact.Value;
-        //    existed.Description = reqContact.Description;
-        //    _contactInformationRepository.UpdateInfos(existed);
-        //    return Ok(existed);
-        //}
+       
         [HttpPut("setContactInformation")]
         public IActionResult UpdateContactInformation([FromBody] ReqContactInformationDto reqContact)
         {

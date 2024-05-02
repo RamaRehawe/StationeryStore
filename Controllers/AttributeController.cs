@@ -13,7 +13,7 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize (Roles = "Item Manager")]
+    [Authorize (Roles = "Item Manager")]
     public class AttributeController : BaseController
     {
         private readonly IAttributeRepository _attributeRepository;
@@ -176,66 +176,7 @@ namespace StationeryStore.Controllers
                 return NotFound();
             return Ok(attribute);
         }
-        //private async Task<string> WriteFile(IFormFile file)
-        //{
-        //    try
-        //    {
-        //        // Generate unique filename
-        //        var extension = Path.GetExtension(file.FileName);
-        //        var filename = $"{base.GetActiveUser()!.Username}{DateTime.Now:MMddyyyyHHmm}{extension}";
-
-        //        // Construct file path
-        //        var directoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Upload", "Product");
-        //        var exactpath = Path.Combine(directoryPath, filename);
-
-        //        // Create directory if it doesn't exist
-        //        Directory.CreateDirectory(directoryPath);
-
-        //        // Save file to specified location
-        //        using (var stream = new FileStream(exactpath, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(stream);
-        //        }
-
-        //        // Return relative path of uploaded file
-        //        return Path.Combine("wwwroot", "Upload", "Product", filename);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Log the exception
-        //        Console.WriteLine($"Error writing file: {ex.Message}");
-        //        return "";
-        //    }
-        //}
-
-        //private async Task<string> WriteFile(IFormFile file)
-        //{
-        //    string filename = "";
-        //    try
-        //    {
-        //        var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-        //        filename = "image" +DateTime.Now.ToString("MMddyyyyHHmm") + extension;
-
-        //        var filepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product");
-
-        //        if (!Directory.Exists(filepath))
-        //        {
-        //            Directory.CreateDirectory(filepath);
-        //        }
-
-        //        var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Upload/Product", filename);
-        //        using (var stream = new FileStream(exactpath, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(stream);
-        //        }
-        //        return Path.Combine("wwwroot/Upload/Product", filename); ;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return "";
-        //    }
-
-        //}
+       
         private async Task<string> WriteFile(IFormFile file)
         {
             string filename = "";

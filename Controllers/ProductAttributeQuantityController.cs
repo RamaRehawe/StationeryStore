@@ -11,7 +11,7 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize(Roles = "Item Manager")]
+    [Authorize(Roles = "Item Manager")]
     public class ProductAttributeQuantityController : BaseController
     {
         private readonly IProductAttributeQuantityRepository _productAttributeQuantityRepository;
@@ -22,16 +22,6 @@ namespace StationeryStore.Controllers
             _productAttributeQuantityRepository = productAttributeQuantityRepository;
             _mapper = mapper;
         }
-
-        
-        //[HttpPost]
-        //public IActionResult AddQuantity(ReqProductAttributeQuantityDto quantityDto)
-        //{
-        //    var productAttributeQuantity = _mapper.Map<ProductAttributeQuantity>(quantityDto);
-        //    int paq = _productAttributeQuantityRepository.Create(productAttributeQuantity);
-                
-        //    return Ok("Added successfully");
-        //}
 
         [HttpPut("{id}")]
         public IActionResult UpdateQuantity(int id, ReqProductAttributeQuantityDto quantityDto)

@@ -11,7 +11,7 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-  //  [Authorize (Roles = "Driver")]
+    [Authorize (Roles = "Driver")]
     public class DriverController : BaseController
     {
         private readonly IMapper _mapper;
