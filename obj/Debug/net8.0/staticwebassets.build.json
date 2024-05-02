@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "H9ypDYO7DLTqCqWUgD39Ll5E/OXdTc9r9GJOahnYRNM=",
+  "Hash": "ORDZIk0nMZhABWacr+1mBNbc6ESyeFrmWy9EiyQfxRg=",
   "Source": "StationeryStore",
   "BasePath": "_content/StationeryStore",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "StationeryStore\\wwwroot",
       "Source": "StationeryStore",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Images\\Youtube.png",
+      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Images\\Youtube.png",
       "SourceId": "StationeryStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "RelativePath": "Images/Youtube.png",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\Images\\Youtube.png"
     },
     {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image042920242258.png",
+      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image042920242258.png",
       "SourceId": "StationeryStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "RelativePath": "Upload/Product/image042920242258.png",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\Upload\\Product\\image042920242258.png"
     },
     {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image042920242336.png",
+      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image042920242336.png",
       "SourceId": "StationeryStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "RelativePath": "Upload/Product/image042920242336.png",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\Upload\\Product\\image042920242336.png"
     },
     {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240002.png",
+      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240002.png",
       "SourceId": "StationeryStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "RelativePath": "Upload/Product/image043020240002.png",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\Upload\\Product\\image043020240002.png"
     },
     {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240153.png",
+      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240153.png",
       "SourceId": "StationeryStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "RelativePath": "Upload/Product/image043020240153.png",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\Upload\\Product\\image043020240153.png"
     },
     {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240157.png",
+      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240157.png",
       "SourceId": "StationeryStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "RelativePath": "Upload/Product/image043020240157.png",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\Upload\\Product\\image043020240157.png"
     },
     {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240212.png",
+      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020240212.png",
       "SourceId": "StationeryStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "RelativePath": "Upload/Product/image043020240212.png",
       "AssetKind": "All",
@@ -148,44 +148,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Upload\\Product\\image043020240212.png"
-    },
-    {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image043020242355.jpg",
-      "SourceId": "StationeryStore",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
-      "BasePath": "_content/StationeryStore",
-      "RelativePath": "Upload/Product/image043020242355.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Upload\\Product\\image043020242355.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image050120240005.jpg",
-      "SourceId": "StationeryStore",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
-      "BasePath": "_content/StationeryStore",
-      "RelativePath": "Upload/Product/image050120240005.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Upload\\Product\\image050120240005.jpg"
     }
   ]
 }
