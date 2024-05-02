@@ -33,13 +33,13 @@
                     </tr>
                     <tr>
                         <td>
-                            <select id="attribute-name" name="Name">
+                            <select id="attribute-name" name="Name1">
                                 <option value="">اختر الخاصية</option>
                                
                             </select>
                         </td>
                         <td>
-                            <select id="attribute-name" name="Value">
+                            <select id="attribute-name" name="Value1">
                                 <option value="">اختر القيمة</option>
                             </select>
                         </td>
@@ -138,7 +138,29 @@
     </footer>
 
     <script>
+        window.onload = function () {
+            fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+            .then(response => response.json())
+                .then(data => {
+                    var quantitySelect = document.getElementById("quantitySelect");
 
+                    // قم بملء عنصر "select" بالخيارات المتاحة
+                    data.ProductAttributeQuantities.forEach(function (item) {
+                        var option = document.createElement("option");
+                        option.text = item.Name1 + ": " + item.Value1 + ", " + item.Name2 + ": " + item.Value2;
+                        option.value = item.Quantity;
+                        quantitySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        };
+
+        // وظيفة تحديث الكمية عند تغيير الاختيار
+        function updateQuantityInput() {
+            var quantity = document.getElementById("quantitySelect").value;
+            // يمكنك هنا استخدام كمية المنتج المحددة (quantity) لإضافتها إلى سلة التسوق أو للقيام بأي شيء آخر.
+            alert("الكمية المحددة: " + quantity);
+        }
         // استخراج query string من عنوان الصفحة الحالي
         const queryString = window.location.search;
 
@@ -168,15 +190,13 @@
         }
 
         // استدعاء الـ API لجلب معلومات المنتج بناءً على الـ id المسترد
-        fetch(`/api/Product/GetProduct?productId=${productId}`)
+        fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
             .then(response => response.json())
             .then(productData => {
                 // استخدام بيانات المنتج لتحديث عناصر الصفحة HTML
                 document.getElementById('product-table').innerHTML = `
                     <h2>${productData.name}</h2>
                     <p>${productData.description}</p>
-                    <div class="product-images" id="thumbnail-container"></div>
-                    <img src="${productData.productAttributeQuantities[0].imageAttributes[0].url}" alt="Main Product Image" class="main-product-image" id="main-product-image">
 
                     <!-- إضافة بيانات المنتج الأخرى هنا -->
                     <table>
@@ -195,18 +215,18 @@
                     <!-- يمكنك إضافة المزيد من المعلومات هنا، مثل معلومات التسليم والإضافة إلى السلة -->
                 `;
 
-                // إضافة الصور المصغرة
-                var thumbnailContainer = document.getElementById("thumbnail-container");
-                productData.productAttributeQuantities.forEach(function (quantity) {
-                    var img = document.createElement("img");
-                    img.src = quantity.imageAttributes[0].url;
-                    img.alt = "Product Thumbnail";
-                    img.className = "thumbnail";
-                    img.addEventListener("click", function () {
-                        changeMainImage(quantity.imageAttributes[0].url);
-                    });
-                    thumbnailContainer.appendChild(img);
-                });
+                // // إضافة الصور المصغرة
+                // var thumbnailContainer = document.getElementById("thumbnail-container");
+                // productData.productAttributeQuantities.forEach(function (quantity) {
+                //     var img = document.createElement("img");
+                //     img.src = quantity.imageAttributes[0].url;
+                //     img.alt = "Product Thumbnail";
+                //     img.className = "thumbnail";
+                //     img.addEventListener("click", function () {
+                //         changeMainImage(quantity.imageAttributes[0].url);
+                //     });
+                //     thumbnailContainer.appendChild(img);
+                // });
             })
             .catch(error => console.error('حدث خطأ في جلب معلومات المنتج:', error));
 
@@ -289,44 +309,82 @@
         }
 
 
-        // JavaScript code
         document.addEventListener("DOMContentLoaded", function () {
+            // Event listener for the "showShippingLink" element
             var showShippingLink = document.getElementById("showShippingLink");
             showShippingLink.addEventListener("click", function (event) {
-                event.preventDefault();
-                showShippingModal();
+                event.preventDefault(); // Prevent the default click action
+                showShippingModal(); // Call the function to show the shipping modal
             });
 
+            // Event listener for the "closeShippingModalBtn" element
             var closeShippingModalBtn = document.getElementById("closeShippingModalBtn");
             closeShippingModalBtn.addEventListener("click", function () {
-                closeShippingModal();
+                closeShippingModal(); // Call the function to close the shipping modal
             });
         });
+        // window.onload = function () {
+        //     fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             // Update main product image
+        //             document.getElementById("main-product-image").src = data.MainImageURL;
 
-        // قم بتحديد المتغير الذي يحتوي على بيانات المنتج المستردة
-        var productData = /* احصل على بيانات المنتج من الـ API */;
+        //             // Update thumbnai\
+        /
+        // l images
+        //             data.ThumbnailImageURLs.forEach(function (url) {
+        //                 var img = document.createElement("img");
+        //                 img.src = url;
+        //                 img.alt = "Thumbnail Product Image";
+        //                 document.getElementById("thumbnail-container").appendChild(img);
+        //             });
+        //         })
+        //         .catch(error => console.error('Error fetching data:', error));
+        // };
 
-        // قم بجلب مصفوفة الصور من بيانات المنتج
-        var productImages = productData.productImages;
+        // function changeMainImage(url) {
+        //     document.getElementById("main-product-image").src = url;
+        // }
 
-        // إذا كانت هناك صور متوفرة للمنتج
-        if (productImages && productImages.length > 0) {
-            // حدد عنصر الصور المصغرة
-            var thumbnailContainer = document.getElementById("thumbnail-container");
+        // window.onload = function () {
+        //     fetch("/your-api-endpoint/productId")
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             // Update main product image
+        //             document.getElementById("main-product-image").src = data.MainImageURL;
 
-            // حلق عبر كل صورة وأضفها كصور مصغرة
-            productImages.forEach(function (image) {
-                var img = document.createElement("img");
-                img.src = image.url;
-                img.alt = "Product Thumbnail";
-                img.className = "thumbnail";
-                img.addEventListener("click", function () {
-                    changeMainImage(image.url);
-                });
+        //             // Update thumbnail images
+        //             data.ThumbnailImageURLs.forEach(function (url) {
+        //                 var img = document.createElement("img");
+        //                 img.src = url;
+        //                 img.alt = "Thumbnail Product Image";
+        //                 document.getElementById("thumbnail-container").appendChild(img);
+        //             });
+        //         })
+        //         .catch(error => console.error('Error fetching data:', error));
+        // };
+        // // قم بجلب مصفوفة الصور من بيانات المنتج
+        // var productImages = productData.productImages;
 
-                thumbnailContainer.appendChild(img);
-            });
-        }
+        // // إذا كانت هناك صور متوفرة للمنتج
+        // if (productImages && productImages.length > 0) {
+        //     // حدد عنصر الصور المصغرة
+        //     var thumbnailContainer = document.getElementById("thumbnail-container");
+
+        //     // حلق عبر كل صورة وأضفها كصور مصغرة
+        //     productImages.forEach(function (image) {
+        //         var img = document.createElement("img");
+        //         img.src = image.url;
+        //         img.alt = "Product Thumbnail";
+        //         img.className = "thumbnail";
+        //         img.addEventListener("click", function () {
+        //             changeMainImage(image.url);
+        //         });
+
+        //         thumbnailContainer.appendChild(img);
+        //     });
+        // }
 
         // // Thumbnails array
         // var thumbnails = [
