@@ -29,9 +29,9 @@
                 <div class="empty-cart-message" id="empty-cart-message-cart">
                     <p>السلة لا تحوي منتجات</p>
                 </div>
-                <div class="login-alert" id="login-alert" style="display: none;">
+              @*   <div class="login-alert" id="login-alert" style="display: none;">
                     <p>يجب عليك <a href="front_login">تسجيل الدخول</a> أولاً.</p>
-                </div>
+                </div> *@
                 <!-- Cart items will be dynamically added here -->
                 <a href="#" class="remove-link" onclick="deleteCartItem(itemId)" style="display: none;">حذف</a>
                 <div class="cart-total" id="cart-total" style="display: none;">
@@ -100,7 +100,6 @@
                     const cartContainer = document.getElementById('cart-container');
                     const cartForm = cartContainer.querySelector('.cart-form');
                     const emptyCartMessage = cartContainer.querySelector('#empty-cart-message-cart');
-                    const loginAlert = cartContainer.querySelector('#login-alert');
                     const removeLink = cartContainer.querySelector('.remove-link');
                     const cartTotal = cartContainer.querySelector('#cart-total');
                     const checkoutBtn = cartContainer.querySelector('#checkout-btn');
@@ -122,13 +121,11 @@
                         cartTotal.style.display = 'block';
                         checkoutBtn.style.display = 'block';
                         emptyCartMessage.style.display = 'none';
-                        loginAlert.style.display = 'none';
                         removeLink.style.display = 'block'; // Display the remove link for each item
                     } else {
                         cartTotal.style.display = 'none';
                         checkoutBtn.style.display = 'none';
                         emptyCartMessage.style.display = 'block';
-                        loginAlert.style.display = 'block';
                         removeLink.style.display = 'none'; // Hide the remove link when the cart is empty
                     }
                 })
@@ -209,10 +206,6 @@
                 emptyCartMessage.style.display = 'block';
             }
 
-            var loginAlert = document.getElementById('login-alert');
-            if (loginAlert) {
-                loginAlert.style.display = 'block';
-            }
         }
       
 
@@ -270,14 +263,14 @@
                 emptyCartMessage.style.display = 'block';
             }
 
-            // Update the cart item count variable
-            cartItemCount = getCartItemCount();
+            // // Update the cart item count variable
+            // cartItemCount = getCartItemCount();
 
-            // Display the updated cart item count
-            const cartItemCountElement = document.getElementById('cart-item-count');
-            if (cartItemCountElement) {
-                cartItemCountElement.textContent = cartItemCount;
-            }
+            // // Display the updated cart item count
+            // const cartItemCountElement = document.getElementById('cart-item-count');
+            // if (cartItemCountElement) {
+            //     cartItemCountElement.textContent = cartItemCount;
+            // }
         }
         function clearCart() {
             // قم بتفريغ السلة هنا، يمكنك استخدام الطريقة التي تفضلها

@@ -530,6 +530,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                   
                 },
                 body: JSON.stringify(newItemData)
             })
@@ -780,16 +781,16 @@
                 items[i].classList.remove('selected');
             }
         }
-        function logout() {
-            // حذف بيانات الدخول من Local Storage
-            localStorage.removeItem('username');
-            localStorage.removeItem('password');
-            // إخفاء رابط تسجيل الخروج
-            document.getElementById('logoutLink').style.display = 'none';
-            alert('تم تسجيل الخروج بنجاح!');
-            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
-            window.location.href = "front_home";
-        }
+        // function logout() {
+        //     // حذف بيانات الدخول من Local Storage
+        //     localStorage.removeItem('username');
+        //     localStorage.removeItem('password');
+        //     // إخفاء رابط تسجيل الخروج
+        //     document.getElementById('logoutLink').style.display = 'none';
+        //     alert('تم تسجيل الخروج بنجاح!');
+        //     // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+        //     window.location.href = "front_home";
+        // }
 
         function showSubcategories() {
             var categorySelect = document.getElementById("itemCategory");
