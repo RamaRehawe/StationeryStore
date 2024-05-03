@@ -58,11 +58,11 @@ namespace StationeryStore.Controllers
 
         //[Authorize(Roles = "Driver")]
         [HttpPost("selectOrder")]
-        public IActionResult SelectOrder(int orderId)
+        public IActionResult SelectOrder(SelectOrderDto orderDto)
         {
             var userId = base.GetActiveUser()!.Id;
             var driver = _driverRepository.GetDrivers().Where(d => d.UserId == userId).First();
-            if (_driverRepository.SelectOrder(orderId, driver.Id))
+            if (_driverRepository.SelectOrder(orderDto.OrderId, driver.Id))
                 return Ok("Order Selected Successfully");
             else
                 return BadRequest("order cannot be selected");

@@ -27,7 +27,7 @@
     </div>
     <main>
 
-        <div class="driver-status" onmouseenter="showDriverText()" onmouseleave="hideText('driverText')">
+        <div class="driver-status" >
             <h2>حالة السائق</h2>
             <p class="instruction-text" id="driverText">تحديث حالتك يساعدنا على تحسين تجربتك. اجعل نفسك متاحًا عندما تكون جاهزًا لتسليم الشحنات.</p>
 
@@ -38,7 +38,7 @@
             <p id="statusText">مشغول</p>
         </div>
         <div class="grid-container">
-            <div class="shipments-section" onmouseenter="showShipmentsText()" onmouseleave="hideText('shipmentsText')">
+            <div class="shipments-section">
 
                 <h2>الشحنات بحاجة للتسليم</h2>
                 <p class="instruction-text" id="shipmentsText">شحنات تنتظر تسليمك! تحقق من القائمة وبدء تسليم الشحنات الخاصة بك.</p>
@@ -61,7 +61,7 @@
                 </table>
             </div>
 
-            <div class="previous-orders-section" onmouseenter="showOrdersText()" onmouseleave="hideText('ordersText')">
+            <div class="previous-orders-section">
 
                 <h2>الطلبيات السابقة</h2>
                 <p class="instruction-text" id="ordersText">استعرض الطلبيات السابقة واطلع على تاريخ تسليمك.</p>
@@ -81,7 +81,7 @@
                 </table>
             </div>
 
-            <div class="timeline-section" onmouseenter="showTimelineText()" onmouseleave="hideText('timelineText')">
+            <div class="timeline-section">
                 <h2>خط الزمني للشحنة</h2>
                 <p class="instruction-text" id="timelineText" style="color: red;">ملاحظة هامة !! لا تقم بالضغط على زر تم التوصيل إلى حين تسليم الشحنة إلى العملاء.</p>
 
@@ -105,7 +105,7 @@
             </div>
 
 
-            <div class="delivery-confirmation-section" onmouseenter="showConfirmationText()" onmouseleave="hideText('confirmationText')">
+            <div class="delivery-confirmation-section"
                 <div class="deliveryConfirmationForm">
 
 
@@ -198,12 +198,12 @@
         }
 
         // Call the function to fetch and populate pending orders when the page loads
-        fetchAndPopulatePendingOrders();
 
         const authToken = localStorage.getItem('authToken');
         const userId = localStorage.getItem('userId'); // Assuming you store the user ID in localStorage
         console.log(authToken);
         console.log(userId);
+        fetchAndPopulatePendingOrders();
 
 
         function updateDriverStatus() {
@@ -212,8 +212,8 @@
             const driverText = document.getElementById('driverText');
 
             const driverDto = {
-                const statusValue = statusToggle.checked ? true : false;
-                const statusTextValue = statusToggle.checked ? 'متاح' : 'مشغول';
+                statusValue : statusToggle.checked ? true : false,
+                statusTextValue : statusToggle.checked ? 'متاح' : 'مشغول'
             };
 
             fetch('/api/Driver/setDriverStatus', {
@@ -232,6 +232,9 @@
                 .catch(error => console.error('Error:', error));
         }
         function acceptOrder(orderId) {
+            const data = {
+                orderId: orderId
+            }            
             // Send an HTTP POST request to the server
             fetch('/api/Driver/selectOrder', {
                 method: 'POST',
@@ -239,11 +242,9 @@
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + authToken
                 },
-                body: JSON.stringify({
-                    orderId: orderId
-                })
+                body: JSON.stringify(data)
             })
-                .then(response => response.json())
+                .then(response => response)
                 .then(data => {
                     // Update the status in the table
                     const statusCell = document.getElementById('status' + orderId);
@@ -291,7 +292,7 @@
                     'Authorization': 'Bearer ' + authToken
                 },
                 body: JSON.stringify({
-                    orderId: orderId; // Replace 1 with the actual order ID
+                    orderId: orderId // Replace 1 with the actual order ID
                 })
             })
                 .then(response => response.json())
@@ -333,11 +334,11 @@
                     data.forEach(order => {
                         const newRow = document.createElement('tr');
                         newRow.innerHTML = `
-                                <td>${order.orderNumber}</td>
-                                <td>${order.customerName}</td>
-                                <td>${order.customerPhone}</td>
-                                <td>${order.deliveryAddress}</td>
-                                <td>${order.status}</td>
+                                <td>${order.id}</td>
+                                <td>${order.address.name}</td>
+                                <td>${order.address.phone}</td>
+                                <td>${order.address.street}</td>
+                                <td>${order.orderStatus}</td>
                             `;
                         previousOrdersTable.appendChild(newRow);
                     });
@@ -346,7 +347,7 @@
         }
 
         // Call fetchPreviousOrders function when the page loads
-        window.onload = fetchPreviousOrders;
+        fetchPreviousOrders();
         function confirmDelivery() {
             // Get the selected delivery status (delivered or not delivered)
             const deliveryStatus = document.querySelector('input[name="deliveryStatus"]:checked').value;
@@ -373,7 +374,7 @@
                 },
                 body: JSON.stringify(data)
             })
-                .then(response => response.json())
+                .then(response => response)
                 .then(result => {
                     // Display confirmation message based on the server response
                     const confirmationMessage = document.getElementById('confirmationMessage');
@@ -386,40 +387,29 @@
                 .catch(error => console.error('Error confirming delivery:', error));
         }
         // Functions to show/hide instruction text
-        function showDriverText() {
-            showText('driverText');
-        }
-
-        function showShipmentsText() {
-            showText('shipmentsText');
-        }
-
-        function showOrdersText() {
-            showText('ordersText');
-        }
-
-        function showTimelineText() {
-            showText('timelineText');
-        }
-
-        function showConfirmationText() {
-            showText('confirmationText');
-        }
+            
 
         function showText(elementId) {
             // Show instruction text
             document.getElementById(elementId).style.display = 'block';
 
             // Set a timeout to hide the text after 6000 milliseconds (6 seconds)
-            setTimeout(function () {
-                hideText(elementId);
-            }, 6000);
+            // setTimeout(function () {
+            //     hideText(elementId);
+            // }, 6000);
         }
+        showText('driverText');
 
-        function hideText(elementId) {
-            // Hide instruction text
-            document.getElementById(elementId).style.display = 'none';
-        }
+
+        showText('shipmentsText');
+
+        showText('ordersText');
+
+        showText('timelineText');
+
+        showText('confirmationText');
+
+        
        
         function toggleForms() {
             var deliveredForm = document.getElementById('deliveredForm');
@@ -448,7 +438,7 @@
             }
 
             // قم بإرسال هذه القيم إلى الـ API
-            fetch('https://your-api-url/confirm-delivery', {
+            fetch('/api/Driver/checkDeliverd', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

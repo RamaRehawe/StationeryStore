@@ -56,7 +56,7 @@ namespace StationeryStore.Repository
         public IEnumerable<Order> GetPendingOrders()
         {
             return _context.Orders
-                .Where(o => o.OrderStatus == "Pending")
+                .Where(o => o.OrderStatus == "loading")
                 .Where(o => o.DriverId == null).Include(o => o.User)
                 .Include(o => o.Address).ToList();
         }
