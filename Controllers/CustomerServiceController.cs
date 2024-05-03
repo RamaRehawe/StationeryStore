@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StationeryStore.Dto;
 using StationeryStore.Interfaces;
@@ -22,6 +23,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("addComplain")]
+        [Authorize (Roles = "Customer")]
         public IActionResult AddComplain(ReqCustomerServiceDto complain)
         {
             var user = base.GetActiveUser()!;
@@ -36,6 +38,7 @@ namespace StationeryStore.Controllers
             return Ok(complain);
         }
 
+        [Authorize]
         [HttpGet("getComplains")]
         public IActionResult GetComplains()
         {
@@ -43,6 +46,7 @@ namespace StationeryStore.Controllers
             return Ok(complains);
         }
 
+        [Authorize (Roles = "Customer")]
         [HttpGet("getMyComplains")]
         public IActionResult GetMyComplains()
         {
@@ -51,6 +55,7 @@ namespace StationeryStore.Controllers
             return Ok(complains);
         }
 
+        [Authorize (Roles = "Admin")]
         [HttpPost("adminResponse")]
         public IActionResult SetResponse(int complaineId)
         {

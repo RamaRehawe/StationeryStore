@@ -69,6 +69,7 @@ namespace StationeryStore.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
+        [Authorize(Roles = "Item Manager")]
         public IActionResult AddProduct([FromBody] ReqProductDto productAdd)
         {
             if (productAdd == null)
