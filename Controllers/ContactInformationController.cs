@@ -22,7 +22,7 @@ namespace StationeryStore.Controllers
         }
 
        
-        [Authorize (Roles = "Admin")]
+        //[Authorize (Roles = "Admin")]
         [HttpPut("setContactInformation")]
         public IActionResult UpdateContactInformation([FromBody] ReqContactInformationDto reqContact)
         {

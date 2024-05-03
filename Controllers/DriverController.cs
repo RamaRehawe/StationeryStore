@@ -11,7 +11,6 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize (Roles = "Driver")]
     public class DriverController : BaseController
     {
         private readonly IMapper _mapper;
@@ -23,6 +22,7 @@ namespace StationeryStore.Controllers
             _driverRepository = driverRepository;
         }
 
+        //[Authorize(Roles = "Driver")]
         [HttpPost("setDriverStatus")]
         public IActionResult SetDriverStatus(ReqDriverDto driverDto)
         {
@@ -56,6 +56,7 @@ namespace StationeryStore.Controllers
 
         }
 
+        //[Authorize(Roles = "Driver")]
         [HttpPost("selectOrder")]
         public IActionResult SelectOrder(int orderId)
         {
@@ -67,6 +68,7 @@ namespace StationeryStore.Controllers
                 return BadRequest("order cannot be selected");
         }
 
+        //[Authorize(Roles = "Driver")]
         [HttpPost("loading")]
         public IActionResult UpdateOrderStatueToLoading(int orderId)
         {
@@ -76,6 +78,7 @@ namespace StationeryStore.Controllers
             return Ok("The order Has been loading");
         }
 
+        //[Authorize(Roles = "Driver")]
         [HttpPost("shipped")]
         public IActionResult UpdateOrderStatueToShipped(int orderId)
         {
@@ -85,6 +88,7 @@ namespace StationeryStore.Controllers
             return Ok("The order Has been shipped");
         }
 
+        //[Authorize(Roles = "Driver")]
         [HttpPost("deliverd")]
         public IActionResult UpdateOrderStatueToDeliverd(int orderId)
         {
@@ -128,8 +132,8 @@ namespace StationeryStore.Controllers
 
             return Ok(orders);
         }
-      
 
+        //[Authorize(Roles = "Driver")]
         [HttpPost("checkDeliverd")]
         public IActionResult CheckDeliverd(CheckOrderDto checkDto)
         {

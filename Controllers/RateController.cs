@@ -23,7 +23,7 @@ namespace StationeryStore.Controllers
             _rateRepository = rateRepository;
         }
 
-        [Authorize(Roles = "Customer")]
+        //[Authorize(Roles = "Customer")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

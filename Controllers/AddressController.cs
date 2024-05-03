@@ -22,7 +22,7 @@ namespace StationeryStore.Controllers
             _addressRepository = addressRepository;
             _mapper = mapper;
         }
-        [Authorize (Roles = "Customer")]
+        //[Authorize (Roles = "Customer")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(Address))]
         [ProducesResponseType(400)]
@@ -35,7 +35,7 @@ namespace StationeryStore.Controllers
             return Ok(addresses);
         }
 
-        [Authorize (Roles = "Customer")]
+        //[Authorize (Roles = "Customer")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

@@ -34,7 +34,6 @@ namespace StationeryStore.Controllers
         }
 
 
-        [Authorize]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
@@ -63,7 +62,7 @@ namespace StationeryStore.Controllers
             //return Ok("User signed up successfully!");
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPost("register_user")]
         public IActionResult RegisterUser([FromBody] RegisterUserDto user)
         {
@@ -94,7 +93,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("add_user")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult AddUser([FromBody] RegisterUserDto userData)
         {
             if (userData.UserType == "Item Manager")
@@ -122,7 +121,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("update_profile")]
-        [Authorize]
+        //[Authorize]
         public IActionResult UpdateProfile (ReqUpdateProfileDto profileData)
         {
             var user = base.GetActiveUser()!;

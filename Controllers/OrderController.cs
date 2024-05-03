@@ -24,7 +24,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet ("orders")]
-        [Authorize (Roles = "Customer")]
+        //[Authorize (Roles = "Customer")]
         public IActionResult GetMyOrders()
         {
             var userId = base.GetActiveUser()!.Id;
@@ -34,7 +34,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet("deliverdOrders")]
-        [Authorize(Roles = "Customer")]
+        //[Authorize(Roles = "Customer")]
         public IActionResult GetMyDeliverdOrders()
         {
             var userId = base.GetActiveUser()!.Id;
@@ -44,7 +44,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet("notDeliverdOrders")]
-        [Authorize(Roles = "Customer")]
+        //[Authorize(Roles = "Customer")]
         public IActionResult GetMyNotDeliverdOrders()
         {
             var userId = base.GetActiveUser()!.Id;
@@ -55,7 +55,7 @@ namespace StationeryStore.Controllers
 
 
         [HttpGet ("{orderId}")]
-        [Authorize (Roles = "Customer")]
+        //[Authorize (Roles = "Customer")]
         public IActionResult GetOrderById(int orderId)
         {
             var userId = base.GetActiveUser()!.Id;
@@ -90,7 +90,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("placeOrder")]
-        [Authorize (Roles = "Customer")]
+        //[Authorize (Roles = "Customer")]
         public IActionResult PlaceOrder(PlaceOrderDto placeOrderDto)
         {
             var userId = base.GetActiveUser()!.Id;
@@ -99,7 +99,7 @@ namespace StationeryStore.Controllers
             {
                 UserId = userId,
                 OrderDate = DateTime.Now.Date,
-                OrderStatus = "Pending",
+                OrderStatus = "loading",
                  ShippingCost = 15000,
                 AddressId = placeOrderDto.AddressId,
             };
@@ -147,7 +147,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet ("status")]
-        [Authorize (Roles = "Customer")]
+        //[Authorize (Roles = "Customer")]
         public IActionResult GetOrderStatus (int orderId)
         {
             var userId = base.GetActiveUser()!.Id;
@@ -168,7 +168,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet ("getAllOrders")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetAllOrders()
         {
             var orders = _mapper.Map<List<ResOrderDto>>(_orderRepository.GetOrders());
@@ -176,7 +176,6 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet("getOrdersPercentage")]
-        [Authorize(Roles = "Admin")]
         public IActionResult GetOrdersPercentage()
         {
             double percentage = CalculateOrderPercentage();

@@ -100,8 +100,6 @@
                     const cartContainer = document.getElementById('cart-container');
                     const cartForm = cartContainer.querySelector('.cart-form');
                     const emptyCartMessage = cartContainer.querySelector('#empty-cart-message-cart');
-                    const loginAlert = cartContainer.querySelector('#login-alert');
-                    const removeLink = cartContainer.querySelector('.remove-link');
                     const cartTotal = cartContainer.querySelector('#cart-total');
                     const checkoutBtn = cartContainer.querySelector('#checkout-btn');
 
@@ -109,27 +107,30 @@
                         cartForm.innerHTML = '';
 
                         data.cartItems.forEach(item => {
+                            // Create HTML for each cart item
                             const cartItemHtml = `
                                 <div class="cart-item">
-                                    <!-- Add cart item details here -->
-                                    <a href="#" class="remove-link" onclick="deleteCartItem(${item.itemId})">حذف</a>
+                                    <p>Product Name: ${item.productName}</p>
+                                    <p>Quantity: ${item.quantity}</p>
+                                    <p>Price per Unit: ل.س ${item.price}</p>
+                                    <p>Subtotal: ل.س ${item.subtotal}</p>
+                                    <a href="#" class="remove-link" onclick="deleteCartItem(${item.itemId})">Remove</a>
                                 </div>
                             `;
+                            // Insert the HTML for the cart item into the cart form
                             cartForm.insertAdjacentHTML('beforeend', cartItemHtml);
                         });
 
-                        cartTotal.querySelector('p').textContent = `إجمالي الفاتورة: ل.س ${data.totalPrice}`;
+                        // Update cart total and display relevant elements
+                        cartTotal.querySelector('p').textContent = Total Bill: ل.س ${ data.totalPrice };
                         cartTotal.style.display = 'block';
                         checkoutBtn.style.display = 'block';
                         emptyCartMessage.style.display = 'none';
-                        loginAlert.style.display = 'none';
-                        removeLink.style.display = 'block'; // Display the remove link for each item
                     } else {
+                        // Hide cart total and checkout button if cart is empty
                         cartTotal.style.display = 'none';
                         checkoutBtn.style.display = 'none';
                         emptyCartMessage.style.display = 'block';
-                        loginAlert.style.display = 'block';
-                        removeLink.style.display = 'none'; // Hide the remove link when the cart is empty
                     }
                 })
                 .catch(error => console.error('Error fetching cart items:', error));

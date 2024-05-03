@@ -46,7 +46,7 @@ namespace StationeryStore.Controllers
             return Ok(category);
         }
 
-        [Authorize(Roles = "Item Manager")]
+        //[Authorize(Roles = "Item Manager")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

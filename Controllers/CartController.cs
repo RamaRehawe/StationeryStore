@@ -10,7 +10,6 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Customer")]
     public class CartController : BaseController
     {
         private readonly ICartRepository _cartRepository;
@@ -24,6 +23,7 @@ namespace StationeryStore.Controllers
 
 
         [HttpGet("myCart")]
+        [Authorize]
         public IActionResult GetCartByUserId()
         {
             var userId = base.GetActiveUser()!.Id;
@@ -62,6 +62,7 @@ namespace StationeryStore.Controllers
             return Ok(resCartDto);
         }
 
+        //[Authorize(Roles = "Customer")]
         [HttpPost("addItem")]
         public IActionResult AddItemToCart(CartItemDto itemDto)
         {
@@ -118,8 +119,8 @@ namespace StationeryStore.Controllers
             }
         }
 
-        
 
+        //[Authorize(Roles = "Customer")]
         [HttpDelete("deleteItem/{itemId}")]
         public IActionResult DeleteItemFromCart(int itemId)
         {

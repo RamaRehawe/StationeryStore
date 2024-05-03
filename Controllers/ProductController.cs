@@ -20,6 +20,7 @@ namespace StationeryStore.Controllers
             _productRepository = productRepository;
             _mapper = mapper;
         }
+
         [HttpGet("subId")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Product>))]
         public IActionResult GetProducts(int subId)
@@ -69,7 +70,7 @@ namespace StationeryStore.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        [Authorize(Roles = "Item Manager")]
+        //[Authorize(Roles = "Item Manager")]
         public IActionResult AddProduct([FromBody] ReqProductDto productAdd)
         {
             if (productAdd == null)

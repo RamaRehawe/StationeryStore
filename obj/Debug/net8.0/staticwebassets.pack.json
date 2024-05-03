@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\Upload\\Product\\image043020240212.png"
     },
     {
+      "Id": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image050320241740.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Product\\image050320241740.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StationeryStore.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

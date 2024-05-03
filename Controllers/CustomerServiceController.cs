@@ -23,7 +23,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("addComplain")]
-        [Authorize (Roles = "Customer")]
+        //[Authorize (Roles = "Customer")]
         public IActionResult AddComplain(ReqCustomerServiceDto complain)
         {
             var user = base.GetActiveUser()!;
@@ -38,7 +38,7 @@ namespace StationeryStore.Controllers
             return Ok(complain);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("getComplains")]
         public IActionResult GetComplains()
         {
@@ -46,7 +46,7 @@ namespace StationeryStore.Controllers
             return Ok(complains);
         }
 
-        [Authorize (Roles = "Customer")]
+        //[Authorize (Roles = "Customer")]
         [HttpGet("getMyComplains")]
         public IActionResult GetMyComplains()
         {
@@ -55,7 +55,7 @@ namespace StationeryStore.Controllers
             return Ok(complains);
         }
 
-        [Authorize (Roles = "Admin")]
+        //[Authorize (Roles = "Admin")]
         [HttpPost("adminResponse")]
         public IActionResult SetResponse(int complaineId)
         {
