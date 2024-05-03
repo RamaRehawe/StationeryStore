@@ -579,7 +579,7 @@
 
                     if (isLoggedIn) {
                         // استدعاء الدالة المحسنة لإضافة المنتج إلى سلة التسوق
-                        addToCartWithDetails( selectedProductAttribute.id, selectedProductAttribute.quantity);
+                        addToCartWithDetails(selectedProductAttribute.id, selectedProductAttribute.quantity, selectedProductAttribute.productAttributeQuantityId);
                     } else {
                         // لم يتم تسجيل الدخول، قم بتوجيه المستخدم إلى صفحة تسجيل الدخول
                         alert('يجب عليك تسجيل الدخول لإضافة المنتج إلى سلة التسوق.');
@@ -595,10 +595,7 @@
             }
         }
 
-
-
-
-        function addToCartWithDetails( productAttributeQuantityId, quantity) {
+        function addToCartWithDetails(id, quantity, productAttributeQuantityId) {
             // Calculate the subPrice
             const subPrice = price * quantity;
 

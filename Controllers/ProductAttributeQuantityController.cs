@@ -11,7 +11,7 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Item Manager")]
+    //[Authorize(Roles = "Item Manager")]
     public class ProductAttributeQuantityController : BaseController
     {
         private readonly IProductAttributeQuantityRepository _productAttributeQuantityRepository;

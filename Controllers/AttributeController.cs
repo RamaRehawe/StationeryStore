@@ -13,7 +13,6 @@ namespace StationeryStore.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize (Roles = "Item Manager")]
     public class AttributeController : BaseController
     {
         private readonly IAttributeRepository _attributeRepository;
@@ -51,7 +50,7 @@ namespace StationeryStore.Controllers
             return Ok(result);
         }
 
-
+        //[Authorize(Roles = "Item Manager")]
         [HttpPost("addDetails")]
         public async Task<IActionResult> AddProductAttributes([FromForm] ReqAttributeDto attributeDto)
         {
@@ -147,7 +146,7 @@ namespace StationeryStore.Controllers
         }
 
 
-
+        //[Authorize(Roles = "Item Manager")]
         [HttpPost("createAttribute")]
         public IActionResult CreateAttribute(ReqAttributeDto attribute)
         {

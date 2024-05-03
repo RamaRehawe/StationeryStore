@@ -20,7 +20,7 @@ namespace StationeryStore.Controllers
             _subCategoryRepository = subCategoryRepository;
         }
 
-        [Authorize(Roles = "Item Manager")]
+        //[Authorize(Roles = "Item Manager")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

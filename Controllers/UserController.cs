@@ -34,7 +34,6 @@ namespace StationeryStore.Controllers
         }
 
 
-        //[Authorize(Roles = "Admin,Customer")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
@@ -122,7 +121,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("update_profile")]
-        [Authorize]
+        //[Authorize]
         public IActionResult UpdateProfile (ReqUpdateProfileDto profileData)
         {
             var user = base.GetActiveUser()!;

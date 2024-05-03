@@ -39,7 +39,7 @@ namespace StationeryStore.Controllers
             return Ok(review);
         }
 
-        [Authorize(Roles = "Customer")]
+        //[Authorize(Roles = "Customer")]
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]

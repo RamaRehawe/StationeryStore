@@ -1,6 +1,7 @@
 {
   "Version": 1,
   "Hash": "H9ypDYO7DLTqCqWUgD39Ll5E/OXdTc9r9GJOahnYRNM=",
+  "Hash": "JManFrDEEVfLY8YwkF1hiGGU5huttWIUcbafYd5+FJQ=",
   "Source": "StationeryStore",
   "BasePath": "_content/StationeryStore",
   "Mode": "Default",
@@ -186,6 +187,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Upload\\Product\\image050120240005.jpg"
+    },
+    {
+      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image050320241740.jpg",
+      "SourceId": "StationeryStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "BasePath": "_content/StationeryStore",
+      "RelativePath": "Upload/Product/image050320241740.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Upload\\Product\\image050320241740.jpg"
     }
   ]
 }
