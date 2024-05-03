@@ -1,7 +1,6 @@
 {
   "Version": 1,
-  "Hash": "H9ypDYO7DLTqCqWUgD39Ll5E/OXdTc9r9GJOahnYRNM=",
-  "Hash": "JManFrDEEVfLY8YwkF1hiGGU5huttWIUcbafYd5+FJQ=",
+  "Hash": "fRMMckix9Mb5MLfd0D9YyRPhjwb/VNC8e7AC8fnRyYI=",
   "Source": "StationeryStore",
   "BasePath": "_content/StationeryStore",
   "Mode": "Default",
@@ -189,10 +188,10 @@
       "OriginalItemSpec": "wwwroot\\Upload\\Product\\image050120240005.jpg"
     },
     {
-      "Identity": "C:\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image050320241740.jpg",
+      "Identity": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\Upload\\Product\\image050320241740.jpg",
       "SourceId": "StationeryStore",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\StationeryStore\\StationeryStore\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\wwwroot\\",
       "BasePath": "_content/StationeryStore",
       "RelativePath": "Upload/Product/image050320241740.jpg",
       "AssetKind": "All",

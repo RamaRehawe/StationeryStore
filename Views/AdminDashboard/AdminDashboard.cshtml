@@ -182,7 +182,11 @@
     <script>
         // Fetch data from the API endpoint
         function fetchComplaintsFromAPI() {
-            fetch('/api/CustomerService/getComplains') // Assuming the API endpoint is hosted on the same domain
+            fetch('/api/CustomerService/getComplains', {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            }) // Assuming the API endpoint is hosted on the same domain
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -292,7 +296,11 @@
         // Function to handle the click event of the button
         function analyzeSalesData() {
             // Send an AJAX request to the backend endpoint
-            fetch('/api/Order/getOrdersPercentage')
+            fetch('/api/Order/getOrdersPercentage', {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => response.text()) // Assuming the response is text
                 .then(data => {
                     // Update the sales analysis results div with the percentage
@@ -323,7 +331,11 @@
         }
         //getAllOrders
             document.getElementById('getAllOrdersButton').addEventListener('click', function () {
-                fetch("/api/Order/getAllOrders")
+            fetch("/api/Order/getAllOrders", {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                     .then(response => response.json())
                     .then(data => {
                         var tableBody = document.getElementById('requestsTableBody');
@@ -344,7 +356,11 @@
                     });
             });
            //edit Info just get
-        fetch('/api/ContactInformation/getStoreInfos')
+        fetch('/api/ContactInformation/getStoreInfos', {
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 // تعبئة حقول النموذج بالقيم المسترجعة
@@ -413,7 +429,11 @@
         // users info
         document.getElementById('fetchUsersButton').addEventListener('click', function () {
             // إجراء طلب لاسترجاع بيانات المستخدمين
-            fetch('/api/User') // قم بتغيير المسار إلى المسار الصحيح لنهاية الخدمة التي تسترجع بيانات المستخدمين
+            fetch('/api/User', {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            }) // قم بتغيير المسار إلى المسار الصحيح لنهاية الخدمة التي تسترجع بيانات المستخدمين
                 .then(response => response.json())
                 .then(data => {
                     // عرض بيانات المستخدمين في الجدول
@@ -438,7 +458,11 @@
         //products info
         function fetchProducts() {
             // قم بجلب بيانات المنتجات من خلال طلب HTTP
-            fetch('/api/Product')
+            fetch('/api/Product', {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => response.json())
                 .then(products => {
                     // قم بتحديث جدول المنتجات مع البيانات الجديدة

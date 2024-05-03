@@ -169,7 +169,11 @@
     <script>
         // Function to fetch pending orders from the server and populate the table
         function fetchAndPopulatePendingOrders() {
-            fetch('/api/Driver/pendingOrders')
+            fetch('/api/Driver/pendingOrders', {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     // Clear the existing table rows
@@ -313,7 +317,11 @@
 
         // Function to fetch previous orders from the server
         function fetchPreviousOrders() {
-            fetch('/api/Driver/GetMyOrders')
+            fetch('/api/Driver/GetMyOrders', {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const previousOrdersTable = document.getElementById('previousOrders');

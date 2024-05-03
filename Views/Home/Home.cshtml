@@ -286,7 +286,11 @@
             const searchResultsContainer = document.getElementById('search-results'); // الحصول على عنصر العرض لنتائج البحث
 
             // إرسال طلب GET إلى نهاية الويب API باستخدام fetch
-            fetch(`/api/Product?search=${searchTerm}`)
+            fetch(`/api/Product?search=${searchTerm}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch search results');
