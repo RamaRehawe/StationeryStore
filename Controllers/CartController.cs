@@ -62,34 +62,6 @@ namespace StationeryStore.Controllers
             return Ok(resCartDto);
         }
 
-        //[HttpGet("myCart")]
-        //public IActionResult GetCartByUserId()
-        //{
-        //    var userId = base.GetActiveUser()!.Id;
-        //    var cart = _cartRepository.GetCartByUserId(userId);
-        //    if (cart == null)
-        //    {
-        //        return NotFound("Cart not found");
-        //    }
-        //    var cartItems = _cartRepository.GetCartItemsByCartId(cart.Id);
-
-        //    // Construct the response DTO
-        //    var resCartDto = new ResCartDto
-        //    {
-        //        CartItems = cartItems.Select(item => new CartItemDto
-        //        {
-        //            Quantity = item.Quantity,
-        //            ProductAttributeQuantityId = item.ProductAttributeQuantityId,
-        //            SubPrice = item.Quantity * item.ProductAttributeQuantity.Price
-        //        }).ToList(),
-        //        TotalPrice = cartItems.Sum(item => item.Quantity * item.ProductAttributeQuantity.Price)
-        //    };
-
-        //    return Ok(resCartDto);
-        //}
-
-
-
         [HttpPost("addItem")]
         public IActionResult AddItemToCart(CartItemDto itemDto)
         {

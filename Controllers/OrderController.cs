@@ -24,7 +24,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet ("orders")]
-       [Authorize (Roles = "Customer")]
+        [Authorize (Roles = "Customer")]
         public IActionResult GetMyOrders()
         {
             var userId = base.GetActiveUser()!.Id;
@@ -34,6 +34,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet("deliverdOrders")]
+        [Authorize(Roles = "Customer")]
         public IActionResult GetMyDeliverdOrders()
         {
             var userId = base.GetActiveUser()!.Id;
@@ -43,6 +44,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet("notDeliverdOrders")]
+        [Authorize(Roles = "Customer")]
         public IActionResult GetMyNotDeliverdOrders()
         {
             var userId = base.GetActiveUser()!.Id;
@@ -63,6 +65,27 @@ namespace StationeryStore.Controllers
                 return NotFound("Order Not Found");
             }
             var orderDto = _mapper.Map<ResOrderDto>(order);
+            var listDb = order.OrderItems.ToList();
+            var list = orderDto.OrderItems.ToList();
+            for(int i=0; i< orderDto.OrderItems.Count; i++)
+            {
+                list[i].Name = listDb[i].ProductAttributeQuantity.Product.Name;
+                if (listDb[i].ProductAttributeQuantity.ProductAttributes.Count > 0)
+                {
+                    list[i].Atribute = listDb[i].ProductAttributeQuantity.ProductAttributes.ToList()[0].Attribute.Name;
+                    list[i].Value = listDb[i].ProductAttributeQuantity.ProductAttributes.ToList()[0].Value;
+                }
+                if (listDb[i].ProductAttributeQuantity.ProductAttributes.Count > 1)
+                {
+                    list[i].Atribute = listDb[i].ProductAttributeQuantity.ProductAttributes.ToList()[1].Attribute.Name;
+                    list[i].Value = listDb[i].ProductAttributeQuantity.ProductAttributes.ToList()[1].Value;
+                }
+                list[i].Quantity = listDb[i].ProductAttributeQuantity.Quantity;
+                list[i].Price = listDb[i].ProductAttributeQuantity.Price;
+                list[i].ProductAttributeQuantityId = listDb[i].ProductAttributeQuantityId;
+
+            }
+            orderDto.OrderItems = list;
             return Ok(orderDto);
         }
 
@@ -145,6 +168,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet ("getAllOrders")]
+        [Authorize]
         public IActionResult GetAllOrders()
         {
             var orders = _mapper.Map<List<ResOrderDto>>(_orderRepository.GetOrders());
@@ -152,6 +176,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpGet("getOrdersPercentage")]
+        [Authorize(Roles = "Admin")]
         public IActionResult GetOrdersPercentage()
         {
             double percentage = CalculateOrderPercentage();

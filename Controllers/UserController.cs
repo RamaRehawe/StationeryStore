@@ -34,7 +34,7 @@ namespace StationeryStore.Controllers
         }
 
         
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()
@@ -63,7 +63,7 @@ namespace StationeryStore.Controllers
             //return Ok("User signed up successfully!");
         }
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("register_user")]
         public IActionResult RegisterUser([FromBody] RegisterUserDto user)
         {
@@ -93,23 +93,8 @@ namespace StationeryStore.Controllers
             return Ok(new { Token = token, UserType = user.UserType , UserId = user.Id });
         }
 
-        //[HttpPost("login")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Login(LoginDto loginDto)
-        //{
-        //    var user = _userRepository.GetUserByUsernameAsync(loginDto.Email);
-
-        //    if (user == null || user.Password != loginDto.Password)
-        //        return Unauthorized("Invalid Username or Password");
-        //    // Generate JWT token
-        //    var token = GenerateJwtToken(user.Email, user.UserType);
-        //    await _userRepository.UpdateTokenByUsernameAsync(loginDto.Email, token);
-        //    _userRepository.Save();
-        //    return Ok(new { Token = token });
-        //}
-
-
         [HttpPost("add_user")]
+        [Authorize(Roles = "Admin")]
         public IActionResult AddUser([FromBody] RegisterUserDto userData)
         {
             if (userData.UserType == "Item Manager")
@@ -137,6 +122,7 @@ namespace StationeryStore.Controllers
         }
 
         [HttpPost("update_profile")]
+        [Authorize]
         public IActionResult UpdateProfile (ReqUpdateProfileDto profileData)
         {
             var user = base.GetActiveUser()!;
@@ -199,10 +185,5 @@ namespace StationeryStore.Controllers
 
             return null;
         }
-       
-
-
-
-
     }
 }

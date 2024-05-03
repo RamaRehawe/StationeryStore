@@ -13,7 +13,6 @@ namespace StationeryStore.Controllers
     [ApiController]
     public class RateController : BaseController
     {
-        //private readonly IAddressRepository _addressRepository;
         private readonly IMapper _mapper;
         private readonly IRateRepository _rateRepository;
         public RateController(IMapper mapper, IRateRepository rateRepository,
@@ -26,8 +25,8 @@ namespace StationeryStore.Controllers
 
         [Authorize(Roles = "Customer")]
         [HttpPost]
-        //[ProducesResponseType(204)]
-        //[ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public IActionResult AddProductRate([FromBody] ReqRateDto rate)
         {
             if (rate == null)

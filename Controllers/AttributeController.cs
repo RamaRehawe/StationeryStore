@@ -36,8 +36,6 @@ namespace StationeryStore.Controllers
         }
 
 
-
-        // GET api/product/{productId}/attributes
         [HttpGet("attributes")]
         public IActionResult GetAttributeAndProductAttributes(int productId)
         {
@@ -52,10 +50,8 @@ namespace StationeryStore.Controllers
 
             return Ok(result);
         }
-        //
 
 
-        // POST api/product/{productId}/attributes
         [HttpPost("addDetails")]
         public async Task<IActionResult> AddProductAttributes([FromForm] ReqAttributeDto attributeDto)
         {
@@ -153,7 +149,6 @@ namespace StationeryStore.Controllers
 
 
         [HttpPost("createAttribute")]
-       
         public IActionResult CreateAttribute(ReqAttributeDto attribute)
         {
             var attributeMap = _mapper.Map<Atribute>(attribute);

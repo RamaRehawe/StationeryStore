@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StationeryStore.Dto;
 using StationeryStore.Interfaces;
@@ -21,6 +22,7 @@ namespace StationeryStore.Controllers
         }
 
        
+        [Authorize (Roles = "Admin")]
         [HttpPut("setContactInformation")]
         public IActionResult UpdateContactInformation([FromBody] ReqContactInformationDto reqContact)
         {

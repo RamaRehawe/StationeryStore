@@ -48,6 +48,7 @@ namespace StationeryStore.Controllers
             }
             return Ok("Succesfully Added");
         }
+
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ResSubCategoryDto>))]
         public IActionResult GetSubCategories()
