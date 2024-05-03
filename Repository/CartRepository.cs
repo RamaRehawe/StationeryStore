@@ -61,7 +61,9 @@ namespace StationeryStore.Repository
 
         public ProductAttributeQuantity GetProductAttributeQuantityById(int productAttributeQuantityId)
         {
-            return _context.ProductAttributesQuantities.FirstOrDefault(pa => pa.Id == productAttributeQuantityId);
+            return _context.ProductAttributesQuantities
+                .Include(pa => pa.Product)
+                .FirstOrDefault(pa => pa.Id == productAttributeQuantityId);
         }
 
         public void UpdateCartItem(CartItem item)

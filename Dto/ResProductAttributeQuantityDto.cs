@@ -4,6 +4,7 @@ namespace StationeryStore.Dto
 {
     public class ResProductAttributeQuantityDto
     {
+        public int ProductAttributeQuantityId { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
         public string Name1 { get; set; }

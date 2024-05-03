@@ -57,6 +57,7 @@ namespace StationeryStore.Controllers
                     list1[i].Name2 = list2[i].ProductAttributes.ToList()[1].Attribute.Name;
                     list1[i].Value2 = list2[i].ProductAttributes.ToList()[1].Value;
                 }
+                list1[i].ProductAttributeQuantityId = list2[i].Id;
 
             }
             product.ProductAttributeQuantities = list1;
