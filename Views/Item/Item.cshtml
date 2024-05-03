@@ -264,7 +264,11 @@
        
         // Function to fetch reviews for a product
         function fetchReviews(productId) {
-            fetch(`/api/Reviews/${productId}`)
+            fetch(`/api/Reviews/${productId}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch reviews');
@@ -376,7 +380,11 @@
 
         var addedRow = false; // متغير لتتبع ما إذا تمت إضافة الصف الإضافي
         function addRow() {
-            fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+            fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('حدث خطأ في جلب البيانات: ' + response.status);
@@ -413,7 +421,11 @@
                     console.error('حدث خطأ: ', error);
                 });
         }
-        fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+        fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`, {
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
             .then(response => response.json())
             .then(productData => {
                 // استخدام بيانات المنتج لتحديث عناصر الصفحة HTML
@@ -579,7 +591,7 @@
 
                     if (isLoggedIn) {
                         // استدعاء الدالة المحسنة لإضافة المنتج إلى سلة التسوق
-                        addToCartWithDetails(selectedProductAttribute.id, selectedProductAttribute.quantity, selectedProductAttribute.productAttributeQuantityId);
+                        addToCartWithDetails(selectedProductAttribute.id, selectedProductAttribute.productAttributeQuantities[0].quantity, selectedProductAttribute.productAttributeQuantityId);
                     } else {
                         // لم يتم تسجيل الدخول، قم بتوجيه المستخدم إلى صفحة تسجيل الدخول
                         alert('يجب عليك تسجيل الدخول لإضافة المنتج إلى سلة التسوق.');
@@ -597,7 +609,8 @@
 
         function addToCartWithDetails(id, quantity, productAttributeQuantityId) {
             // Calculate the subPrice
-            const subPrice = price * quantity;
+            const subPrice = productData.productAttributeQuantities[0].price
+                * quantity;
 
             // Create the itemDto object
             const itemDto = {
@@ -607,10 +620,8 @@
             };
 
             // Create the data object to send in the request body
-            const data = {
-                itemDto: itemDto
-            };
-
+            const data = itemDto;
+               
             // Send an HTTP POST request to the server
             fetch('/api/Cart/addItem', {
                 method: 'POST',

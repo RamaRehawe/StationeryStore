@@ -215,6 +215,8 @@
         </div>
     </footer>
     <script>
+        const authToken = localStorage.getItem('authToken');
+
         document.getElementById('property_value').disabled = false;
 
         var imageCounter = 2; // بداية عداد الصور من 2
@@ -238,7 +240,11 @@
         function addRow() {
             if (!addedRow) {
                 // Fetch attributes from the API
-                fetch('/api/Attribute/getAllAttribute')
+                fetch('/api/Attribute/getAllAttribute', {
+                    headers: {
+                        'Authorization': 'Bearer ' + authToken
+                    }
+                })
                     .then(response => response.json())
                     .then(data => {
                         // Create a new div to contain the new row
@@ -287,7 +293,11 @@
         }
 
         // Fetch attribute data and populate the select element
-        fetch('/api/Attribute/getAllAttribute')
+        fetch('/api/Attribute/getAllAttribute', {
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 const selectElement = document.getElementById('existing_property');
@@ -304,7 +314,11 @@
                     const selectedId = selectedOption.value;
 
                     // Fetch values from the API and populate the dropdown
-                    fetch(`/api/Attribute/selectAttribute?id=${selectedId}`)
+                    fetch(`/api/Attribute/selectAttribute?id=${selectedId}`, {
+                        headers: {
+                            'Authorization': 'Bearer ' + authToken
+                        }
+                    })
                         .then(response => response.json())
                         .then(attributeData => {
                             console.log('Response data:', attributeData); // Log the response data for inspection
@@ -333,7 +347,11 @@
 
 
         function fetchCategories() {
-            fetch('/api/Category')
+            fetch('/api/Category', {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const mainCategorySelect = document.getElementById('mainCategory');
@@ -351,7 +369,11 @@
 
         // Function to fetch subcategories based on the selected main category
         function fetchSubcategories(categoryId) {
-            fetch(`/api/Category/${categoryId}`)
+            fetch(`/api/Category/${categoryId}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const subCategorySelect = document.getElementById('subCategory');
@@ -377,7 +399,11 @@
 
         // Function to fetch products based on the selected subcategory using subId
         function fetchProductsBySubId(subId) {
-            fetch(`/api/Product/subId?subId=${subId}`)
+            fetch(`/api/Product/subId?subId=${subId}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => response.json())
                 .then(data => {
                     const selectElement = document.getElementById('productId');
@@ -413,7 +439,11 @@
 
 
         // استدعاء طلب API لجلب الفئات الفرعية
-        fetch('/api/SubCategory')
+        fetch('/api/SubCategory', {
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 // عرض الفئات الفرعية كخيارات داخل عنصر select
@@ -431,7 +461,11 @@
         let selectedCategoryId = null;
 
         // استدعاء طلب API لجلب الفئات
-        fetch('/api/Category')
+        fetch('/api/Category', {
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 // عرض الفئات كخيارات داخل عنصر select
@@ -495,7 +529,11 @@
         let selectedSubCategoryId = null;
 
         // استدعاء طلب API لجلب الفئات الفرعية
-        fetch('/api/SubCategory')
+        fetch('/api/SubCategory', {
+            headers: {
+                'Authorization': 'Bearer ' + authToken
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 // عرض الفئات الفرعية كخيارات داخل عنصر select
@@ -531,6 +569,7 @@
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + authToken
+                   
                 },
                 body: JSON.stringify(newItemData)
             })
@@ -571,7 +610,11 @@
         //products info
         function fetchProducts() {
             // قم بجلب بيانات المنتجات من خلال طلب HTTP
-            fetch('/api/Product')
+            fetch('/api/Product', {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => response.json())
                 .then(products => {
                     // قم بتحديث جدول المنتجات مع البيانات الجديدة
@@ -781,16 +824,16 @@
                 items[i].classList.remove('selected');
             }
         }
-        function logout() {
-            // حذف بيانات الدخول من Local Storage
-            localStorage.removeItem('username');
-            localStorage.removeItem('password');
-            // إخفاء رابط تسجيل الخروج
-            document.getElementById('logoutLink').style.display = 'none';
-            alert('تم تسجيل الخروج بنجاح!');
-            // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
-            window.location.href = "front_home";
-        }
+        // function logout() {
+        //     // حذف بيانات الدخول من Local Storage
+        //     localStorage.removeItem('username');
+        //     localStorage.removeItem('password');
+        //     // إخفاء رابط تسجيل الخروج
+        //     document.getElementById('logoutLink').style.display = 'none';
+        //     alert('تم تسجيل الخروج بنجاح!');
+        //     // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
+        //     window.location.href = "front_home";
+        // }
 
         function showSubcategories() {
             var categorySelect = document.getElementById("itemCategory");

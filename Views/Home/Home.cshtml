@@ -236,7 +236,6 @@
             document.getElementById('logoutLink').style.display = 'inline-block';
             document.getElementById('user-info').style.display = 'inline-block';
             document.getElementById('cart-user').style.display = 'inline-block';
-
             document.getElementById('login-icon').style.display = 'none';
 
             // جلب بيانات المستخدم باستخدام التوكن
@@ -287,7 +286,11 @@
             const searchResultsContainer = document.getElementById('search-results'); // الحصول على عنصر العرض لنتائج البحث
 
             // إرسال طلب GET إلى نهاية الويب API باستخدام fetch
-            fetch(`/api/Product?search=${searchTerm}`)
+            fetch(`/api/Product?search=${searchTerm}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + authToken
+                }
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Failed to fetch search results');
