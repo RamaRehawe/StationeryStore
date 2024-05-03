@@ -90,13 +90,13 @@ void SeedData(IHost app)
     }
 }
 
-//// Call the SeedDataContext method directly
-//using (var scope = app.Services.CreateScope())
-//{
-//    var scopedServices = scope.ServiceProvider;
-//    var seedService = scopedServices.GetRequiredService<Seed>();
-//    seedService.SeedDataContext();
-//}
+// Call the SeedDataContext method directly
+using (var scope = app.Services.CreateScope())
+{
+    var scopedServices = scope.ServiceProvider;
+    var seedService = scopedServices.GetRequiredService<Seed>();
+    seedService.SeedDataContext();
+}
 
 
 

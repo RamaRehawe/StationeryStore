@@ -39,7 +39,7 @@
             </a>
             <span id="user-name">اسم المستخدم</span>
         </div>
-        <div class="cart-icon">
+        <div class="cart-icon" id="cart-user">
             <img src="~/Images/cart.png" alt="Cart">
             <a href="front_cart">
                 <span class="cart-text" id="cart">عربة التسوق</span>
@@ -224,6 +224,7 @@
         // إخفاء رابط تسجيل الخروج ولوغو المستخدم وعرض رابط تسجيل الدخول
         document.getElementById('logoutLink').style.display = 'none';
         document.getElementById('user-info').style.display = 'none';
+        document.getElementById('cart-user').style.display = 'none';
         document.getElementById('login-icon').style.display = 'inline-block';
 
         // التحقق من وجود الـ token في الجلسة
@@ -234,6 +235,8 @@
             // عرض رابط تسجيل الخروج ولوغو المستخدم
             document.getElementById('logoutLink').style.display = 'inline-block';
             document.getElementById('user-info').style.display = 'inline-block';
+            document.getElementById('cart-user').style.display = 'inline-block';
+
             document.getElementById('login-icon').style.display = 'none';
 
             // جلب بيانات المستخدم باستخدام التوكن

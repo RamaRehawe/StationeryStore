@@ -17,8 +17,8 @@
         <img class="logo" src="~/Images/logo.png" alt="logo">
     </a>
     <div class="logout-icon">
-        <a onclick="logout()" id="logoutLink">
-            <img src="~/Images/log-out.png" alt="Logout">
+        <a onclick="logout()" id="logoutLink" style="display:none;">
+            <img src="~/Images/log-out.png" alt="Logout" >
             <span id="logout-text"> تسجيل الخروج</span>
         </a>
     </div>
@@ -76,18 +76,19 @@
         });
 
         function checkLoginStatus() {
-            // تحقق مما إذا كان هناك رمز مميز مخزن في تخزين المتصفح المحلي
             const authToken = localStorage.getItem('authToken');
-
-            // تحقق من وجود الرمز المميز
             const isLoggedIn = authToken !== null;
 
-            if (!isLoggedIn) {
-                // المستخدم غير مسجل الدخول، قم بتفريغ السلة وعرض الرسالة المناسبة
+            const logoutIcon = document.getElementById('logoutLink');
+            if (isLoggedIn) {
+                logoutIcon.style.display = 'block'; // Show the logout icon if logged in
+            } else {
+                logoutIcon.style.display = 'none'; // Hide the logout icon if not logged in
                 clearCart();
                 displayEmptyCartMessage();
             }
         }
+
         window.addEventListener('DOMContentLoaded', function () {
             fetchCartItems();
         });
@@ -278,7 +279,15 @@
                 cartItemCountElement.textContent = cartItemCount;
             }
         }
-
+        function clearCart() {
+            // قم بتفريغ السلة هنا، يمكنك استخدام الطريقة التي تفضلها
+            // على سبيل المثال، يمكنك حذف جميع العناصر في السلة أو حفظها لاستخدامها في وقت لاحق
+            var cartItems = document.querySelectorAll('.cart-item');
+            cartItems.forEach(function (cartItem) {
+                cartItem.remove();
+            });
+            updateTotal(); // قم بتحديث إجمالي السلة
+        }
        
         function logout() {
             // حذف الـ token من الجلسة
@@ -287,103 +296,7 @@
             // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
             window.location.href = "front_home";
         }
-        // window.addEventListener('DOMContentLoaded', function () {
-        //     fetchCartData();
-        // });
-
-        // function fetchCartData() {
-        //     fetch('/api/Cart/myCart')
-        //         .then(response => {
-        //             if (!response.ok) {
-        //                 throw new Error('Failed to fetch cart data');
-        //             }
-        //             return response.json();
-        //         })
-        //         .then(data => {
-        //             updateCartUI(data);
-        //         })
-        //         .catch(error => {
-        //             console.error('Error fetching cart data:', error);
-        //         });
-        // }
-
-        // function updateCartUI(cartData) {
-        //     const cartContainer = document.getElementById('cart-container');
-        //     const cartForm = cartContainer.querySelector('.cart-form');
-
-        //     // Check if the cart is empty
-        //     if (cartData.cartItems.length === 0) {
-        //         const emptyCartMessage = cartContainer.querySelector('#empty-cart-message');
-        //         emptyCartMessage.style.display = 'block';
-        //         cartForm.style.display = 'none';
-        //     } else {
-        //         const emptyCartMessageCart = cartContainer.querySelector('#empty-cart-message-cart');
-        //         emptyCartMessageCart.style.display = 'none';
-        //         const cartTotal = cartContainer.querySelector('#cart-total');
-        //         const checkoutBtn = cartContainer.querySelector('#checkout-btn');
-        //         const emptyCartMessage = cartContainer.querySelector('#empty-cart-message');
-        //         const items = cartData.cartItems;
-        //         let totalPrice = 0;
-
-        //         // Clear previous cart items
-        //         const existingCartItems = cartForm.querySelectorAll('.cart-item');
-        //         existingCartItems.forEach(item => item.remove());
-
-        //         // Add cart items to the UI
-        //         items.forEach(item => {
-        //             const cartItem = document.createElement('div');
-        //             cartItem.classList.add('cart-item');
-        //             // Construct the HTML for the cart item using item data
-        //             // Append cart item to the form
-        //             cartForm.insertBefore(cartItem, cartTotal);
-        //             totalPrice += item.subPrice;
-        //         });
-
-        //         // Update total price
-        //         cartTotal.querySelector('p').textContent = `إجمالي الفاتورة: ل.س ${totalPrice}`;
-
-        //         // Show the cart form
-        //         cartForm.style.display = 'block';
-        //         // Hide the empty cart message
-        //         emptyCartMessage.style.display = 'none';
-        //     }
-        // }
-        // // Function to fetch cart items from the backend API
-        // function fetchCartItems() {
-        //     fetch('/api/Cart/myCart')
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             const cartContainer = document.getElementById('cart-container');
-        //             const cartForm = cartContainer.querySelector('.cart-form');
-
-        //             // Check if the cart has items
-        //             if (data.cartItems.length > 0) {
-        //                 // Clear any existing cart items
-        //                 cartForm.innerHTML = '';
-
-        //                 // Iterate over each cart item and create HTML for it
-        //                 data.cartItems.forEach(item => {
-        //                     const cartItemHtml = `
-        //                         <div class="cart-item">
-        //                             <!-- Add cart item details here -->
-        //                             <a href="#" class="remove-link" onclick="deleteCartItem(${item.itemId})">حذف</a>
-        //                         </div>
-        //                     `;
-        //                     // Append the cart item HTML to the cart form
-        //                     cartForm.insertAdjacentHTML('beforeend', cartItemHtml);
-        //                 });
-
-        //                 // Update the total cart price
-        //                 const cartTotal = cartContainer.querySelector('#cart-total p');
-        //                 cartTotal.textContent = `إجمالي الفاتورة:  ل.س ${data.totalPrice}`;
-        //             } else {
-        //                 // Show empty cart message
-        //                 const emptyCartMessage = cartContainer.querySelector('#empty-cart-message-cart');
-        //                 emptyCartMessage.style.display = 'block';
-        //             }
-        //         })
-        //         .catch(error => console.error('Error fetching cart items:', error));
-        // }
+       
 
     </script>
 
