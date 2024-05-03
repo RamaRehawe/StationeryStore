@@ -55,24 +55,8 @@
                             <th>إجراءات</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr id="orderRow1">
-                            <td>1</td>
-                            <td>اسم العميل 1</td>
-                            <td>رقم الهاتف 1</td>
-                            <td>عنوان 1</td>
-                            <td id="status1">قيد الانتظار</td>
-                            <td><button onclick="acceptOrder(1)">قبول الطلب</button></td>
-                        </tr>
-                        <tr id="orderRow2">
-                            <td>2</td>
-                            <td>اسم العميل 2</td>
-                            <td>رقم الهاتف 2</td>
-                            <td>عنوان 2</td>
-                            <td id="status2">قيد الانتظار</td>
-                            <td><button onclick="acceptOrder(2)">قبول الطلب</button></td>
-                        </tr>
-                        <!-- يمكنك استخدام بيانات من قاعدة البيانات هنا -->
+                    <tbody id="pendingOrdersTableBody">
+                       
                     </tbody>
                 </table>
             </div>
@@ -183,6 +167,35 @@
         </div>
     </footer>
     <script>
+        // Function to fetch pending orders from the server and populate the table
+        function fetchAndPopulatePendingOrders() {
+            fetch('/api/Driver/pendingOrders')
+                .then(response => response.json())
+                .then(data => {
+                    // Clear the existing table rows
+                    const tableBody = document.getElementById('pendingOrdersTableBody');
+                    tableBody.innerHTML = '';
+
+                    // Loop through each pending order and create a table row for each
+                    data.forEach(order => {
+                        const newRow = document.createElement('tr');
+                        newRow.innerHTML = `
+                            <td>${order.id}</td>
+                            <td>${order.username}</td>
+                            <td>${order.phone}</td>
+                            <td>${order.title}</td>
+                            <td>${order.orderStatus}</td>
+                            <td><button onclick="acceptOrder(${order.id})">قبول الطلب</button></td>
+                        `;
+                        tableBody.appendChild(newRow);
+                    });
+                })
+                .catch(error => console.error('Error fetching pending orders:', error));
+        }
+
+        // Call the function to fetch and populate pending orders when the page loads
+        fetchAndPopulatePendingOrders();
+
         const authToken = localStorage.getItem('authToken');
         const userId = localStorage.getItem('userId'); // Assuming you store the user ID in localStorage
         console.log(authToken);
@@ -195,7 +208,8 @@
             const driverText = document.getElementById('driverText');
 
             const driverDto = {
-                status: statusToggle.checked ? "متاح" : "مشغول"
+                const statusValue = statusToggle.checked ? true : false;
+                const statusTextValue = statusToggle.checked ? 'متاح' : 'مشغول';
             };
 
             fetch('/api/Driver/setDriverStatus', {
@@ -209,7 +223,7 @@
                 .then(response => response.json())
                 .then(data => {
                     statusText.innerText = data; // Assuming the response from the server is the updated driver status
-                    driverText.innerText = data === 'Available' ? 'تحديث حالتك يساعدنا على تحسين تجربتك. اجعل نفسك متاحًا عندما تكون جاهزًا لتسليم الشحنات.' : '';
+                    driverText.innerText = data === 'True' ? 'تحديث حالتك يساعدنا على تحسين تجربتك. اجعل نفسك متاحًا عندما تكون جاهزًا لتسليم الشحنات.' : '';
                 })
                 .catch(error => console.error('Error:', error));
         }
@@ -230,31 +244,73 @@
                     // Update the status in the table
                     const statusCell = document.getElementById('status' + orderId);
                     statusCell.textContent = 'تم القبول'; // Assuming the response from the server indicates successful acceptance
+
+                    // تحديد العناصر في السطر الحالي
+                    const currentOrderRow = document.getElementById('orderRow' + orderId);
+                    const orderNumber = currentOrderRow.querySelector('td:nth-child(1)').innerText;
+                    const customerName = currentOrderRow.querySelector('td:nth-child(2)').innerText;
+                    const phoneNumber = currentOrderRow.querySelector('td:nth-child(3)').innerText;
+                    const deliveryAddress = currentOrderRow.querySelector('td:nth-child(4)').innerText;
+
+                    // تحديد حالة الطلب
+                    const orderStatus = 'تم التحميل';
+
+                    // إضافة القيم إلى جدول الطلبيات السابقة
+                    const previousOrdersTable = document.getElementById('previousOrders');
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `<td>${orderNumber}</td><td>${customerName}</td><td>${phoneNumber}</td><td>${deliveryAddress}</td><td>${orderStatus}</td>`;
+                    previousOrdersTable.appendChild(newRow);
+
+                    // حذف السطر من جدول الشحنات بحاجة للتسليم
+                    const parentTableBody = currentOrderRow.parentNode;
+                    parentTableBody.removeChild(currentOrderRow);
+
+                    // تعطيل زر القبول بعد التحقق من وجود العنصر
+                    const acceptButton = currentOrderRow.querySelector('button');
+                    if (acceptButton) {
+                        acceptButton.disabled = true;
+                    }
+
+                    // إظهار تنبيه
+                    alert("تم قبول الطلب رقم " + orderId);
                 })
                 .catch(error => console.error('Error accepting order:', error));
         }
 
-        function updateTimeline(eventName, status) {
+
+        function updateTimeline(eventId, orderStatus) {
             // Send an HTTP POST request to the server based on the event name
-            fetch('/api/Driver/' + eventName, {
+            fetch('/api/Driver/' + eventId, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + authToken
                 },
                 body: JSON.stringify({
-                    orderId: 1 // Replace 1 with the actual order ID
+                    orderId: orderId; // Replace 1 with the actual order ID
                 })
             })
                 .then(response => response.json())
                 .then(data => {
                     // Update the timeline UI based on the response
-                    const eventElement = document.getElementById(eventName);
-                    eventElement.textContent = status || ''; // Set the status if provided
-                    eventElement.classList.add('event-delivered'); // Assuming successful delivery
+                    const eventElement = document.getElementById(eventId);
+                    eventElement.style.backgroundColor = "#2ecc71"; // Change background color to indicate successful update
+
+                    // If the event is delivery and orderStatus is provided, update the status cell in the previousOrders table
+                    if (eventId === "deliveryEvent" && orderStatus) {
+                        const previousOrdersTable = document.getElementById('previousOrders');
+                        const lastRow = previousOrdersTable.rows.length - 1;
+                        const statusCell = previousOrdersTable.rows[lastRow].cells[4]; // Cell that contains the order status
+                        if (statusCell) {
+                            statusCell.innerText = orderStatus;
+                        }
+                        // Show an alert message indicating successful delivery
+                        alert(`تم توصيل الطلبية بنجاح!`);
+                    }
                 })
                 .catch(error => console.error('Error updating timeline:', error));
         }
+
         // Function to fetch previous orders from the server
         function fetchPreviousOrders() {
             fetch('/api/Driver/GetMyOrders')
@@ -356,86 +412,7 @@
             // Hide instruction text
             document.getElementById(elementId).style.display = 'none';
         }
-        function acceptOrder(orderId) {
-            // تحديد العناصر في السطر الحالي
-            const currentOrderRow = document.getElementById('orderRow' + orderId);
-            const orderNumber = currentOrderRow.querySelector('td:nth-child(1)').innerText;
-            const customerName = currentOrderRow.querySelector('td:nth-child(2)').innerText;
-            const phoneNumber = currentOrderRow.querySelector('td:nth-child(3)').innerText;
-            const deliveryAddress = currentOrderRow.querySelector('td:nth-child(4)').innerText;
-
-            // تحديد حالة الطلب
-            const orderStatus = 'تم التحميل';
-
-            // إضافة القيم إلى جدول الطلبيات السابقة
-            const previousOrdersTable = document.getElementById('previousOrders');
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `<td>${orderNumber}</td><td>${customerName}</td><td>${phoneNumber}</td><td>${deliveryAddress}</td><td>${orderStatus}</td>`;
-            previousOrdersTable.appendChild(newRow);
-
-            // حذف السطر من جدول الشحنات بحاجة للتسليم
-            const parentTableBody = currentOrderRow.parentNode;
-            parentTableBody.removeChild(currentOrderRow);
-
-            // تحديث حالة السطر الحالي بعد التحقق من وجود العنصر
-            const statusElement = document.getElementById('status' + orderId);
-            if (statusElement) {
-                statusElement.innerText = orderStatus;
-
-                // تعطيل زر القبول بعد التحقق من وجود العنصر
-                const acceptButton = currentOrderRow.querySelector('button');
-                if (acceptButton) {
-                    acceptButton.disabled = true;
-                }
-            }
-
-            // إظهار تنبيه
-            alert("تم قبول الطلب رقم " + orderId);
-        }
-
-
-
-
-        // function updateDriverStatus() {
-        //     var statusToggle = document.getElementById("statusToggle");
-        //     var statusText = document.getElementById("statusText");
-
-        //     if (statusToggle.checked) {
-        //         statusText.textContent = "متاح";
-        //         // يمكنك إضافة الكود اللازم هنا لتحديث حالة السائق في قاعدة البيانات (Ajax request أو أي طريقة أخرى).
-        //     } else {
-        //         statusText.textContent = "مشغول";
-        //         // يمكنك إضافة الكود اللازم هنا لتحديث حالة السائق في قاعدة البيانات (Ajax request أو أي طريقة أخرى).
-        //     }
-        // }
-        // function logout() {
-        //     // حذف بيانات الدخول من Local Storage
-        //     localStorage.removeItem('username');
-        //     localStorage.removeItem('password');
-        //     // إخفاء رابط تسجيل الخروج
-        //     document.getElementById('logoutLink').style.display = 'none';
-        //     alert('تم تسجيل الخروج بنجاح!');
-        //     // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
-        //     window.location.href = "front_home";
-        // }
-        // دالة لتحديث حالة الشحنة والخط الزمني
-        function updateTimeline(eventId, orderStatus) {
-            // تحديث حالة الشحنة باستناد إلى الزر الذي تم الضغط عليه
-            document.getElementById(eventId).style.backgroundColor = "#2ecc71";
-
-            // إذا كان الزر المضغوط هو زر "تم التوصيل"
-            if (eventId === "deliveryEvent") {
-                // تحديث حالة الشحنة في جدول الطلبيات السابقة إلى القيمة المحددة
-                const previousOrdersTable = document.getElementById('previousOrders');
-                const lastRow = previousOrdersTable.rows.length - 1;
-                const statusCell = previousOrdersTable.rows[lastRow].cells[4]; // الخلية التي تحتوي على حالة الطلب
-                if (statusCell) {
-                    statusCell.innerText = orderStatus;
-                }
-                // عرض رسالة توضح أن تم توصيل الطلبية مع رقمها
-                alert(`تم توصيل الطلبية بنجاح!`);
-            }
-        }
+       
         function toggleForms() {
             var deliveredForm = document.getElementById('deliveredForm');
             var notDeliveredForm = document.getElementById('notDeliveredForm');

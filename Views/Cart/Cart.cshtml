@@ -42,67 +42,6 @@
             </form>
         </section>
 
-      @*   <section id="cart-container">
-            <form class="cart-form">
-                <h2>سلة التسوق</h2>
-                <div class="empty-cart-message" id="empty-cart-message-cart">
-                    <p>السلة لا تحوي منتجات</p>
-                </div>
-                <div class="login-alert" id="login-alert" style="display: none;">
-                    <p>يجب عليك <a href="front_login">تسجيل الدخول</a> أولاً.</p>
-                </div>
-                <div class="cart-item">
-                    <img src="~/Images/notepaper.png" alt="Product 1">
-                    <div class="cart-item-details">
-                        <h4>أوراق ملاحظات</h4>
-                        <p class="item-price">السعر: ل.س 3000</p>
-                        <label for="quantity1" class="quantity-label">الكمية:</label>
-                        <select id="quantity1" onchange="return updateItemTotal(this);">
-                            <option value="1">1</option>
-                            <option value="2" selected>2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <span class="separator"></span>
-                        <a href="#" class="save-for-later-link" onclick="saveForLater(this)">حفظ لوقت لاحق</a>
-                        <span class="separator"></span>
-                        <a href="#" class="remove-link" onclick="removeFromCart(this)">حذف</a>
-                        <p class="item-total">المجموع: ل.س 6000 </p>
-                    </div>
-                </div>
-                <div class="cart-item">
-                    <img src="~/Images/colorpen.png" alt="Product 2">
-                    <div class="cart-item-details">
-                        <h4>أقلام تلوين</h4>
-                        <p class="item-price">السعر:  ل.س 12000</p>
-                        <label for="quantity2" class="quantity-label">الكمية:</label>
-                        <select id="quantity2" onchange="return updateItemTotal(this);">
-                            <option value="1">1</option>
-                            <option value="2" selected>2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <!-- Add more options as needed up to the max value -->
-                        </select>
-                        <span class="separator"></span>
-                        <a href="#" class="save-for-later-link" onclick="saveForLater(this)">حفظ لوقت لاحق</a>
-                        <span class="separator"></span>
-                        <a href="#" class="remove-link" onclick="removeFromCart(this)">حذف</a>
-                        <p class="item-total">المجموع:  ل.س 24000</p> <!-- Add this line -->
-                    </div>
-                </div>
-                <div class="cart-total" id="cart-total">
-                    <p>إجمالي الفاتورة:  ل.س 30000</p>
-                </div>
-                <br>
-                <button class="checkout-btn" id="checkout-btn">اتمام الشراء</button>
-                <div class="empty-cart-message" id="empty-cart-message" style="display: none;">
-                    <p>السلة فارغة</p>
-                </div>
-            </form>
-        </section> *@
-       
     </main>
 
     <footer>
@@ -248,8 +187,11 @@
                     return response.json();
                 })
                 .then(data => {
+                    const orderId = data.orderId; // Assuming the order ID is returned in the response
+
+                    // Redirect to the checkout page with the order ID in the URL
+                    window.location.href = `front_checkout?id=${orderId}`; // Replace 'front_checkout' with the actual URL of the checkout page
                     // Order placed successfully, redirect to the checkout page
-                    window.location.href = 'front_checkout'; // Replace 'front_checkout' with the actual URL of the checkout page
                 })
                 .catch(error => {
                     console.error('Error placing order:', error);

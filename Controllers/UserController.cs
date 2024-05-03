@@ -33,8 +33,8 @@ namespace StationeryStore.Controllers
             _emailService = emailService;
         }
 
-        
-        [Authorize(Roles = "Admin")]
+
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<User>))]
         public IActionResult GetUsers()

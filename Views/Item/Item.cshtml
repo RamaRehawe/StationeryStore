@@ -91,8 +91,13 @@
                     <span onclick="rateProduct(4)">&#9733;</span>
                     <span onclick="rateProduct(5)">&#9733;</span>
                 </div>
-                <textarea id="user-comment" placeholder="أضف تعليقًا..."></textarea>
                 <button onclick="submitRating()">تقييم</button>
+                <br>
+                <br>
+                <button onclick="submitReview()">أضف تعليقًا</button>
+
+                <textarea id="user-comment" placeholder="أضف تعليقًا..."></textarea>
+
             </div>
 
             <!-- عرض التقييمات -->
@@ -137,20 +142,87 @@
     </footer>
 
     <script>
-        function submitRating() {
-            const rating = 3; // Get the selected rating value (1-5) from the UI
-            const comment = document.getElementById('user-comment').value; // Get the comment text from the UI
+        
 
+      
+
+        function submitReview() {
+            var userComment = document.getElementById('user-comment').value;
+            var selectedRating = getSelectedRating(); // Get the selected rating
+
+            // Prepare review data
+            const reviewData = {
+                text: userComment,
+                productId: productId, // Replace productId with the actual product ID
+                rating: selectedRating
+            };
+
+            fetch('/api/Review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken // Assuming authToken is defined somewhere in your code
+                },
+                body: JSON.stringify(reviewData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to submit review');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Review submitted successfully:', data);
+                    // Optionally, update UI or perform additional actions
+                    // For example, you may want to refresh the page or display a success message
+                })
+                .catch(error => {
+                    console.error('Error submitting review:', error);
+                    // Handle error and display message to user
+                });
+        }
+
+        // Function to get the selected rating
+        function getSelectedRating() {
+            var ratingStars = document.querySelectorAll('.rating-form .rating-stars span');
+            for (var i = 0; i < ratingStars.length; i++) {
+                if (ratingStars[i].classList.contains('active')) {
+                    return i + 1; // Ratings are 1-based
+                }
+            }
+            return 0; // Return 0 if no rating is selected
+        }
+
+        // Function to rate the product
+        function rateProduct(stars) {
+            // Update UI to reflect the selected rating
+            var ratingStars = document.querySelectorAll('.rating-form .rating-stars span');
+            ratingStars.forEach(function (star, index) {
+                if (index < stars) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+
+            // Store the selected rating for submission
+            selectedRating = stars;
+        }
+
+        // Function to submit the rating
+        function submitRating() {
+            var userComment = document.getElementById('user-comment').value;
+
+            // Prepare rating data
             const rateData = {
-                rating: rating,
-                comment: comment
+                rating: selectedRating,
+                comment: userComment
             };
 
             fetch('/api/Rate', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + authToken
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(rateData)
             })
@@ -162,96 +234,131 @@
                 })
                 .then(data => {
                     console.log('Rating submitted successfully:', data);
-                    // Optionally, update UI or perform additional actions
+                    // Update UI or perform additional actions if needed
+                    updateRatingsDisplay(userComment, selectedRating); // Update ratings display after successful submission
                 })
                 .catch(error => {
                     console.error('Error submitting rating:', error);
                     // Handle error and display message to user
                 });
         }
-        // fetch(`/api/Rate/${productId}`, {
-        //     method: 'GET',
-        // })
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error('Failed to fetch average rating');
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(avgRating => {
-        //         console.log('Average rating:', avgRating);
-        //         // Update UI to display average rating
-        //     })
-        //     .catch(error => {
-        //         console.error('Error fetching average rating:', error);
-        //         // Handle error and display message to user
-        //     });
-        // fetch(`/api/Rate/${productId}/count`, {
-        //     method: 'GET',
-        // })
-        //     .then(response => {
-        //         if (!response.ok) {
-        //             throw new Error('Failed to fetch rating counts');
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(ratingCounts => {
-        //         console.log('Rating counts:', ratingCounts);
-        //         // Update UI to display rating counts
-        //     })
-        //     .catch(error => {
-        //         console.error('Error fetching rating counts:', error);
-        //         // Handle error and display message to user
-        //     });
 
+        // Function to update ratings display
+        function updateRatingsDisplay(comment, stars) {
+            // Update UI to display the new rating
+            var ratingsDisplay = document.getElementById('ratingsDisplay');
+            var newRating = document.createElement('div');
+            newRating.className = 'user-rating';
+            newRating.innerHTML = '<div class="rating-stars">' + getStarsHtml(stars) + '</div><p>المستخدم: ' + comment + '</p>';
+            ratingsDisplay.appendChild(newRating);
+        }
 
-        // window.onload = function () {
-        //     fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
-        //     .then(response => response.json())
-        //         .then(data => {
-        //             var quantitySelect = document.getElementById("quantitySelect");
-
-        //             // قم بملء عنصر "select" بالخيارات المتاحة
-        //             data.ProductAttributeQuantities.forEach(function (item) {
-        //                 var option = document.createElement("option");
-        //                 option.text = item.Name1 + ": " + item.Value1 + ", " + item.Name2 + ": " + item.Value2;
-        //                 option.value = item.Quantity;
-        //                 quantitySelect.appendChild(option);
-        //             });
-        //         })
-        //         .catch(error => console.error('Error fetching data:', error));
-        // };
+        // Function to generate HTML for stars
+        function getStarsHtml(stars) {
+            var starsHtml = '';
+            for (var i = 0; i < stars; i++) {
+                starsHtml += '&#9733;';
+            }
+            return starsHtml;
+        }
        
+        // Function to fetch reviews for a product
+        function fetchReviews(productId) {
+            fetch(`/api/Reviews/${productId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch reviews');
+                    }
+                    return response.json();
+                })
+                .then(reviews => {
+                    // Once reviews are fetched successfully, update the UI
+                    updateReviewsDisplay(reviews);
+                })
+                .catch(error => {
+                    console.error('Error fetching reviews:', error);
+                    // Handle error and display message to user
+                });
+        }
 
-        // window.onload = function () {
-        //     fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             var quantitySelect = document.getElementById("quantitySelect");
+        // Function to update the HTML display with fetched reviews
+        function updateReviewsDisplay(reviews) {
+            // Get the ratings display container
+            var ratingsDisplay = document.getElementById('ratingsDisplay');
 
-        //             // قم بملء عنصر "select" بالخيارات المتاحة
-        //             data.productAttributeQuantities.forEach(function (item) { // تم تعديل هنا
-        //                 var option = document.createElement("option");
-        //                 option.text = item.Name1 + ": " + item.Value1 + ", " + item.Name2 + ": " + item.Value2;
-        //                 option.value = item.Quantity;
-        //                 quantitySelect.appendChild(option);
-        //             });
-        //         })
-        //         .catch(error => console.error('Error fetching data:', error));
-        // };
-        // // حدث يتم تشغيله عند تغيير قيمة العنصر select
-        // function updateQuantityInput() {
-        //     // قم بتحديث النص بجانب القائمة المنسدلة
-        //     var selectedQuantity = quantitySelect.value;
-        //     var quantityText = document.getElementById("quantityContainer").querySelector("span");
-        //     quantityText.innerText = selectedQuantity;
-        // }
-        // // وظيفة تحديث الكمية عند تغيير الاختيار
-        // function updateQuantityInput() {
-        //     var quantity = document.getElementById("quantitySelect").value;
-        //     // يمكنك هنا استخدام كمية المنتج المحددة (quantity) لإضافتها إلى سلة التسوق أو للقيام بأي شيء آخر.
-        //     alert("الكمية المحددة: " + quantity);
-        // }
+            // Clear any existing reviews
+            ratingsDisplay.innerHTML = '';
+
+            // Loop through each review and add it to the display
+            reviews.forEach(review => {
+                // Create elements for the review
+                var userRatingDiv = document.createElement('div');
+                userRatingDiv.className = 'user-rating';
+
+                var ratingStarsDiv = document.createElement('div');
+                ratingStarsDiv.className = 'rating-stars';
+
+                // Add stars based on the review rating
+                for (var i = 0; i < review.rating; i++) {
+                    var starSpan = document.createElement('span');
+                    starSpan.innerHTML = '&#9733;';
+                    ratingStarsDiv.appendChild(starSpan);
+                }
+
+                var userCommentP = document.createElement('p');
+                userCommentP.textContent = 'المستخدم: ' + review.text;
+
+                // Append rating stars and user comment to the user rating div
+                userRatingDiv.appendChild(ratingStarsDiv);
+                userRatingDiv.appendChild(userCommentP);
+
+                // Append user rating div to the ratings display container
+                ratingsDisplay.appendChild(userRatingDiv);
+            });
+        }
+
+        // // Call fetchReviews function to fetch and display reviews for a specific product
+        // fetchReviews(productId); // Replace productId with the actual product ID
+
+        // Function to fetch rating counts for a specific product ID
+        function fetchRatingCounts(productId) {
+            fetch(`/api/Rate/${productId}/count`, {
+                method: 'GET',
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch rating counts');
+                    }
+                    return response.json();
+                })
+                .then(ratingCounts => {
+                    console.log('Rating counts:', ratingCounts);
+                    // Update UI to display rating counts
+                    displayRatingCounts(ratingCounts);
+                })
+                .catch(error => {
+                    console.error('Error fetching rating counts:', error);
+                    // Handle error and display message to user
+                });
+        }
+
+        // Function to update UI with rating counts
+        function displayRatingCounts(ratingCounts) {
+            // Assuming you have an element in your UI to display the rating counts
+            var ratingCountsElement = document.getElementById('ratingCountsDisplay');
+
+            // Clear existing content
+            ratingCountsElement.innerHTML = '';
+
+            // Loop through each rating count and display it
+            for (var rating in ratingCounts) {
+                var count = ratingCounts[rating];
+                var ratingCountElement = document.createElement('div');
+                ratingCountElement.innerHTML = `<p>${rating} نجوم: ${count} تقييم</p>`;
+                ratingCountsElement.appendChild(ratingCountElement);
+            }
+        }
+
         // استخراج query string من عنوان الصفحة الحالي
         const queryString = window.location.search;
 
@@ -370,7 +477,7 @@
                     <div id="addMessage" style="display: none; color: green;">
                         تمت الإضافة بنجاح!
                     </div>
-                              <div class="rating-form" id="ratingForm" style="display: none;">
+                                       <div class="rating-form" id="ratingForm" style="display: none;">
                         <h3>تقييم المنتج</h3>
                         <div class="rating-stars">
                             <span onclick="rateProduct(1)">&#9733;</span>
@@ -379,8 +486,13 @@
                             <span onclick="rateProduct(4)">&#9733;</span>
                             <span onclick="rateProduct(5)">&#9733;</span>
                         </div>
-                        <textarea id="user-comment" placeholder="أضف تعليقًا..."></textarea>
                         <button onclick="submitRating()">تقييم</button>
+                        <br>
+                        <br>
+                        <button onclick="submitReview()">أضف تعليقًا</button>
+
+                        <textarea id="user-comment" placeholder="أضف تعليقًا..."></textarea>
+
                     </div>
 
                     <!-- عرض التقييمات -->
@@ -423,36 +535,6 @@
                     }
                 });
 
-                // // Display product images
-                // const thumbnailContainer = document.getElementById('thumbnail-container');
-                // productData.productAttributeQuantities.forEach(attribute => {
-                //     attribute.imageAttributes.forEach(image => {
-                //         if (image && image.url) { // Check if image and url property exist
-                //             const imageElement = document.createElement('img');
-                //             imageElement.src = image.url;
-                //             thumbnailContainer.appendChild(imageElement);
-                //         }
-                //     });
-                // });
-
-                // Update main product image
-             
-                // Display product images
-                // const thumbnailContainer = document.getElementById('thumbnail-container');
-                // productData.productAttributeQuantities.forEach(attribute => {
-                //     attribute.imageAttributes.forEach(image => {
-                //         const imageElement = document.createElement('img');
-                //         imageElement.src = image.url;
-                //         thumbnailContainer.appendChild(imageElement);
-                //     });
-                // });
-
-                // // Update main product image
-                // const mainProductImage = document.getElementById('main-product-image');
-                // if (productData.productAttributeQuantities.length > 0) {
-                //     mainProductImage.src = productData.productAttributeQuantities[0].imageAttributes[0].url;
-                // }
-
 
                 // الآن يتم تعيين الزر والقوائم بنجاح، لذا يمكننا إظهارها
                 document.getElementById('product-table').style.display = 'block';
@@ -466,43 +548,7 @@
             })
             .catch(error => console.error('حدث خطأ في جلب معلومات المنتج:', error));
 
-        // // قم بتحديث معلومات التسليم باستخدام بيانات المنتج
-        // function updateDeliveryInfo(productData) {
-        //     // احصل على عنصر معلومات التسليم
-        //     var deliveryInfoElement = document.getElementById("deliveryInfo");
 
-        //     // قم بتحديث محتوى عنصر معلومات التسليم
-        //     deliveryInfoElement.innerHTML = `
-        //         <h3>معلومات التسليم:</h3>
-        //         <p>التسليم متاح في المخزن.</p>
-        //         <p>وقت التسليم المتوقع: يتم التسليم خلال 3-5 أيام عمل.</p>
-        //         <!-- يمكنك إضافة المزيد من تفاصيل التسليم هنا -->
-        //     `;
-        // }
-        // window.onload = function () {
-        //     fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             var quantitySelect = document.getElementById("quantitySelect");
-
-        //             // قم بملء عنصر "select" بالخيارات المتاحة من 1 إلى القيمة المحددة
-        //             for (let i = 1; i <= data.quantity; i++) {
-        //                 var option = document.createElement("option");
-        //                 option.text = i;
-        //                 option.value = i;
-        //                 quantitySelect.appendChild(option);
-        //             }
-        //         })
-        //         .catch(error => console.error('Error fetching data:', error));
-        // };
-
-        // // حدث يتم تشغيله عند تغيير قيمة العنصر select
-        // function updateQuantityInput() {
-        //     // قم بتحديث النص بجانب القائمة المنسدلة
-        //     var selectedQuantity = document.getElementById("quantitySelect").value;
-        //     var quantityText = document.getElementById("quantityText");
-        //     quantityText.innerText = selectedQuantity;
-        // }
         // في دالة لإضافة المنتج إلى سلة التسوق
         function addToCart() {
             // Get productData from window object
@@ -676,204 +722,6 @@
         }
 
 
-        // fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
-        //     .then(response => response.json())
-        //     .then(productData => {
-        //         // استخدام بيانات المنتج لتحديث عناصر الصفحة HTML
-        //         document.getElementById('product-table').innerHTML = `
-        //             <h2>${productData.name}</h2>
-        //             <p>${productData.description}</p>
-        //             <!-- إضافة بيانات المنتج الأخرى هنا -->
-        //             <table id="product-table">
-        //                 <tr>
-        //                     <th>الخاصية</th>
-        //                     <th>القيمة</th>
-        //                 </tr>
-        //                 <tr>
-        //                     <td>
-        //                         <select id="attribute-name" name="Name1">
-        //                             <option value="">اختر الخاصية</option>
-        //                             ${productData.productAttributeQuantities.map(attr => `<option value="${attr.name1}">${attr.name1}</option>`).join('')}
-        //                         </select>
-        //                     </td>
-        //                     <td>
-        //                         <select id="attribute-value" name="Value1">
-        //                             <option value="">اختر القيمة</option>
-        //                             ${productData.productAttributeQuantities.map(attr => `<option value="${attr.value1}">${attr.value1}</option>`).join('')}
-        //                         </select>
-        //                     </td>
-        //                 </tr>
-        //             </table>
-        //             <button onclick="addRow()">أضف خاصية جديدة</button> <!-- زر "أضف خاصية جديدة" -->
-        //             <div id="new-property"></div> <!-- ستتم إضافة الصفات الجديدة هنا -->
-        //             <!-- يمكنك إضافة المزيد من الخصائص هنا -->
-        //             <p id="price" class="price">السعر: ${productData.productAttributeQuantities[0].price} ل.س</p>
-        //             <br>
-        //             <a href="#" id="showShippingLink" onclick="showShippingModal()">عرض تفاصيل الشحن</a>
-        //             <div class="modal" id="shippingModal">
-        //                 <div class="modal-content">
-        //                     <span class="close" id="closeShippingModalBtn" onclick="closeShippingModal()">&times;</span>
-        //                     <div class="shipping-details" id="shippingDetails">
-        //                         <!-- سيتم تحديث تفاصيل الشحن هنا -->
-        //                     </div>
-        //                 </div>
-        //             </div>
-
-        //             <div class="quantity" id="quantityContainer">
-        //                 <p>متوفر في المخزن</p>
-        //                 <label class="quantity-label">الكمية :</label>
-        //                 <select class="quantity-select" id="quantitySelect" onchange="updateQuantityInput()">
-        //                     <!-- سيتم ملء الخيارات هنا باستخدام JavaScript -->
-        //                 </select>
-        //             </div>
-        //         `;
-
-        //         // الآن يتم تعيين الزر والقوائم بنجاح، لذا يمكننا إظهارها
-        //         document.getElementById('product-table').style.display = 'block';
-
-        //     })
-        //     .catch(error => console.error('حدث خطأ في جلب معلومات المنتج:', error));
-        // function updateShippingDetails() {
-        //     var shippingDetails = document.getElementById("shippingDetails");
-
-        //     var price = product.productAttributeQuantities[0].price;
-        //     var standardShippingFee = 15000;
-
-        //     var total = price + standardShippingFee;
-
-        //     // تحديد رمز العملة
-        //     var currencySymbol = "ل.س ";
-
-        //     // تنسيق الأرقام وإزالة الفواصل
-        //     var formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        //     var formattedShippingFee = standardShippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        //     var formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-        //     var detailsText = `
-        //             <h2>تفاصيل الشحن والرسوم</h2>
-        //             <hr>
-        //             <p class="align-right">السعر: <span class="align-left">${formattedPrice} ${currencySymbol}</span></p>
-        //             <p class="align-right">رسوم الشحن من متجر القرطاسية: <span class="align-left">${formattedShippingFee} ${currencySymbol}</span></p>
-        //             <hr>
-        //             <p class="align-right">الإجمالي: <span class="align-left">${formattedTotal} ${currencySymbol}</span></p>
-        //             <p class="red-bold-centered">الترجيع مجاني</p>
-        //         `;
-
-
-        //     shippingDetails.innerHTML = detailsText;
-        // }
-
-
-
-        // function addRow() {
-        //     if (!addedRow) {
-        //         var table = document.getElementById("product-table");
-        //         var newRow = table.getElementsByTagName('tbody')[0].insertRow(); // الحصول على الصف الجديد من الجدول
-        //         var cell1 = newRow.insertCell(0); // إضافة خلية للصف الجديد
-        //         var cell2 = newRow.insertCell(1); // إضافة خلية للصف الجديد
-        //         cell1.innerHTML = "<select><option value=''>اختر الخاصية</option></select>"; // إضافة قائمة لاختيار الخاصية
-        //         cell2.innerHTML = "<select><option value=''>اختر القيمة</option></select>"; // إضافة قائمة لإدخال القيمة
-        //         addedRow = true; // تعيين المتغير إلى القيمة true للدلالة على إضافة الصف الإضافي
-        //     }
-        // }
-
-        // استدعاء الـ API لجلب معلومات المنتج بناءً على الـ id المسترد
-        // fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
-        //     .then(response => response.json())
-        //     .then(productData => {
-        //         // استخدام بيانات المنتج لتحديث عناصر الصفحة HTML
-        //         document.getElementById('product-table').innerHTML = `
-        //             <h2>${productData.name}</h2>
-        //             <p>${productData.description}</p>
-
-        //             <!-- إضافة بيانات المنتج الأخرى هنا -->
-        //                      <table>
-        //                <tr>
-        //                    <th>الخاصية</th>
-        //                    <th>القيمة</th>
-        //                </tr>
-        //                <tr>
-        //                    <td>
-        //                        <select id="attribute-name" name="Name1">
-        //                            <option value="">اختر الخاصية</option>
-        //                            ${productData.productAttributeQuantities.map(attr => `<option value="${attr.name1}">${attr.name1}</option>`).join('')}
-        //                        </select>
-        //                    </td>
-        //                    <td>
-        //                        <select id="attribute-value" name="Value1">
-        //                            <option value="">اختر القيمة</option>
-        //                            ${productData.productAttributeQuantities.map(attr => `<option value="${attr.value1}">${attr.value1}</option>`).join('')}
-        //                        </select>
-        //                    </td>
-        //                </tr>
-                              
-        //            </table>
-        //                      <button onclick="addRow()">أضف خاصية جديدة</button> <!-- زر "أضف خاصية جديدة" -->
-        //                    <div id="new-property"></div> <!-- ستتم إضافة الصفات الجديدة هنا -->
-        //                        <!-- يمكنك إضافة المزيد من الخصائص هنا -->
-
-        //             <p id="price" class="price">السعر: ${productData.productAttributeQuantities[0].price} ل.س</p>
-        //             <!-- يمكنك إضافة المزيد من المعلومات هنا، مثل معلومات التسليم والإضافة إلى السلة -->
-        //                       <div class="delivery-info" id="deliveryInfo">
-        //                 <!-- سيتم تحديث معلومات التسليم هنا -->
-        //             </div>
-        //             <br>
-        //             <a href="#" id="showShippingLink">عرض تفاصيل الشحن</a>
-        //             <div class="modal" id="shippingModal">
-        //                 <div class="modal-content">
-        //                     <span class="close" id="closeShippingModalBtn">&times;</span>
-        //                     <div class="shipping-details" id="shippingDetails">
-        //                         <!-- سيتم تحديث تفاصيل الشحن هنا -->
-        //                     </div>
-        //                 </div>
-        //             </div>
-
-        //             <div class="quantity" id="quantityContainer">
-        //                 <p>متوفر في المخزن</p>
-        //                 <label class="quantity-label">الكمية :</label>
-        //                 <select class="quantity-select" id="quantitySelect" onchange="updateQuantityInput()">
-
-        //                 </select>
-        //             </div>
-        //         `;
-        //         // استدعاء الـ API لجلب معلومات المنتج بناءً على الـ id المسترد
-        //         fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
-        //             .then(response => response.json())
-        //             .then(productData => {
-        //                 // استخدام بيانات المنتج لتحديث قائمة الكمية
-        //                 var quantitySelect = document.getElementById('quantitySelect');
-        //                 quantitySelect.innerHTML = ''; // للتأكد من تفريغ القائمة قبل تعبئتها
-        //                 for (var i = 1; i <= productData.quantity; i++) {
-        //                     var option = document.createElement('option');
-        //                     option.value = i;
-        //                     option.textContent = i;
-        //                     quantitySelect.appendChild(option);
-        //                 }
-        //             })
-        //             .catch(error => {
-        //                 console.error('حدث خطأ أثناء جلب بيانات المنتج: ', error);
-        //             });
-
-                // // إضافة الصور المصغرة
-                // var thumbnailContainer = document.getElementById("thumbnail-container");
-                // productData.productAttributeQuantities.forEach(function (quantity) {
-                //     var img = document.createElement("img");
-                //     img.src = quantity.imageAttributes[0].url;
-                //     img.alt = "Product Thumbnail";
-                //     img.className = "thumbnail";
-                //     img.addEventListener("click", function () {
-                //         changeMainImage(quantity.imageAttributes[0].url);
-                //     });
-                //     thumbnailContainer.appendChild(img);
-                // });
-            // })
-            // .catch(error => console.error('حدث خطأ في جلب معلومات المنتج:', error));
-
-
-       
-        
-
-
         document.addEventListener("DOMContentLoaded", function () {
             // Event listener for the "showShippingLink" element
             var showShippingLink = document.getElementById("showShippingLink");
@@ -894,67 +742,7 @@
             var mainImage = document.getElementById('main-product-image');
             mainImage.src = newSrc;
         }
-        // دالة لتقييم المنتج
-        function rateProduct(stars) {
-            // قم بتنفيذ الإجراءات اللازمة لتقييم المنتج
-            console.log('تقييم المنتج بـ ' + stars + ' نجوم');
-
-            // تحديد النجوم التي تم تقييمها بلون ذهبي
-            var ratingStars = document.querySelectorAll('.rating-form .rating-stars span');
-            ratingStars.forEach(function (star, index) {
-                if (index < stars) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
-
-            // حفظ التقييم في متغير لاستخدامه عند إرسال التقييم
-            selectedRating = stars;
-        }
-
-        // دالة لإرسال التقييم
-        function submitRating() {
-            var userComment = document.getElementById('user-comment').value;
-            // قم بإرسال التقييم والتعليق إلى الخادم
-            console.log('تقييم المنتج والتعليق: ' + userComment + ', النجوم: ' + selectedRating);
-            // بعد الإرسال، قم بتحديث قاعدة البيانات وعرض التقييمات المحدثة
-            updateRatingsDisplay(userComment, selectedRating);
-        }
-
-        // دالة لتحديث عرض التقييمات بعد الإرسال
-        function updateRatingsDisplay(comment, stars) {
-            // قم بجلب التقييمات الجديدة من الخادم وتحديث الواجهة
-            console.log('تم تحديث عرض التقييمات');
-            // يمكنك إضافة التقييمات الجديدة إلى عنصر التقييمات في الصفحة
-            var ratingsDisplay = document.getElementById('ratingsDisplay');
-
-            // إنشاء عنصر التقييم الجديد
-            var newRating = document.createElement('div');
-            newRating.className = 'user-rating';
-            newRating.innerHTML = '<div class="rating-stars">' + getStarsHtml(stars) + '</div><p>المستخدم: ' + comment + '</p>';
-
-            // قم بإضافة التقييم الجديد إلى عرض التقييمات
-            ratingsDisplay.appendChild(newRating);
-        }
-
-        // دالة للحصول على HTML للنجوم بناءً على عدد النجوم المحدد
-        function getStarsHtml(stars) {
-            var starsHtml = '';
-            for (var i = 0; i < stars; i++) {
-                starsHtml += '&#9733;';
-            }
-            return starsHtml;
-        }
-
-        // دالة لإظهار نموذج التقييم
-        function showRatingForm() {
-            var ratingForm = document.getElementById('ratingForm');
-            ratingForm.style.display = 'block';
-        }
-
-        var selectedRating = 0; // تقييم المستخدم المحدد
-
+        
 
         // قم بالوصول إلى العنصر select
         var quantitySelect = document.getElementById("quantitySelect");
@@ -977,7 +765,6 @@
 
             return isLoggedIn;
         }
-
 
 
         // دالة لعرض رسالة تمت الإضافة
