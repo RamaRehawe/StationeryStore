@@ -97,13 +97,14 @@
    
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="handleCategoryClick(3)">أقلام حبر</li>
-            <li class="tab" onclick="handleCategoryClick(4)">أقلام رصاص</li>
-            <li class="tab" onclick="handleCategoryClick()">أقلام جافة</li>
-            <li class="tab" onclick="handleCategoryClick()">أقلام جيل</li>
-            <li class="tab" onclick="handleCategoryClick()">أقلام تحديد</li>
-            <li class="tab" onclick="handleCategoryClick()">أقلام تخطيط</li>
-            <li class="tab" onclick="handleCategoryClick()">أقلام ملونة</li>
+            <li class="tab" onclick="handleCategoryClick(1)">أقلام حبر</li>
+            <li class="tab" onclick="handleCategoryClick(2)">أقلام رصاص</li>
+            <li class="tab" onclick="handleCategoryClick(3)">أقلام جافة</li>
+            <li class="tab" onclick="handleCategoryClick(4)">أقلام جيل</li>
+            <li class="tab" onclick="handleCategoryClick(5)">أقلام تحديد</li>
+            <li class="tab" onclick="handleCategoryClick(6)">أقلام تخطيط</li>
+            <li class="tab" onclick="handleCategoryClick(7)">أقلام تصحيح</li>
+            <li class="tab" onclick="handleCategoryClick(8)">أقلام ملونة</li>
 
         </ul>
         <br>
@@ -187,29 +188,29 @@
         function handleCategoryClick(subId) {
             // Call the function to fetch product data based on subId
             switch (subId) {
-                case :
-                    fetchProducts(, 'product-list-inkpens');
+                case 1:
+                    fetchProducts(1, 'product-list-inkpens');
                     break;
-                case :
-                    fetchProducts(, 'product-list-pencils');
+                case 2:
+                    fetchProducts(2, 'product-list-pencils');
                     break;
-                case :
-                    fetchProducts(, 'product-list-drypens');
+                case 3:
+                    fetchProducts(3, 'product-list-drypens');
                     break;
-                case :
-                    fetchProducts(, 'product-list-gelpens');
+                case 4:
+                    fetchProducts(4, 'product-list-gelpens');
                     break;
-                case :
-                    fetchProducts(, 'product-list-highlighters');
+                case 5:
+                    fetchProducts(5, 'product-list-highlighters');
                     break;
-                case :
-                    fetchProducts(, 'product-list-markerpens');
+                case 6:
+                    fetchProducts(6, 'product-list-markerpens');
                     break;
-                case :
-                    fetchProducts(, 'product-list-correctorpens');
+                case 7:
+                    fetchProducts(7, 'product-list-correctorpens');
                     break;
-                case :
-                    fetchProducts(, 'product-list-colorpens');
+                case 8:
+                    fetchProducts(8, 'product-list-colorpens');
                     break;
                 default:
                     break;

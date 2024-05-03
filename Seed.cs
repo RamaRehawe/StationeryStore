@@ -18,7 +18,7 @@ namespace StationeryStore
 
         public void SeedDataContext()
         {
-            
+
             //if (!dataContext.Users.Any())
             //{
             //    var users = new List<User>
@@ -34,7 +34,7 @@ namespace StationeryStore
             //        Birthdate = null, // assuming no birthdate initially
             //        Gender = null // assuming no gender initially
             //        }   
-                   
+
             //    };
 
 
@@ -42,7 +42,7 @@ namespace StationeryStore
             //    dataContext.SaveChanges();
             //}
 
-            
+
 
             //if (!dataContext.Admins.Any())
             //{
@@ -51,7 +51,7 @@ namespace StationeryStore
             //        // Sample data for admins
             //        new Admin
             //        {
-                        
+
             //            UserId = 1 // Admin user with id 1
             //        }
             //    };
@@ -95,7 +95,7 @@ namespace StationeryStore
             //    dataContext.Categories.AddRange(categories);
             //    dataContext.SaveChanges();
             //}
-                     
+
 
             //if (!dataContext.ContactInformation.Any())
             //{
@@ -126,19 +126,208 @@ namespace StationeryStore
             //    dataContext.SaveChanges();
             //}
 
+            //if (!dataContext.SubCategories.Any())
+            //{
+            //    var subCategories = new List<SubCategory>
+            //    {
+            //        // Sample data for sub-categories
+            //        new SubCategory
+            //        {
+            //            Name = "أقلام حبر",
+            //            CategoryId = 1 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "أقلام رصاص",
+            //            CategoryId = 1 // Assuming this is the ID of the corresponding category
+            //        },
+            //          // Sample data for sub-categories
+            //        new SubCategory
+            //        {
+            //            Name = "أقلام جافة",
+            //            CategoryId = 1 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "أقلام جيل",
+            //            CategoryId = 1 // Assuming this is the ID of the corresponding category
+            //        },
+            //          // Sample data for sub-categories
+            //        new SubCategory
+            //        {
+            //            Name = "أقلام تحديد",
+            //            CategoryId = 1 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "أقلام تخطيط",
+            //            CategoryId = 1 // Assuming this is the ID of the corresponding category
+            //        },
+            //          // Sample data for sub-categories
+            //        new SubCategory
+            //        {
+            //            Name = "أقلام تصحيح",
+            //            CategoryId = 1 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "أقلام ملونة",
+            //            CategoryId = 1 // Assuming this is the ID of the corresponding category
+            //        },
+            //         new SubCategory
+            //        {
+            //            Name = "دفاتر عادية",
+            //            CategoryId = 2 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "دفاتر سلك",
+            //            CategoryId = 2 // Assuming this is the ID of the corresponding category
+            //        },
+            //          // Sample data for sub-categories
+            //        new SubCategory
+            //        {
+            //            Name = "دفاتر رسم",
+            //            CategoryId = 2 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "دفاتر رسم بياني",
+            //            CategoryId = 2 // Assuming this is the ID of the corresponding category
+            //        },
 
-           
+            //         new SubCategory
+            //        {
+            //            Name = "أقلام حبر فنية",
+            //            CategoryId = 3 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "فُرش فنية",
+            //            CategoryId = 3 // Assuming this is the ID of the corresponding category
+            //        },
+            //          // Sample data for sub-categories
+            //        new SubCategory
+            //        {
+            //            Name = "ألوان مائية",
+            //            CategoryId = 3 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "ألوان خشبية",
+            //            CategoryId = 3 // Assuming this is the ID of the corresponding category
+            //        },
+            //         new SubCategory
+            //        {
+            //            Name = "ألوان شمعية",
+            //            CategoryId = 3 // Assuming this is the ID of the corresponding category
+            //        },
 
-            
+            //          new SubCategory
+            //        {
+            //            Name = "أدوات رسم هندسي",
+            //            CategoryId = 4 // Assuming this is the ID of the corresponding category
+            //        },
+            //         new SubCategory
+            //        {
+            //            Name = "آلالات حاسبة علمية ",
+            //            CategoryId = 4 // Assuming this is the ID of the corresponding category
+            //        },
+
+
+            //          new SubCategory
+            //        {
+            //            Name = "ملصقات و فاصلات",
+            //            CategoryId = 5 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "دباسات و مزيلات",
+            //            CategoryId = 5 // Assuming this is the ID of the corresponding category
+            //        },
+            //          // Sample data for sub-categories
+            //        new SubCategory
+            //        {
+            //            Name = "مقصات و مشارط",
+            //            CategoryId = 5 // Assuming this is the ID of the corresponding category
+            //        },
+            //        new SubCategory
+            //        {
+            //            Name = "الآلات حاسبة",
+            //            CategoryId = 5 // Assuming this is the ID of the corresponding category
+            //        },
+            //         new SubCategory
+            //        {
+            //            Name = "مصنفات",
+            //            CategoryId = 5 // Assuming this is the ID of the corresponding category
+            //        },
+
+            //          new SubCategory
+            //        {
+            //            Name = "ممحاة و مبراة",
+            //            CategoryId = 5 // Assuming this is the ID of the corresponding category
+            //        },
+            //         new SubCategory
+            //        {
+            //            Name = "مستلزمات إضافية ",
+            //            CategoryId = 5 // Assuming this is the ID of the corresponding category
+            //        },
+
+            //          new SubCategory
+            //        {
+            //            Name = "أوراق طباعة",
+            //            CategoryId = 6 // Assuming this is the ID of the corresponding category
+            //        },
+            //         new SubCategory
+            //        {
+            //            Name = "أوراق ملونة",
+            //            CategoryId = 6 // Assuming this is the ID of the corresponding category
+            //        },
+
+            //          new SubCategory
+            //        {
+            //            Name = "أوراق ملاحظات",
+            //            CategoryId = 6 // Assuming this is the ID of the corresponding category
+            //        },
+            //         new SubCategory
+            //        {
+            //            Name = "مفكرات يومية ",
+            //            CategoryId = 6 // Assuming this is the ID of the corresponding category
+            //        },
+
+            //           new SubCategory
+            //        {
+            //            Name = "حقائب ظهر مدرسية",
+            //            CategoryId = 7 // Assuming this is the ID of the corresponding category
+            //        },
+
+            //          new SubCategory
+            //        {
+            //            Name = "حقائب أقلام",
+            //            CategoryId = 7 // Assuming this is the ID of the corresponding category
+            //        },
+            //         new SubCategory
+            //        {
+            //            Name = "حقائب مستلزمات مدرسية ",
+            //            CategoryId = 7 // Assuming this is the ID of the corresponding category
+            //        },
+            //    };
+
+            //    dataContext.SubCategories.AddRange(subCategories);
+            //    dataContext.SaveChanges();
+            //}
 
 
 
-            
 
-            
 
-          
-            
+
+
+
+
+
+
+
 
 
         }

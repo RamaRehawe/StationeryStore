@@ -97,13 +97,13 @@
 
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="handleCategoryClick(9)">ملصقات وفاصلات</li>
-            <li class="tab" onclick="handleCategoryClick()">دباسات ومزيلات</li>
-            <li class="tab" onclick="handleCategoryClick(6)">مقصات ومشارط</li>
-            <li class="tab" onclick="handleCategoryClick()">آلالات حاسبة</li>
-            <li class="tab" onclick="handleCategoryClick(12)">مصنفات</li>
-            <li class="tab" onclick="handleCategoryClick()">ممحاة و مبراة</li>
-            <li class="tab" onclick="handleCategoryClick(11)">مستلزمات إضافية</li>
+            <li class="tab" onclick="handleCategoryClick(20)">ملصقات وفاصلات</li>
+            <li class="tab" onclick="handleCategoryClick(21)">دباسات ومزيلات</li>
+            <li class="tab" onclick="handleCategoryClick(22)">مقصات ومشارط</li>
+            <li class="tab" onclick="handleCategoryClick(23)">آلالات حاسبة</li>
+            <li class="tab" onclick="handleCategoryClick(24)">مصنفات</li>
+            <li class="tab" onclick="handleCategoryClick(25)">ممحاة و مبراة</li>
+            <li class="tab" onclick="handleCategoryClick(26)">مستلزمات إضافية</li>
 
         </ul>
         <br>
@@ -184,26 +184,26 @@
         function handleCategoryClick(subId) {
             // Call the function to fetch product data based on subId
             switch (subId) {
-                case 9:
-                    fetchProducts(9, 'product-list-Adhesives-dividers');
+                case 20:
+                    fetchProducts(20, 'product-list-Adhesives-dividers');
                     break;
-                case :
-                    fetchProducts(, 'product-list-staplers-removers');
+                case 21:
+                    fetchProducts(21, 'product-list-staplers-removers');
                     break;
-                case 6:
-                    fetchProducts(6, 'product-list-scissors-scalpels');
+                case 22:
+                    fetchProducts(22, 'product-list-scissors-scalpels');
                     break;
-                case :
-                    fetchProducts(, 'product-list-Calculators');
+                case 23:
+                    fetchProducts(23, 'product-list-Calculators');
                     break;
-                case 12:
-                    fetchProducts(12, 'product-list-Workbooks');
+                case 24:
+                    fetchProducts(24, 'product-list-Workbooks');
                     break;
-                case :
-                    fetchProducts(, 'product-list-eraser-sharpener');S
+                case 25:
+                    fetchProducts(25, 'product-list-eraser-sharpener');S
                     break;
-                case 11:
-                    fetchProducts(11, 'product-list-tools');
+                case 26:
+                    fetchProducts(26, 'product-list-tools');
                     break;
                 default:
                     break;

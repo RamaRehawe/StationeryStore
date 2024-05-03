@@ -97,9 +97,9 @@
 
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="handleCategoryClick(5)">حقائب ظهر مدرسية</li>
-            <li class="tab" onclick="handleCategoryClick(7)">حقائب أقلام</li>
-            <li class="tab" onclick="handleCategoryClick()">حقائب مستلزمات مدرسية</li>
+            <li class="tab" onclick="handleCategoryClick(31)">حقائب ظهر مدرسية</li>
+            <li class="tab" onclick="handleCategoryClick(32)">حقائب أقلام</li>
+            <li class="tab" onclick="handleCategoryClick(33)">حقائب مستلزمات مدرسية</li>
 
         </ul>
         <br>
@@ -168,14 +168,14 @@
         function handleCategoryClick(subId) {
             // Call the function to fetch product data based on subId
             switch (subId) {
-                case 5:
-                    fetchProducts(5, 'product-list-Backpacks');
+                case 31:
+                    fetchProducts(31, 'product-list-Backpacks');
                     break;
-                case 7:
-                    fetchProducts(7, 'product-list-Penbags');
+                case 32:
+                    fetchProducts(32, 'product-list-Penbags');
                     break;
-                      case :
-                    fetchProducts(, 'product-list-suppliesbags');
+                      case 33 :
+                    fetchProducts(33, 'product-list-suppliesbags');
                     break;
 
                 default:

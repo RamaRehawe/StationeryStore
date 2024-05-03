@@ -97,15 +97,15 @@
 
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="handleCategoryClick(8)">أوراق طباعة</li>
-            <li class="tab" onclick="handleCategoryClick(14)">أوراق ملونة</li>
-            <li class="tab" onclick="handleCategoryClick(16)">أوراق ملاحظات</li>
-            <li class="tab" onclick="handleCategoryClick()">مفكرات يومية</li>
+            <li class="tab" onclick="handleCategoryClick(27)">أوراق طباعة</li>
+            <li class="tab" onclick="handleCategoryClick(28)">أوراق ملونة</li>
+            <li class="tab" onclick="handleCategoryClick(29)">أوراق ملاحظات</li>
+            <li class="tab" onclick="handleCategoryClick(30)">مفكرات يومية</li>
         </ul>
         <br>
         <!-- Tab contents -->
         <div class="tab-content" id="A4" style="display: none;">
-            <div id="product-list-A4></div>
+            <div id="product-list-A4"></div>
         </div>
         <div class="tab-content" id="A4color" style="display: none;">
             <div id="product-list-A4color"></div>
@@ -172,17 +172,17 @@
         function handleCategoryClick(subId) {
             // Call the function to fetch product data based on subId
             switch (subId) {
-                case 8:
-                    fetchProducts(8, 'product-list-A4');
+                case 27:
+                    fetchProducts(27, 'product-list-A4');
                     break;
-                case 14:
-                    fetchProducts(14, 'product-list-A4color');
+                case 28:
+                    fetchProducts(28, 'product-list-A4color');
                     break;
-                case 16:
-                    fetchProducts(16, 'product-list-Notes');
+                case 29:
+                    fetchProducts(29, 'product-list-Notes');
                     break;
-                case :
-                    fetchProducts(, 'product-list-Dailyplanner');
+                case 30 :
+                    fetchProducts(30, 'product-list-Dailyplanner');
                     break;
 
                 default:

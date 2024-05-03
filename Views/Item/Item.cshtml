@@ -76,7 +76,6 @@
 
             <div class="actions">
                 <button class="add-to-cart" onclick="addToCart()">إضافة إلى السلة</button>
-                <button class="buy-now" onclick="redirectToCheckout()">شراء الآن</button>
             </div>
             <br>
             <div id="addMessage" style="display: none; color: green;">
@@ -138,29 +137,121 @@
     </footer>
 
     <script>
-        window.onload = function () {
-            fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
-            .then(response => response.json())
-                .then(data => {
-                    var quantitySelect = document.getElementById("quantitySelect");
+        function submitRating() {
+            const rating = 3; // Get the selected rating value (1-5) from the UI
+            const comment = document.getElementById('user-comment').value; // Get the comment text from the UI
 
-                    // قم بملء عنصر "select" بالخيارات المتاحة
-                    data.ProductAttributeQuantities.forEach(function (item) {
-                        var option = document.createElement("option");
-                        option.text = item.Name1 + ": " + item.Value1 + ", " + item.Name2 + ": " + item.Value2;
-                        option.value = item.Quantity;
-                        quantitySelect.appendChild(option);
-                    });
+            const rateData = {
+                rating: rating,
+                comment: comment
+            };
+
+            fetch('/api/Rate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + authToken
+                },
+                body: JSON.stringify(rateData)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to submit rating');
+                    }
+                    return response.json();
                 })
-                .catch(error => console.error('Error fetching data:', error));
-        };
-
-        // وظيفة تحديث الكمية عند تغيير الاختيار
-        function updateQuantityInput() {
-            var quantity = document.getElementById("quantitySelect").value;
-            // يمكنك هنا استخدام كمية المنتج المحددة (quantity) لإضافتها إلى سلة التسوق أو للقيام بأي شيء آخر.
-            alert("الكمية المحددة: " + quantity);
+                .then(data => {
+                    console.log('Rating submitted successfully:', data);
+                    // Optionally, update UI or perform additional actions
+                })
+                .catch(error => {
+                    console.error('Error submitting rating:', error);
+                    // Handle error and display message to user
+                });
         }
+        // fetch(`/api/Rate/${productId}`, {
+        //     method: 'GET',
+        // })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Failed to fetch average rating');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(avgRating => {
+        //         console.log('Average rating:', avgRating);
+        //         // Update UI to display average rating
+        //     })
+        //     .catch(error => {
+        //         console.error('Error fetching average rating:', error);
+        //         // Handle error and display message to user
+        //     });
+        // fetch(`/api/Rate/${productId}/count`, {
+        //     method: 'GET',
+        // })
+        //     .then(response => {
+        //         if (!response.ok) {
+        //             throw new Error('Failed to fetch rating counts');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(ratingCounts => {
+        //         console.log('Rating counts:', ratingCounts);
+        //         // Update UI to display rating counts
+        //     })
+        //     .catch(error => {
+        //         console.error('Error fetching rating counts:', error);
+        //         // Handle error and display message to user
+        //     });
+
+
+        // window.onload = function () {
+        //     fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+        //     .then(response => response.json())
+        //         .then(data => {
+        //             var quantitySelect = document.getElementById("quantitySelect");
+
+        //             // قم بملء عنصر "select" بالخيارات المتاحة
+        //             data.ProductAttributeQuantities.forEach(function (item) {
+        //                 var option = document.createElement("option");
+        //                 option.text = item.Name1 + ": " + item.Value1 + ", " + item.Name2 + ": " + item.Value2;
+        //                 option.value = item.Quantity;
+        //                 quantitySelect.appendChild(option);
+        //             });
+        //         })
+        //         .catch(error => console.error('Error fetching data:', error));
+        // };
+       
+
+        // window.onload = function () {
+        //     fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             var quantitySelect = document.getElementById("quantitySelect");
+
+        //             // قم بملء عنصر "select" بالخيارات المتاحة
+        //             data.productAttributeQuantities.forEach(function (item) { // تم تعديل هنا
+        //                 var option = document.createElement("option");
+        //                 option.text = item.Name1 + ": " + item.Value1 + ", " + item.Name2 + ": " + item.Value2;
+        //                 option.value = item.Quantity;
+        //                 quantitySelect.appendChild(option);
+        //             });
+        //         })
+        //         .catch(error => console.error('Error fetching data:', error));
+        // };
+        // // حدث يتم تشغيله عند تغيير قيمة العنصر select
+        // function updateQuantityInput() {
+        //     // قم بتحديث النص بجانب القائمة المنسدلة
+        //     var selectedQuantity = quantitySelect.value;
+        //     var quantityText = document.getElementById("quantityContainer").querySelector("span");
+        //     quantityText.innerText = selectedQuantity;
+        // }
+        // // وظيفة تحديث الكمية عند تغيير الاختيار
+        // function updateQuantityInput() {
+        //     var quantity = document.getElementById("quantitySelect").value;
+        //     // يمكنك هنا استخدام كمية المنتج المحددة (quantity) لإضافتها إلى سلة التسوق أو للقيام بأي شيء آخر.
+        //     alert("الكمية المحددة: " + quantity);
+        // }
         // استخراج query string من عنوان الصفحة الحالي
         const queryString = window.location.search;
 
@@ -173,23 +264,48 @@
         // الآن لديك قيمة productId التي تم تمريرها من الصفحة الأولى
         console.log(productId); // يجب عرض قيمة id هنا
 
-        var addedRow = false; // متغير لتتبع ما إذا تمت إضافة الصف الإضافي
         const authToken = localStorage.getItem('authToken');
         const userId = localStorage.getItem('userId'); // Assuming you store the user ID in localStorage
 
+        var addedRow = false; // متغير لتتبع ما إذا تمت إضافة الصف الإضافي
         function addRow() {
-            if (!addedRow) {
-                var table = document.getElementById("product-table");
-                var newRow = table.getElementsByTagName('tbody')[0].insertRow(); // الحصول على الصف الجديد من الجدول
-                var cell1 = newRow.insertCell(0); // إضافة خلية للصف الجديد
-                var cell2 = newRow.insertCell(1); // إضافة خلية للصف الجديد
-                cell1.innerHTML = "<select><option value=''>اختر الخاصية</option></select>"; // إضافة قائمة لاختيار الخاصية
-                cell2.innerHTML = "<select><option value=''>اختر القيمة</option></select>"; // إضافة قائمة لإدخال القيمة
-                addedRow = true; // تعيين المتغير إلى القيمة true للدلالة على إضافة الصف الإضافي
-            }
-        }
+            fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('حدث خطأ في جلب البيانات: ' + response.status);
+                    }
+                    return response.json(); // تحويل البيانات المستردة إلى كائن JSON
+                })
+                .then(data => {
+                    if (!addedRow) {
+                        var table = document.getElementById("product-table");
+                        var newRow = table.getElementsByTagName('tbody')[0].insertRow(); // الحصول على الصف الجديد من الجدول
+                        var cell1 = newRow.insertCell(0); // إضافة خلية للصف الجديد
+                        var cell2 = newRow.insertCell(1); // إضافة خلية للصف الجديد
 
-        // استدعاء الـ API لجلب معلومات المنتج بناءً على الـ id المسترد
+                        // تعبئة القوائم المنسدلة بالبيانات المستردة
+                        cell1.innerHTML = `
+                            <select id="attribute-name" name="Name2">
+                                <option value="">اختر الخاصية</option>
+                                ${data.productAttributeQuantities.map(attr => `<option value="${attr.name2}">${attr.name2}</option>`).join('')}
+                            </select>
+                        `;
+
+                        cell2.innerHTML = `
+                            <select id="attribute-value" name="Value2">
+                                <option value="">اختر القيمة</option>
+                                ${data.productAttributeQuantities.map(attr => `<option value="${attr.value2}">${attr.value2}</option>`).join('')}
+                            </select>
+                        `;
+
+                        addedRow = true; // تعيين المتغير إلى القيمة true للدلالة على إضافة الصف الإضافي
+                    }
+
+                })
+                .catch(error => {
+                    console.error('حدث خطأ: ', error);
+                });
+        }
         fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
             .then(response => response.json())
             .then(productData => {
@@ -197,61 +313,259 @@
                 document.getElementById('product-table').innerHTML = `
                     <h2>${productData.name}</h2>
                     <p>${productData.description}</p>
-
+                             <div class="product-images" id="thumbnail-container">
+                    </div>
+                    <img  alt="Main Product Image" class="main-product-image" id="main-product-image">
                     <!-- إضافة بيانات المنتج الأخرى هنا -->
-                    <table>
+                    <table id="product-table">
                         <tr>
                             <th>الخاصية</th>
                             <th>القيمة</th>
                         </tr>
                         <tr>
-                            <td>${productData.productAttributeQuantities[0].name1}</td>
-                            <td>${productData.productAttributeQuantities[0].value1}</td>
+                            <td>
+                                <select id="attribute-name" name="Name1">
+                                    <option value="">اختر الخاصية</option>
+                                    ${productData.productAttributeQuantities.map(attr => `<option value="${attr.name1}">${attr.name1}</option>`).join('')}
+                                </select>
+                            </td>
+                            <td>
+                                <select id="attribute-value" name="Value1">
+                                    <option value="">اختر القيمة</option>
+                                    ${productData.productAttributeQuantities.map(attr => `<option value="${attr.value1}">${attr.value1}</option>`).join('')}
+                                </select>
+                            </td>
                         </tr>
-                        <!-- يمكنك إضافة المزيد من الخصائص هنا -->
                     </table>
-
+                    <button onclick="addRow()">أضف خاصية جديدة</button> <!-- زر "أضف خاصية جديدة" -->
+                    <div id="new-property"></div> <!-- ستتم إضافة الصفات الجديدة هنا -->
+                    <!-- يمكنك إضافة المزيد من الخصائص هنا -->
                     <p id="price" class="price">السعر: ${productData.productAttributeQuantities[0].price} ل.س</p>
-                    <!-- يمكنك إضافة المزيد من المعلومات هنا، مثل معلومات التسليم والإضافة إلى السلة -->
-                `;
+                             <div class="delivery-info" id="deliveryInfo">
+                        <!-- سيتم تحديث معلومات التسليم هنا -->
+                    </div>
+                    <br>
 
-                // // إضافة الصور المصغرة
-                // var thumbnailContainer = document.getElementById("thumbnail-container");
-                // productData.productAttributeQuantities.forEach(function (quantity) {
-                //     var img = document.createElement("img");
-                //     img.src = quantity.imageAttributes[0].url;
-                //     img.alt = "Product Thumbnail";
-                //     img.className = "thumbnail";
-                //     img.addEventListener("click", function () {
-                //         changeMainImage(quantity.imageAttributes[0].url);
+                    <a href="#" id="showShippingLink" onclick="showShippingModal()">عرض تفاصيل الشحن</a>
+                    <div class="modal" id="shippingModal">
+                        <div class="modal-content">
+                            <span class="close" id="closeShippingModalBtn" onclick="closeShippingModal()">&times;</span>
+                            <div class="shipping-details" id="shippingDetails">
+                                <!-- سيتم تحديث تفاصيل الشحن هنا -->
+                            </div>
+                        </div>
+                    </div>
+
+                            <div class="quantity" id="quantityContainer">
+            <p>متوفر في المخزن</p>
+            <label class="quantity-label">الكمية :</label>
+                    <input class="quantity-input" id="quantityInput" type="number" placeholder="أدخل الكمية" min="1" onchange="updateQuantityInput(productData)">
+        </div>
+
+                            
+                            <div class="actions">
+        <button class="add-to-cart" onclick="addToCart()">إضافة إلى السلة</button>
+                    </div>
+                    <br>
+                    <div id="addMessage" style="display: none; color: green;">
+                        تمت الإضافة بنجاح!
+                    </div>
+                              <div class="rating-form" id="ratingForm" style="display: none;">
+                        <h3>تقييم المنتج</h3>
+                        <div class="rating-stars">
+                            <span onclick="rateProduct(1)">&#9733;</span>
+                            <span onclick="rateProduct(2)">&#9733;</span>
+                            <span onclick="rateProduct(3)">&#9733;</span>
+                            <span onclick="rateProduct(4)">&#9733;</span>
+                            <span onclick="rateProduct(5)">&#9733;</span>
+                        </div>
+                        <textarea id="user-comment" placeholder="أضف تعليقًا..."></textarea>
+                        <button onclick="submitRating()">تقييم</button>
+                    </div>
+
+                    <!-- عرض التقييمات -->
+                    <div class="product-ratings" id="ratingsDisplay">
+                        <h3>تقييمات المنتج</h3>
+                        <div class="user-rating">
+                            <div class="rating-stars">
+                                <span>&#9733;</span>
+                                <span>&#9733;</span>
+                                <span>&#9733;</span>
+                                <span>&#9733;</span>
+                                <span>&#9733;</span>
+                            </div>
+                            <p>المستخدم: تعليق رائع جدًا على المنتج يظهر هنا.</p>
+                        </div>
+                        <!-- يمكنك إضافة المزيد من التقييمات هنا -->
+                    </div>
+                `;
+                // Display product images
+                const thumbnailContainer = document.getElementById('thumbnail-container');
+                const mainProductImage = document.getElementById('main-product-image');
+
+                // Clear previous images
+                thumbnailContainer.innerHTML = '';
+
+                // Iterate through each product attribute quantity
+                productData.productAttributeQuantities.forEach(attribute => {
+                    // Iterate through each image attribute
+                    attribute.imageAttributes.forEach(image => {
+                        if (image && image.url) { // Check if image and url property exist
+                            const imageElement = document.createElement('img');
+                            imageElement.src = image.url;
+                            thumbnailContainer.appendChild(imageElement);
+                        }
+                    });
+
+                    // Set the main product image with the first image in the first product attribute quantity
+                    if (attribute.imageAttributes.length > 0 && !mainProductImage.src) {
+                        mainProductImage.src = attribute.imageAttributes[0].url;
+                    }
+                });
+
+                // // Display product images
+                // const thumbnailContainer = document.getElementById('thumbnail-container');
+                // productData.productAttributeQuantities.forEach(attribute => {
+                //     attribute.imageAttributes.forEach(image => {
+                //         if (image && image.url) { // Check if image and url property exist
+                //             const imageElement = document.createElement('img');
+                //             imageElement.src = image.url;
+                //             thumbnailContainer.appendChild(imageElement);
+                //         }
                 //     });
-                //     thumbnailContainer.appendChild(img);
                 // });
+
+                // Update main product image
+             
+                // Display product images
+                // const thumbnailContainer = document.getElementById('thumbnail-container');
+                // productData.productAttributeQuantities.forEach(attribute => {
+                //     attribute.imageAttributes.forEach(image => {
+                //         const imageElement = document.createElement('img');
+                //         imageElement.src = image.url;
+                //         thumbnailContainer.appendChild(imageElement);
+                //     });
+                // });
+
+                // // Update main product image
+                // const mainProductImage = document.getElementById('main-product-image');
+                // if (productData.productAttributeQuantities.length > 0) {
+                //     mainProductImage.src = productData.productAttributeQuantities[0].imageAttributes[0].url;
+                // }
+
+
+                // الآن يتم تعيين الزر والقوائم بنجاح، لذا يمكننا إظهارها
+                document.getElementById('product-table').style.display = 'block';
+                updateDeliveryInfo(productData);
+
+                // استدعاء وظيفة تحديث تفاصيل الشحن بتمرير بيانات المنتج
+                updateShippingDetails(productData);
+                updateQuantityInput(productData);
+                window.productData = productData;
+
             })
             .catch(error => console.error('حدث خطأ في جلب معلومات المنتج:', error));
 
+        // // قم بتحديث معلومات التسليم باستخدام بيانات المنتج
+        // function updateDeliveryInfo(productData) {
+        //     // احصل على عنصر معلومات التسليم
+        //     var deliveryInfoElement = document.getElementById("deliveryInfo");
 
+        //     // قم بتحديث محتوى عنصر معلومات التسليم
+        //     deliveryInfoElement.innerHTML = `
+        //         <h3>معلومات التسليم:</h3>
+        //         <p>التسليم متاح في المخزن.</p>
+        //         <p>وقت التسليم المتوقع: يتم التسليم خلال 3-5 أيام عمل.</p>
+        //         <!-- يمكنك إضافة المزيد من تفاصيل التسليم هنا -->
+        //     `;
+        // }
+        // window.onload = function () {
+        //     fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+        //         .then(response => response.json())
+        //         .then(data => {
+        //             var quantitySelect = document.getElementById("quantitySelect");
+
+        //             // قم بملء عنصر "select" بالخيارات المتاحة من 1 إلى القيمة المحددة
+        //             for (let i = 1; i <= data.quantity; i++) {
+        //                 var option = document.createElement("option");
+        //                 option.text = i;
+        //                 option.value = i;
+        //                 quantitySelect.appendChild(option);
+        //             }
+        //         })
+        //         .catch(error => console.error('Error fetching data:', error));
+        // };
+
+        // // حدث يتم تشغيله عند تغيير قيمة العنصر select
+        // function updateQuantityInput() {
+        //     // قم بتحديث النص بجانب القائمة المنسدلة
+        //     var selectedQuantity = document.getElementById("quantitySelect").value;
+        //     var quantityText = document.getElementById("quantityText");
+        //     quantityText.innerText = selectedQuantity;
+        // }
         // في دالة لإضافة المنتج إلى سلة التسوق
-        function addToCart(productId) {
-            // قم بفحص حالة تسجيل الدخول
-            var isLoggedIn = checkLoginStatus();
+        function addToCart() {
+            // Get productData from window object
+            var productData = window.productData;
+            // Get selected attribute values
+            var attributeName = document.getElementById("attribute-name").value;
+            var attributeValue = document.getElementById("attribute-value").value;
 
-            if (isLoggedIn) {
-                // استدعاء الدالة المحسنة لإضافة المنتج إلى سلة التسوق
-                addToCartWithDetails(productId, 123, 1); // Replace 123 and 1 with actual values
+            // Check if at least one attribute is selected
+            if (attributeName || attributeValue) {
+                // Find the corresponding product attribute quantity
+                var selectedProductAttribute;
+                if (attributeName && attributeValue) {
+                    // If both attributes are selected, find the corresponding product attribute quantity
+                    selectedProductAttribute = productData.productAttributeQuantities.find(attr => attr.name1 === attributeName && attr.value1 === attributeValue);
+                } else if (attributeName) {
+                    // If only attribute name is selected, find the product attribute quantity with the selected attribute name
+                    selectedProductAttribute = productData.productAttributeQuantities.find(attr => attr.name1 === attributeName);
+                } else if (attributeValue) {
+                    // If only attribute value is selected, find the product attribute quantity with the selected attribute value
+                    selectedProductAttribute = productData.productAttributeQuantities.find(attr => attr.value1 === attributeValue);
+                }
+
+                // Check if a valid attribute combination is selected
+                if (selectedProductAttribute) {
+                    // قم بفحص حالة تسجيل الدخول
+                    var isLoggedIn = checkLoginStatus();
+
+                    if (isLoggedIn) {
+                        // استدعاء الدالة المحسنة لإضافة المنتج إلى سلة التسوق
+                        addToCartWithDetails( selectedProductAttribute.id, selectedProductAttribute.quantity);
+                    } else {
+                        // لم يتم تسجيل الدخول، قم بتوجيه المستخدم إلى صفحة تسجيل الدخول
+                        alert('يجب عليك تسجيل الدخول لإضافة المنتج إلى سلة التسوق.');
+                        window.location.href = 'front_login'; // قم بتغيير 'login.html' إلى عنوان URL الصحيح لصفحة تسجيل الدخول
+                    }
+                } else {
+                    // If no valid attribute combination is selected, show an error message
+                    alert('يرجى اختيار مواصفات المنتج الصحيحة.');
+                }
             } else {
-                // لم يتم تسجيل الدخول، قم بتوجيه المستخدم إلى صفحة تسجيل الدخول
-                alert('يجب عليك تسجيل الدخول لإضافة المنتج إلى سلة التسوق.');
-                window.location.href = 'front_login'; // قم بتغيير 'login.html' إلى عنوان URL الصحيح لصفحة تسجيل الدخول
+                // If neither attribute is selected, show an error message
+                alert('يرجى اختيار مواصفات المنتج.');
             }
         }
 
-        // الدالة المحسنة لإضافة المنتج إلى سلة التسوق بمعلومات محددة
-        function addToCartWithDetails(productId, productAttributeQuantityId, quantity) {
+
+
+
+        function addToCartWithDetails( productAttributeQuantityId, quantity) {
+            // Calculate the subPrice
+            const subPrice = price * quantity;
+
+            // Create the itemDto object
+            const itemDto = {
+                productAttributeQuantityId: productAttributeQuantityId,
+                quantity: quantity,
+                subPrice: subPrice
+            };
+
             // Create the data object to send in the request body
             const data = {
-                ProductAttributeQuantityId: productAttributeQuantityId,
-                Quantity: quantity
+                itemDto: itemDto
             };
 
             // Send an HTTP POST request to the server
@@ -271,42 +585,293 @@
                 })
                 .then(result => {
                     alert(result); // Show success message to the user
+                    showAddMessage();
                     // Optionally, update UI or perform additional actions
-                    window.location.href = 'front_cart'; 
-
+                    window.location.href = 'front_cart';
                 })
                 .catch(error => {
                     alert(error.message); // Show error message to the user
                     console.error('Error adding item to cart:', error);
                 });
         }
-        function redirectToCheckout() {
-            fetch('/api/Order/placeOrder', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + authToken
-                },
-                body: JSON.stringify({
-                    // Pass any required data for the order here, such as addressId
-                    addressId: '123' // Replace with the actual addressId
-                })
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to place order');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Order placed successfully, redirect to the checkout page
-                    window.location.href = 'front_checkout'; // Replace 'front_checkout' with the actual URL of the checkout page
-                })
-                .catch(error => {
-                    console.error('Error placing order:', error);
-                    alert('Failed to place order. Please try again.');
-                });
+
+        // دالة لتحديث معلومات التوصيل
+        function updateDeliveryInfo(productData) {
+            var deliveryInfo = document.getElementById("deliveryInfo");
+            var deliveryDate = calculateDeliveryDate();
+
+            // حساب الوقت المتبقي للطلب
+            var currentTime = new Date();
+            var cutoffTime = new Date(currentTime);
+            cutoffTime.setHours(24, 0, 0, 0); // منتصف الليل
+
+            var timeDiff = cutoffTime - currentTime;
+            var hoursRemaining = Math.floor(timeDiff / (1000 * 60 * 60));
+            var minutesRemaining = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+            var deliveryText = `
+                            <p>التوصيل ${formatDate(deliveryDate.standard)}. أطلب خلال ${hoursRemaining} ساعة و ${minutesRemaining} دقيقة</p>
+                        `;
+
+            deliveryInfo.innerHTML = deliveryText;
         }
+
+
+        function updateQuantityInput(productData) {
+            var quantityContainer = document.getElementById("quantityContainer");
+
+            // Clear the container
+            quantityContainer.innerHTML = '';
+
+            // Create an input field for quantity
+            var quantityInput = document.createElement("input");
+            quantityInput.type = "number";
+            quantityInput.id = "quantityInput";
+            quantityInput.placeholder = "Enter quantity";
+            quantityInput.min = 1;
+            quantityInput.max = productData.productAttributeQuantities[0].quantity; // Set maximum quantity
+            quantityInput.value = 1; // Set default value
+
+            // Append the input field to the container
+            quantityContainer.appendChild(quantityInput);
+
+            // Add event listener to capture the selected quantity
+            quantityInput.addEventListener('change', function (event) {
+                var selectedQuantity = parseInt(event.target.value); // Convert value to integer
+                console.log('Selected quantity:', selectedQuantity);
+                // You can perform any action here based on the selected quantity
+                // For example, update UI elements or perform calculations
+            });
+        }
+
+
+
+        function updateShippingDetails(productData) {
+            var shippingDetails = document.getElementById("shippingDetails");
+
+            var price = productData.productAttributeQuantities[0].price;
+            var standardShippingFee = 15000;
+
+            var total = price + standardShippingFee;
+
+            // تحديد رمز العملة
+            var currencySymbol = "ل.س ";
+
+            // تنسيق الأرقام وإزالة الفواصل
+            var formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            var formattedShippingFee = standardShippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            var formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+            var detailsText = `
+                <h2>تفاصيل الشحن والرسوم</h2>
+                <hr>
+                <p class="align-right">السعر: <span class="align-left">${formattedPrice} ${currencySymbol}</span></p>
+                <p class="align-right">رسوم الشحن من متجر القرطاسية: <span class="align-left">${formattedShippingFee} ${currencySymbol}</span></p>
+                <hr>
+                <p class="align-right">الإجمالي: <span class="align-left">${formattedTotal} ${currencySymbol}</span></p>
+                <p class="red-bold-centered">الترجيع مجاني</p>
+            `;
+
+            shippingDetails.innerHTML = detailsText;
+        }
+
+
+        // fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+        //     .then(response => response.json())
+        //     .then(productData => {
+        //         // استخدام بيانات المنتج لتحديث عناصر الصفحة HTML
+        //         document.getElementById('product-table').innerHTML = `
+        //             <h2>${productData.name}</h2>
+        //             <p>${productData.description}</p>
+        //             <!-- إضافة بيانات المنتج الأخرى هنا -->
+        //             <table id="product-table">
+        //                 <tr>
+        //                     <th>الخاصية</th>
+        //                     <th>القيمة</th>
+        //                 </tr>
+        //                 <tr>
+        //                     <td>
+        //                         <select id="attribute-name" name="Name1">
+        //                             <option value="">اختر الخاصية</option>
+        //                             ${productData.productAttributeQuantities.map(attr => `<option value="${attr.name1}">${attr.name1}</option>`).join('')}
+        //                         </select>
+        //                     </td>
+        //                     <td>
+        //                         <select id="attribute-value" name="Value1">
+        //                             <option value="">اختر القيمة</option>
+        //                             ${productData.productAttributeQuantities.map(attr => `<option value="${attr.value1}">${attr.value1}</option>`).join('')}
+        //                         </select>
+        //                     </td>
+        //                 </tr>
+        //             </table>
+        //             <button onclick="addRow()">أضف خاصية جديدة</button> <!-- زر "أضف خاصية جديدة" -->
+        //             <div id="new-property"></div> <!-- ستتم إضافة الصفات الجديدة هنا -->
+        //             <!-- يمكنك إضافة المزيد من الخصائص هنا -->
+        //             <p id="price" class="price">السعر: ${productData.productAttributeQuantities[0].price} ل.س</p>
+        //             <br>
+        //             <a href="#" id="showShippingLink" onclick="showShippingModal()">عرض تفاصيل الشحن</a>
+        //             <div class="modal" id="shippingModal">
+        //                 <div class="modal-content">
+        //                     <span class="close" id="closeShippingModalBtn" onclick="closeShippingModal()">&times;</span>
+        //                     <div class="shipping-details" id="shippingDetails">
+        //                         <!-- سيتم تحديث تفاصيل الشحن هنا -->
+        //                     </div>
+        //                 </div>
+        //             </div>
+
+        //             <div class="quantity" id="quantityContainer">
+        //                 <p>متوفر في المخزن</p>
+        //                 <label class="quantity-label">الكمية :</label>
+        //                 <select class="quantity-select" id="quantitySelect" onchange="updateQuantityInput()">
+        //                     <!-- سيتم ملء الخيارات هنا باستخدام JavaScript -->
+        //                 </select>
+        //             </div>
+        //         `;
+
+        //         // الآن يتم تعيين الزر والقوائم بنجاح، لذا يمكننا إظهارها
+        //         document.getElementById('product-table').style.display = 'block';
+
+        //     })
+        //     .catch(error => console.error('حدث خطأ في جلب معلومات المنتج:', error));
+        // function updateShippingDetails() {
+        //     var shippingDetails = document.getElementById("shippingDetails");
+
+        //     var price = product.productAttributeQuantities[0].price;
+        //     var standardShippingFee = 15000;
+
+        //     var total = price + standardShippingFee;
+
+        //     // تحديد رمز العملة
+        //     var currencySymbol = "ل.س ";
+
+        //     // تنسيق الأرقام وإزالة الفواصل
+        //     var formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //     var formattedShippingFee = standardShippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        //     var formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        //     var detailsText = `
+        //             <h2>تفاصيل الشحن والرسوم</h2>
+        //             <hr>
+        //             <p class="align-right">السعر: <span class="align-left">${formattedPrice} ${currencySymbol}</span></p>
+        //             <p class="align-right">رسوم الشحن من متجر القرطاسية: <span class="align-left">${formattedShippingFee} ${currencySymbol}</span></p>
+        //             <hr>
+        //             <p class="align-right">الإجمالي: <span class="align-left">${formattedTotal} ${currencySymbol}</span></p>
+        //             <p class="red-bold-centered">الترجيع مجاني</p>
+        //         `;
+
+
+        //     shippingDetails.innerHTML = detailsText;
+        // }
+
+
+
+        // function addRow() {
+        //     if (!addedRow) {
+        //         var table = document.getElementById("product-table");
+        //         var newRow = table.getElementsByTagName('tbody')[0].insertRow(); // الحصول على الصف الجديد من الجدول
+        //         var cell1 = newRow.insertCell(0); // إضافة خلية للصف الجديد
+        //         var cell2 = newRow.insertCell(1); // إضافة خلية للصف الجديد
+        //         cell1.innerHTML = "<select><option value=''>اختر الخاصية</option></select>"; // إضافة قائمة لاختيار الخاصية
+        //         cell2.innerHTML = "<select><option value=''>اختر القيمة</option></select>"; // إضافة قائمة لإدخال القيمة
+        //         addedRow = true; // تعيين المتغير إلى القيمة true للدلالة على إضافة الصف الإضافي
+        //     }
+        // }
+
+        // استدعاء الـ API لجلب معلومات المنتج بناءً على الـ id المسترد
+        // fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+        //     .then(response => response.json())
+        //     .then(productData => {
+        //         // استخدام بيانات المنتج لتحديث عناصر الصفحة HTML
+        //         document.getElementById('product-table').innerHTML = `
+        //             <h2>${productData.name}</h2>
+        //             <p>${productData.description}</p>
+
+        //             <!-- إضافة بيانات المنتج الأخرى هنا -->
+        //                      <table>
+        //                <tr>
+        //                    <th>الخاصية</th>
+        //                    <th>القيمة</th>
+        //                </tr>
+        //                <tr>
+        //                    <td>
+        //                        <select id="attribute-name" name="Name1">
+        //                            <option value="">اختر الخاصية</option>
+        //                            ${productData.productAttributeQuantities.map(attr => `<option value="${attr.name1}">${attr.name1}</option>`).join('')}
+        //                        </select>
+        //                    </td>
+        //                    <td>
+        //                        <select id="attribute-value" name="Value1">
+        //                            <option value="">اختر القيمة</option>
+        //                            ${productData.productAttributeQuantities.map(attr => `<option value="${attr.value1}">${attr.value1}</option>`).join('')}
+        //                        </select>
+        //                    </td>
+        //                </tr>
+                              
+        //            </table>
+        //                      <button onclick="addRow()">أضف خاصية جديدة</button> <!-- زر "أضف خاصية جديدة" -->
+        //                    <div id="new-property"></div> <!-- ستتم إضافة الصفات الجديدة هنا -->
+        //                        <!-- يمكنك إضافة المزيد من الخصائص هنا -->
+
+        //             <p id="price" class="price">السعر: ${productData.productAttributeQuantities[0].price} ل.س</p>
+        //             <!-- يمكنك إضافة المزيد من المعلومات هنا، مثل معلومات التسليم والإضافة إلى السلة -->
+        //                       <div class="delivery-info" id="deliveryInfo">
+        //                 <!-- سيتم تحديث معلومات التسليم هنا -->
+        //             </div>
+        //             <br>
+        //             <a href="#" id="showShippingLink">عرض تفاصيل الشحن</a>
+        //             <div class="modal" id="shippingModal">
+        //                 <div class="modal-content">
+        //                     <span class="close" id="closeShippingModalBtn">&times;</span>
+        //                     <div class="shipping-details" id="shippingDetails">
+        //                         <!-- سيتم تحديث تفاصيل الشحن هنا -->
+        //                     </div>
+        //                 </div>
+        //             </div>
+
+        //             <div class="quantity" id="quantityContainer">
+        //                 <p>متوفر في المخزن</p>
+        //                 <label class="quantity-label">الكمية :</label>
+        //                 <select class="quantity-select" id="quantitySelect" onchange="updateQuantityInput()">
+
+        //                 </select>
+        //             </div>
+        //         `;
+        //         // استدعاء الـ API لجلب معلومات المنتج بناءً على الـ id المسترد
+        //         fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
+        //             .then(response => response.json())
+        //             .then(productData => {
+        //                 // استخدام بيانات المنتج لتحديث قائمة الكمية
+        //                 var quantitySelect = document.getElementById('quantitySelect');
+        //                 quantitySelect.innerHTML = ''; // للتأكد من تفريغ القائمة قبل تعبئتها
+        //                 for (var i = 1; i <= productData.quantity; i++) {
+        //                     var option = document.createElement('option');
+        //                     option.value = i;
+        //                     option.textContent = i;
+        //                     quantitySelect.appendChild(option);
+        //                 }
+        //             })
+        //             .catch(error => {
+        //                 console.error('حدث خطأ أثناء جلب بيانات المنتج: ', error);
+        //             });
+
+                // // إضافة الصور المصغرة
+                // var thumbnailContainer = document.getElementById("thumbnail-container");
+                // productData.productAttributeQuantities.forEach(function (quantity) {
+                //     var img = document.createElement("img");
+                //     img.src = quantity.imageAttributes[0].url;
+                //     img.alt = "Product Thumbnail";
+                //     img.className = "thumbnail";
+                //     img.addEventListener("click", function () {
+                //         changeMainImage(quantity.imageAttributes[0].url);
+                //     });
+                //     thumbnailContainer.appendChild(img);
+                // });
+            // })
+            // .catch(error => console.error('حدث خطأ في جلب معلومات المنتج:', error));
+
+
+       
+        
 
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -323,93 +888,7 @@
                 closeShippingModal(); // Call the function to close the shipping modal
             });
         });
-        // window.onload = function () {
-        //     fetch(`https://localhost:7214/api/Product/productId?productId=${productId}`)
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // Update main product image
-        //             document.getElementById("main-product-image").src = data.MainImageURL;
-
-        //             // Update thumbnai\
-        /
-        // l images
-        //             data.ThumbnailImageURLs.forEach(function (url) {
-        //                 var img = document.createElement("img");
-        //                 img.src = url;
-        //                 img.alt = "Thumbnail Product Image";
-        //                 document.getElementById("thumbnail-container").appendChild(img);
-        //             });
-        //         })
-        //         .catch(error => console.error('Error fetching data:', error));
-        // };
-
-        // function changeMainImage(url) {
-        //     document.getElementById("main-product-image").src = url;
-        // }
-
-        // window.onload = function () {
-        //     fetch("/your-api-endpoint/productId")
-        //         .then(response => response.json())
-        //         .then(data => {
-        //             // Update main product image
-        //             document.getElementById("main-product-image").src = data.MainImageURL;
-
-        //             // Update thumbnail images
-        //             data.ThumbnailImageURLs.forEach(function (url) {
-        //                 var img = document.createElement("img");
-        //                 img.src = url;
-        //                 img.alt = "Thumbnail Product Image";
-        //                 document.getElementById("thumbnail-container").appendChild(img);
-        //             });
-        //         })
-        //         .catch(error => console.error('Error fetching data:', error));
-        // };
-        // // قم بجلب مصفوفة الصور من بيانات المنتج
-        // var productImages = productData.productImages;
-
-        // // إذا كانت هناك صور متوفرة للمنتج
-        // if (productImages && productImages.length > 0) {
-        //     // حدد عنصر الصور المصغرة
-        //     var thumbnailContainer = document.getElementById("thumbnail-container");
-
-        //     // حلق عبر كل صورة وأضفها كصور مصغرة
-        //     productImages.forEach(function (image) {
-        //         var img = document.createElement("img");
-        //         img.src = image.url;
-        //         img.alt = "Product Thumbnail";
-        //         img.className = "thumbnail";
-        //         img.addEventListener("click", function () {
-        //             changeMainImage(image.url);
-        //         });
-
-        //         thumbnailContainer.appendChild(img);
-        //     });
-        // }
-
-        // // Thumbnails array
-        // var thumbnails = [
-        //     "/Images/item_1.png",
-        //     "/Images/item_2.png",
-        //     "/Images/item_3.png",
-        //     "/Images/item_4.png",
-        //     "/Images/item_5.png",
-        //     "/Images/item_6.png"
-        // ];
-
-        // // Add thumbnails dynamically
-        // var thumbnailContainer = document.getElementById("thumbnail-container");
-
-        // thumbnails.forEach(function (thumbnail) {
-        //     var img = document.createElement("img");
-        //     img.src = thumbnail;
-        //     img.alt = "Product Thumbnail";
-        //     img.className = "thumbnail";
-        //     img.addEventListener("click", function () {
-        //         changeMainImage(thumbnail);
-        //     });
-
-        //     thumbnailContainer.appendChild(img);
-        // });
+       
 
         function changeMainImage(newSrc) {
             var mainImage = document.getElementById('main-product-image');
@@ -480,17 +959,11 @@
         // قم بالوصول إلى العنصر select
         var quantitySelect = document.getElementById("quantitySelect");
 
-        // حدث يتم تشغيله عند تغيير قيمة العنصر select
-        function updateQuantityInput() {
-            // قم بتحديث النص بجانب القائمة المنسدلة
-            var selectedQuantity = quantitySelect.value;
-            var quantityText = document.getElementById("quantityContainer").querySelector("span");
-            quantityText.innerText = selectedQuantity;
-        }
-        function redirectToCheckout() {
-            var checkoutPageURL = "front_checkout"; 
-            window.location.href = checkoutPageURL;
-        }
+       
+        // function redirectToCheckout() {
+        //     var checkoutPageURL = "front_checkout"; 
+        //     window.location.href = checkoutPageURL;
+        // }
         // متغير لتتبع حالة المنتج (في السلة أو في قائمة الرغبات)
         var isInCart = false;
 
@@ -517,7 +990,7 @@
                 addMessage.style.display = 'none';
             }, 3000); // يختفي الرسالة بعد 3 ثواني (يمكنك تعديل هذه الفترة حسب الحاجة)
         }
-        document.addEventListener("DOMContentLoaded", function () {
+       
             // دالة لحساب تاريخ التوصيل
             function calculateDeliveryDate() {
                 var currentDate = new Date();
@@ -550,35 +1023,12 @@
                 return date.toLocaleDateString('ar-AR', options);
             }
 
-            // دالة لتحديث معلومات التوصيل
-            function updateDeliveryInfo() {
-                var deliveryInfo = document.getElementById("deliveryInfo");
-                var deliveryDate = calculateDeliveryDate();
-
-                // حساب الوقت المتبقي للطلب
-                var currentTime = new Date();
-                var cutoffTime = new Date(currentTime);
-                cutoffTime.setHours(24, 0, 0, 0); // منتصف الليل
-
-                var timeDiff = cutoffTime - currentTime;
-                var hoursRemaining = Math.floor(timeDiff / (1000 * 60 * 60));
-                var minutesRemaining = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-
-                var deliveryText = `
-                    <p>التوصيل ${formatDate(deliveryDate.standard)}. أطلب خلال ${hoursRemaining} ساعة و ${minutesRemaining} دقيقة</p>
-                `;
-
-                deliveryInfo.innerHTML = deliveryText;
-            }
-
-            // استدعاء الدالة لإعداد معلومات التوصيل بشكل أولي
-            updateDeliveryInfo();
-        });
+            
 
         function showShippingModal() {
             var shippingModal = document.getElementById("shippingModal");
             shippingModal.style.display = "block";
-            updateShippingDetails();
+            // updateShippingDetails(productData);
         }
 
         function closeShippingModal() {
@@ -586,35 +1036,7 @@
             shippingModal.style.display = "none";
         }
 
-        function updateShippingDetails() {
-            var shippingDetails = document.getElementById("shippingDetails");
-
-            var price = product.productAttributeQuantities[0].price;
-            var standardShippingFee = 15000;
-
-            var total = price + standardShippingFee;
-
-            // تحديد رمز العملة
-            var currencySymbol = "ل.س ";
-
-            // تنسيق الأرقام وإزالة الفواصل
-            var formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            var formattedShippingFee = standardShippingFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            var formattedTotal = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
-            var detailsText = `
-            <h2>تفاصيل الشحن والرسوم</h2>
-            <hr>
-            <p class="align-right">السعر: <span class="align-left">${formattedPrice} ${currencySymbol}</span></p>
-            <p class="align-right">رسوم الشحن من متجر القرطاسية: <span class="align-left">${formattedShippingFee} ${currencySymbol}</span></p>
-            <hr>
-            <p class="align-right">الإجمالي: <span class="align-left">${formattedTotal} ${currencySymbol}</span></p>
-            <p class="red-bold-centered">الترجيع مجاني</p>
-        `;
-
-
-            shippingDetails.innerHTML = detailsText;
-        }
+       
        
     </script>
 

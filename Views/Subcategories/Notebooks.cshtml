@@ -97,9 +97,9 @@
     <main>
         <ul class="tabs">
             <li class="tab" onclick="handleCategoryClick(9)">دفاتر عادية</li>
-            <li class="tab" onclick="handleCategoryClick(19)">دفاتر سلك</li>
-            <li class="tab" onclick="handleCategoryClick(13)">دفاتر رسم</li>
-            <li class="tab" onclick="handleCategoryClick(15)">دفاتر رسم بياني</li>
+            <li class="tab" onclick="handleCategoryClick(10)">دفاتر سلك</li>
+            <li class="tab" onclick="handleCategoryClick(11)">دفاتر رسم</li>
+            <li class="tab" onclick="handleCategoryClick(12)">دفاتر رسم بياني</li>
         </ul>
         <br>
         <!-- Tab contents -->
@@ -174,14 +174,14 @@
                 case 9:
                     fetchProducts(9, 'product-list-regular');
                     break;
-                case 19:
-                    fetchProducts(19, 'product-list-wire');
+                case 10:
+                    fetchProducts(10, 'product-list-wire');
                     break;
-                case 13:
-                    fetchProducts(13, 'product-list-sketch');
+                case 11:
+                    fetchProducts(11, 'product-list-sketch');
                     break;
-                case 15:
-                    fetchProducts(15, 'product-list-graph');
+                case 12:
+                    fetchProducts(12, 'product-list-graph');
                     break;
                 default:
                     break;

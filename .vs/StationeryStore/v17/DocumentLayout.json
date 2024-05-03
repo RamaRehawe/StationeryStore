@@ -7,6 +7,22 @@
       "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:views\\item\\item.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\subcategories\\brushs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:views\\subcategories\\brushs.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\views\\checkout\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:views\\checkout\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\seed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:seed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|c:\\users\\oulan\\source\\repos\\stationerystore\\stationerystore\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D07DA7F4-75FC-413F-B768-32FBD4605BB0}|StationeryStore.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1405,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,19 +63,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ReviewController.cs",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\ReviewController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ReviewController.cs",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\ReviewController.cs",
+              "RelativeToolTip": "Controllers\\ReviewController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-03T02:12:35.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Checkout.cshtml",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Checkout\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Checkout\\Checkout.cshtml",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Checkout\\Checkout.cshtml",
+              "RelativeToolTip": "Views\\Checkout\\Checkout.cshtml",
+              "ViewState": "AQIAADoAAAAAAAAAAAAAAEoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-03T00:32:02.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "ProductController.cs",
               "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "Controllers\\ProductController.cs",
               "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\ProductController.cs",
               "RelativeToolTip": "Controllers\\ProductController.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAAEIAAAAJAAAA",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACUAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T11:21:36.02Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "OrderController.cs",
               "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "Controllers\\OrderController.cs",
@@ -76,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Seed.cs",
               "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Seed.cs",
               "RelativeDocumentMoniker": "Seed.cs",
@@ -84,18 +122,17 @@
               "RelativeToolTip": "Seed.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAH4AAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-02T08:15:20.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-02T08:15:20.629Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAE8AAAAAAAAAAAAAAGIAAAADAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowCoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-02T08:15:10.116Z",
               "EditorCaption": ""
@@ -108,9 +145,22 @@
               "RelativeDocumentMoniker": "Views\\Item\\Item.cshtml",
               "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Item\\Item.cshtml",
               "RelativeToolTip": "Views\\Item\\Item.cshtml",
-              "ViewState": "AQIAAD0BAAAAAAAAAAAAAEQBAAALAAAA",
+              "ViewState": "AQIAALEAAAAAAAAAAADwv8wAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-05-02T07:29:13.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Brushs.cshtml",
+              "DocumentMoniker": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Subcategories\\Brushs.cshtml",
+              "RelativeDocumentMoniker": "Views\\Subcategories\\Brushs.cshtml",
+              "ToolTip": "C:\\Users\\oulan\\source\\repos\\StationeryStore\\StationeryStore\\Views\\Subcategories\\Brushs.cshtml",
+              "RelativeToolTip": "Views\\Subcategories\\Brushs.cshtml",
+              "ViewState": "AQIAAIQAAAAAAAAAAAAAAN8AAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-03T01:48:07.051Z",
               "EditorCaption": ""
             }
           ]

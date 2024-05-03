@@ -97,10 +97,10 @@
 
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="handleCategoryClick(18)">أقلام حبر فنية</li>
-            <li class="tab" onclick="handleCategoryClick(10)">فرش فنية</li>
-            <li class="tab" onclick="handleCategoryClick(13)">ألوان مائية</li>
-            <li class="tab" onclick="handleCategoryClick(15)">ألوان خشب</li>
+            <li class="tab" onclick="handleCategoryClick(13)">أقلام حبر فنية</li>
+            <li class="tab" onclick="handleCategoryClick(14)">فرش فنية</li>
+            <li class="tab" onclick="handleCategoryClick(15)">ألوان مائية</li>
+            <li class="tab" onclick="handleCategoryClick(16)">ألوان خشبية</li>
             <li class="tab" onclick="handleCategoryClick(17)">ألوان شمعية</li>
         </ul>
         <br>
@@ -108,18 +108,20 @@
         <div class="tab-content" id="artinkpens" style="display: none;">
             <div id="product-list-artinkpens"></div>
         </div>
-        <div class="tab-content" id="crayons" style="display: none;">
-            <div id="product-list-crayons"></div>
-        </div>
-        <div class="tab-content" id="woodcolor" style="display: none;">
-            <div id="product-list-woodcolor"></div>
-        </div>
         <div class="tab-content" id="brushs" style="display: none;">
             <div id="product-list-brushs"></div>
         </div>
         <div class="tab-content" id="watercolor" style="display: none;">
             <div id="product-list-watercolor"></div>
         </div>
+        <div class="tab-content" id="woodcolor" style="display: none;">
+            <div id="product-list-woodcolor"></div>
+        </div>
+        <div class="tab-content" id="crayons" style="display: none;">
+            <div id="product-list-crayons"></div>
+        </div>
+       
+      
     </main>
 
     <footer>
@@ -174,20 +176,20 @@
         function handleCategoryClick(subId) {
             // Call the function to fetch product data based on subId
             switch (subId) {
-                case 18:
-                    fetchProducts(18, 'product-list-artinkpens');
-                    break;
-                case 10:
-                    fetchProducts(10, 'product-list-crayons');
-                    break;
                 case 13:
-                    fetchProducts(13, 'product-list-woodcolor');
-                    break;
-                case 15:
-                    fetchProducts(15, 'product-list-brushs');
+                    fetchProducts(13, 'product-list-artinkpens');
                     break;
                 case 17:
-                    fetchProducts(17, 'product-list-watercolor');
+                    fetchProducts(17, 'product-list-crayons');
+                    break;
+                case 16:
+                    fetchProducts(16, 'product-list-woodcolor');
+                    break;
+                case 14:
+                    fetchProducts(14, 'product-list-brushs');
+                    break;
+                case 15:
+                    fetchProducts(15, 'product-list-watercolor');
                     break;
                 default:
                     break;

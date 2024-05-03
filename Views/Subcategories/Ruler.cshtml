@@ -97,8 +97,8 @@
 
     <main>
         <ul class="tabs">
-            <li class="tab" onclick="handleCategoryClick(1)">أدوات رسم هندسي</li>
-            <li class="tab" onclick="handleCategoryClick(2)">آلالات حاسبة علمية</li>
+            <li class="tab" onclick="handleCategoryClick(18)">أدوات رسم هندسي</li>
+            <li class="tab" onclick="handleCategoryClick(19)">آلالات حاسبة علمية</li>
         </ul>
         <br>
         <!-- Tab contents -->
@@ -162,11 +162,11 @@
         function handleCategoryClick(subId) {
             // Call the function to fetch product data based on subId
             switch (subId) {
-                case 1:
-                    fetchProducts(1, 'product-list-setdraw');
+                case 18:
+                    fetchProducts(18, 'product-list-setdraw');
                     break;
-                case 2:
-                    fetchProducts(2, 'product-list-santfic-calc');
+                case 19:
+                    fetchProducts(19, 'product-list-santfic-calc');
                     break;
                 default:
                     break;
