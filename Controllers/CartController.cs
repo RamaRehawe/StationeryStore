@@ -35,7 +35,7 @@ namespace StationeryStore.Controllers
             var cartItems = _cartRepository.GetCartItemsByCartId(cart.Id);
             // Calculate the subprice for each item and sum up the total price
             double total = 0;
-            var cartItemDtos = new List<CartItemDto>();
+            var cartItemDtos = new List<ResCartItemDto>();
             foreach (var item in cartItems)
             {
                 var productAttributeQuantity = _cartRepository.GetProductAttributeQuantityById(item.ProductAttributeQuantityId);
@@ -43,11 +43,13 @@ namespace StationeryStore.Controllers
                 var subPrice = item.Quantity * productAttributeQuantity.Price;
                 total += subPrice;
                 // Manually map CartItem to CartItemDto
-                var cartItemDto = new CartItemDto
+                var cartItemDto = new ResCartItemDto
                 {
                     Quantity = item.Quantity,
-                    ProductAttributeQuantityId = item.ProductAttributeQuantityId,
-                    SubPrice = subPrice
+                    Price = productAttributeQuantity.Price,
+                    productName = productAttributeQuantity.Product.Name,
+                    itemId = item.ProductAttributeQuantityId,
+                    Subtotal = subPrice
                 };
                 cartItemDtos.Add(cartItemDto);
             }
