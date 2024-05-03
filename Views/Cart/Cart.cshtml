@@ -18,7 +18,7 @@
     </a>
     <div class="logout-icon">
         <a onclick="logout()" id="logoutLink" style="display:none;">
-            <img src="~/Images/log-out.png" alt="Logout" >
+            <img src="~/Images/log-out.png" alt="Logout">
             <span id="logout-text"> تسجيل الخروج</span>
         </a>
     </div>
@@ -29,7 +29,9 @@
                 <div class="empty-cart-message" id="empty-cart-message-cart">
                     <p>السلة لا تحوي منتجات</p>
                 </div>
-           
+                <div class="login-alert" id="login-alert" style="display: none;">
+                    <p>يجب عليك <a href="front_login">تسجيل الدخول</a> أولاً.</p>
+                </div>
                 <!-- Cart items will be dynamically added here -->
                 <a href="#" class="remove-link" onclick="deleteCartItem(itemId)" style="display: none;">حذف</a>
                 <div class="cart-total" id="cart-total" style="display: none;">
@@ -46,7 +48,7 @@
         <p dir="ltr">&copy; 2024 - جميع الحقوق محفوظة</p>
         |
         <a href="front_privacy_policy">سياسة الخصوصية</a>
-       
+
         <a href="front_about">من نحن</a>
         |
         <div class="social-links">
@@ -67,19 +69,22 @@
     </footer>
 
     <script>
-        const authToken = localStorage.getItem('authToken');
+        authToken = localStorage.getItem('authToken');
         const userId = localStorage.getItem('userId'); // Assuming you store the user ID in localStorage
         document.addEventListener('DOMContentLoaded', function () {
             checkLoginStatus();
         });
 
         function checkLoginStatus() {
-            const authToken = localStorage.getItem('authToken');
+            authToken = localStorage.getItem('authToken');
             const isLoggedIn = authToken !== null;
+            console.log(authToken);
+            console.log(isLoggedIn);
 
             const logoutIcon = document.getElementById('logoutLink');
             if (isLoggedIn) {
                 logoutIcon.style.display = 'block'; // Show the logout icon if logged in
+                fetchCartItems();
             } else {
                 logoutIcon.style.display = 'none'; // Hide the logout icon if not logged in
                 clearCart();
@@ -87,22 +92,26 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', function () {
-            fetchCartItems();
-        });
+        // window.addEventListener('DOMContentLoaded', function () {
+        //     fetchCartItems();
+        // });
 
         function fetchCartItems() {
+            console.log("test");
             fetch('/api/Cart/myCart', {
+                method: 'GET',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + authToken
-                }
+                },
             })
+
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     const cartContainer = document.getElementById('cart-container');
                     const cartForm = cartContainer.querySelector('.cart-form');
                     const emptyCartMessage = cartContainer.querySelector('#empty-cart-message-cart');
-                    const removeLink = cartContainer.querySelector('.remove-link');
                     const cartTotal = cartContainer.querySelector('#cart-total');
                     const checkoutBtn = cartContainer.querySelector('#checkout-btn');
 
@@ -112,36 +121,34 @@
                         data.cartItems.forEach(item => {
                             // Create HTML for each cart item
                             const cartItemHtml = `
-                                <div class="cart-item">
-                                    <p>Product Name: ${item.Name}</p>
-                                    <p>Quantity: ${item.quantity}</p>
-                                    <p>Price per Unit: ل.س ${item.price}</p>
-                                    <p>Subtotal: ل.س ${item.subtotal}</p>
-                                    <a href="#" class="remove-link" onclick="deleteCartItem(${item.itemId})">Remove</a>
-                                </div>
-                            `;
+                                        <div class="cart-item">
+                                            <p>Product Name: ${item.productName}</p>
+                                            <p>Quantity: ${item.quantity}</p>
+                                            <p>Price per Unit: ل.س ${item.price}</p>
+                                            <p>Subtotal: ل.س ${item.subtotal}</p>
+                                            <a href="#" class="remove-link" onclick="deleteCartItem(${item.itemId})">Remove</a>
+                                        </div>
+                                    `;
                             // Insert the HTML for the cart item into the cart form
                             cartForm.insertAdjacentHTML('beforeend', cartItemHtml);
                         });
 
                         // Update cart total and display relevant elements
-                        cartTotal.querySelector('p').textContent = Total Bill: ل.س ${ data.totalPrice };
+                        cartTotal.querySelector('p').textContent = `Total Bill: ل.س ${data.totalPrice}`;
                         cartTotal.style.display = 'block';
                         checkoutBtn.style.display = 'block';
                         emptyCartMessage.style.display = 'none';
-                        removeLink.style.display = 'block'; // Display the remove link for each item
                     } else {
                         // Hide cart total and checkout button if cart is empty
                         cartTotal.style.display = 'none';
                         checkoutBtn.style.display = 'none';
                         emptyCartMessage.style.display = 'block';
-                        removeLink.style.display = 'none'; // Hide the remove link when the cart is empty
                     }
                 })
                 .catch(error => console.error('Error fetching cart items:', error));
         }
 
-       
+
         // Function to delete a cart item
         function deleteCartItem(itemId) {
             // Send DELETE request to backend API
@@ -215,8 +222,12 @@
                 emptyCartMessage.style.display = 'block';
             }
 
+            var loginAlert = document.getElementById('login-alert');
+            if (loginAlert) {
+                loginAlert.style.display = 'block';
+            }
         }
-      
+
 
         function updateItemTotal(select) {
             var cartItem = select.closest('.cart-item');
@@ -272,14 +283,14 @@
                 emptyCartMessage.style.display = 'block';
             }
 
-            // // Update the cart item count variable
-            // cartItemCount = getCartItemCount();
+            // Update the cart item count variable
+            cartItemCount = getCartItemCount();
 
-            // // Display the updated cart item count
-            // const cartItemCountElement = document.getElementById('cart-item-count');
-            // if (cartItemCountElement) {
-            //     cartItemCountElement.textContent = cartItemCount;
-            // }
+            // Display the updated cart item count
+            const cartItemCountElement = document.getElementById('cart-item-count');
+            if (cartItemCountElement) {
+                cartItemCountElement.textContent = cartItemCount;
+            }
         }
         function clearCart() {
             // قم بتفريغ السلة هنا، يمكنك استخدام الطريقة التي تفضلها
@@ -290,7 +301,7 @@
             });
             updateTotal(); // قم بتحديث إجمالي السلة
         }
-       
+
         function logout() {
             // حذف الـ token من الجلسة
             localStorage.removeItem('authToken');
@@ -298,7 +309,7 @@
             // توجيه المستخدم إلى الصفحة الرئيسية أو أي صفحة أخرى
             window.location.href = "front_home";
         }
-       
+
 
     </script>
 
