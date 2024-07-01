@@ -180,6 +180,8 @@
         </div>
     </footer>
     <script>
+        const authToken = localStorage.getItem('authToken');
+
         // Fetch data from the API endpoint
         function fetchComplaintsFromAPI() {
             fetch('/api/CustomerService/getComplains', {
