@@ -565,6 +565,11 @@
         function addToCart() {
             // Get productData from window object
             var productData = window.productData;
+            // التحقق من وجود بيانات المنتج
+            if (!productData || !productData.id) {
+                alert('بيانات المنتج غير متاحة.');
+                return;
+            }
             // Get selected attribute values
             var attributeName = document.getElementById("attribute-name").value;
             var attributeValue = document.getElementById("attribute-value").value;

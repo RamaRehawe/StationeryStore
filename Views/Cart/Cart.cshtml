@@ -38,7 +38,8 @@
                     <p>إجمالي الفاتورة:  ل.س 0</p>
                 </div>
                 <br>
-                <button class="checkout-btn" id="checkout-btn" style="display: none;">اتمام الشراء</button>
+                <button class="checkout" id="checkout">اتمام الشراء</button>
+                <button class="checkout-btn" id="checkout-btn">اتمام الشراء</button>
             </form>
         </section>
 
@@ -141,7 +142,7 @@
                     } else {
                         // Hide cart total and checkout button if cart is empty
                         cartTotal.style.display = 'none';
-                        checkoutBtn.style.display = 'none';
+                        checkoutBtn.style.display = 'block';
                         emptyCartMessage.style.display = 'block';
                     }
                 })
